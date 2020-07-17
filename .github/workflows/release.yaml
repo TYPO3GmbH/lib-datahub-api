@@ -10,23 +10,24 @@ jobs:
     name: Create Library Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Tag and prepare release
-        id: tag_and_prepare_release
-        uses: K-Phoen/semver-release-action@master
+      - uses: actions/checkout@v2
         with:
-          script: |
-            const tag = context.payload.client_payload.ref.split('/')[2]
-            core.setOutput('tag', tag)
-          tag: ${{ steps.tag_and_prepare_release.outputs.tag }}
-          release_branch: master
+          fetch-depth: 0
+          ref: master
+      - name: Prepare Data
+        id: data
+        run: |
+          echo ::set-output name=tag::$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f3')
+      - name: Tag latest commit
+        id: tag_release
+        run: |
+          git tag -a ${{ steps.data.outputs.tag }} -m "[RELEASE] ${{ steps.data.outputs.tag }}"
+          git push -tags
         env:
-          TAG:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release notes
-        if: steps.tag_and_prepare_release.outputs.tag
         uses: Roang-zero1/github-create-release-action@master
         with:
-          created_tag: ${{ steps.tag_and_prepare_release.outputs.tag }}
+          created_tag: ${{ steps.data.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

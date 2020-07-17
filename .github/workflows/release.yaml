@@ -17,12 +17,12 @@ jobs:
       - name: Prepare Data
         id: data
         run: |
-          echo ::set-output name=tag::$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f3')
+          echo ::set-output name=tag::$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f3)
       - name: Tag latest commit
         id: tag_release
         run: |
           git tag -a ${{ steps.data.outputs.tag }} -m "[RELEASE] ${{ steps.data.outputs.tag }}"
-          git push -tags
+          git push --tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release notes

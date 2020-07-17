@@ -1,0 +1,32 @@
+name: Release Library
+
+on:
+  repository_dispatch:
+    types:
+      - release_library
+
+jobs:
+  build:
+    name: Create Library Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Tag and prepare release
+        id: tag_and_prepare_release
+        uses: K-Phoen/semver-release-action@master
+        with:
+          script: |
+            const tag = context.payload.client_payload.ref.split('/')[2]
+            core.setOutput('tag', tag)
+          tag: ${{ steps.tag_and_prepare_release.outputs.tag }}
+          release_branch: master
+        env:
+          TAG:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload release notes
+        if: steps.tag_and_prepare_release.outputs.tag
+        uses: Roang-zero1/github-create-release-action@master
+        with:
+          created_tag: ${{ steps.tag_and_prepare_release.outputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

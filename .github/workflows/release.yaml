@@ -17,9 +17,11 @@ jobs:
       - name: Prepare Data
         id: data
         run: |
+          echo ::set-output name=type::$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f2)
           echo ::set-output name=tag::$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f3)
       - name: Tag latest commit
         id: tag_release
+        if: steps.data.outputs.type == 'tags'
         run: |
           git config --global user.email "info@typo3.com"
           git config --global user.name "GitHub Actions"
@@ -28,6 +30,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release notes
+        if: steps.data.outputs.type == 'tags'
         uses: Roang-zero1/github-create-release-action@master
         with:
           created_tag: ${{ steps.data.outputs.tag }}

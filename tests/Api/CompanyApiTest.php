@@ -22,6 +22,7 @@ class CompanyApiTest extends AbstractApiTest
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000');
         $this->assertEquals('Test Company', $response->getTitle());
+        $this->assertEquals('typo3.com', $response->getDomain());
         $this->assertCount(4, $response->getEmployees());
         $this->assertCount(2, $response->getAddresses());
         $this->assertCount(2, $response->getPostalAddresses());
@@ -159,6 +160,7 @@ class CompanyApiTest extends AbstractApiTest
     {
         return (new Company())
             ->setTitle('Test Company')
+            ->setDomain('typo3.com')
             ->setEmail('test@example.com')
             ->setVatId('DE123456789');
     }

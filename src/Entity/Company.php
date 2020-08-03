@@ -38,6 +38,8 @@ class Company implements JsonSerializable
 
     private ?Membership $membership = null;
 
+    private ?string $domain = null;
+
     public function jsonSerialize()
     {
         return [
@@ -272,5 +274,16 @@ class Company implements JsonSerializable
         return new \ArrayIterator(array_filter($this->addresses, static function (Address $address) {
             return $address->isDeliveryAddress();
         }));
+    }
+
+    public function getDomain(): ?string
+    {
+        return $this->domain;
+    }
+
+    public function setDomain(?string $domain): self
+    {
+        $this->domain = $domain;
+        return $this;
     }
 }

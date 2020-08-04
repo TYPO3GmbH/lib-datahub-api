@@ -41,7 +41,7 @@ class CertificationFactory extends AbstractFactory
             $certification->setExamDate(new \DateTimeImmutable($data['examDate']));
         }
         if (isset($data['validUntil'])) {
-            $certification->setExamDate(new \DateTimeImmutable($data['validUntil']));
+            $certification->setValidUntil(new \DateTimeImmutable($data['validUntil']));
         }
         if (isset($data['proctoringLink'])) {
             $certification->setProctoringLink($data['proctoringLink']);

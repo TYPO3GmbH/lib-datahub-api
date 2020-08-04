@@ -130,6 +130,21 @@ class CertificationApiTest extends AbstractApiTest
         $this->assertNull($certification->getCertificatePrintDate());
     }
 
+    public function testDeleteCertification(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+        ]);
+        $api = new CertificationApi($this->getClient($handler));
+        try {
+            $api->deleteCertification('00000000-0000-0000-0000-000000000000');
+            $anExceptionWasThrown = false;
+        } catch (\Exception $e) {
+            $anExceptionWasThrown = true;
+        }
+        $this->assertFalse($anExceptionWasThrown);
+    }
+
     private function getTestCertificate(): Certification
     {
         return (new Certification())

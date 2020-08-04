@@ -118,4 +118,9 @@ class CertificationApi
             ], JSON_THROW_ON_ERROR)
         );
     }
+
+    public function deleteCertification(string $uuid): void
+    {
+        $this->client->request('DELETE', '/certifications/' . $uuid . '/delete');
+    }
 }

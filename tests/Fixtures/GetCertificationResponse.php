@@ -26,6 +26,7 @@ return new Response(200, ['content-type' => 'application/json'], '
   "proctoringStatus": "pending",
   "certificatePrintDate": null,
   "incidents": 0,
-  "hubspotDealId": "1234"
+  "hubspotDealId": "1234",
+  "validUntil": "2020-06-02T00:00:00+00:00"
 }
 ');

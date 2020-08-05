@@ -12,6 +12,7 @@ use DateTimeInterface;
 use JsonSerializable;
 use T3G\DatahubApiLibrary\Enum\CertificationProctoringApprovalStatus;
 use T3G\DatahubApiLibrary\Enum\CertificationTestResult;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\CertificationVersion;
 
 class Certification implements JsonSerializable
@@ -102,7 +103,7 @@ class Certification implements JsonSerializable
 
     public function getName(): string
     {
-        return $this->getType() . ' v' . $this->getVersion();
+        return CertificationType::getName($this->getType());
     }
 
     public function getUser(): array

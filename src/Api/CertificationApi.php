@@ -121,6 +121,6 @@ class CertificationApi
 
     public function deleteCertification(string $uuid): void
     {
-        $this->client->request('DELETE', '/certifications/' . $uuid . '/delete');
+        $this->client->request('DELETE', '/certifications/' . $uuid);
     }
 }

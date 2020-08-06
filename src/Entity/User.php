@@ -262,6 +262,26 @@ class User implements JsonSerializable
     }
 
     /**
+     * @return Certification[]
+     */
+    public function getActiveCertifications(): array
+    {
+        $active = [];
+        foreach ($this->certifications as $certification) {
+            if ($certification->getValidUntil() < new \DateTime()) {
+                continue;
+            }
+            if (isset($active[$certification->getType()]) && $certification->getValidUntil() < $active[$certification->getType()]->getValidUntil()) {
+                continue;
+            }
+            $active[$certification->getType()] = $certification;
+        }
+        ksort($active);
+
+        return $active;
+    }
+
+    /**
      * @param array $certifications
      * @return User
      */

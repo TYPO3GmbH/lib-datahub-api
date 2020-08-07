@@ -267,7 +267,7 @@ class User implements JsonSerializable
     public function getActiveCertifications(): array
     {
         $active = [];
-        foreach ($this->certifications as $certification) {
+        foreach ($this->getCertificationsListed() as $certification) {
             if ($certification->getValidUntil() < new \DateTime()) {
                 continue;
             }

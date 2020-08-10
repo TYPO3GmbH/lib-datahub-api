@@ -108,6 +108,21 @@ class CertificationApi
         );
     }
 
+    /**
+     * @return Certification[]
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     */
+    public function getCertificationsForListing(): array
+    {
+        return CertificationListFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                '/certifications/get-for-listing',
+            )
+        );
+    }
+
     public function setCertificationsPrintDate(array $uuids): void
     {
         $this->client->request(

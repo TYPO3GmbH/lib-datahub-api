@@ -9,11 +9,14 @@
 namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
+use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\EmployeeRole;
 
 class Company implements JsonSerializable
 {
     private string $uuid;
+
+    private string $companyType = CompanyType::AGENCY;
 
     private string $title;
 
@@ -43,6 +46,7 @@ class Company implements JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'companyType' => $this->getCompanyType(),
             'title' => $this->getTitle(),
             'email' => $this->getEmail(),
             'vatId' => $this->getVatId(),
@@ -57,6 +61,17 @@ class Company implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+        return $this;
+    }
+
+    public function getCompanyType(): string
+    {
+        return $this->companyType;
+    }
+
+    public function setCompanyType(string $companyType): self
+    {
+        $this->companyType = $companyType;
         return $this;
     }
 

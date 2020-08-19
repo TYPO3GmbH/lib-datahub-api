@@ -67,6 +67,7 @@ class EmployeeFactoryTest extends TestCase
                     'leftAt' => null,
                     'company' => [
                         'uuid' => '00000000-0000-0000-0000-000000000000',
+                        'companyType' => 'AGENCY',
                         'title' => 'Aldi',
                         'email' => 'aldi-nice-things@example.com',
                         'vatId' => 'DE 123 456 789',
@@ -81,6 +82,7 @@ class EmployeeFactoryTest extends TestCase
                     'leftAt' => '2020-05-26T00:00:00+00:00',
                     'company' => [
                         'uuid' => '00000000-0000-0000-0000-000000000000',
+                        'companyType' => 'AGENCY',
                         'title' => 'Aldi',
                         'email' => 'aldi-nice-things@example.com',
                         'vatId' => 'DE 123 456 789',

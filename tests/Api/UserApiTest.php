@@ -14,6 +14,7 @@ use T3G\DatahubApiLibrary\Api\UserApi;
 use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Enum\CertificationVersion;
+use T3G\DatahubApiLibrary\Enum\CompanyType;
 
 class UserApiTest extends AbstractApiTest
 {
@@ -82,6 +83,7 @@ class UserApiTest extends AbstractApiTest
         $api = new UserApi($this->getClient($handler));
         $response = $api->getCompanyHistory('oelie-boelie');
         $this->assertCount(1, $response);
+        $this->assertEquals(CompanyType::UNIVERSITY, $response[0]->getCompany()->getCompanyType());
         $this->assertEquals('Dien Mam International', $response[0]->getCompany()->getTitle());
     }
 

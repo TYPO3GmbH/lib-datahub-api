@@ -27,7 +27,8 @@ class CompanyFactory extends AbstractFactory
             ->setUuid($data['uuid'])
             ->setEmail($data['email'] ?? '')
             ->setVatId($data['vatId'] ?? '')
-            ->setDomain($data['domain'] ?? null);
+            ->setDomain($data['domain'] ?? null)
+            ->setCompanyType($data['companyType']);
 
         foreach ($data['addresses'] ?? [] as $address) {
             $company->addAddress(AddressFactory::fromArray($address));

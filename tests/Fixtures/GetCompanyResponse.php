@@ -11,6 +11,7 @@ use GuzzleHttp\Psr7\Response;
 return new Response(200, ['content-type' => 'application/json'], '
 {
   "uuid": "00000000-0000-0000-0000-000000000000",
+  "companyType": "AGENCY",
   "title": "Test Company",
   "email": "oelie@boelie.com",
   "vatId": "DE 123 456 789",

@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
 
 class CompanyFactoryTest extends TestCase
@@ -22,6 +23,7 @@ class CompanyFactoryTest extends TestCase
     {
         $entity = CompanyFactory::fromArray($data);
         $this->assertEquals($data['uuid'], $entity->getUuid());
+        $this->assertEquals($data['companyType'], $entity->getCompanyType());
         $this->assertEquals($data['title'], $entity->getTitle());
         $this->assertEquals($data['email'], $entity->getEmail());
         $this->assertEquals($data['vatId'], $entity->getVatId());
@@ -45,6 +47,7 @@ class CompanyFactoryTest extends TestCase
             'allValuesSet' => [
                 'data' => [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
+                    'companyType' => CompanyType::AGENCY,
                     'title' => 'Lidl',
                     'email' => 'lidl-people@example.com',
                     'vatId' => 'DE 123 456 789',

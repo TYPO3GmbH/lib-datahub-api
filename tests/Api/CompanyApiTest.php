@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\CompanyApi;
 use T3G\DatahubApiLibrary\Entity\Company;
+use T3G\DatahubApiLibrary\Enum\CompanyType;
 
 class CompanyApiTest extends AbstractApiTest
 {
@@ -21,6 +22,7 @@ class CompanyApiTest extends AbstractApiTest
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000');
+        $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
         $this->assertEquals('Test Company', $response->getTitle());
         $this->assertEquals('typo3.com', $response->getDomain());
         $this->assertCount(4, $response->getEmployees());
@@ -36,6 +38,7 @@ class CompanyApiTest extends AbstractApiTest
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000', true);
+        $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
         $this->assertEquals('Test Company', $response->getTitle());
         $orders = $response->getOrders();
         $this->assertCount(1, $orders);
@@ -50,6 +53,7 @@ class CompanyApiTest extends AbstractApiTest
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->createCompany($this->getTestCompany());
+        $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
         $this->assertEquals('Test Company', $response->getTitle());
     }
 

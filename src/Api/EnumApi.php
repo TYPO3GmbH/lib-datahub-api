@@ -90,4 +90,18 @@ class EnumApi
 
         return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function getSubscriptionTypes(): array
+    {
+        $response = $this->client->request(
+            'GET',
+            '/enums/subscription/type',
+        );
+
+        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+    }
 }

@@ -71,4 +71,18 @@ class EnumApiTest extends AbstractApiTest
         $this->assertContains('Github', $response);
         $this->assertArrayHasKey('github', $response);
     }
+
+    public function testGetSubscriptionTypes(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetSubscriptionTypesEnumResponse.php'
+        ]);
+        $api = new EnumApi($this->getClient($handler));
+        $response = $api->getSubscriptionTypes();
+        $this->assertIsArray($response);
+        $this->assertContains('Membership', $response);
+        $this->assertArrayHasKey('membership', $response);
+        $this->assertContains('Professional Service Listing', $response);
+        $this->assertArrayHasKey('psl', $response);
+    }
 }

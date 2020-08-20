@@ -36,6 +36,9 @@ final class WebHookType extends AbstractEnum
     public const ORDER_CREATED = 'order_created';
     public const ORDER_UPDATED = 'order_updated';
     public const ORDER_DELETED = 'order_deleted';
+    public const SUBSCRIPTION_CREATED = 'subscription_created';
+    public const SUBSCRIPTION_UPDATED = 'subscription_updated';
+    public const SUBSCRIPTION_DELETED = 'subscription_deleted';
 
     protected static array $optionNames = [
         self::ADDRESS_CHANGED => 'Address record has been changed',
@@ -59,5 +62,8 @@ final class WebHookType extends AbstractEnum
         self::ORDER_CREATED => 'Order record has been created',
         self::ORDER_UPDATED => 'Order record has been changed',
         self::ORDER_DELETED => 'Order record has been deleted',
+        self::SUBSCRIPTION_CREATED => 'Subscription record has been created',
+        self::SUBSCRIPTION_UPDATED => 'Subscription record has been changed',
+        self::SUBSCRIPTION_DELETED => 'Subscription record has been deleted',
     ];
 }

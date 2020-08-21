@@ -23,7 +23,7 @@ class CompanyFactoryTest extends TestCase
     {
         $entity = CompanyFactory::fromArray($data);
         $this->assertEquals($data['uuid'], $entity->getUuid());
-        $this->assertEquals($data['companyType'], $entity->getCompanyType());
+        $this->assertEquals($data['companyType'] ?? CompanyType::AGENCY, $entity->getCompanyType());
         $this->assertEquals($data['title'], $entity->getTitle());
         $this->assertEquals($data['email'], $entity->getEmail());
         $this->assertEquals($data['vatId'], $entity->getVatId());
@@ -47,7 +47,26 @@ class CompanyFactoryTest extends TestCase
             'allValuesSet' => [
                 'data' => [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
-                    'companyType' => CompanyType::AGENCY,
+                    'companyType' => CompanyType::FREELANCER,
+                    'title' => 'Lidl',
+                    'email' => 'lidl-people@example.com',
+                    'vatId' => 'DE 123 456 789',
+                    'employees' => [[
+                        'uuid' => '00000000-0000-0000-0000-000000000000',
+                        'role' => 'OWNER',
+                        'joinedAt' => '2020-02-26T00:00:00+00:00',
+                        'leftAt' => null,
+                        'user' => [
+                            'username' => 'oelie-boelie',
+                            'firstName' => 'Oelie',
+                            'lastName' => 'Boelie',
+                        ]]
+                    ]
+                ]
+            ],
+            'missing company type, expect AGENCY' => [
+                'data' => [
+                    'uuid' => '00000000-0000-0000-0000-000000000000',
                     'title' => 'Lidl',
                     'email' => 'lidl-people@example.com',
                     'vatId' => 'DE 123 456 789',

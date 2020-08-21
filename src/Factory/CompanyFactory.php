@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Factory;
 
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Company;
+use T3G\DatahubApiLibrary\Enum\CompanyType;
 
 class CompanyFactory extends AbstractFactory
 {
@@ -28,7 +29,7 @@ class CompanyFactory extends AbstractFactory
             ->setEmail($data['email'] ?? '')
             ->setVatId($data['vatId'] ?? '')
             ->setDomain($data['domain'] ?? null)
-            ->setCompanyType($data['companyType']);
+            ->setCompanyType($data['companyType'] ?? CompanyType::AGENCY);
 
         foreach ($data['addresses'] ?? [] as $address) {
             $company->addAddress(AddressFactory::fromArray($address));

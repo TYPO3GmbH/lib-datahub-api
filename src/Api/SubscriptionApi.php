@@ -36,6 +36,16 @@ class SubscriptionApi
         );
     }
 
+    public function getSubscriptionBySubscriptionIdentifier(string $subscriptionIdentifier): Subscription
+    {
+        return SubscriptionFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                '/subscription/identifier/' . $subscriptionIdentifier
+            )
+        );
+    }
+
     public function createSubscriptionForUser(string $username, Subscription $subscription): Subscription
     {
         return SubscriptionFactory::fromResponse(

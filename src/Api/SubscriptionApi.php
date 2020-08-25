@@ -36,6 +36,16 @@ class SubscriptionApi
         );
     }
 
+    /** @phpstan-return array<int,mixed> */
+    public function getSubscriptionProducts(): array
+    {
+        $data = $this->client->request(
+            'GET',
+            '/subscription/products'
+        )->getBody();
+        return json_decode((string)$data, true, 512, JSON_THROW_ON_ERROR);
+    }
+
     public function getSubscriptionBySubscriptionIdentifier(string $subscriptionIdentifier): Subscription
     {
         return SubscriptionFactory::fromResponse(

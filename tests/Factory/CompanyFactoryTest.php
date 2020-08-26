@@ -27,6 +27,8 @@ class CompanyFactoryTest extends TestCase
         $this->assertEquals($data['title'], $entity->getTitle());
         $this->assertEquals($data['email'], $entity->getEmail());
         $this->assertEquals($data['vatId'], $entity->getVatId());
+        $this->assertEquals($data['city'] ?? null, $entity->getCity());
+        $this->assertEquals($data['country']['iso'] ?? null, $entity->getCountry());
         $this->assertCount(1, $entity->getEmployees());
         $this->assertEquals(
             $data['employees'][0]['joinedAt'],
@@ -61,8 +63,12 @@ class CompanyFactoryTest extends TestCase
                             'firstName' => 'Oelie',
                             'lastName' => 'Boelie',
                         ]]
-                    ]
-                ]
+                    ],
+                    'city' => 'Moscow',
+                    'country' => [
+                        'iso' => 'RU',
+                    ],
+                ],
             ],
             'missing company type, expect AGENCY' => [
                 'data' => [

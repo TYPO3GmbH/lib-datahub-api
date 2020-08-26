@@ -24,6 +24,10 @@ class Company implements JsonSerializable
 
     private ?string $vatId = null;
 
+    private ?string $city = null;
+
+    private ?string $country = null;
+
     /**
      * @var Address[]
      */
@@ -50,6 +54,8 @@ class Company implements JsonSerializable
             'title' => $this->getTitle(),
             'email' => $this->getEmail(),
             'vatId' => $this->getVatId(),
+            'city' => $this->getCity(),
+            'country' => $this->getCountry(),
         ];
     }
 
@@ -299,6 +305,28 @@ class Company implements JsonSerializable
     public function setDomain(?string $domain): self
     {
         $this->domain = $domain;
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
         return $this;
     }
 }

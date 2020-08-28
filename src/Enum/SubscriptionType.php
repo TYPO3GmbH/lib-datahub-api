@@ -28,10 +28,10 @@ final class SubscriptionType extends AbstractEnum
         self::PSL => 'Professional Service Listing',
     ];
 
-    public static function getAllowedSubTypes(string $subType, $withDescription = false): ?array
+    public static function getAllowedSubTypes(string $type, $withDescription = false): ?array
     {
-        $subTypeEnumClass = self::$subTypeMap[$subType] ?? null;
-        if (null !== $subTypeEnumClass) {
+        $subTypeEnumClass = self::$subTypeMap[$type] ?? null;
+        if (is_a($subTypeEnumClass, AbstractEnum::class, true)) {
             return $subTypeEnumClass::getAvailableOptions($withDescription);
         }
         return null;

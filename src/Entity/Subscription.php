@@ -10,12 +10,14 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 use DateTimeInterface;
 use JsonSerializable;
+use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
 class Subscription implements JsonSerializable
 {
     private string $uuid = '';
     private string $subscriptionIdentifier = '';
+    private string $subscriptionStatus = '';
     private string $subscriptionType = '';
     private string $subscriptionSubType = '';
     private ?DateTimeInterface $validUntil = null;
@@ -25,6 +27,7 @@ class Subscription implements JsonSerializable
     {
         return [
             'subscriptionIdentifier' => $this->getSubscriptionIdentifier(),
+            'subscriptionStatus' => $this->getSubscriptionStatus(),
             'subscriptionType' => $this->getSubscriptionType(),
             'subscriptionSubType' => $this->getSubscriptionSubType(),
             'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
@@ -51,6 +54,20 @@ class Subscription implements JsonSerializable
     public function setSubscriptionIdentifier(string $subscriptionIdentifier): self
     {
         $this->subscriptionIdentifier = $subscriptionIdentifier;
+        return $this;
+    }
+
+    public function getSubscriptionStatus(): string
+    {
+        return $this->subscriptionStatus;
+    }
+
+    public function setSubscriptionStatus(string $subscriptionStatus): self
+    {
+        if (!in_array($subscriptionStatus, SubscriptionStatus::getAvailableOptions(), true)) {
+            throw new \InvalidArgumentException('Invalid subscription type');
+        }
+        $this->subscriptionStatus = $subscriptionStatus;
         return $this;
     }
 

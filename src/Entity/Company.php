@@ -56,6 +56,7 @@ class Company implements JsonSerializable
             'vatId' => $this->getVatId(),
             'city' => $this->getCity(),
             'country' => $this->getCountry(),
+            'domain' => $this->domain,
         ];
     }
 

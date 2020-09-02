@@ -35,16 +35,49 @@ class CompanyApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
+     */
+    public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false): Company
+    {
+        $queryParams = [];
+        if ($withOrders) {
+            $queryParams['withOrders'] = '1';
+        }
+
+        if ($withSubscriptions) {
+            $queryParams['withSubscriptions'] = '1';
+        }
+
+        $queryString = !empty($queryParams) ? '?' . http_build_query($queryParams) : '';
+        $url = sprintf('/companies/list%s', $queryString);
+
+        return CompanyFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                $url,
+            )
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function getCompany(string $uuid, bool $withOrders = false): Company
+    public function getCompany(string $uuid, bool $withOrders = false, bool $withSubscriptions = false): Company
     {
         $this->isValidUuidOrThrow($uuid);
 
-        $url = sprintf('/companies/%s', $uuid);
+        $queryParams = [];
         if ($withOrders) {
-            $url .= '?withOrders=1';
+            $queryParams['withOrders'] = '1';
         }
+
+        if ($withSubscriptions) {
+            $queryParams['withSubscriptions'] = '1';
+        }
+
+        $queryString = !empty($queryParams) ? '?' . http_build_query($queryParams) : '';
+        $url = sprintf('/companies/%s%s', $uuid, $queryString);
 
         return CompanyFactory::fromResponse(
             $this->client->request(

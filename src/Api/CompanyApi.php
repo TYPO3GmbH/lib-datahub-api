@@ -9,7 +9,6 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Entity\CompanyInvitation;
 use T3G\DatahubApiLibrary\Entity\Employee;
@@ -21,16 +20,9 @@ use T3G\DatahubApiLibrary\Factory\CompanyInvitationListFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
-class CompanyApi
+class CompanyApi extends AbstractApi
 {
     use HandlesUuids;
-
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * @throws ClientExceptionInterface

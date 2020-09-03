@@ -9,7 +9,6 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
@@ -18,15 +17,8 @@ use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 
-class UserApi
+class UserApi extends AbstractApi
 {
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * @param string $username
      * @param bool $withOrders

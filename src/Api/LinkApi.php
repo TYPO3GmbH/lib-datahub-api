@@ -9,23 +9,15 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\Link;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\LinkFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
-class LinkApi
+class LinkApi extends AbstractApi
 {
     use HandlesUuids;
-
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * @throws ClientExceptionInterface

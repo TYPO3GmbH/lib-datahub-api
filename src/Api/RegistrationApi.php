@@ -9,22 +9,14 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\Registration;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\RegistrationFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 
-class RegistrationApi
+class RegistrationApi extends AbstractApi
 {
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * @param Registration $registration
      * @return Registration

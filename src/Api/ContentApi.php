@@ -9,20 +9,12 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\Content;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\ContentFactory;
 
-class ContentApi
+class ContentApi extends AbstractApi
 {
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException

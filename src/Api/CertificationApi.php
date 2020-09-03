@@ -8,20 +8,12 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
 
-class CertificationApi
+class CertificationApi extends AbstractApi
 {
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
-
     public function importCertification(string $username, Certification $certification): Certification
     {
         return CertificationFactory::fromResponse(

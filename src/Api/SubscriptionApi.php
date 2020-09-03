@@ -8,21 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\Subscription;
 use T3G\DatahubApiLibrary\Factory\SubscriptionFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
-class SubscriptionApi
+class SubscriptionApi extends AbstractApi
 {
     use HandlesUuids;
-
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
 
     public function getSubscription(string $uuid): Subscription
     {

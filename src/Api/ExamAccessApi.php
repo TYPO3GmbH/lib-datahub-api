@@ -9,23 +9,15 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\ExamAccess;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\ExamAccessFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
-class ExamAccessApi
+class ExamAccessApi extends AbstractApi
 {
     use HandlesUuids;
-
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
 
     /**
      * @throws ClientExceptionInterface

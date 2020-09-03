@@ -8,22 +8,14 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\MailAddressFilter;
 use T3G\DatahubApiLibrary\Factory\MailAddressFilterFactory;
 use T3G\DatahubApiLibrary\Factory\MailAddressFilterListFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
-class MailAddressFilterApi
+class MailAddressFilterApi extends AbstractApi
 {
     use HandlesUuids;
-
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
 
     public function getMailAddressFilter(string $uuid): MailAddressFilter
     {

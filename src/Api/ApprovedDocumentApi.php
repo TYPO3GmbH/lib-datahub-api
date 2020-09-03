@@ -9,20 +9,12 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Entity\ApprovedDocument;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\ApprovedDocumentFactory;
 
-class ApprovedDocumentApi
+class ApprovedDocumentApi extends AbstractApi
 {
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException

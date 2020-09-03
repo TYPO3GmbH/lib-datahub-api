@@ -9,18 +9,10 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Client\DataHubClient;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 
-class PasswordResetApi
+class PasswordResetApi extends AbstractApi
 {
-    private DataHubClient $client;
-
-    public function __construct(DataHubClient $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException

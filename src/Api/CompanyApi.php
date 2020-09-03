@@ -35,8 +35,9 @@ class CompanyApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
+     * @return Company[]
      */
-    public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false): Company
+    public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false): array
     {
         $queryParams = [];
         if ($withOrders) {
@@ -50,12 +51,14 @@ class CompanyApi
         $queryString = !empty($queryParams) ? '?' . http_build_query($queryParams) : '';
         $url = sprintf('/companies/list%s', $queryString);
 
-        return CompanyFactory::fromResponse(
-            $this->client->request(
-                'GET',
-                $url,
-            )
-        );
+        $data = $this->client->request('GET', $url);
+        $data = json_decode($data->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+
+        $companies = [];
+        foreach ($data as $datum) {
+            $companies[] = CompanyFactory::fromArray($datum);
+        }
+        return $companies;
     }
 
     /**

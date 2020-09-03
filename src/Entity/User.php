@@ -59,6 +59,11 @@ class User implements JsonSerializable
      */
     private array $orders = [];
 
+    /**
+     * @var Subscription[]
+     */
+    private array $subscriptions = [];
+
     private ?Membership $membership = null;
 
     public function jsonSerialize()
@@ -236,6 +241,30 @@ class User implements JsonSerializable
     public function addOrder(Order $order): self
     {
         $this->orders[] = $order;
+        return $this;
+    }
+
+    /**
+     * @return Subscription[]
+     */
+    public function getSubscriptions(): array
+    {
+        return $this->subscriptions;
+    }
+
+    /**
+     * @param Subscription[] $subscriptions
+     * @return User
+     */
+    public function setSubscriptions(array $subscriptions): self
+    {
+        $this->subscriptions = $subscriptions;
+        return $this;
+    }
+
+    public function addSubscription(Subscription $subscription): self
+    {
+        $this->subscriptions[] = $subscription;
         return $this;
     }
 

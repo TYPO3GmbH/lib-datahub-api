@@ -12,6 +12,9 @@ use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\CompanyApi;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
+use T3G\DatahubApiLibrary\Enum\PSLType;
+use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
+use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
 class CompanyApiTest extends AbstractApiTest
 {
@@ -44,6 +47,32 @@ class CompanyApiTest extends AbstractApiTest
         $this->assertCount(1, $orders);
         $this->assertSame('A12345', $orders[0]->getOrderNumber());
         $this->assertSame(['items' => [['foo' => 'bar']]], $orders[0]->getPayload());
+    }
+
+    public function testGetCompanyWithSubscriptions(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetCompanyResponseWithSubscriptions.php'
+        ]);
+        $api = new CompanyApi($this->getClient($handler));
+        $response = $api->getCompany('00000000-0000-0000-0000-000000000000', true);
+        $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
+        $this->assertEquals('Test Company', $response->getTitle());
+        $subscriptions = $response->getSubscriptions();
+        $this->assertCount(2, $subscriptions);
+        $this->assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
+        $this->assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
+        $this->assertSame(SubscriptionType::PSL, $subscriptions[0]->getSubscriptionType());
+        $this->assertSame(PSLType::MAP_VIEW, $subscriptions[0]->getSubscriptionSubType());
+        $this->assertSame(SubscriptionStatus::ACTIVE, $subscriptions[0]->getSubscriptionStatus());
+        $this->assertSame(['items' => [['foo' => 'bar']]], $subscriptions[0]->getPayload());
+
+        $this->assertSame('11111111-1111-1111-1111-111111111111', $subscriptions[1]->getUuid());
+        $this->assertSame('sub_BBBBBBBBB', $subscriptions[1]->getSubscriptionIdentifier());
+        $this->assertSame(SubscriptionType::PSL, $subscriptions[1]->getSubscriptionType());
+        $this->assertSame(PSLType::PROFILE_BUNDLE, $subscriptions[1]->getSubscriptionSubType());
+        $this->assertSame(SubscriptionStatus::INCOMPLETE_EXPIRED, $subscriptions[1]->getSubscriptionStatus());
+        $this->assertSame(['items' => [['foo' => 'bar']]], $subscriptions[1]->getPayload());
     }
 
     public function testCreateCompany(): void

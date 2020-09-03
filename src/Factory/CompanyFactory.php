@@ -51,6 +51,9 @@ class CompanyFactory extends AbstractFactory
         foreach ($data['orders'] ?? [] as $order) {
             $company->addOrder(OrderFactory::fromArray($order));
         }
+        foreach ($data['subscriptions'] ?? [] as $subscription) {
+            $company->addSubscription(SubscriptionFactory::fromArray($subscription));
+        }
 
         return $company;
     }

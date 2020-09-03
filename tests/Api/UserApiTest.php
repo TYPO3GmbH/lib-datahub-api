@@ -15,6 +15,9 @@ use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Enum\CertificationVersion;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
+use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
+use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
 class UserApiTest extends AbstractApiTest
 {
@@ -45,6 +48,25 @@ class UserApiTest extends AbstractApiTest
         $this->assertCount(1, $orders);
         $this->assertSame('A12345', $orders[0]->getOrderNumber());
         $this->assertSame(['items' => [['foo' => 'bar']]], $orders[0]->getPayload());
+    }
+
+    public function testGetUserWithSubscriptions(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetUserResponseWithSubscriptions.php'
+        ]);
+        $response = (new UserApi($this->getClient($handler)))
+            ->getUser('oelie-boelie', true);
+        $this->assertEquals('oelie-boelie', $response->getUsername());
+
+        $subscriptions = $response->getSubscriptions();
+        $this->assertCount(1, $subscriptions);
+        $this->assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
+        $this->assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
+        $this->assertSame(SubscriptionType::MEMBERSHIP, $subscriptions[0]->getSubscriptionType());
+        $this->assertSame(MembershipType::ACADEMIC_BRONZE, $subscriptions[0]->getSubscriptionSubType());
+        $this->assertSame(SubscriptionStatus::ACTIVE, $subscriptions[0]->getSubscriptionStatus());
+        $this->assertSame(['items' => [['foo' => 'bar']]], $subscriptions[0]->getPayload());
     }
 
     public function testGetProfile(): void

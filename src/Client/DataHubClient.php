@@ -23,7 +23,7 @@ class DataHubClient
 
     private RequestFactoryInterface $requestFactory;
 
-    private string $token;
+    private ?string $token;
 
     private string $baseUri;
 
@@ -32,7 +32,7 @@ class DataHubClient
     public function __construct(
         ClientInterface $httpClient,
         RequestFactoryInterface $requestFactory,
-        string $token,
+        ?string $token = null,
         string $baseUri = 'https://datahub.typo3.com/api',
         LoggerInterface $logger = null
     ) {
@@ -50,7 +50,7 @@ class DataHubClient
     public function request(string $method, string $endpoint, string $body = null): ResponseInterface
     {
         $request = $this->requestFactory->createRequest($method, rtrim($this->baseUri, '/') . '/' . ltrim($endpoint, '/'));
-        if (!$request->hasHeader('Authorization')) {
+        if (null !== $this->token && !$request->hasHeader('Authorization')) {
             $request = $request->withAddedHeader('Authorization', 'Bearer ' . $this->token);
         }
         if (null !== $body) {

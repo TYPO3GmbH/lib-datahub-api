@@ -41,6 +41,12 @@ class CompanyFactoryTest extends TestCase
             $entity->getEmployee($data['employees'][0]['user']['username'])
                 ->getRole()
         );
+        $this->assertEquals($data['backlink'] ?? null, $entity->getBacklink());
+        $this->assertEquals($data['mapLocations'] ?? [], $entity->getMapLocations());
+        $this->assertEquals($data['profilePageText'] ?? null, $entity->getProfilePageText());
+        $this->assertEquals($data['contactFormAddress'] ?? null, $entity->getContactFormAddress());
+        $this->assertEquals($data['photo'] ?? null, $entity->getPhoto());
+        $this->assertEquals($data['logo'] ?? null, $entity->getLogo());
     }
 
     public function factoryDataProvider(): array
@@ -68,6 +74,12 @@ class CompanyFactoryTest extends TestCase
                     'country' => [
                         'iso' => 'RU',
                     ],
+                    'backlink' => 'https://typ03.org',
+                    'mapLocations' => ['00000000-0000-0000-0000-000000000000', '55555555-5555-5555-5555-555555555555'],
+                    'profilePageText' => '<b><i>Hello world</i>',
+                    'contactFormAddress' => 'contact@typ03.org',
+                    'photo' => 'https://my.typo3.org/companies/00000000-0000-0000-0000-000000000000/photo.jpeg',
+                    'logo' => 'https://my.typo3.org/companies/00000000-0000-0000-0000-000000000000/logo.png',
                 ],
             ],
             'missing company type, expect AGENCY' => [

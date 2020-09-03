@@ -15,17 +15,11 @@ use T3G\DatahubApiLibrary\Enum\EmployeeRole;
 class Company implements JsonSerializable
 {
     private string $uuid;
-
     private string $companyType = CompanyType::AGENCY;
-
     private string $title;
-
     private string $email;
-
     private ?string $vatId = null;
-
     private ?string $city = null;
-
     private ?string $country = null;
 
     /**
@@ -42,10 +36,18 @@ class Company implements JsonSerializable
      * @var Order[]
      */
     private array $orders = [];
-
     private ?Membership $membership = null;
-
     private ?string $domain = null;
+    private ?string $backlink = null;
+
+    /**
+     * @var string[]
+     */
+    private array $mapLocations = [];
+    private ?string $profilePageText = null;
+    private ?string $contactFormAddress = null;
+    private ?string $photo = null;
+    private ?string $logo = null;
 
     public function jsonSerialize()
     {
@@ -56,7 +58,13 @@ class Company implements JsonSerializable
             'vatId' => $this->getVatId(),
             'city' => $this->getCity(),
             'country' => $this->getCountry(),
-            'domain' => $this->domain,
+            'domain' => $this->getDomain(),
+            'backlink' => $this->getBacklink(),
+            'mapLocations' => $this->getMapLocations(),
+            'profilePageText' => $this->getProfilePageText(),
+            'contactFormAddress' => $this->getContactFormAddress(),
+            'photo' => $this->getPhoto(),
+            'logo' => $this->getLogo(),
         ];
     }
 
@@ -328,6 +336,79 @@ class Company implements JsonSerializable
     public function setCountry(?string $country): self
     {
         $this->country = $country;
+        return $this;
+    }
+
+    public function getBacklink(): ?string
+    {
+        return $this->backlink;
+    }
+
+    public function setBacklink(?string $backlink): self
+    {
+        $this->backlink = $backlink;
+        return $this;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getMapLocations(): array
+    {
+        return $this->mapLocations;
+    }
+
+    /**
+     * @param string[] $mapLocations
+     * @return $this
+     */
+    public function setMapLocations(array $mapLocations): self
+    {
+        $this->mapLocations = $mapLocations;
+        return $this;
+    }
+
+    public function getProfilePageText(): ?string
+    {
+        return $this->profilePageText;
+    }
+
+    public function setProfilePageText(?string $profilePageText): self
+    {
+        $this->profilePageText = $profilePageText;
+        return $this;
+    }
+
+    public function getContactFormAddress(): ?string
+    {
+        return $this->contactFormAddress;
+    }
+
+    public function setContactFormAddress(?string $contactFormAddress): self
+    {
+        $this->contactFormAddress = $contactFormAddress;
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
         return $this;
     }
 }

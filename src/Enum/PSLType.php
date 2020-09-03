@@ -25,7 +25,7 @@ final class PSLType extends AbstractEnum
     public const BADGE_DEVELOPMENT = 'badge_development';
     public const BADGE_DESIGN = 'badge_design';
     public const BADGE_CONSULTING = 'badge_consulting';
-    public const SOCIAL_MEDIA_CHANNEL= 'social_media_channel';
+    public const SOCIAL_MEDIA_CHANNEL = 'social_media_channel';
     public const ADDITIONAL_LOCATION = 'additional_location';
     public const PROFILE_BUNDLE = 'profile_bundle';
     public const PHOTO = 'photo';

@@ -44,6 +44,10 @@ class Address implements JsonSerializable
 
     private int $type = 0X000;
 
+    private float $latitude = 0.0;
+
+    private float $longitude = 0.0;
+
     public function jsonSerialize()
     {
         return [
@@ -272,6 +276,28 @@ class Address implements JsonSerializable
     public function isPostalAddress(): bool
     {
         return 0x010 === ($this->type & 0x010);
+    }
+
+    public function getLatitude(): float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): self
+    {
+        $this->latitude = $latitude;
+        return $this;
+    }
+
+    public function getLongitude(): float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(float $longitude): self
+    {
+        $this->longitude = $longitude;
+        return $this;
     }
 
     public function __toString(): string

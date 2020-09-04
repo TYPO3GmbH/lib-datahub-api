@@ -38,6 +38,8 @@ class AddressFactory extends AbstractFactory
             ->setStreet($data['street'])
             ->setZip($data['zip'])
             ->setType($data['type'])
-            ->setCompanyName($data['companyName'] ?? null);
+            ->setCompanyName($data['companyName'] ?? null)
+            ->setLatitude($data['latitude'] ?? 0.0)
+            ->setLongitude($data['longitude'] ?? 0.0);
     }
 }

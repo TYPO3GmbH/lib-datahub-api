@@ -50,6 +50,7 @@ class Company implements JsonSerializable
      * @var string[]
      */
     private array $mapLocations = [];
+    private ?string $teaserText = null;
     private ?string $profilePageText = null;
     private ?string $contactFormAddress = null;
     private ?string $photo = null;
@@ -67,6 +68,7 @@ class Company implements JsonSerializable
             'domain' => $this->getDomain(),
             'backlink' => $this->getBacklink(),
             'mapLocations' => $this->getMapLocations(),
+            'teaserText' => $this->getTeaserText(),
             'profilePageText' => $this->getProfilePageText(),
             'contactFormAddress' => $this->getContactFormAddress(),
             'photo' => $this->getPhoto(),
@@ -395,6 +397,17 @@ class Company implements JsonSerializable
     public function setMapLocations(array $mapLocations): self
     {
         $this->mapLocations = $mapLocations;
+        return $this;
+    }
+
+    public function getTeaserText(): ?string
+    {
+        return $this->teaserText;
+    }
+
+    public function setTeaserText(?string $teaserText): self
+    {
+        $this->teaserText = $teaserText;
         return $this;
     }
 

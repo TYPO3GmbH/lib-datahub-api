@@ -17,6 +17,7 @@ final class PSLType extends AbstractEnum
 {
     public const LOGO = 'logo';
     public const BACKLINK = 'backlink';
+    public const TEASER_TEXT = 'teaser_text';
     public const PROFILE_PAGE = 'profile_page';
     public const MAP_VIEW = 'map_view';
     public const CONTACT_FORM = 'contact_form';
@@ -33,7 +34,8 @@ final class PSLType extends AbstractEnum
     protected static array $optionNames = [
         self::LOGO => 'Logo',
         self::BACKLINK => 'Backlink',
-        self::PROFILE_PAGE => 'Profile Page',
+        self::TEASER_TEXT => 'Teaser Text',
+        self::PROFILE_PAGE => 'Profile Page Text',
         self::MAP_VIEW => 'Map View',
         self::CONTACT_FORM => 'Contact Form',
         self::INDUSTRY => 'Industry',

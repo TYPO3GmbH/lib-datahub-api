@@ -34,6 +34,7 @@ class CompanyFactory extends AbstractFactory
             ->setCountry($data['country']['iso'] ?? null)
             ->setBacklink($data['backlink'] ?? null)
             ->setMapLocations($data['mapLocations'] ?? [])
+            ->setTeaserText($data['teaserText'] ?? null)
             ->setProfilePageText($data['profilePageText'] ?? null)
             ->setContactFormAddress($data['contactFormAddress'] ?? null)
             ->setPhoto($data['photo'] ?? null)

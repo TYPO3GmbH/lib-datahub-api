@@ -31,6 +31,8 @@ class AddressFactoryTest extends TestCase
         $this->assertEquals($data['country']['label'], $entity->getCountryLabel());
         $this->assertEquals($data['zip'], $entity->getZip());
         $this->assertEquals($data['type'], $entity->getType());
+        $this->assertEquals($data['latitude'], $entity->getLatitude());
+        $this->assertEquals($data['longitude'], $entity->getLongitude());
     }
 
     public function factoryDataProvider(): array
@@ -53,6 +55,8 @@ class AddressFactoryTest extends TestCase
                     ],
                     'zip' => '1234 QZ',
                     'type' => 16,
+                    'latitude' => 12.94856534257,
+                    'longitude' => 8.765486753485
                 ]
             ]
         ];

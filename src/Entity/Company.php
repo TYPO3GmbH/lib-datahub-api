@@ -42,6 +42,7 @@ class Company implements JsonSerializable
      */
     private array $subscriptions = [];
 
+    private ?Address $headquarter = null;
     private ?Membership $membership = null;
     private ?string $domain = null;
     private ?string $backlink = null;
@@ -73,6 +74,7 @@ class Company implements JsonSerializable
             'contactFormAddress' => $this->getContactFormAddress(),
             'photo' => $this->getPhoto(),
             'logo' => $this->getLogo(),
+            'headquarter' => $this->getHeadquarter(),
         ];
     }
 
@@ -452,6 +454,17 @@ class Company implements JsonSerializable
     public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
+        return $this;
+    }
+
+    public function getHeadquarter(): ?Address
+    {
+        return $this->headquarter;
+    }
+
+    public function setHeadquarter(?Address $headquarter): self
+    {
+        $this->headquarter = $headquarter;
         return $this;
     }
 }

@@ -12,29 +12,29 @@ use JsonSerializable;
 
 class Address implements JsonSerializable
 {
-    private string $uuid;
+    private string $uuid = '';
 
-    private string $title;
+    private string $title = '';
 
-    private string $firstName;
+    private string $firstName = '';
 
-    private string $lastName;
+    private string $lastName = '';
 
     private ?string $additionalAddressLine1 = null;
 
     private ?string $additionalAddressLine2 = null;
 
-    private string $street;
+    private string $street = '';
 
-    private string $city;
+    private string $city = '';
 
-    private string $zip;
+    private string $zip = '';
 
-    private string $country;
+    private string $country = '';
 
-    private string $countryLabel;
+    private string $countryLabel = '';
 
-    private string $countryIso3;
+    private string $countryIso3 = '';
 
     private ?string $state = null;
 
@@ -51,6 +51,7 @@ class Address implements JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'uuid' => $this->getUuid(),
             'title' => $this->getTitle(),
             'companyName' => $this->getCompanyName(),
             'firstName' => $this->getFirstName(),

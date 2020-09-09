@@ -9,12 +9,28 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
+use T3G\DatahubApiLibrary\Entity\Registration;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
+use T3G\DatahubApiLibrary\Factory\RegistrationFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 
 class PendingRegistrationApi extends AbstractApi
 {
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function getPendingRegistration(string $registrationCode): Registration
+    {
+        return RegistrationFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                '/registration/pending/' . $registrationCode
+            )
+        );
+    }
+
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException

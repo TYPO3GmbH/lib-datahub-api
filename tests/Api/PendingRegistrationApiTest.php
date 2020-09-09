@@ -13,6 +13,16 @@ use T3G\DatahubApiLibrary\Api\PendingRegistrationApi;
 
 class PendingRegistrationApiTest extends AbstractApiTest
 {
+    public function testGetPendingRegistration(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetPendingRegistrationResponse.php'
+        ]);
+        $api = new PendingRegistrationApi($this->getClient($handler));
+        $response = $api->getPendingRegistration('00000000-0000-0000-0000-000000000000');
+        $this->assertEquals('oelie-boelie', $response->getUsername());
+    }
+
     public function testGetPendingRegistrations(): void
     {
         $handler = new MockHandler([

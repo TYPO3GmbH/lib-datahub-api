@@ -10,7 +10,6 @@ namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;
-use T3G\DatahubApiLibrary\Entity\Address;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
 
@@ -49,16 +48,7 @@ class CompanyFactoryTest extends TestCase
         $this->assertEquals($data['contactFormAddress'] ?? null, $entity->getContactFormAddress());
         $this->assertEquals($data['photo'] ?? null, $entity->getPhoto());
         $this->assertEquals($data['logo'] ?? null, $entity->getLogo());
-        $headquarter = $entity->getHeadquarter();
-        if (null !== $headquarter) {
-            $this->assertInstanceOf(Address::class, $headquarter);
-            $this->assertEquals('66666666-6666-6666-6666-666666666666', $headquarter->getUuid());
-            $this->assertEquals('Headquarter', $headquarter->getTitle());
-            $this->assertEquals('Musterstraße 123', $headquarter->getStreet());
-            $this->assertEquals('12345', $headquarter->getZip());
-            $this->assertEquals('Musterdorf', $headquarter->getCity());
-            $this->assertEquals('DE', $headquarter->getCountry());
-        }
+        $this->assertEquals($data['headquarter'] ?? null, $entity->getHeadquarter());
     }
 
     public function factoryDataProvider(): array
@@ -82,23 +72,7 @@ class CompanyFactoryTest extends TestCase
                             'lastName' => 'Boelie',
                         ]]
                     ],
-                    'headquarter' => [
-                        'uuid' => '66666666-6666-6666-6666-666666666666',
-                        'title' => 'Headquarter',
-                        'firstName' => '',
-                        'lastName' => '',
-                        'additionalAddressLine1' => null,
-                        'additionalAddressLine2' => null,
-                        'street' => 'Musterstraße 123',
-                        'zip' => '12345',
-                        'city' => 'Musterdorf',
-                        'country' => [
-                            'iso' => 'DE',
-                            'iso3' => 'DEU',
-                            'label' => 'Germany'
-                        ],
-                        'type' => 16,
-                    ],
+                    'headquarter' => '00000000-0000-0000-0000-000000000000',
                     'city' => 'Moscow',
                     'country' => [
                         'iso' => 'RU',

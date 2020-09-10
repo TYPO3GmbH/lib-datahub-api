@@ -43,7 +43,7 @@ class Company implements JsonSerializable
      */
     private array $subscriptions = [];
 
-    private ?Address $headquarter = null;
+    private ?string $headquarter = null;
     private ?Membership $membership = null;
     private ?string $domain = null;
     private ?string $backlink = null;
@@ -470,12 +470,12 @@ class Company implements JsonSerializable
         return $this;
     }
 
-    public function getHeadquarter(): ?Address
+    public function getHeadquarter(): ?string
     {
         return $this->headquarter;
     }
 
-    public function setHeadquarter(?Address $headquarter): self
+    public function setHeadquarter(?string $headquarter): self
     {
         $this->headquarter = $headquarter;
         return $this;

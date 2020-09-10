@@ -38,14 +38,13 @@ class CompanyFactory extends AbstractFactory
             ->setProfilePageText($data['profilePageText'] ?? null)
             ->setContactFormAddress($data['contactFormAddress'] ?? null)
             ->setPhoto($data['photo'] ?? null)
-            ->setLogo($data['logo'] ?? null);
+            ->setLogo($data['logo'] ?? null)
+            ->setHeadquarter($data['headquarter'] ?? null);
 
         if (isset($data['slug'])) {
             $company->setSlug($data['slug']);
         }
-        if (isset($data['headquarter'])) {
-            $company->setHeadquarter(AddressFactory::fromArray($data['headquarter']));
-        }
+
         foreach ($data['addresses'] ?? [] as $address) {
             $company->addAddress(AddressFactory::fromArray($address));
         }

@@ -51,7 +51,6 @@ class Address implements JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'uuid' => $this->getUuid(),
             'title' => $this->getTitle(),
             'companyName' => $this->getCompanyName(),
             'firstName' => $this->getFirstName(),

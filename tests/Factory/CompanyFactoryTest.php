@@ -42,13 +42,15 @@ class CompanyFactoryTest extends TestCase
                 ->getRole()
         );
         $this->assertEquals($data['backlink'] ?? null, $entity->getBacklink());
-        $this->assertEquals($data['mapLocations'] ?? [], $entity->getMapLocations());
+        $this->assertCount(count($data['mapLocations'] ?? []), $entity->getMapLocations());
         $this->assertEquals($data['teaserText'] ?? null, $entity->getTeaserText());
         $this->assertEquals($data['profilePageText'] ?? null, $entity->getProfilePageText());
         $this->assertEquals($data['contactFormAddress'] ?? null, $entity->getContactFormAddress());
         $this->assertEquals($data['photo'] ?? null, $entity->getPhoto());
         $this->assertEquals($data['logo'] ?? null, $entity->getLogo());
-        $this->assertEquals($data['headquarter'] ?? null, $entity->getHeadquarter());
+        if (isset($data['headquarter'])) {
+            $this->assertEquals($data['headquarter']['uuid'], $entity->getHeadquarter()->getUuid());
+        }
     }
 
     public function factoryDataProvider(): array
@@ -72,13 +74,49 @@ class CompanyFactoryTest extends TestCase
                             'lastName' => 'Boelie',
                         ]]
                     ],
-                    'headquarter' => '00000000-0000-0000-0000-000000000000',
+                    'headquarter' => [
+                        'uuid' => '00000000-0000-0000-0000-000000000000',
+                        'title' => 'test address',
+                        'firstName' => 'Max',
+                        'lastName' => 'Mustermann',
+                        'additionalAddressLine1' => 'Musterabteilung',
+                        'additionalAddressLine2' => 'Sondermuster',
+                        'street' => 'Teststreet 1234',
+                        'city' => 'Dorf und so',
+                        'country' => [
+                            'iso' => 'RU',
+                            'iso3' => 'RUS',
+                            'label' => 'Russia'
+                        ],
+                        'zip' => '1234 QZ',
+                        'type' => 16,
+                        'latitude' => 12.94856534257,
+                        'longitude' => 8.765486753485
+                    ],
                     'city' => 'Moscow',
                     'country' => [
                         'iso' => 'RU',
                     ],
                     'backlink' => 'https://typ03.org',
-                    'mapLocations' => ['00000000-0000-0000-0000-000000000000', '55555555-5555-5555-5555-555555555555'],
+                    'mapLocations' => [[
+                        'uuid' => '00000000-0000-0000-0000-000000000000',
+                        'title' => 'test address',
+                        'firstName' => 'Max',
+                        'lastName' => 'Mustermann',
+                        'additionalAddressLine1' => 'Musterabteilung',
+                        'additionalAddressLine2' => 'Sondermuster',
+                        'street' => 'Teststreet 1234',
+                        'city' => 'Dorf und so',
+                        'country' => [
+                            'iso' => 'RU',
+                            'iso3' => 'RUS',
+                            'label' => 'Russia'
+                        ],
+                        'zip' => '1234 QZ',
+                        'type' => 16,
+                        'latitude' => 12.94856534257,
+                        'longitude' => 8.765486753485
+                    ]],
                     'teaserText' => '<b><i>I\'m Honest Joe and welcome to Jackass.</i>',
                     'profilePageText' => '<b><i>Hello world</i>',
                     'contactFormAddress' => 'contact@typ03.org',

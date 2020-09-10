@@ -43,13 +43,13 @@ class Company implements JsonSerializable
      */
     private array $subscriptions = [];
 
-    private ?string $headquarter = null;
+    private ?Address $headquarter = null;
     private ?Membership $membership = null;
     private ?string $domain = null;
     private ?string $backlink = null;
 
     /**
-     * @var string[]
+     * @var Address[]
      */
     private array $mapLocations = [];
     private ?string $teaserText = null;
@@ -70,13 +70,15 @@ class Company implements JsonSerializable
             'country' => $this->getCountry(),
             'domain' => $this->getDomain(),
             'backlink' => $this->getBacklink(),
-            'mapLocations' => $this->getMapLocations(),
+            'mapLocations' => array_map(static function (Address $a) {
+                return $a->getUuid();
+            }, $this->getMapLocations()),
             'teaserText' => $this->getTeaserText(),
             'profilePageText' => $this->getProfilePageText(),
             'contactFormAddress' => $this->getContactFormAddress(),
             'photo' => $this->getPhoto(),
             'logo' => $this->getLogo(),
-            'headquarter' => $this->getHeadquarter(),
+            'headquarter' => $this->getHeadquarter() instanceof Address ? $this->getHeadquarter()->getUuid() : null,
         ];
     }
 
@@ -398,7 +400,7 @@ class Company implements JsonSerializable
     }
 
     /**
-     * @return string[]
+     * @return Address[]
      */
     public function getMapLocations(): array
     {
@@ -406,12 +408,18 @@ class Company implements JsonSerializable
     }
 
     /**
-     * @param string[] $mapLocations
+     * @param Address[] $mapLocations
      * @return $this
      */
     public function setMapLocations(array $mapLocations): self
     {
         $this->mapLocations = $mapLocations;
+        return $this;
+    }
+
+    public function addMapLocation(Address $mapLocation): self
+    {
+        $this->mapLocations[] = $mapLocation;
         return $this;
     }
 
@@ -470,12 +478,12 @@ class Company implements JsonSerializable
         return $this;
     }
 
-    public function getHeadquarter(): ?string
+    public function getHeadquarter(): ?Address
     {
         return $this->headquarter;
     }
 
-    public function setHeadquarter(?string $headquarter): self
+    public function setHeadquarter(?Address $headquarter): self
     {
         $this->headquarter = $headquarter;
         return $this;

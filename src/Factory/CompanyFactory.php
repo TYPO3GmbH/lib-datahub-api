@@ -33,18 +33,19 @@ class CompanyFactory extends AbstractFactory
             ->setCity($data['city'] ?? null)
             ->setCountry($data['country']['iso'] ?? null)
             ->setBacklink($data['backlink'] ?? null)
-            ->setMapLocations($data['mapLocations'] ?? [])
             ->setTeaserText($data['teaserText'] ?? null)
             ->setProfilePageText($data['profilePageText'] ?? null)
             ->setContactFormAddress($data['contactFormAddress'] ?? null)
             ->setPhoto($data['photo'] ?? null)
             ->setLogo($data['logo'] ?? null)
-            ->setHeadquarter($data['headquarter'] ?? null);
+            ->setHeadquarter(isset($data['headquarter']) ? AddressFactory::fromArray($data['headquarter']) : null);
 
         if (isset($data['slug'])) {
             $company->setSlug($data['slug']);
         }
-
+        foreach ($data['mapLocations'] ?? [] as $mapLocation) {
+            $company->addMapLocation(AddressFactory::fromArray($mapLocation));
+        }
         foreach ($data['addresses'] ?? [] as $address) {
             $company->addAddress(AddressFactory::fromArray($address));
         }

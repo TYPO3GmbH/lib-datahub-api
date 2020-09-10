@@ -17,6 +17,7 @@ class Company implements JsonSerializable
     private string $uuid;
     private string $companyType = CompanyType::AGENCY;
     private string $title;
+    private ?string $slug = null;
     private string $email;
     private ?string $vatId = null;
     private ?string $city = null;
@@ -62,6 +63,7 @@ class Company implements JsonSerializable
         return [
             'companyType' => $this->getCompanyType(),
             'title' => $this->getTitle(),
+            'slug' => $this->getSlug(),
             'email' => $this->getEmail(),
             'vatId' => $this->getVatId(),
             'city' => $this->getCity(),
@@ -108,6 +110,17 @@ class Company implements JsonSerializable
     public function setTitle(string $title): self
     {
         $this->title = $title;
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
         return $this;
     }
 

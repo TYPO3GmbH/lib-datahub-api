@@ -27,6 +27,7 @@ class CompanyApiTest extends AbstractApiTest
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000');
         $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
         $this->assertEquals('Test Company', $response->getTitle());
+        $this->assertEquals('test-company', $response->getSlug());
         $this->assertEquals('typo3.com', $response->getDomain());
         $this->assertCount(4, $response->getEmployees());
         $this->assertCount(2, $response->getAddresses());
@@ -43,6 +44,7 @@ class CompanyApiTest extends AbstractApiTest
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000', true);
         $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
         $this->assertEquals('Test Company', $response->getTitle());
+        $this->assertEquals('test-company', $response->getSlug());
         $orders = $response->getOrders();
         $this->assertCount(1, $orders);
         $this->assertSame('A12345', $orders[0]->getOrderNumber());
@@ -58,6 +60,7 @@ class CompanyApiTest extends AbstractApiTest
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000', true);
         $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
         $this->assertEquals('Test Company', $response->getTitle());
+        $this->assertEquals('test-company', $response->getSlug());
         $subscriptions = $response->getSubscriptions();
         $this->assertCount(2, $subscriptions);
         $this->assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
@@ -84,6 +87,7 @@ class CompanyApiTest extends AbstractApiTest
         $response = $api->createCompany($this->getTestCompany());
         $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
         $this->assertEquals('Test Company', $response->getTitle());
+        $this->assertEquals('test-company', $response->getSlug());
     }
 
     public function testUpdateCompany(): void
@@ -94,6 +98,7 @@ class CompanyApiTest extends AbstractApiTest
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->updateCompany('00000000-0000-0000-0000-000000000000', $this->getTestCompany());
         $this->assertEquals('Test Company', $response->getTitle());
+        $this->assertEquals('test-company', $response->getSlug());
         $this->assertCount(4, $response->getEmployees());
         $this->assertCount(2, $response->getAddresses());
     }

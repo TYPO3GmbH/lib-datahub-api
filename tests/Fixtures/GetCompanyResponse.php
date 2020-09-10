@@ -13,6 +13,7 @@ return new Response(200, ['content-type' => 'application/json'], '
   "uuid": "00000000-0000-0000-0000-000000000000",
   "companyType": "AGENCY",
   "title": "Test Company",
+  "slug": "test-company",
   "email": "oelie@boelie.com",
   "vatId": "DE 123 456 789",
   "domain": "typo3.com",

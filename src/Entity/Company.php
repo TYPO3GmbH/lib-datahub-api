@@ -22,6 +22,7 @@ class Company implements JsonSerializable
     private ?string $vatId = null;
     private ?string $city = null;
     private ?string $country = null;
+    private bool $foundingPartner = false;
 
     /**
      * @var Address[]
@@ -486,6 +487,17 @@ class Company implements JsonSerializable
     public function setHeadquarter(?Address $headquarter): self
     {
         $this->headquarter = $headquarter;
+        return $this;
+    }
+
+    public function isFoundingPartner(): bool
+    {
+        return $this->foundingPartner;
+    }
+
+    public function setFoundingPartner(bool $foundingPartner): self
+    {
+        $this->foundingPartner = $foundingPartner;
         return $this;
     }
 }

@@ -17,6 +17,7 @@ return new Response(200, ['content-type' => 'application/json'], '
   "email": "oelie@boelie.com",
   "vatId": "DE 123 456 789",
   "domain": "typo3.com",
+  "foundingPartner": true,
   "membership": {
     "type": "COMMUNITY",
     "validUntil": "2021-02-26T00:00:00+00:00"

@@ -244,38 +244,50 @@ class Address implements JsonSerializable
 
     public function setInvoiceAddress(bool $value): self
     {
-        $value ? $this->type |= 0x001 : $this->type &= 0x110;
+        $value ? $this->type |= 0x0001 : $this->type &= 0x0110;
 
         return $this;
     }
 
     public function setDeliveryAddress(bool $value): self
     {
-        $value ? $this->type |= 0x100 : $this->type &= 0x011;
+        $value ? $this->type |= 0x0100 : $this->type &= 0x0011;
 
         return $this;
     }
 
     public function setPostalAddress(bool $value): self
     {
-        $value ? $this->type |= 0x010 : $this->type &= 0x101;
+        $value ? $this->type |= 0x0010 : $this->type &= 0x0101;
+
+        return $this;
+    }
+
+    public function setLocationAddress(bool $value): self
+    {
+        $value ? $this->type |= 0x1000 : $this->type &= 0x0111;
 
         return $this;
     }
 
     public function isInvoiceAddress(): bool
     {
-        return 0x001 === ($this->type & 0x001);
+        return 0x0001 === ($this->type & 0x0001);
     }
 
     public function isDeliveryAddress(): bool
     {
-        return 0x100 === ($this->type & 0x100);
+        return 0x0100 === ($this->type & 0x0100);
     }
 
     public function isPostalAddress(): bool
     {
-        return 0x010 === ($this->type & 0x010);
+        return 0x0010 === ($this->type & 0x0010);
+    }
+
+    public function isLocationAddress(): bool
+    {
+        return 0x1000 === ($this->type & 0x1000);
     }
 
     public function getLatitude(): float

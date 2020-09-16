@@ -356,6 +356,16 @@ class Company implements JsonSerializable
         }));
     }
 
+    /**
+     * @return Address[]
+     */
+    public function getLocationAddresses(): iterable
+    {
+        return new \ArrayIterator(array_filter($this->addresses, static function (Address $address) {
+            return $address->isLocationAddress();
+        }));
+    }
+
     public function getDomain(): ?string
     {
         return $this->domain;

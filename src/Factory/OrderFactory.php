@@ -33,7 +33,7 @@ class OrderFactory extends AbstractFactory
             $order->addInvoice(
                 (new Invoice())
                     ->setLink($invoice['link'])
-                    ->setDate(new \DateTime($invoice['date']))
+                    ->setDate(new \DateTime($invoice['date']['date']))
             );
         }
 

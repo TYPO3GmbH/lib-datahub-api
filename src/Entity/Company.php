@@ -23,6 +23,7 @@ class Company implements JsonSerializable
     private ?string $city = null;
     private ?string $country = null;
     private bool $foundingPartner = false;
+    private ?bool $psl = null;
 
     /**
      * @var Address[]
@@ -80,6 +81,7 @@ class Company implements JsonSerializable
             'photo' => $this->getPhoto(),
             'logo' => $this->getLogo(),
             'headquarter' => $this->getHeadquarter() instanceof Address ? $this->getHeadquarter()->getUuid() : null,
+            'psl' => $this->isPsl(),
         ];
     }
 
@@ -508,6 +510,17 @@ class Company implements JsonSerializable
     public function setFoundingPartner(bool $foundingPartner): self
     {
         $this->foundingPartner = $foundingPartner;
+        return $this;
+    }
+
+    public function isPsl(): ?bool
+    {
+        return $this->psl;
+    }
+
+    public function setPsl(?bool $psl): self
+    {
+        $this->psl = $psl;
         return $this;
     }
 }

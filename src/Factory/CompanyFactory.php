@@ -39,7 +39,8 @@ class CompanyFactory extends AbstractFactory
             ->setPhoto($data['photo'] ?? null)
             ->setLogo($data['logo'] ?? null)
             ->setHeadquarter(isset($data['headquarter']) ? AddressFactory::fromArray($data['headquarter']) : null)
-            ->setFoundingPartner($data['foundingPartner'] ?? false);
+            ->setFoundingPartner($data['foundingPartner'] ?? false)
+            ->setPsl($data['psl'] ?? false);
 
         if (isset($data['slug'])) {
             $company->setSlug($data['slug']);

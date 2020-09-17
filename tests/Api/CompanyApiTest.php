@@ -34,6 +34,7 @@ class CompanyApiTest extends AbstractApiTest
         $this->assertCount(2, $response->getPostalAddresses());
         $this->assertEquals('COMMUNITY', $response->getMembership()->getType());
         $this->assertEquals(true, $response->isFoundingPartner());
+        $this->assertEquals(true, $response->isPsl());
     }
 
     public function testGetCompanyWithOrders(): void

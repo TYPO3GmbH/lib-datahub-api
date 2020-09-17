@@ -20,11 +20,17 @@ class Order implements JsonSerializable
 
     private \DateTimeInterface $createdAt;
 
+    /**
+     * @var Invoice[]
+     */
+    private array $invoices = [];
+
     public function jsonSerialize()
     {
         return [
             'orderNumber' => $this->getOrderNumber(),
             'payload' => $this->getPayload(),
+            'invoices' => $this->invoices,
         ];
     }
 
@@ -69,6 +75,35 @@ class Order implements JsonSerializable
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function getInvoices(): array
+    {
+        return $this->invoices;
+    }
+
+    public function getInvoicesOrderedByDate(): array
+    {
+        $sorted = $this->invoices;
+        usort($sorted, static function (Invoice $a, Invoice $b) {
+            return $a->getDate() <=> $b->getDate();
+        });
+
+        return $sorted;
+    }
+
+    public function addInvoice(Invoice $invoice): self
+    {
+        $this->invoices[] = $invoice;
+        return $this;
+    }
+
+    public function removeInvoice(Invoice $invoice): self
+    {
+        $this->invoices = array_filter($this->invoices, static function (Invoice $i) use ($invoice) {
+            return $i->getLink() !== $invoice->getLink();
+        });
         return $this;
     }
 }

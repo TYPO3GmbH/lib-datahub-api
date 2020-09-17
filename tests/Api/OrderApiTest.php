@@ -24,6 +24,7 @@ class OrderApiTest extends AbstractApiTest
         $this->assertEquals('A12345', $response->getOrderNumber());
         $this->assertIsArray($response->getPayload());
         $this->assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
+        $this->assertCount(1, $response->getInvoices());
     }
 
     public function testCreateOrderForUser(): void

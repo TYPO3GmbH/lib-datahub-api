@@ -8,8 +8,10 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use T3G\DatahubApiLibrary\Demand\SubscriptionFilterQuery;
 use T3G\DatahubApiLibrary\Entity\Subscription;
 use T3G\DatahubApiLibrary\Factory\SubscriptionFactory;
+use T3G\DatahubApiLibrary\Factory\SubscriptionListFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class SubscriptionApi extends AbstractApi
@@ -44,6 +46,22 @@ class SubscriptionApi extends AbstractApi
             $this->client->request(
                 'GET',
                 '/subscription/identifier/' . $subscriptionIdentifier
+            )
+        );
+    }
+
+    /**
+     * @param SubscriptionFilterQuery $subscriptionFilterQuery
+     * @return array<int, Subscription>
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     */
+    public function getSubscriptionFiltered(SubscriptionFilterQuery $subscriptionFilterQuery): array
+    {
+        return SubscriptionListFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                '/subscription/filtered?' . $subscriptionFilterQuery->getQueryAsString()
             )
         );
     }

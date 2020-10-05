@@ -125,6 +125,7 @@ class UserFactoryTest extends TestCase
                     'notifications' => [
                         [
                             'company' => 'd6abf140-c946-474f-8e3a-2a55ea7bdd71',
+                            'companyTitle' => 'Foo Company',
                             'subscription' => 'stripe:sub_I7xrK6SffVrwic:si_I7xrOvfj9FPO82',
                             'stripeLink' => 'https://foo.com/bar',
                             'type' => IncompletePaymentNotification::class,

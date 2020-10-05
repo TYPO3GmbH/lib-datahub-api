@@ -32,6 +32,7 @@ class NotificationFactory extends AbstractFactory
             case IncompletePaymentNotification::class:
                 $notification = new IncompletePaymentNotification(
                     $data['company'],
+                    $data['companyTitle'],
                     $data['subscription'],
                     $data['stripeLink']
                 );

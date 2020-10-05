@@ -20,6 +20,11 @@ class IncompletePaymentNotification extends AbstractNotification
     /**
      * @Groups({"user"})
      */
+    private string $companyTitle;
+
+    /**
+     * @Groups({"user"})
+     */
     private string $subscription;
 
     /**
@@ -27,10 +32,11 @@ class IncompletePaymentNotification extends AbstractNotification
      */
     private string $stripeLink;
 
-    public function __construct(string $company, string $subscription, string $stripeLink)
+    public function __construct(string $company, string $companyTitle, string $subscription, string $stripeLink)
     {
         parent::__construct(sprintf('Incomplete payment for company %s', $company));
         $this->company = $company;
+        $this->companyTitle = $companyTitle;
         $this->subscription = $subscription;
         $this->stripeLink = $stripeLink;
     }
@@ -39,6 +45,7 @@ class IncompletePaymentNotification extends AbstractNotification
     {
         return array_merge(parent::jsonSerialize(), [
             'company' => $this->getCompany(),
+            'companyTitle' => $this->getCompanyTitle(),
             'subscription' => $this->getSubscription(),
             'stripeLink' => $this->getStripeLink()
         ]);
@@ -47,6 +54,11 @@ class IncompletePaymentNotification extends AbstractNotification
     public function getCompany(): string
     {
         return $this->company;
+    }
+
+    public function getCompanyTitle(): string
+    {
+        return $this->companyTitle;
     }
 
     public function getSubscription(): string

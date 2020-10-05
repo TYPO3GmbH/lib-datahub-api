@@ -39,6 +39,7 @@ class NotificationFactoryTest extends TestCase
             IncompletePaymentNotification::class => [
                 'data' => [
                     'company' => '00000000-0000-0000-0000-000000000000',
+                    'companyTitle' => 'Foo Company',
                     'subscription' => 'stripe:foo:bar',
                     'stripeLink' => 'https://pay.stripe.com/foo',
                     'type' => IncompletePaymentNotification::class,
@@ -47,6 +48,7 @@ class NotificationFactoryTest extends TestCase
                 'expectations' => [
                     '__class' => IncompletePaymentNotification::class,
                     'getCompany' => '00000000-0000-0000-0000-000000000000',
+                    'getCompanyTitle' => 'Foo Company',
                     'getSubscription' => 'stripe:foo:bar',
                     'getStripeLink' => 'https://pay.stripe.com/foo',
                     'getMessage' => 'Incomplete payment for company 00000000-0000-0000-0000-000000000000'

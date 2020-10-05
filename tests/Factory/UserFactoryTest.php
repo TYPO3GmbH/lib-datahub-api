@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
+use T3G\DatahubApiLibrary\Notification\IncompletePaymentNotification;
 
 class UserFactoryTest extends TestCase
 {
@@ -31,6 +32,9 @@ class UserFactoryTest extends TestCase
         $this->assertCount(count($data['approvedDocuments'] ?? []), $entity->getApprovedDocuments());
         if (!empty($data['membership']['type'])) {
             $this->assertEquals($data['membership']['type'], $entity->getMembership()->getType());
+        }
+        if (!empty($data['notifications'])) {
+            $this->assertInstanceOf($data['notifications'][0]['type'], $entity->getNotifications()[0]);
         }
     }
 
@@ -118,6 +122,15 @@ class UserFactoryTest extends TestCase
                             ],
                         ]
                     ],
+                    'notifications' => [
+                        [
+                            'company' => 'd6abf140-c946-474f-8e3a-2a55ea7bdd71',
+                            'subscription' => 'stripe:sub_I7xrK6SffVrwic:si_I7xrOvfj9FPO82',
+                            'stripeLink' => 'https://foo.com/bar',
+                            'type' => IncompletePaymentNotification::class,
+                            'message' => 'Incomplete payment for company d6abf140-c946-474f-8e3a-2a55ea7bdd71'
+                        ]
+                    ]
                 ]
             ],
             'nullPhone' => [

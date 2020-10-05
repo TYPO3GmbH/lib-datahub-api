@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
 use T3G\DatahubApiLibrary\Enum\CertificationStatus;
+use T3G\DatahubApiLibrary\Notification\NotificationInterface;
 
 class User implements JsonSerializable
 {
@@ -63,6 +64,11 @@ class User implements JsonSerializable
      * @var Subscription[]
      */
     private array $subscriptions = [];
+
+    /**
+     * @var NotificationInterface[]
+     */
+    private array $notifications = [];
 
     private ?Membership $membership = null;
 
@@ -244,6 +250,29 @@ class User implements JsonSerializable
         return $this;
     }
 
+    /**
+     * @return NotificationInterface[]
+     */
+    public function getNotifications(): array
+    {
+        return $this->notifications;
+    }
+
+    /**
+     * @param NotificationInterface[] $notifications
+     * @return $this
+     */
+    public function setNotifications(array $notifications): self
+    {
+        $this->notifications = $notifications;
+        return $this;
+    }
+
+    public function addNotification(NotificationInterface $notification): self
+    {
+        $this->notifications[] = $notification;
+        return $this;
+    }
     /**
      * @return Subscription[]
      */

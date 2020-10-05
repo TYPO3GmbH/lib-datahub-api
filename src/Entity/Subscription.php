@@ -20,6 +20,7 @@ class Subscription implements JsonSerializable
     private string $subscriptionStatus = '';
     private string $subscriptionType = '';
     private string $subscriptionSubType = '';
+    private string $stripeLink = '';
     private ?DateTimeInterface $validUntil = null;
     private ?array $payload = null;
 
@@ -30,6 +31,7 @@ class Subscription implements JsonSerializable
             'subscriptionStatus' => $this->getSubscriptionStatus(),
             'subscriptionType' => $this->getSubscriptionType(),
             'subscriptionSubType' => $this->getSubscriptionSubType(),
+            'stripeLink' => $this->getStripeLink(),
             'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
             'payload' => $this->getPayload(),
         ];
@@ -82,6 +84,17 @@ class Subscription implements JsonSerializable
             throw new \InvalidArgumentException('Invalid subscription type');
         }
         $this->subscriptionType = $subscriptionType;
+        return $this;
+    }
+
+    public function getStripeLink(): string
+    {
+        return $this->stripeLink;
+    }
+
+    public function setStripeLink(string $stripeLink): self
+    {
+        $this->stripeLink = $stripeLink;
         return $this;
     }
 

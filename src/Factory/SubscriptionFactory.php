@@ -27,6 +27,7 @@ class SubscriptionFactory extends AbstractFactory
             ->setSubscriptionIdentifier($data['subscriptionIdentifier'])
             ->setSubscriptionType($data['subscriptionType'])
             ->setSubscriptionSubType($data['subscriptionSubType'])
+            ->setStripeLink($data['stripeLink'] ?? '')
             ->setValidUntil(new \DateTimeImmutable($data['validUntil']))
             ->setPayload($data['payload'] ?? null)
             ->setSubscriptionStatus($data['subscriptionStatus']);

@@ -44,6 +44,9 @@ class UserFactory extends AbstractFactory
         foreach ($data['subscriptions'] ?? [] as $subscription) {
             $user->addSubscription(SubscriptionFactory::fromArray($subscription));
         }
+        foreach ($data['notifications'] ?? [] as $notification) {
+            $user->addNotification(NotificationFactory::fromArray($notification));
+        }
         foreach ($data['certifications'] ?? [] as $certification) {
             $user->addCertification(CertificationFactory::fromArray($certification));
         }

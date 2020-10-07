@@ -21,6 +21,9 @@ final class WebHookType extends AbstractEnum
     public const COMPANY_DELETED = 'company_deleted';
     public const COMPANY_ADDRESS_CREATED = 'company_address_created';
     public const COMPANY_ADDRESS_DELETED = 'company_address_deleted';
+    public const COMPANY_INVITE_STARTED = 'company_invite_started';
+    public const COMPANY_INVITE_ACCEPTED = 'company_invite_accepted';
+    public const COMPANY_INVITE_REVOKE = 'company_invite_revoke';
     public const USER_CHANGED = 'user_changed';
     public const USER_DELETED = 'user_deleted';
     public const USER_DELETE_STARTED = 'user_delete_started';
@@ -47,6 +50,9 @@ final class WebHookType extends AbstractEnum
         self::COMPANY_DELETED => 'Company record has been deleted',
         self::COMPANY_ADDRESS_CREATED => 'Company address record has been created',
         self::COMPANY_ADDRESS_DELETED => 'Company address record has been deleted',
+        self::COMPANY_INVITE_STARTED => 'Company invited has been started',
+        self::COMPANY_INVITE_ACCEPTED => 'Company invited has been accepted',
+        self::COMPANY_INVITE_REVOKE => 'Company invited has been revoked',
         self::USER_CHANGED => 'User record has been changed',
         self::USER_DELETED => 'User record has been deleted',
         self::USER_DELETE_STARTED => 'User record delete process has been started',

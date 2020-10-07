@@ -45,7 +45,7 @@ class LinkApi extends AbstractApi
         return LinkFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/users/' . urlencode(mb_strtolower($username)) . '/links',
+                '/users/' . rawurlencode(mb_strtolower($username)) . '/links',
                 json_encode($link, JSON_THROW_ON_ERROR, 512)
             )
         );

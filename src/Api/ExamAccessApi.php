@@ -44,7 +44,7 @@ class ExamAccessApi extends AbstractApi
         return ExamAccessFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/users/' . urlencode($username) . '/exam-access',
+                '/users/' . rawurlencode(mb_strtolower($username)) . '/exam-access',
                 json_encode($examAccess, JSON_THROW_ON_ERROR, 512)
             )
         );

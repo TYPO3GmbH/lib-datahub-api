@@ -19,7 +19,7 @@ class CertificationApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/certifications/import/%s', urlencode(mb_strtolower($username))),
+                sprintf('/certifications/import/%s', rawurlencode(mb_strtolower($username))),
                 json_encode($certification, JSON_THROW_ON_ERROR, 512)
             )
         );

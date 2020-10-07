@@ -28,7 +28,7 @@ class UserApi extends AbstractApi
      */
     public function getUser(string $username, bool $withOrders = false): User
     {
-        $url = sprintf('/users/%s', urlencode(mb_strtolower($username)));
+        $url = sprintf('/users/%s', rawurlencode(mb_strtolower($username)));
         if ($withOrders) {
             $url .= '?withOrders=1';
         }
@@ -49,7 +49,7 @@ class UserApi extends AbstractApi
         return UserFactory::fromResponse(
             $this->client->request(
                 'GET',
-                sprintf('/users/%s/profile', urlencode(mb_strtolower($username))),
+                sprintf('/users/%s/profile', rawurlencode(mb_strtolower($username))),
             )
         );
     }
@@ -63,7 +63,7 @@ class UserApi extends AbstractApi
         return UserFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                sprintf('/users/%s', urlencode(mb_strtolower($username))),
+                sprintf('/users/%s', rawurlencode(mb_strtolower($username))),
                 json_encode($user, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -77,7 +77,7 @@ class UserApi extends AbstractApi
     {
         $data = $this->client->request(
             'GET',
-            sprintf('/users/%s/companies?history=1', urlencode(mb_strtolower($username))),
+            sprintf('/users/%s/companies?history=1', rawurlencode(mb_strtolower($username))),
         );
         $data = json_decode($data->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
@@ -97,7 +97,7 @@ class UserApi extends AbstractApi
     {
         $data = $this->client->request(
             'GET',
-            sprintf('/users/%s/companies', urlencode(mb_strtolower($username))),
+            sprintf('/users/%s/companies', rawurlencode(mb_strtolower($username))),
         );
         $data = json_decode($data->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
@@ -114,7 +114,7 @@ class UserApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/users/%s/certifications', urlencode(mb_strtolower($username))),
+                sprintf('/users/%s/certifications', rawurlencode(mb_strtolower($username))),
                 json_encode($certification, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -125,7 +125,7 @@ class UserApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                sprintf('/users/%s/certifications/%s', urlencode(mb_strtolower($username)), urlencode($uuid)),
+                sprintf('/users/%s/certifications/%s', rawurlencode(mb_strtolower($username)), urlencode($uuid)),
                 json_encode($certification, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -136,7 +136,7 @@ class UserApi extends AbstractApi
         return CertificationListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                sprintf('/users/%s/certifications?%s', urlencode(mb_strtolower($username)), ([] !== $status ? http_build_query(['status' => implode(',', $status)]) : '')),
+                sprintf('/users/%s/certifications?%s', rawurlencode(mb_strtolower($username)), ([] !== $status ? http_build_query(['status' => implode(',', $status)]) : '')),
             )
         );
     }

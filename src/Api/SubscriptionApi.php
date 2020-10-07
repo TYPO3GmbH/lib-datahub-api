@@ -71,7 +71,7 @@ class SubscriptionApi extends AbstractApi
         return SubscriptionFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/users/%s/subscriptions', urlencode(mb_strtolower($username))),
+                sprintf('/users/%s/subscriptions', rawurlencode(mb_strtolower($username))),
                 json_encode($subscription, JSON_THROW_ON_ERROR, 512)
             )
         );

@@ -44,7 +44,7 @@ class OldUserApi extends AbstractApi
         return UserFactory::fromResponse(
             $response = $this->client->request(
                 'POST',
-                '/users/' . urlencode(mb_strtolower($username)) . '/reenable',
+                '/users/' . rawurlencode(mb_strtolower($username)) . '/reenable',
             )
         );
     }

@@ -24,7 +24,7 @@ class ApprovedDocumentApi extends AbstractApi
         return ApprovedDocumentFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/users/' . urlencode(mb_strtolower($username)) . '/approve-document',
+                '/users/' . rawurlencode(mb_strtolower($username)) . '/approve-document',
                 json_encode($approvedDocument, JSON_THROW_ON_ERROR, 512)
             )
         );

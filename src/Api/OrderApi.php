@@ -42,7 +42,7 @@ class OrderApi extends AbstractApi
         return OrderFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/users/%s/orders', urlencode(mb_strtolower($username))),
+                sprintf('/users/%s/orders', rawurlencode(mb_strtolower($username))),
                 json_encode($order, JSON_THROW_ON_ERROR, 512)
             )
         );

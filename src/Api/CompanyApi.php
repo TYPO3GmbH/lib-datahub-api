@@ -142,7 +142,7 @@ class CompanyApi extends AbstractApi
         return CompanyInvitationFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/companies/' . $uuid . '/invite/' . urlencode(mb_strtolower($username)) . '/' . urlencode($role),
+                '/companies/' . $uuid . '/invite/' . rawurlencode(mb_strtolower($username)) . '/' . urlencode($role),
             )
         );
     }

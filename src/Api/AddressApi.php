@@ -62,7 +62,7 @@ class AddressApi extends AbstractApi
         return AddressFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/users/' . urlencode(mb_strtolower($username)) . '/addresses',
+                '/users/' . rawurlencode(mb_strtolower($username)) . '/addresses',
                 json_encode($address, JSON_THROW_ON_ERROR, 512)
             )
         );

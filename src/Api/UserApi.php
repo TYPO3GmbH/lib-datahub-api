@@ -22,16 +22,25 @@ class UserApi extends AbstractApi
     /**
      * @param string $username
      * @param bool $withOrders
+     * @param bool $withSubscriptions
      * @return User
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
-    public function getUser(string $username, bool $withOrders = false): User
+    public function getUser(string $username, bool $withOrders = false, bool $withSubscriptions = false): User
     {
-        $url = sprintf('/users/%s', rawurlencode(mb_strtolower($username)));
+        $queryParams = [];
         if ($withOrders) {
-            $url .= '?withOrders=1';
+            $queryParams['withOrders'] = '1';
         }
+
+        if ($withSubscriptions) {
+            $queryParams['withSubscriptions'] = '1';
+        }
+
+        $queryString = !empty($queryParams) ? '?' . http_build_query($queryParams) : '';
+        $url = sprintf('/users/%s%s', rawurlencode(mb_strtolower($username)), $queryString);
+
         return UserFactory::fromResponse(
             $this->client->request(
                 'GET',

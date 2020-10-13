@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Entity;
 use JsonSerializable;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\EmployeeRole;
+use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
 class Company implements JsonSerializable
 {
@@ -257,6 +258,28 @@ class Company implements JsonSerializable
     public function getSubscriptions(): array
     {
         return $this->subscriptions;
+    }
+
+    /**
+     * @return Subscription[]
+     */
+    public function getPslSubscriptions(): iterable
+    {
+        return new \ArrayIterator(array_filter(
+            $this->subscriptions,
+            fn (Subscription $subscription) => SubscriptionType::PSL === $subscription->getSubscriptionType()
+        ));
+    }
+
+    /**
+     * @return Subscription[]
+     */
+    public function getMembershipSubscriptions(): iterable
+    {
+        return new \ArrayIterator(array_filter(
+            $this->subscriptions,
+            fn (Subscription $subscription) => SubscriptionType::MEMBERSHIP === $subscription->getSubscriptionType()
+        ));
     }
 
     /**

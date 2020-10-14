@@ -37,6 +37,7 @@
     ],
     "require": {
         "php": "^7.4",
+        "ext-intl": "*",
         "ext-json": "*",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0",

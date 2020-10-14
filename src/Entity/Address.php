@@ -327,4 +327,33 @@ class Address implements JsonSerializable
 
         return $string;
     }
+
+    public function toDeutschePostArray(): array
+    {
+        $streetAndNumber = [];
+        if (1 === preg_match('/^\d/', $this->getStreet())) {
+            // House number comes BEFORE the street name (English, French, etc.)
+            preg_match('/^(?P<number>[^a-z]?\D*\d+.*)\s+(?P<address>\d*\D+)$/', $this->getStreet(), $streetAndNumber);
+            $street = $streetAndNumber[2] ?? $this->getStreet();
+            $number = $streetAndNumber[1] ?? $this->getStreet();
+        } else {
+            // House number comes AFTER the street name (German, Dutch, etc.)
+            preg_match('/^(?P<address>\d*\D+)\s+(?P<number>[^a-z]?\D*\d+.*)$/', $this->getStreet(), $streetAndNumber);
+            $street = $streetAndNumber[1] ?? $this->getStreet();
+            $number = $streetAndNumber[2] ?? $this->getStreet();
+        }
+        $transliterator = \Transliterator::createFromRules(':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: NFC;', \Transliterator::FORWARD);
+
+        return [
+            'NAME' => $transliterator->transliterate($this->getFirstName() . ' ' . $this->getLastName()),
+            'ZUSATZ' => $transliterator->transliterate($this->getAdditionalAddressLine1() ?? ''),
+            'STRASSE' => $transliterator->transliterate($street),
+            'NUMMER' => $transliterator->transliterate($number),
+            'PLZ' => $transliterator->transliterate($this->getZip()),
+            'STADT' => $transliterator->transliterate($this->getCity()),
+            'LAND' => $this->getCountryIso3(),
+            'ADRESS_TYP' => 'HOUSE',
+            'REFERENZ' => null,
+        ];
+    }
 }

@@ -19,6 +19,7 @@ final class SubscriptionStatus extends AbstractEnum
     public const PAST_DUE = 'past_due';
     public const UNPAID = 'unpaid';
     public const CANCEL_IN_PROGRESS = 'cancel_in_progress'; // This is no stripe status
+    public const SWITCH_IN_PROGRESS = 'switch_in_progress'; // This is no stripe status
     public const CANCELED = 'canceled';
     public const INCOMPLETE = 'incomplete';
     public const INCOMPLETE_EXPIRED = 'incomplete_expired';
@@ -30,6 +31,7 @@ final class SubscriptionStatus extends AbstractEnum
         self::PAST_DUE => 'Past due payment',
         self::UNPAID => 'Unpaid payment',
         self::CANCEL_IN_PROGRESS => 'Cancel in progress',
+        self::SWITCH_IN_PROGRESS => 'Switch in progress',
         self::CANCELED => 'Canceled payment',
         self::INCOMPLETE => 'Incomplete payment',
         self::INCOMPLETE_EXPIRED => 'Incomplete payment expired',

@@ -16,9 +16,26 @@ use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
+use T3G\DatahubApiLibrary\Factory\UserListFactory;
 
 class UserApi extends AbstractApi
 {
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @return array<int, mixed>
+     */
+    public function search(string $search): array
+    {
+        return UserListFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                '/users/search',
+                json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
+
     /**
      * @param string $username
      * @param bool $withOrders

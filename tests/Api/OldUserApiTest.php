@@ -43,6 +43,6 @@ class OldUserApiTest extends AbstractApiTest
         $this->assertCount(2, $response->getAddresses());
         $this->assertCount(2, $response->getLinks());
         $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('COMMUNITY', $response->getMembership()->getType());
+        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 }

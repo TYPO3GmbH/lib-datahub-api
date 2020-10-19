@@ -30,9 +30,10 @@ class UserFactoryTest extends TestCase
         $this->assertCount(count($data['links'] ?? []), $entity->getLinks());
         $this->assertCount(count($data['certifications'] ?? []), $entity->getCertifications());
         $this->assertCount(count($data['approvedDocuments'] ?? []), $entity->getApprovedDocuments());
-        if (!empty($data['membership']['type'])) {
-            $this->assertEquals($data['membership']['type'], $entity->getMembership()->getType());
+        if (!empty($data['membership'])) {
+            $this->assertEquals($data['membership']['subscriptionSubType'], $entity->getMembership()->getSubscriptionSubType());
         }
+        $this->assertCount(count($data['subscriptions'] ?? []), $entity->getSubscriptions());
         if (!empty($data['notifications'])) {
             $this->assertInstanceOf($data['notifications'][0]['type'], $entity->getNotifications()[0]);
         }
@@ -105,8 +106,22 @@ class UserFactoryTest extends TestCase
                         ]
                     ],
                     'membership' => [
-                        'type' => 'COMMUNITY',
-                        'validUntil' => '2020-02-26T00:00:00+00:00'
+                        'uuid' => '00000000-0000-0000-0000-000000000000',
+                        'subscriptionIdentifier' => 'sub_AAAAAAAAA',
+                        'subscriptionType' => 'membership',
+                        'subscriptionSubType' => 'SILVER',
+                        'subscriptionStatus' => 'active',
+                        'validUntil' => '2021-09-03T10:00:00+00:00',
+                    ],
+                    'subscriptions' => [
+                        [
+                            'uuid' => '00000000-0000-0000-0000-000000000000',
+                            'subscriptionIdentifier' => 'sub_AAAAAAAAA',
+                            'subscriptionType' => 'membership',
+                            'subscriptionSubType' => 'SILVER',
+                            'subscriptionStatus' => 'active',
+                            'validUntil' => '2021-09-03T10:00:00+00:00',
+                        ]
                     ],
                     'approvedDocuments' => [
                         [

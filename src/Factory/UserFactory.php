@@ -54,7 +54,7 @@ class UserFactory extends AbstractFactory
             $user->addExamAccess(ExamAccessFactory::fromArray($examAccess));
         }
         if (isset($data['membership'])) {
-            $user->setMembership(MembershipFactory::fromArray($data['membership']));
+            $user->setMembership(SubscriptionFactory::fromArray($data['membership']));
         }
         foreach ($data['approvedDocuments'] ?? [] as $approvedDocument) {
             $user->addApprovedDocument(ApprovedDocumentFactory::fromArray($approvedDocument));

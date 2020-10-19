@@ -16,6 +16,19 @@ return new Response(200, ['content-type' => 'application/json'], '
   "email": "oelie.boelie@typo3.org",
   "phone": "+4912356789",
   "discordId": "492824791867326464",
+  "membership": {
+    "uuid": "00000000-0000-0000-0000-000000000000",
+    "subscriptionIdentifier": "sub_AAAAAAAAA",
+    "subscriptionType": "membership",
+    "subscriptionSubType": "ACADEMIC_BRONZE",
+    "subscriptionStatus": "active",
+    "payload": {
+      "items": [
+        {"foo": "bar"}
+      ]
+    },
+    "validUntil": "2021-09-03T10:00:00+00:00"
+  },
   "addresses": [
     {
       "uuid": "00000000-0000-0000-0000-000000000000",
@@ -80,10 +93,6 @@ return new Response(200, ['content-type' => 'application/json'], '
       "examUrl": "https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000"
     }
   ],
-  "membership": {
-    "type": "COMMUNITY",
-    "validUntil": "2021-02-26T00:00:00+00:00"
-  },
   "orders": [
     {
       "uuid": "00000000-0000-0000-0000-000000000000",

@@ -17,12 +17,29 @@ use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
 use T3G\DatahubApiLibrary\Factory\CompanyInvitationFactory;
 use T3G\DatahubApiLibrary\Factory\CompanyInvitationListFactory;
+use T3G\DatahubApiLibrary\Factory\CompanyListFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class CompanyApi extends AbstractApi
 {
     use HandlesUuids;
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @return array<int, mixed>
+     */
+    public function search(string $search): array
+    {
+        return CompanyListFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                '/companies/search',
+                json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
 
     /**
      * @throws ClientExceptionInterface

@@ -17,8 +17,17 @@ return new Response(200, ['content-type' => 'application/json'], '
   "email": "oelie@boelie.com",
   "vatId": "DE 123 456 789",
   "membership": {
-    "type": "COMMUNITY",
-    "validUntil": "2021-02-26T00:00:00+00:00"
+    "uuid": "22222222-2222-2222-2222-222222222222",
+    "subscriptionIdentifier": "sub_CCCCCCCCC",
+    "subscriptionType": "membership",
+    "subscriptionSubType": "GOLD",
+    "subscriptionStatus": "active",
+    "payload": {
+      "items": [
+        {"foo": "bar"}
+      ]
+    },
+    "validUntil": "2020-10-03T10:00:00+00:00"
   },
   "addresses": [
     {
@@ -130,6 +139,19 @@ return new Response(200, ['content-type' => 'application/json'], '
       "subscriptionType": "psl",
       "subscriptionSubType": "profile_bundle",
       "subscriptionStatus": "incomplete_expired",
+      "payload": {
+        "items": [
+          {"foo": "bar"}
+        ]
+      },
+      "validUntil": "2020-10-03T10:00:00+00:00"
+    },
+    {
+      "uuid": "22222222-2222-2222-2222-222222222222",
+      "subscriptionIdentifier": "sub_CCCCCCCCC",
+      "subscriptionType": "membership",
+      "subscriptionSubType": "GOLD",
+      "subscriptionStatus": "active",
       "payload": {
         "items": [
           {"foo": "bar"}

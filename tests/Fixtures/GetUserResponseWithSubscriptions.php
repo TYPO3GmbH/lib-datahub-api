@@ -81,8 +81,17 @@ return new Response(200, ['content-type' => 'application/json'], '
     }
   ],
   "membership": {
-    "type": "COMMUNITY",
-    "validUntil": "2021-02-26T00:00:00+00:00"
+    "uuid": "00000000-0000-0000-0000-000000000000",
+    "subscriptionIdentifier": "sub_AAAAAAAAA",
+    "subscriptionType": "membership",
+    "subscriptionSubType": "ACADEMIC_BRONZE",
+    "subscriptionStatus": "active",
+    "payload": {
+      "items": [
+        {"foo": "bar"}
+      ]
+    },
+    "validUntil": "2021-09-03T10:00:00+00:00"
   },
   "subscriptions": [
     {

@@ -33,7 +33,7 @@ class UserApiTest extends AbstractApiTest
         $this->assertCount(2, $response->getPostalAddresses());
         $this->assertCount(2, $response->getLinks());
         $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('COMMUNITY', $response->getMembership()->getType());
+        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetUserWithOrders(): void
@@ -48,6 +48,7 @@ class UserApiTest extends AbstractApiTest
         $this->assertCount(1, $orders);
         $this->assertSame('A12345', $orders[0]->getOrderNumber());
         $this->assertSame(['items' => [['foo' => 'bar']]], $orders[0]->getPayload());
+        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetUserWithSubscriptions(): void
@@ -56,17 +57,28 @@ class UserApiTest extends AbstractApiTest
             require __DIR__ . '/../Fixtures/GetUserResponseWithSubscriptions.php'
         ]);
         $response = (new UserApi($this->getClient($handler)))
-            ->getUser('oelie-boelie', true);
+            ->getUser('oelie-boelie', false, true);
         $this->assertEquals('oelie-boelie', $response->getUsername());
 
         $subscriptions = $response->getSubscriptions();
         $this->assertCount(1, $subscriptions);
+        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
         $this->assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
         $this->assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
         $this->assertSame(SubscriptionType::MEMBERSHIP, $subscriptions[0]->getSubscriptionType());
         $this->assertSame(MembershipType::ACADEMIC_BRONZE, $subscriptions[0]->getSubscriptionSubType());
         $this->assertSame(SubscriptionStatus::ACTIVE, $subscriptions[0]->getSubscriptionStatus());
         $this->assertSame(['items' => [['foo' => 'bar']]], $subscriptions[0]->getPayload());
+    }
+
+    public function testGetSearchUsers(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetSearchUserResponse.php'
+        ]);
+        $response = (new UserApi($this->getClient($handler)))
+            ->search('oelie-boelie');
+        $this->assertEquals(2, count($response));
     }
 
     public function testGetProfile(): void
@@ -94,7 +106,7 @@ class UserApiTest extends AbstractApiTest
         $this->assertCount(2, $response->getAddresses());
         $this->assertCount(2, $response->getLinks());
         $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('COMMUNITY', $response->getMembership()->getType());
+        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetCompanyHistory(): void

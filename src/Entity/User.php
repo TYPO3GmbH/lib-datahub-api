@@ -70,7 +70,7 @@ class User implements JsonSerializable
      */
     private array $notifications = [];
 
-    private ?Membership $membership = null;
+    private ?Subscription $membership = null;
 
     public function jsonSerialize()
     {
@@ -386,18 +386,18 @@ class User implements JsonSerializable
     }
 
     /**
-     * @return Membership|null
+     * @return Subscription|null
      */
-    public function getMembership(): ?Membership
+    public function getMembership(): ?Subscription
     {
         return $this->membership;
     }
 
     /**
-     * @param Membership|null $membership
+     * @param Subscription|null $membership
      * @return User
      */
-    public function setMembership(?Membership $membership): self
+    public function setMembership(?Subscription $membership): self
     {
         $this->membership = $membership;
         return $this;

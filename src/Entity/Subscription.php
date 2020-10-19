@@ -23,6 +23,7 @@ class Subscription implements JsonSerializable
     private string $stripeLink = '';
     private ?DateTimeInterface $validUntil = null;
     private ?array $payload = null;
+    private ?string $history = null;
 
     public function jsonSerialize()
     {
@@ -133,6 +134,22 @@ class Subscription implements JsonSerializable
     {
         $this->payload = $payload;
         return $this;
+    }
+
+    public function getHistory(): ?string
+    {
+        return $this->history;
+    }
+
+    public function setHistory(?string $history): self
+    {
+        $this->history = $history;
+        return $this;
+    }
+
+    public function isMembershipSubscription(): bool
+    {
+        return SubscriptionType::MEMBERSHIP === $this->subscriptionType;
     }
 
     private function formatDateIfGiven(?\DateTimeInterface $dateTime): ?string

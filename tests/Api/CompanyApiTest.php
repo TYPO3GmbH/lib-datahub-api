@@ -32,7 +32,7 @@ class CompanyApiTest extends AbstractApiTest
         $this->assertCount(4, $response->getEmployees());
         $this->assertCount(2, $response->getAddresses());
         $this->assertCount(2, $response->getPostalAddresses());
-        $this->assertEquals('COMMUNITY', $response->getMembership()->getType());
+        $this->assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
         $this->assertEquals(true, $response->isFoundingPartner());
         $this->assertEquals(true, $response->isPsl());
     }
@@ -59,12 +59,14 @@ class CompanyApiTest extends AbstractApiTest
             require __DIR__ . '/../Fixtures/GetCompanyResponseWithSubscriptions.php'
         ]);
         $api = new CompanyApi($this->getClient($handler));
-        $response = $api->getCompany('00000000-0000-0000-0000-000000000000', true);
+        $response = $api->getCompany('00000000-0000-0000-0000-000000000000', false, true);
         $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
         $this->assertEquals('Test Company', $response->getTitle());
         $this->assertEquals('test-company', $response->getSlug());
         $subscriptions = $response->getSubscriptions();
-        $this->assertCount(2, $subscriptions);
+        $this->assertCount(3, $subscriptions);
+        $this->assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
+
         $this->assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
         $this->assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
         $this->assertSame(SubscriptionType::PSL, $subscriptions[0]->getSubscriptionType());
@@ -78,6 +80,16 @@ class CompanyApiTest extends AbstractApiTest
         $this->assertSame(PSLType::PROFILE_BUNDLE, $subscriptions[1]->getSubscriptionSubType());
         $this->assertSame(SubscriptionStatus::INCOMPLETE_EXPIRED, $subscriptions[1]->getSubscriptionStatus());
         $this->assertSame(['items' => [['foo' => 'bar']]], $subscriptions[1]->getPayload());
+    }
+
+    public function testGetSearchCompanies(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetSearchCompanyResponse.php'
+        ]);
+        $response = (new CompanyApi($this->getClient($handler)))
+            ->search('Test Company');
+        $this->assertEquals(2, count($response));
     }
 
     public function testCreateCompany(): void

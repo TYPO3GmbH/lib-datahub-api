@@ -16,13 +16,22 @@ return new Response(200, ['content-type' => 'application/json'], '
   "slug": "test-company",
   "email": "oelie@boelie.com",
   "vatId": "DE 123 456 789",
+  "membership": {
+    "uuid": "22222222-2222-2222-2222-222222222222",
+    "subscriptionIdentifier": "sub_CCCCCCCCC",
+    "subscriptionType": "membership",
+    "subscriptionSubType": "GOLD",
+    "subscriptionStatus": "active",
+    "payload": {
+      "items": [
+        {"foo": "bar"}
+      ]
+    },
+    "validUntil": "2020-10-03T10:00:00+00:00"
+  },
   "domain": "typo3.com",
   "foundingPartner": true,
   "psl": true,
-  "membership": {
-    "type": "COMMUNITY",
-    "validUntil": "2021-02-26T00:00:00+00:00"
-  },
   "addresses": [
     {
       "uuid": "00000000-0000-0000-0000-000000000000",

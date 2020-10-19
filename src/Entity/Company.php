@@ -47,7 +47,7 @@ class Company implements JsonSerializable
     private array $subscriptions = [];
 
     private ?Address $headquarter = null;
-    private ?Membership $membership = null;
+    private ?Subscription $membership = null;
     private ?string $domain = null;
     private ?string $backlink = null;
 
@@ -272,17 +272,6 @@ class Company implements JsonSerializable
     }
 
     /**
-     * @return Subscription[]
-     */
-    public function getMembershipSubscriptions(): iterable
-    {
-        return new \ArrayIterator(array_filter(
-            $this->subscriptions,
-            fn (Subscription $subscription) => SubscriptionType::MEMBERSHIP === $subscription->getSubscriptionType()
-        ));
-    }
-
-    /**
      * @param Subscription[] $subscriptions
      * @return Company
      */
@@ -298,12 +287,12 @@ class Company implements JsonSerializable
         return $this;
     }
 
-    public function getMembership(): ?Membership
+    public function getMembership(): ?Subscription
     {
         return $this->membership;
     }
 
-    public function setMembership(?Membership $membership): self
+    public function setMembership(?Subscription $membership): self
     {
         $this->membership = $membership;
         return $this;

@@ -12,12 +12,14 @@ class Invoice implements \JsonSerializable
 {
     private \DateTimeInterface $date;
     private string $link;
+    private ?string $title = null;
 
     public function jsonSerialize()
     {
         return [
             'date' => $this->getDate()->format(\DateTimeInterface::ATOM),
             'link' => $this->getLink(),
+            'title' => $this->getTitle(),
         ];
     }
 
@@ -40,6 +42,17 @@ class Invoice implements \JsonSerializable
     public function setLink(string $link): self
     {
         $this->link = $link;
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
         return $this;
     }
 }

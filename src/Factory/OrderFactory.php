@@ -34,6 +34,7 @@ class OrderFactory extends AbstractFactory
                 (new Invoice())
                     ->setLink($invoice['link'])
                     ->setDate(new \DateTime($invoice['date']))
+                    ->setTitle($invoice['title'] ?? null)
             );
         }
 

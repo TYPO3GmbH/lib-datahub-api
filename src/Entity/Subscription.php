@@ -24,6 +24,8 @@ class Subscription implements JsonSerializable
     private ?DateTimeInterface $validUntil = null;
     private ?array $payload = null;
     private ?string $history = null;
+    private ?User $user = null;
+    private ?Company $company = null;
 
     public function jsonSerialize()
     {
@@ -144,6 +146,28 @@ class Subscription implements JsonSerializable
     public function setHistory(?string $history): self
     {
         $this->history = $history;
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
         return $this;
     }
 

@@ -22,7 +22,7 @@ class SubscriptionFactory extends AbstractFactory
 
     public static function fromArray(array $data): Subscription
     {
-        return (new Subscription())
+        $subscription = (new Subscription())
             ->setUuid($data['uuid'])
             ->setSubscriptionIdentifier($data['subscriptionIdentifier'])
             ->setSubscriptionType($data['subscriptionType'])
@@ -32,5 +32,15 @@ class SubscriptionFactory extends AbstractFactory
             ->setPayload($data['payload'] ?? null)
             ->setHistory($data['history'] ?? null)
             ->setSubscriptionStatus($data['subscriptionStatus']);
+
+        if (isset($data['user'])) {
+            $subscription->setUser(UserFactory::fromArray($data['user']));
+        }
+
+        if (isset($data['company'])) {
+            $subscription->setCompany(CompanyFactory::fromArray($data['company']));
+        }
+
+        return $subscription;
     }
 }

@@ -35,6 +35,6 @@ final class SubscriptionStatus extends AbstractEnum
         self::CANCELED => 'Canceled payment',
         self::INCOMPLETE => 'Incomplete payment',
         self::INCOMPLETE_EXPIRED => 'Incomplete payment expired',
-        self::TRIALING => 'Trialing payment',
+        self::TRIALING => 'Trialing',
     ];
 }

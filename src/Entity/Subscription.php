@@ -10,6 +10,8 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 use DateTimeInterface;
 use JsonSerializable;
+use T3G\DatahubApiLibrary\Enum\CompanyType;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
@@ -174,6 +176,21 @@ class Subscription implements JsonSerializable
     public function isMembershipSubscription(): bool
     {
         return SubscriptionType::MEMBERSHIP === $this->subscriptionType;
+    }
+
+    public function isTransferable(string $fromUser, Company $toCompany): bool
+    {
+        if (!$toCompany->isOwner($fromUser)) {
+            return false;
+        }
+
+        if (CompanyType::FREELANCER === $toCompany->getCompanyType()) {
+            return in_array($this->getSubscriptionSubType(), [MembershipType::BRONZE, MembershipType::SILVER, MembershipType::GOLD, MembershipType::PLATINUM], true)
+                && in_array($this->getSubscriptionStatus(), [SubscriptionStatus::ACTIVE, SubscriptionStatus::TRIALING], true);
+        }
+
+        return in_array($this->getSubscriptionSubType(), [MembershipType::SILVER, MembershipType::GOLD, MembershipType::PLATINUM], true)
+            && in_array($this->getSubscriptionStatus(), [SubscriptionStatus::ACTIVE, SubscriptionStatus::TRIALING], true);
     }
 
     private function formatDateIfGiven(?\DateTimeInterface $dateTime): ?string

@@ -110,4 +110,17 @@ class SubscriptionApi extends AbstractApi
             '/subscription/' . $uuid
         );
     }
+
+    public function transferSubscriptionToOrganization(string $uuid, string $organizationUuid): Subscription
+    {
+        $this->isValidUuidOrThrow($uuid);
+        $this->isValidUuidOrThrow($organizationUuid);
+
+        return SubscriptionFactory::fromResponse(
+            $this->client->request(
+                'PUT',
+                '/subscription/' . $uuid . '/transfer-to-organization/' . $organizationUuid
+            )
+        );
+    }
 }

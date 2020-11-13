@@ -111,4 +111,19 @@ class EnumApi extends AbstractApi
 
         return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @phpstan-return array<string,string>
+     */
+    public function getCompanyDeletionPreCheckTypes(): array
+    {
+        $response = $this->client->request(
+            'GET',
+            '/enums/company/deletion-pre-check-type',
+        );
+
+        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+    }
 }

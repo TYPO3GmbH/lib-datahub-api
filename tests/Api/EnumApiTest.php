@@ -99,4 +99,18 @@ class EnumApiTest extends AbstractApiTest
         $this->assertContains('Past due payment', $response);
         $this->assertArrayHasKey('past_due', $response);
     }
+
+    public function testGetCompanyDeletionPreCheckTypesEnumResponse(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetCompanyDeletionPreCheckTypesEnumResponse.php'
+        ]);
+        $api = new EnumApi($this->getClient($handler));
+        $response = $api->getCompanyDeletionPreCheckTypes();
+        $this->assertIsArray($response);
+        $this->assertContains('Info', $response);
+        $this->assertArrayHasKey('info', $response);
+        $this->assertContains('Blocking', $response);
+        $this->assertArrayHasKey('blocking', $response);
+    }
 }

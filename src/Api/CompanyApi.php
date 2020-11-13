@@ -12,6 +12,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Entity\CompanyInvitation;
 use T3G\DatahubApiLibrary\Entity\Employee;
+use T3G\DatahubApiLibrary\Entity\PreCheckResult;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
@@ -19,6 +20,7 @@ use T3G\DatahubApiLibrary\Factory\CompanyInvitationFactory;
 use T3G\DatahubApiLibrary\Factory\CompanyInvitationListFactory;
 use T3G\DatahubApiLibrary\Factory\CompanyListFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
+use T3G\DatahubApiLibrary\Factory\PreCheckResultListFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class CompanyApi extends AbstractApi
@@ -237,6 +239,25 @@ class CompanyApi extends AbstractApi
         $this->client->request(
             'PUT',
             '/employees/dismiss/' . $employeeUuid,
+        );
+    }
+
+    /**
+     * @param string $companyUuid
+     * @return PreCheckResult[]
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function deletionPreCheck(string $companyUuid): array
+    {
+        $this->isValidUuidOrThrow($companyUuid);
+
+        return PreCheckResultListFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                sprintf('/companies/%s/pre-deletion-check', $companyUuid)
+            )
         );
     }
 }

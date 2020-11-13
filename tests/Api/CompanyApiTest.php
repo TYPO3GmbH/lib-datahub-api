@@ -37,6 +37,24 @@ class CompanyApiTest extends AbstractApiTest
         $this->assertEquals(true, $response->isPsl());
     }
 
+    public function testDeletionPreCheck(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetDeletionPreCheckResponse.php'
+        ]);
+        $api = new CompanyApi($this->getClient($handler));
+        $response = $api->deletionPreCheck('00000000-0000-0000-0000-000000000000');
+        $this->assertCount(2, $response);
+        $this->assertEquals('App\\Service\\CompanyPreDeletionCheck\\AddressesPreCheck', $response[0]->getSource());
+        $this->assertEquals('info', $response[0]->getType());
+        $this->assertEquals(true, $response[0]->getResult());
+        $this->assertEquals(['amountOfAddresses' => 0], $response[0]->getAdditionalData());
+        $this->assertEquals('App\\Service\\CompanyPreDeletionCheck\\MembersPreCheck', $response[1]->getSource());
+        $this->assertEquals('blocking', $response[1]->getType());
+        $this->assertEquals(false, $response[1]->getResult());
+        $this->assertEquals(['amountOfEmployees' => 1, 'amountOfInvitations' => 0], $response[1]->getAdditionalData());
+    }
+
     public function testGetCompanyWithOrders(): void
     {
         $handler = new MockHandler([

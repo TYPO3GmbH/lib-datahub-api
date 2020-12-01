@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\OrderApi;
+use T3G\DatahubApiLibrary\Demand\OrderSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Order;
 
 class OrderApiTest extends AbstractApiTest
@@ -25,6 +26,32 @@ class OrderApiTest extends AbstractApiTest
         $this->assertIsArray($response->getPayload());
         $this->assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
         $this->assertCount(1, $response->getInvoices());
+    }
+
+    /**
+     * @param string $fixtureFile
+     * @param int|null $limit
+     * @throws \JsonException
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @dataProvider searchOrdersDataProvider
+     */
+    public function testSearchOrders(string $fixtureFile, ?int $limit): void
+    {
+        $handler = new MockHandler([
+           require __DIR__ . '/../Fixtures/' . $fixtureFile
+       ]);
+        $responses = (new OrderApi($this->getClient($handler)))
+            ->searchOrders(new OrderSearchDemand(), $limit);
+
+        $this->assertCount($limit ?? 10, $responses);
+    }
+
+    public function searchOrdersDataProvider(): \Generator
+    {
+        yield ['SearchOrdersResponseLimitNull.php', null];
+        yield ['SearchOrdersResponseLimit1.php', 1];
+        yield ['SearchOrdersResponseLimit5.php', 5];
     }
 
     public function testCreateOrderForUser(): void

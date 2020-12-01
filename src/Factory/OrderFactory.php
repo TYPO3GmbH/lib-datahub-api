@@ -14,6 +14,18 @@ use T3G\DatahubApiLibrary\Entity\Order;
 
 class OrderFactory extends AbstractFactory
 {
+    /**
+     * @param ResponseInterface $response
+     * @return Order[]
+     */
+    public static function fromResponseDataCollection(ResponseInterface $response): iterable
+    {
+        return array_map(
+            static fn (array $orderData) => self::fromArray($orderData),
+            self::responseToArray($response)['data']
+        );
+    }
+
     public static function fromResponse(ResponseInterface $response): Order
     {
         $data = self::responseToArray($response);

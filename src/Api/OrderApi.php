@@ -8,6 +8,7 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use T3G\DatahubApiLibrary\Demand\OrderSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Order;
 use T3G\DatahubApiLibrary\Factory\OrderFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
@@ -24,6 +25,35 @@ class OrderApi extends AbstractApi
             $this->client->request(
                 'GET',
                 '/order/' . $uuid
+            )
+        );
+    }
+
+    /**
+     * @param OrderSearchDemand $orderSearchDemand
+     * @param int|null $limit
+     * @param int|null $offset
+     * @return Order[]
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws \JsonException
+     */
+    public function searchOrders(OrderSearchDemand $orderSearchDemand, ?int $limit = null, ?int $offset = null): iterable
+    {
+        $query = [];
+        if (null !== $limit) {
+            $query['page']['limit'] = $limit;
+        }
+
+        if (null !== $offset) {
+            $query['page']['offset'] = $offset;
+        }
+
+        return OrderFactory::fromResponseDataCollection(
+            $this->client->request(
+                'POST',
+                '/order/search' . http_build_query($query),
+                json_encode($orderSearchDemand, JSON_FORCE_OBJECT | JSON_THROW_ON_ERROR)
             )
         );
     }

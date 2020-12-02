@@ -49,11 +49,14 @@ class OrderApi extends AbstractApi
         if (null !== $offset) {
             $query['page']['offset'] = $offset;
         }
-
+        $url = '/order/search';
+        if ([] !== $query) {
+            $url .= '?' . http_build_query($query);
+        }
         return OrderFactory::fromResponseDataCollection(
             $this->client->request(
                 'POST',
-                '/order/search' . http_build_query($query),
+                $url,
                 json_encode($orderSearchDemand, JSON_FORCE_OBJECT | JSON_THROW_ON_ERROR)
             )
         );

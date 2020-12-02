@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Api;
 
 use T3G\DatahubApiLibrary\Demand\OrderSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Order;
+use T3G\DatahubApiLibrary\Entity\OrderList;
 use T3G\DatahubApiLibrary\Factory\OrderFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
@@ -33,12 +34,12 @@ class OrderApi extends AbstractApi
      * @param OrderSearchDemand $orderSearchDemand
      * @param int|null $limit
      * @param int|null $offset
-     * @return Order[]
+     * @return OrderList
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      * @throws \JsonException
      */
-    public function searchOrders(OrderSearchDemand $orderSearchDemand, ?int $limit = null, ?int $offset = null): iterable
+    public function searchOrders(OrderSearchDemand $orderSearchDemand, ?int $limit = null, ?int $offset = null): OrderList
     {
         $query = [];
         if (null !== $limit) {

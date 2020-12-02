@@ -11,19 +11,22 @@ namespace T3G\DatahubApiLibrary\Factory;
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Invoice;
 use T3G\DatahubApiLibrary\Entity\Order;
+use T3G\DatahubApiLibrary\Entity\OrderList;
 
 class OrderFactory extends AbstractFactory
 {
     /**
      * @param ResponseInterface $response
-     * @return Order[]
+     * @return OrderList
      */
-    public static function fromResponseDataCollection(ResponseInterface $response): iterable
+    public static function fromResponseDataCollection(ResponseInterface $response): OrderList
     {
-        return array_map(
+        $arrayResponse = self::responseToArray($response);
+        $data = array_map(
             static fn (array $orderData) => self::fromArray($orderData),
-            self::responseToArray($response)['data']
+            $arrayResponse['data']
         );
+        return new OrderList($arrayResponse['meta'], $arrayResponse['links'], $data);
     }
 
     public static function fromResponse(ResponseInterface $response): Order

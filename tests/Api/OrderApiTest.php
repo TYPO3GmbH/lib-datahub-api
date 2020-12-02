@@ -41,10 +41,10 @@ class OrderApiTest extends AbstractApiTest
         $handler = new MockHandler([
            require __DIR__ . '/../Fixtures/' . $fixtureFile
        ]);
-        $responses = (new OrderApi($this->getClient($handler)))
+        $orderList = (new OrderApi($this->getClient($handler)))
             ->searchOrders(new OrderSearchDemand(), $limit);
 
-        $this->assertCount($limit ?? 10, $responses);
+        $this->assertCount($limit ?? 10, $orderList->getData());
     }
 
     public function searchOrdersDataProvider(): \Generator

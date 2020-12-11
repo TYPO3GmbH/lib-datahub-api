@@ -42,7 +42,7 @@ class PendingRegistrationApi extends AbstractApi
             '/registration/pending?extended=' . (int)$onlyWhereAdminApprovalRequired
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['entities'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['entities'];
     }
 
     /**

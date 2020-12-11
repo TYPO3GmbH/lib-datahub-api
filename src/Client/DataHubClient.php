@@ -90,14 +90,14 @@ class DataHubClient
             'request' => [
                 'method' => $request->getMethod(),
                 'endpoint' => $request->getUri(),
-                'body' => $request->getBody()->getContents(),
+                'body' => (string)$request->getBody(),
                 'base_uri' => $this->baseUri,
                 'headers' => $request->getHeaders(),
             ],
             'response' => [
                 'status_code' => $response->getStatusCode(),
                 'headers' => $response->getHeaders(),
-                'content' => $response->getBody()->getContents(),
+                'content' => (string)$response->getBody(),
             ]
         ];
     }

@@ -24,7 +24,7 @@ class EnumApi extends AbstractApi
             '/enums/certification/status',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 
     /**
@@ -38,7 +38,7 @@ class EnumApi extends AbstractApi
             '/enums/certification/type',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 
     /**
@@ -52,7 +52,7 @@ class EnumApi extends AbstractApi
             '/enums/employee/role',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 
     /**
@@ -66,7 +66,7 @@ class EnumApi extends AbstractApi
             '/enums/membership/type',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 
     /**
@@ -80,7 +80,7 @@ class EnumApi extends AbstractApi
             '/enums/link/icons',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 
     /**
@@ -94,7 +94,7 @@ class EnumApi extends AbstractApi
             '/enums/subscription/type',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 
     /**
@@ -109,7 +109,7 @@ class EnumApi extends AbstractApi
             '/enums/subscription/status',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 
     /**
@@ -124,6 +124,6 @@ class EnumApi extends AbstractApi
             '/enums/company/deletion-pre-check-type',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 }

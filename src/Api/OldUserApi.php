@@ -28,7 +28,7 @@ class OldUserApi extends AbstractApi
         );
 
         return json_decode(
-            $response->getBody()->getContents(),
+            (string)$response->getBody(),
             true,
             512,
             JSON_THROW_ON_ERROR

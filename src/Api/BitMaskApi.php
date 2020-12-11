@@ -24,6 +24,6 @@ class BitMaskApi extends AbstractApi
             '/bitmask/address/type',
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
 }

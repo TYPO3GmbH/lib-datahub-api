@@ -31,7 +31,7 @@ class DatahubResponseException extends Exception
     {
         $message = self::MESSAGES[$response->getStatusCode()] ?? self::DEFAULT;
         try {
-            $data = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+            $data = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
             if (isset($data['errors']) && 0 < count($data['errors'])) {
                 $errorString = '';
                 foreach ($data['errors'] as $key => $error) {

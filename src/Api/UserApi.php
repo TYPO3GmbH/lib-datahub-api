@@ -105,7 +105,7 @@ class UserApi extends AbstractApi
             'GET',
             sprintf('/users/%s/companies?history=1', rawurlencode(mb_strtolower($username))),
         );
-        $data = json_decode($data->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+        $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
         $history = [];
         foreach ($data as $employee) {
@@ -125,7 +125,7 @@ class UserApi extends AbstractApi
             'GET',
             sprintf('/users/%s/companies', rawurlencode(mb_strtolower($username))),
         );
-        $data = json_decode($data->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+        $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
         $history = [];
         foreach ($data as $employee) {

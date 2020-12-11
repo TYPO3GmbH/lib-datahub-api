@@ -37,7 +37,7 @@ class GDPRApi extends AbstractApi
             '/users/' . rawurlencode(mb_strtolower($username))
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -51,6 +51,6 @@ class GDPRApi extends AbstractApi
             '/reserved-users/pending-deletions'
         );
 
-        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR)['entities'];
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['entities'];
     }
 }

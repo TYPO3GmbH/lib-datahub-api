@@ -63,7 +63,7 @@ class CompanyApi extends AbstractApi
         $url = sprintf('/companies/list%s', $queryString);
 
         $data = $this->client->request('GET', $url);
-        $data = json_decode($data->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+        $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
         $companies = [];
         foreach ($data as $datum) {

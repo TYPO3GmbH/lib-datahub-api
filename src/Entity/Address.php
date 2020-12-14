@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
+use T3G\DatahubApiLibrary\BitMask\AddressType;
 
 class Address implements JsonSerializable
 {
@@ -244,50 +245,50 @@ class Address implements JsonSerializable
 
     public function setInvoiceAddress(bool $value): self
     {
-        $value ? $this->type |= 0x0001 : $this->type &= 0x0110;
+        $value ? $this->type |= AddressType::TYPE_INVOICE : $this->type &= 0x0110;
 
         return $this;
     }
 
     public function setDeliveryAddress(bool $value): self
     {
-        $value ? $this->type |= 0x0100 : $this->type &= 0x0011;
+        $value ? $this->type |= AddressType::TYPE_DELIVERY : $this->type &= 0x0011;
 
         return $this;
     }
 
     public function setPostalAddress(bool $value): self
     {
-        $value ? $this->type |= 0x0010 : $this->type &= 0x0101;
+        $value ? $this->type |= AddressType::TYPE_POSTAL : $this->type &= 0x0101;
 
         return $this;
     }
 
     public function setLocationAddress(bool $value): self
     {
-        $value ? $this->type |= 0x1000 : $this->type &= 0x0111;
+        $value ? $this->type |= AddressType::TYPE_LOCATION : $this->type &= 0x0111;
 
         return $this;
     }
 
     public function isInvoiceAddress(): bool
     {
-        return 0x0001 === ($this->type & 0x0001);
+        return AddressType::TYPE_INVOICE === ($this->type & AddressType::TYPE_INVOICE);
     }
 
     public function isDeliveryAddress(): bool
     {
-        return 0x0100 === ($this->type & 0x0100);
+        return AddressType::TYPE_DELIVERY === ($this->type & AddressType::TYPE_DELIVERY);
     }
 
     public function isPostalAddress(): bool
     {
-        return 0x0010 === ($this->type & 0x0010);
+        return AddressType::TYPE_POSTAL === ($this->type & AddressType::TYPE_POSTAL);
     }
 
     public function isLocationAddress(): bool
     {
-        return 0x1000 === ($this->type & 0x1000);
+        return AddressType::TYPE_LOCATION === ($this->type & AddressType::TYPE_LOCATION);
     }
 
     public function getLatitude(): float

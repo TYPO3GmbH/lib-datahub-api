@@ -24,7 +24,7 @@ class UserFactoryTest extends TestCase
         $this->assertEquals($data['username'], $entity->getUsername());
         $this->assertEquals($data['firstName'], $entity->getFirstName());
         $this->assertEquals($data['lastName'], $entity->getLastName());
-        $this->assertEquals($data['email'], $entity->getEmail());
+        $this->assertEquals($data['email'], $entity->getPrimaryEmail());
         $this->assertEquals($data['phone'], $entity->getPhone());
         $this->assertCount(count($data['addresses'] ?? []), $entity->getAddresses());
         $this->assertCount(count($data['links'] ?? []), $entity->getLinks());
@@ -48,6 +48,14 @@ class UserFactoryTest extends TestCase
                     'firstName' => 'Oelie',
                     'lastName' => 'Boelie',
                     'email' => 'oelie@boelie.nl',
+                    'emailAddresses' => [
+                        [
+                            'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
+                            'email' => 'oelie@boelie.nl',
+                            'type' => 273,
+                            'optIn' => '2020-12-16T10:13:26+00:00'
+                        ]
+                    ],
                     'phone' => '+31612345678'
                 ]
             ],
@@ -57,6 +65,14 @@ class UserFactoryTest extends TestCase
                     'firstName' => 'Oelie',
                     'lastName' => 'Boelie',
                     'email' => 'oelie@boelie.nl',
+                    'emailAddresses' => [
+                        [
+                            'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
+                            'email' => 'oelie@boelie.nl',
+                            'type' => 273,
+                            'optIn' => '2020-12-16T10:13:26+00:00'
+                        ]
+                    ],
                     'phone' => '+31612345678',
                     'addresses' => [
                         [
@@ -155,6 +171,14 @@ class UserFactoryTest extends TestCase
                     'firstName' => 'Oelie',
                     'lastName' => 'Boelie',
                     'email' => 'oelie@boelie.nl',
+                    'emailAddresses' => [
+                        [
+                            'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
+                            'email' => 'oelie@boelie.nl',
+                            'type' => 273,
+                            'optIn' => '2020-12-16T10:13:26+00:00'
+                        ]
+                    ],
                     'phone' => null
                 ]
             ]

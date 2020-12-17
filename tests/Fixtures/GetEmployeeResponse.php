@@ -22,7 +22,14 @@ return new Response(
         "email": "oelie@boelie.nl",
         "firstName": "Oelie",
         "lastName": "Boelie",
-        "gravatarString": "da262bfed6eb8967574348ebca9fd51c" 
+        "emailAddresses": [
+            {
+                "uuid": "55555555-5555-5555-5555-555555555555",
+                "email": "oelie@boelie.nl",
+                "type": 273,
+                "optIn": null
+            }
+        ]
     }
 }
 '

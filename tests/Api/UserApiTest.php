@@ -91,7 +91,7 @@ class UserApiTest extends AbstractApiTest
         $this->assertEquals('oelie-boelie', $response->getUsername());
         $this->assertEquals('Oelie', $response->getFirstName());
         $this->assertEquals('Boelie', $response->getLastName());
-        $this->assertEquals('oelie@boelie.nl', $response->getEmail());
+        $this->assertEquals('oelie@boelie.nl', $response->getPrimaryEmail());
         $this->assertEquals(null, $response->getPhone());
     }
 

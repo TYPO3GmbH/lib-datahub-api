@@ -54,6 +54,9 @@ class CompanyFactory extends AbstractFactory
         if (isset($data['membership'])) {
             $company->setMembership(SubscriptionFactory::fromArray($data['membership']));
         }
+        foreach ($data['emailAddresses'] ?? [] as $emailAddress) {
+            $company->addEmailAddress(EmailAddressFactory::fromArray($emailAddress));
+        }
         foreach ($data['employees'] ?? [] as $employee) {
             $company->addEmployee(EmployeeFactory::fromArray($employee));
         }

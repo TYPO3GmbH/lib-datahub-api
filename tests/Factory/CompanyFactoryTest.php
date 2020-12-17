@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
 
@@ -29,6 +30,20 @@ class CompanyFactoryTest extends TestCase
         $this->assertEquals($data['vatId'], $entity->getVatId());
         $this->assertEquals($data['city'] ?? null, $entity->getCity());
         $this->assertEquals($data['country']['iso'] ?? null, $entity->getCountry());
+        $this->assertCount(1, $entity->getEmailAddresses());
+        $this->assertEquals(
+            $data['emailAddresses'][0]['email'],
+            $entity->getEmailAddresses()[0]->getEmail()
+        );
+        $this->assertEquals(
+            $data['emailAddresses'][0]['type'],
+            $entity->getEmailAddresses()[0]->getType()
+        );
+        $this->assertEquals(
+            $data['employees'][0]['role'],
+            $entity->getEmployee($data['employees'][0]['user']['username'])
+                ->getRole()
+        );
         $this->assertCount(1, $entity->getEmployees());
         $this->assertEquals(
             $data['employees'][0]['joinedAt'],
@@ -63,6 +78,11 @@ class CompanyFactoryTest extends TestCase
                     'title' => 'Lidl',
                     'email' => 'lidl-people@example.com',
                     'vatId' => 'DE 123 456 789',
+                    'emailAddresses' => [[
+                        'uuid' => '652a0b52-7f69-4f81-882f-343592ae26aa',
+                        'email' => 'oelie@boelie.nl',
+                        'type' => EmailType::PRIMARY,
+                    ]],
                     'employees' => [[
                         'uuid' => '00000000-0000-0000-0000-000000000000',
                         'role' => 'OWNER',
@@ -130,6 +150,11 @@ class CompanyFactoryTest extends TestCase
                     'title' => 'Lidl',
                     'email' => 'lidl-people@example.com',
                     'vatId' => 'DE 123 456 789',
+                    'emailAddresses' => [[
+                        'uuid' => 'e3ad302d-9e14-4259-8108-a625b408d787',
+                        'email' => 'oelie@boelie.nl',
+                        'type' => EmailType::PRIMARY,
+                    ]],
                     'employees' => [[
                         'uuid' => '00000000-0000-0000-0000-000000000000',
                         'role' => 'OWNER',

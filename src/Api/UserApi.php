@@ -10,10 +10,12 @@ namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\Certification;
+use T3G\DatahubApiLibrary\Entity\EmailAddress;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
+use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 use T3G\DatahubApiLibrary\Factory\UserListFactory;
@@ -163,6 +165,17 @@ class UserApi extends AbstractApi
             $this->client->request(
                 'GET',
                 sprintf('/users/%s/certifications?%s', rawurlencode(mb_strtolower($username)), ([] !== $status ? http_build_query(['status' => implode(',', $status)]) : '')),
+            )
+        );
+    }
+
+    public function createEmail(string $username, EmailAddress $emailAddress): EmailAddress
+    {
+        return EmailAddressFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                sprintf('/users/%s/emails', rawurlencode(mb_strtolower($username))),
+                json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
             )
         );
     }

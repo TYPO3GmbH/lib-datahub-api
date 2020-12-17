@@ -21,7 +21,15 @@ return new Response(
         "username": "oelie-boelie",
         "email": "oelie@boelie.nl",
         "firstName": "Oelie",
-        "lastName": "Boelie"
+        "lastName": "Boelie",
+        "emailAddresses": [
+            {
+                "uuid": "55555555-5555-5555-5555-555555555555",
+                "email": "oelie@boelie.nl",
+                "type": 273,
+                "optIn": null
+            }
+        ]
     }
 }
 '

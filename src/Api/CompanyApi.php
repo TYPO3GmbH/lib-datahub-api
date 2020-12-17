@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Api;
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Entity\CompanyInvitation;
+use T3G\DatahubApiLibrary\Entity\EmailAddress;
 use T3G\DatahubApiLibrary\Entity\Employee;
 use T3G\DatahubApiLibrary\Entity\PreCheckResult;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
@@ -19,6 +20,7 @@ use T3G\DatahubApiLibrary\Factory\CompanyFactory;
 use T3G\DatahubApiLibrary\Factory\CompanyInvitationFactory;
 use T3G\DatahubApiLibrary\Factory\CompanyInvitationListFactory;
 use T3G\DatahubApiLibrary\Factory\CompanyListFactory;
+use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\PreCheckResultListFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
@@ -257,6 +259,17 @@ class CompanyApi extends AbstractApi
             $this->client->request(
                 'GET',
                 sprintf('/companies/%s/pre-deletion-check', $companyUuid)
+            )
+        );
+    }
+
+    public function createEmail(string $uuid, EmailAddress $emailAddress): EmailAddress
+    {
+        return EmailAddressFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                sprintf('/companies/%s/emails', $uuid),
+                json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
             )
         );
     }

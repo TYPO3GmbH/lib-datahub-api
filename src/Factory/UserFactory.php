@@ -38,6 +38,9 @@ class UserFactory extends AbstractFactory
         foreach ($data['links'] ?? [] as $link) {
             $user->addLink(LinkFactory::fromArray($link));
         }
+        foreach ($data['emailAddresses'] ?? [] as $emailAddress) {
+            $user->addEmailAddress(EmailAddressFactory::fromArray($emailAddress));
+        }
         foreach ($data['orders'] ?? [] as $order) {
             $user->addOrder(OrderFactory::fromArray($order));
         }

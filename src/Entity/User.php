@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
+use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Enum\CertificationStatus;
 use T3G\DatahubApiLibrary\Notification\NotificationInterface;
 
@@ -39,6 +40,11 @@ class User implements JsonSerializable
      * @var Link[]
      */
     private array $links = [];
+
+    /**
+     * @var EmailAddress[]
+     */
+    private array $emailAddresses = [];
 
     /**
      * @var Certification[]
@@ -78,7 +84,8 @@ class User implements JsonSerializable
             'username' => $this->getUserName(),
             'firstName' => $this->getFirstName(),
             'lastName' => $this->getLastName(),
-            'email' => $this->getEmail(),
+            'email' => $this->getPrimaryEmail(),
+            'emailAddresses' => $this->getEmailAddresses(),
             'phone' => $this->getPhone(),
             'slackId' => $this->getSlackId(),
             'discordId' => $this->getDiscordId(),
@@ -96,13 +103,46 @@ class User implements JsonSerializable
         return $this;
     }
 
+    /**
+     * @deprecated will be removed after 14.12.2021. Use getPrimaryEmail(), getBillingEmail() or getVotingEmail() instead
+     */
     public function getEmail(): ?string
     {
-        return $this->email;
+        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 14.12.2021. Use getPrimaryEmail(), getBillingEmail() or getVotingEmail() instead', E_USER_DEPRECATED);
+        return $this->getPrimaryEmail();
     }
 
+    public function getPrimaryEmail(): ?string
+    {
+        return $this->getEmailByType(EmailType::PRIMARY);
+    }
+
+    public function getBillingEmail(): ?string
+    {
+        return $this->getEmailByType(EmailType::BILLING);
+    }
+
+    public function getVotingEmail(): ?string
+    {
+        return $this->getEmailByType(EmailType::VOTING);
+    }
+
+    public function getEmailByType(int $type): ?string
+    {
+        foreach ($this->getEmailAddresses() as $address) {
+            if ($type === ($address->getType() & $type)) {
+                return $address->getEmail();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @deprecated will be removed after 14.12.2021. Use setEmailAddresses() instead
+     */
     public function setEmail(?string $email): self
     {
+        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 14.12.2021. Use setEmailAddresses() instead', E_USER_DEPRECATED);
         $this->email = $email;
         return $this;
     }
@@ -241,6 +281,30 @@ class User implements JsonSerializable
     public function addLink(Link $link): self
     {
         $this->links[] = $link;
+        return $this;
+    }
+
+    /**
+     * @return EmailAddress[]
+     */
+    public function getEmailAddresses(): array
+    {
+        return $this->emailAddresses;
+    }
+
+    /**
+     * @param EmailAddress[] $emailAddresses
+     * @return User
+     */
+    public function setEmailAddresses(array $emailAddresses): self
+    {
+        $this->emailAddresses = $emailAddresses;
+        return $this;
+    }
+
+    public function addEmailAddress(EmailAddress $emailAddress): self
+    {
+        $this->emailAddresses[] = $emailAddress;
         return $this;
     }
 
@@ -471,6 +535,6 @@ class User implements JsonSerializable
 
     public function getGravatarString(): string
     {
-        return null !== $this->getEmail() ? md5(strtolower(trim($this->getEmail()))) : ($this->gravatarString ?? '');
+        return null !== $this->getPrimaryEmail() ? md5(strtolower(trim($this->getPrimaryEmail()))) : ($this->gravatarString ?? '');
     }
 }

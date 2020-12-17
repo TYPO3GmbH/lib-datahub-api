@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
+use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\EmployeeRole;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
@@ -25,6 +26,11 @@ class Company implements JsonSerializable
     private ?string $country = null;
     private bool $foundingPartner = false;
     private ?bool $psl = null;
+
+    /**
+     * @var EmailAddress[]
+     */
+    private array $emailAddresses = [];
 
     /**
      * @var Address[]
@@ -68,6 +74,7 @@ class Company implements JsonSerializable
             'title' => $this->getTitle(),
             'slug' => $this->getSlug(),
             'email' => $this->getEmail(),
+            'emailAddresses' => $this->getEmailAddresses(),
             'vatId' => $this->getVatId(),
             'city' => $this->getCity(),
             'country' => $this->getCountry(),
@@ -133,6 +140,31 @@ class Company implements JsonSerializable
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function getPrimaryEmail(): ?string
+    {
+        return $this->getEmailByType(EmailType::PRIMARY);
+    }
+
+    public function getBillingEmail(): ?string
+    {
+        return $this->getEmailByType(EmailType::BILLING);
+    }
+
+    public function getVotingEmail(): ?string
+    {
+        return $this->getEmailByType(EmailType::VOTING);
+    }
+
+    public function getEmailByType(int $type): ?string
+    {
+        foreach ($this->getEmailAddresses() as $address) {
+            if ($type === ($address->getType() & $type)) {
+                return $address->getEmail();
+            }
+        }
+        return null;
     }
 
     public function setEmail(string $email): self
@@ -533,6 +565,30 @@ class Company implements JsonSerializable
     public function setPsl(?bool $psl): self
     {
         $this->psl = $psl;
+        return $this;
+    }
+
+    /**
+     * @return EmailAddress[]
+     */
+    public function getEmailAddresses(): array
+    {
+        return $this->emailAddresses;
+    }
+
+    /**
+     * @param EmailAddress[] $emailAddresses
+     * @return Company
+     */
+    public function setEmailAddresses(array $emailAddresses): self
+    {
+        $this->emailAddresses = $emailAddresses;
+        return $this;
+    }
+
+    public function addEmailAddress(EmailAddress $emailAddress): self
+    {
+        $this->emailAddresses[] = $emailAddress;
         return $this;
     }
 }

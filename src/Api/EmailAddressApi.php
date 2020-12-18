@@ -10,14 +10,31 @@ namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\EmailAddress;
+use T3G\DatahubApiLibrary\Entity\UserEmail;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
+use T3G\DatahubApiLibrary\Factory\UserEmailListFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class EmailAddressApi extends AbstractApi
 {
     use HandlesUuids;
+
+    /**
+     * @return UserEmail[]
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function getAllUserEmailAddresses(): array
+    {
+        return UserEmailListFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                '/emails/users-all',
+            )
+        );
+    }
 
     /**
      * @param string $uuid

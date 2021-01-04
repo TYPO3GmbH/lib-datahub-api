@@ -21,7 +21,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/enums/certification/status',
+            self::uri('/enums/certification/status'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
@@ -35,7 +35,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/enums/certification/type',
+            self::uri('/enums/certification/type'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
@@ -49,7 +49,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/enums/employee/role',
+            self::uri('/enums/employee/role'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
@@ -63,7 +63,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/enums/membership/type',
+            self::uri('/enums/membership/type'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
@@ -77,7 +77,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/enums/link/icons',
+            self::uri('/enums/link/icons'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
@@ -91,7 +91,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/enums/subscription/type',
+            self::uri('/enums/subscription/type'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
@@ -106,7 +106,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/enums/subscription/status',
+            self::uri('/enums/subscription/status'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
@@ -121,7 +121,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/enums/company/deletion-pre-check-type',
+            self::uri('/enums/company/deletion-pre-check-type'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];

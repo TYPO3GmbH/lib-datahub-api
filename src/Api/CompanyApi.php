@@ -39,7 +39,7 @@ class CompanyApi extends AbstractApi
         return CompanyListFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/companies/search',
+                self::uri('/companies/search'),
                 json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -52,19 +52,13 @@ class CompanyApi extends AbstractApi
      */
     public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false): array
     {
-        $queryParams = [];
-        if ($withOrders) {
-            $queryParams['withOrders'] = '1';
-        }
-
-        if ($withSubscriptions) {
-            $queryParams['withSubscriptions'] = '1';
-        }
-
-        $queryString = !empty($queryParams) ? '?' . http_build_query($queryParams) : '';
-        $url = sprintf('/companies/list%s', $queryString);
-
-        $data = $this->client->request('GET', $url);
+        $data = $this->client->request(
+            'GET',
+            self::uri('/companies/list')->withQuery(http_build_query([
+                'withOrders' => (int)$withOrders,
+                'withSubscriptions' => (int)$withSubscriptions
+            ]))
+        );
         $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
         $companies = [];
@@ -83,22 +77,13 @@ class CompanyApi extends AbstractApi
     {
         $this->isValidUuidOrThrow($uuid);
 
-        $queryParams = [];
-        if ($withOrders) {
-            $queryParams['withOrders'] = '1';
-        }
-
-        if ($withSubscriptions) {
-            $queryParams['withSubscriptions'] = '1';
-        }
-
-        $queryString = !empty($queryParams) ? '?' . http_build_query($queryParams) : '';
-        $url = sprintf('/companies/%s%s', $uuid, $queryString);
-
         return CompanyFactory::fromResponse(
             $this->client->request(
                 'GET',
-                $url,
+                self::uri('/companies/list')->withQuery(http_build_query([
+                    'withOrders' => (int)$withOrders,
+                    'withSubscriptions' => (int)$withSubscriptions
+                ]))
             )
         );
     }
@@ -112,7 +97,7 @@ class CompanyApi extends AbstractApi
         return CompanyFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/companies',
+                self::uri('/companies'),
                 json_encode($company, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -130,7 +115,7 @@ class CompanyApi extends AbstractApi
         return CompanyFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/companies/' . $uuid,
+                self::uri('/companies/' . $uuid),
                 json_encode($company, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -147,7 +132,7 @@ class CompanyApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/companies/' . $uuid,
+            self::uri('/companies/' . $uuid),
         );
     }
 
@@ -163,7 +148,7 @@ class CompanyApi extends AbstractApi
         return CompanyInvitationFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/companies/' . $uuid . '/invite/' . rawurlencode(mb_strtolower($username)) . '/' . urlencode($role),
+                self::uri('/companies/' . $uuid . '/invite/' . mb_strtolower($username) . '/' . $role),
             )
         );
     }
@@ -180,7 +165,7 @@ class CompanyApi extends AbstractApi
         return EmployeeFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/companies/confirm/' . urlencode($invitationCode),
+                self::uri('/companies/confirm/' . $invitationCode),
             )
         );
     }
@@ -192,7 +177,7 @@ class CompanyApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/companies/' . $uuid . '/invitations/' . $invitationCode
+            self::uri('/companies/' . $uuid . '/invitations/' . $invitationCode)
         );
     }
 
@@ -206,7 +191,7 @@ class CompanyApi extends AbstractApi
         return CompanyInvitationListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/companies/' . $uuid . '/invitations'
+                self::uri('/companies/' . $uuid . '/invitations')
             )
         );
     }
@@ -223,7 +208,7 @@ class CompanyApi extends AbstractApi
         return EmployeeFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/employees/' . $employeeUuid . '/roles',
+                self::uri('/employees/' . $employeeUuid . '/roles'),
                 json_encode(['role' => $role], JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -240,7 +225,7 @@ class CompanyApi extends AbstractApi
 
         $this->client->request(
             'PUT',
-            '/employees/dismiss/' . $employeeUuid,
+            self::uri('/employees/dismiss/' . $employeeUuid),
         );
     }
 
@@ -258,17 +243,19 @@ class CompanyApi extends AbstractApi
         return PreCheckResultListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                sprintf('/companies/%s/pre-deletion-check', $companyUuid)
+                self::uri('/companies/' . $companyUuid . '/pre-deletion-check')
             )
         );
     }
 
     public function createEmail(string $uuid, EmailAddress $emailAddress): EmailAddress
     {
+        $this->isValidUuidOrThrow($uuid);
+
         return EmailAddressFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/companies/%s/emails', $uuid),
+                self::uri('/companies/' . $uuid . '/emails'),
                 json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
             )
         );

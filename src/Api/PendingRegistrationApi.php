@@ -26,7 +26,7 @@ class PendingRegistrationApi extends AbstractApi
         return RegistrationFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/registration/pending/' . $registrationCode
+                self::uri('/registration/pending/' . $registrationCode)
             )
         );
     }
@@ -39,7 +39,7 @@ class PendingRegistrationApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/registration/pending?extended=' . (int)$onlyWhereAdminApprovalRequired
+            self::uri('/registration/pending')->withQuery(http_build_query(['extended' => (int)$onlyWhereAdminApprovalRequired]))
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['entities'];
@@ -54,7 +54,7 @@ class PendingRegistrationApi extends AbstractApi
         return UserFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/registration/pending/' . $registrationCode
+                self::uri('/registration/pending/' . $registrationCode)
             )
         );
     }
@@ -67,7 +67,7 @@ class PendingRegistrationApi extends AbstractApi
     {
         $this->client->request(
             'DELETE',
-            '/registration/pending/' . $registrationCode
+            self::uri('/registration/pending/' . $registrationCode)
         );
     }
 }

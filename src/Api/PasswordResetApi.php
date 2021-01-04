@@ -21,7 +21,7 @@ class PasswordResetApi extends AbstractApi
     {
         $this->client->request(
             'PUT',
-            '/users/' . rawurlencode(mb_strtolower($username)) . '/reset-password'
+            self::uri('/users/' . mb_strtolower($username) . '/reset-password')
         );
     }
 }

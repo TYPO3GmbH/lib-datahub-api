@@ -28,7 +28,7 @@ class RegistrationApi extends AbstractApi
         return RegistrationFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/registration/register',
+                self::uri('/registration/register'),
                 json_encode($registration, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -44,7 +44,7 @@ class RegistrationApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/registration/confirm/' . $registrationToken
+            self::uri('/registration/confirm/' . $registrationToken)
         );
 
         if (200 === $response->getStatusCode()) {

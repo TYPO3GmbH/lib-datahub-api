@@ -31,7 +31,7 @@ class LinkApi extends AbstractApi
         return LinkFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/links/' . $uuid
+                self::uri('/links/' . $uuid)
             )
         );
     }
@@ -45,7 +45,7 @@ class LinkApi extends AbstractApi
         return LinkFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/users/' . rawurlencode(mb_strtolower($username)) . '/links',
+                self::uri('/users/' . mb_strtolower($username) . '/links'),
                 json_encode($link, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -63,7 +63,7 @@ class LinkApi extends AbstractApi
         return LinkFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/links/' . $uuid,
+                self::uri('/links/' . $uuid),
                 json_encode($link, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -80,7 +80,7 @@ class LinkApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/links/' . $uuid
+            self::uri('/links/' . $uuid)
         );
     }
 }

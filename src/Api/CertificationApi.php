@@ -19,7 +19,7 @@ class CertificationApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/certifications/import/%s', rawurlencode(mb_strtolower($username))),
+                self::uri('/certifications/import/' . mb_strtolower($username)),
                 json_encode($certification, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -33,28 +33,20 @@ class CertificationApi extends AbstractApi
      */
     public function getCertifications(array $filterAttributes = []): array
     {
-        $url = '/certifications/';
-        if ([] !== $filterAttributes) {
-            $url .= '?' . http_build_query($filterAttributes);
-        }
         return CertificationListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                $url
+                self::uri('/certifications/')->withQuery(http_build_query($filterAttributes))
             )
         );
     }
 
     public function getCertification(string $uuid, bool $withHistory = false): Certification
     {
-        $url = '/certifications/' . urlencode($uuid);
-        if ($withHistory) {
-            $url .= '?withHistory=1';
-        }
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'GET',
-                $url
+                self::uri('/certifications/')->withQuery('withHistory=' . (int)$withHistory)
             )
         );
     }
@@ -64,7 +56,7 @@ class CertificationApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/certifications/' . urlencode($uuid) . '/test-result',
+                self::uri('/certifications/' . $uuid . '/test-result'),
                 json_encode([
                     'examTestResult' => $result,
                 ], JSON_THROW_ON_ERROR)
@@ -77,7 +69,7 @@ class CertificationApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/certifications/' . urlencode($uuid) . '/start',
+                self::uri('/certifications/' . $uuid . '/start'),
                 json_encode([
                     'examDate' => (new \DateTimeImmutable())->format(\DateTimeInterface::ATOM)
                 ], JSON_THROW_ON_ERROR)
@@ -95,7 +87,7 @@ class CertificationApi extends AbstractApi
         return CertificationListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/certifications/get-for-print',
+                self::uri('/certifications/get-for-print'),
             )
         );
     }
@@ -110,7 +102,7 @@ class CertificationApi extends AbstractApi
         return CertificationListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/certifications/get-for-listing',
+                self::uri('/certifications/get-for-listing'),
             )
         );
     }
@@ -119,7 +111,7 @@ class CertificationApi extends AbstractApi
     {
         $this->client->request(
             'PUT',
-            '/certifications/send-to-print',
+            self::uri('/certifications/send-to-print'),
             json_encode([
                 'certifications' => $uuids
             ], JSON_THROW_ON_ERROR)
@@ -128,6 +120,6 @@ class CertificationApi extends AbstractApi
 
     public function deleteCertification(string $uuid): void
     {
-        $this->client->request('DELETE', '/certifications/' . $uuid);
+        $this->client->request('DELETE', self::uri('/certifications/' . $uuid));
     }
 }

@@ -24,7 +24,7 @@ class ContentApi extends AbstractApi
         return ContentFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/content/' . $identifier . '/' . $version . '/' . $format
+                self::uri('/content/' . $identifier . '/' . $version . '/' . $format)
             )
         );
     }

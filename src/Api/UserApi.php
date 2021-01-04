@@ -32,7 +32,7 @@ class UserApi extends AbstractApi
         return UserListFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/users/search',
+                self::uri('/users/search'),
                 json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -48,22 +48,13 @@ class UserApi extends AbstractApi
      */
     public function getUser(string $username, bool $withOrders = false, bool $withSubscriptions = false): User
     {
-        $queryParams = [];
-        if ($withOrders) {
-            $queryParams['withOrders'] = '1';
-        }
-
-        if ($withSubscriptions) {
-            $queryParams['withSubscriptions'] = '1';
-        }
-
-        $queryString = !empty($queryParams) ? '?' . http_build_query($queryParams) : '';
-        $url = sprintf('/users/%s%s', rawurlencode(mb_strtolower($username)), $queryString);
-
         return UserFactory::fromResponse(
             $this->client->request(
                 'GET',
-                $url,
+                self::uri('/users/' . mb_strtolower($username))->withQuery(http_build_query([
+                    'withOrders' => (int)$withOrders,
+                    'withSubscriptions' => (int)$withSubscriptions
+                ])),
             )
         );
     }
@@ -77,7 +68,7 @@ class UserApi extends AbstractApi
         return UserFactory::fromResponse(
             $this->client->request(
                 'GET',
-                sprintf('/users/%s/profile', rawurlencode(mb_strtolower($username))),
+                self::uri('/users/' . mb_strtolower($username) . '/profile')
             )
         );
     }
@@ -91,7 +82,7 @@ class UserApi extends AbstractApi
         return UserFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                sprintf('/users/%s', rawurlencode(mb_strtolower($username))),
+                self::uri('/users/' . mb_strtolower($username)),
                 json_encode($user, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -105,7 +96,7 @@ class UserApi extends AbstractApi
     {
         $data = $this->client->request(
             'GET',
-            sprintf('/users/%s/companies?history=1', rawurlencode(mb_strtolower($username))),
+            self::uri('/users/' . mb_strtolower($username) . '/companies')->withQuery(http_build_query(['history' => 1]))
         );
         $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
@@ -125,7 +116,7 @@ class UserApi extends AbstractApi
     {
         $data = $this->client->request(
             'GET',
-            sprintf('/users/%s/companies', rawurlencode(mb_strtolower($username))),
+            self::uri('/users/' . mb_strtolower($username) . '/companies')
         );
         $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
@@ -142,7 +133,7 @@ class UserApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/users/%s/certifications', rawurlencode(mb_strtolower($username))),
+                self::uri('/users/' . mb_strtolower($username) . '/certifications'),
                 json_encode($certification, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -153,7 +144,7 @@ class UserApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                sprintf('/users/%s/certifications/%s', rawurlencode(mb_strtolower($username)), urlencode($uuid)),
+                self::uri('/users/' . mb_strtolower($username) . '/certifications'),
                 json_encode($certification, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -164,7 +155,7 @@ class UserApi extends AbstractApi
         return CertificationListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                sprintf('/users/%s/certifications?%s', rawurlencode(mb_strtolower($username)), ([] !== $status ? http_build_query(['status' => implode(',', $status)]) : '')),
+                self::uri('/users/' . mb_strtolower($username) . '/certifications')->withQuery([] !== $status ? http_build_query(['status' => implode(',', $status)]) : '')
             )
         );
     }
@@ -174,7 +165,7 @@ class UserApi extends AbstractApi
         return EmailAddressFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/users/%s/emails', rawurlencode(mb_strtolower($username))),
+                self::uri('/users/' . mb_strtolower($username) . '/emails'),
                 json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
             )
         );

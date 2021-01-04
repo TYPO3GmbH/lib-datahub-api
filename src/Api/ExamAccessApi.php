@@ -30,7 +30,7 @@ class ExamAccessApi extends AbstractApi
         return ExamAccessFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/exam-access/' . $uuid,
+                self::uri('/exam-access/' . $uuid),
             )
         );
     }
@@ -44,7 +44,7 @@ class ExamAccessApi extends AbstractApi
         return ExamAccessFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/users/' . rawurlencode(mb_strtolower($username)) . '/exam-access',
+                self::uri('/users/' . mb_strtolower($username) . '/exam-access'),
                 json_encode($examAccess, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -62,7 +62,7 @@ class ExamAccessApi extends AbstractApi
         return ExamAccessFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/exam-access/' . $uuid,
+                self::uri('/exam-access/' . $uuid),
                 json_encode($examAccess, JSON_THROW_ON_ERROR, 512)
             )
         );

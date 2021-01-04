@@ -24,7 +24,7 @@ class MailAddressFilterApi extends AbstractApi
         return MailAddressFilterFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/mail-address-filter/' . $uuid
+                self::uri('/mail-address-filter/' . $uuid)
             )
         );
     }
@@ -37,7 +37,7 @@ class MailAddressFilterApi extends AbstractApi
         return MailAddressFilterListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/mail-address-filter/list'
+                self::uri('/mail-address-filter/list')
             )
         );
     }
@@ -47,7 +47,7 @@ class MailAddressFilterApi extends AbstractApi
         return MailAddressFilterFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/mail-address-filter',
+                self::uri('/mail-address-filter'),
                 json_encode($filter, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -60,7 +60,7 @@ class MailAddressFilterApi extends AbstractApi
         return MailAddressFilterFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/mail-address-filter/' . $uuid,
+                self::uri('/mail-address-filter/' . $uuid),
                 json_encode($filter, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -72,7 +72,7 @@ class MailAddressFilterApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/mail-address-filter/' . $uuid
+            self::uri('/mail-address-filter/' . $uuid)
         );
     }
 }

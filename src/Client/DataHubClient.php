@@ -13,6 +13,7 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\UriInterface;
 use Psr\Log\LoggerInterface;
 use Sunrise\Stream\StreamFactory;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
@@ -47,9 +48,9 @@ class DataHubClient
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
-    public function request(string $method, string $endpoint, string $body = null): ResponseInterface
+    public function request(string $method, UriInterface $endpoint, string $body = null): ResponseInterface
     {
-        $request = $this->requestFactory->createRequest($method, rtrim($this->baseUri, '/') . '/' . ltrim($endpoint, '/'));
+        $request = $this->requestFactory->createRequest($method, rtrim($this->baseUri, '/') . '/' . ltrim($endpoint->__toString(), '/'));
         if (null !== $this->token && !$request->hasHeader('Authorization')) {
             $request = $request->withAddedHeader('Authorization', 'Bearer ' . $this->token);
         }

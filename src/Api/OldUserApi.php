@@ -23,7 +23,7 @@ class OldUserApi extends AbstractApi
     {
         $response = $this->client->request(
             'POST',
-            '/reserved-users/search',
+            self::uri('/reserved-users/search'),
             json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
         );
 
@@ -44,7 +44,7 @@ class OldUserApi extends AbstractApi
         return UserFactory::fromResponse(
             $response = $this->client->request(
                 'POST',
-                '/users/' . rawurlencode(mb_strtolower($username)) . '/reenable',
+                self::uri('/users/' . mb_strtolower($username) . '/reenable'),
             )
         );
     }

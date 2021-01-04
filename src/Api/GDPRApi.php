@@ -21,7 +21,7 @@ class GDPRApi extends AbstractApi
     {
         $this->client->request(
             'POST',
-            '/users/' . rawurlencode(mb_strtolower($username)) . '/delete',
+            self::uri('/users/' . mb_strtolower($username) . '/delete'),
             json_encode(['otrsIssue' => $otrsIssue, 'comment' => $comment], JSON_THROW_ON_ERROR, 512)
         );
     }
@@ -34,7 +34,7 @@ class GDPRApi extends AbstractApi
     {
         $response = $this->client->request(
             'DELETE',
-            '/users/' . rawurlencode(mb_strtolower($username))
+            self::uri('/users/' . mb_strtolower($username))
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
@@ -48,7 +48,7 @@ class GDPRApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/reserved-users/pending-deletions'
+            self::uri('/reserved-users/pending-deletions')
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['entities'];

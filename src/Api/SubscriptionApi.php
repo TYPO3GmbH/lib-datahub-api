@@ -25,7 +25,7 @@ class SubscriptionApi extends AbstractApi
         return SubscriptionFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/subscription/' . $uuid
+                self::uri('/subscription/' . $uuid)
             )
         );
     }
@@ -35,7 +35,7 @@ class SubscriptionApi extends AbstractApi
     {
         $data = $this->client->request(
             'GET',
-            '/subscription/products'
+            self::uri('/subscription/products')
         )->getBody();
         return json_decode((string)$data, true, 512, JSON_THROW_ON_ERROR);
     }
@@ -45,7 +45,7 @@ class SubscriptionApi extends AbstractApi
         return SubscriptionFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/subscription/identifier/' . $subscriptionIdentifier
+                self::uri('/subscription/identifier/' . $subscriptionIdentifier)
             )
         );
     }
@@ -61,7 +61,7 @@ class SubscriptionApi extends AbstractApi
         return SubscriptionListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/subscription/filtered?' . $subscriptionFilterQuery->getQueryAsString()
+                self::uri('/subscription/filtered?' . $subscriptionFilterQuery->getQueryAsString())
             )
         );
     }
@@ -71,7 +71,7 @@ class SubscriptionApi extends AbstractApi
         return SubscriptionFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/users/%s/subscriptions', rawurlencode(mb_strtolower($username))),
+                self::uri('/users/' . mb_strtolower($username) . '/subscriptions'),
                 json_encode($subscription, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -82,7 +82,7 @@ class SubscriptionApi extends AbstractApi
         return SubscriptionFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/companies/%s/subscriptions', $uuid),
+                self::uri('/companies/' . $uuid . '/subscriptions'),
                 json_encode($subscription, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -95,7 +95,7 @@ class SubscriptionApi extends AbstractApi
         return SubscriptionFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/subscription/' . $uuid,
+                self::uri('/subscription/' . $uuid),
                 json_encode($subscription, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -107,7 +107,7 @@ class SubscriptionApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/subscription/' . $uuid
+            self::uri('/subscription/' . $uuid)
         );
     }
 
@@ -119,7 +119,7 @@ class SubscriptionApi extends AbstractApi
         return SubscriptionFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/subscription/' . $uuid . '/transfer-to-organization/' . $organizationUuid
+                self::uri('/subscription/' . $uuid . '/transfer-to-organization/' . $organizationUuid)
             )
         );
     }

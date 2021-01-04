@@ -21,7 +21,7 @@ class BitMaskApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            '/bitmask/address/type',
+            self::uri('/bitmask/address/type'),
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];

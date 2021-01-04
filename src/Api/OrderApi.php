@@ -25,7 +25,7 @@ class OrderApi extends AbstractApi
         return OrderFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/order/' . $uuid
+                self::uri('/order/' . $uuid)
             )
         );
     }
@@ -45,18 +45,13 @@ class OrderApi extends AbstractApi
         if (null !== $limit) {
             $query['page']['limit'] = $limit;
         }
-
         if (null !== $offset) {
             $query['page']['offset'] = $offset;
-        }
-        $url = '/order/search';
-        if ([] !== $query) {
-            $url .= '?' . http_build_query($query);
         }
         return OrderFactory::fromResponseDataCollection(
             $this->client->request(
                 'POST',
-                $url,
+                self::uri('/order/search')->withQuery(http_build_query($query)),
                 json_encode($orderSearchDemand, JSON_FORCE_OBJECT | JSON_THROW_ON_ERROR)
             )
         );
@@ -76,7 +71,7 @@ class OrderApi extends AbstractApi
         return OrderFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/users/%s/orders', rawurlencode(mb_strtolower($username))),
+                self::uri('/users/' . mb_strtolower($username) . '/orders'),
                 json_encode($order, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -89,7 +84,7 @@ class OrderApi extends AbstractApi
         return OrderFactory::fromResponse(
             $this->client->request(
                 'POST',
-                sprintf('/companies/%s/orders', $uuid),
+                self::uri('/companies/' . $uuid . '/orders'),
                 json_encode($order, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -102,7 +97,7 @@ class OrderApi extends AbstractApi
         return OrderFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/order/' . $uuid,
+                self::uri('/order/' . $uuid),
                 json_encode($order, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -114,7 +109,7 @@ class OrderApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/order/' . $uuid
+            self::uri('/order/' . $uuid)
         );
     }
 }

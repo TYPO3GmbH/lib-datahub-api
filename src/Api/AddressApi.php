@@ -31,7 +31,7 @@ class AddressApi extends AbstractApi
         return AddressFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/user/addresses/' . $uuid,
+                self::uri('/user/addresses/' . $uuid),
             )
         );
     }
@@ -48,7 +48,7 @@ class AddressApi extends AbstractApi
         return AddressFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/company/addresses/' . $uuid,
+                self::uri('/company/addresses/' . $uuid),
             )
         );
     }
@@ -62,7 +62,7 @@ class AddressApi extends AbstractApi
         return AddressFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/users/' . rawurlencode(mb_strtolower($username)) . '/addresses',
+                self::uri('/users/' . rawurlencode(mb_strtolower($username)) . '/addresses'),
                 json_encode($address, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -80,7 +80,7 @@ class AddressApi extends AbstractApi
         return AddressFactory::fromResponse(
             $this->client->request(
                 'POST',
-                '/companies/' . $companyUuid . '/addresses',
+                self::uri('/companies/' . $companyUuid . '/addresses'),
                 json_encode($address, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -98,7 +98,7 @@ class AddressApi extends AbstractApi
         return AddressFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/user/addresses/' . $uuid,
+                self::uri('/user/addresses/' . $uuid),
                 json_encode($address, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -115,7 +115,7 @@ class AddressApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/user/addresses/' . $uuid,
+            self::uri('/user/addresses/' . $uuid),
         );
     }
 
@@ -131,7 +131,7 @@ class AddressApi extends AbstractApi
         return AddressFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/company/addresses/' . $uuid,
+                self::uri('/company/addresses/' . $uuid),
                 json_encode($address, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -148,7 +148,7 @@ class AddressApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/company/addresses/' . $uuid,
+            self::uri('/company/addresses/' . $uuid),
         );
     }
 

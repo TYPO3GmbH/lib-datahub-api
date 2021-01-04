@@ -31,7 +31,7 @@ class EmailAddressApi extends AbstractApi
         return UserEmailListFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/emails/users-all',
+                self::uri('/emails/users-all'),
             )
         );
     }
@@ -50,7 +50,7 @@ class EmailAddressApi extends AbstractApi
         return EmailAddressFactory::fromResponse(
             $this->client->request(
                 'GET',
-                '/emails/' . $uuid
+                self::uri('/emails/' . $uuid)
             )
         );
     }
@@ -71,7 +71,7 @@ class EmailAddressApi extends AbstractApi
         return EmailAddressFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                '/emails/' . $uuid,
+                self::uri('/emails/' . $uuid),
                 json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -89,7 +89,7 @@ class EmailAddressApi extends AbstractApi
 
         $this->client->request(
             'DELETE',
-            '/emails/' . $uuid
+            self::uri('/emails/' . $uuid)
         );
     }
 }

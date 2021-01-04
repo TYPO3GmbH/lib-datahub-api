@@ -8,6 +8,8 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\UriInterface;
 use T3G\DatahubApiLibrary\Client\DataHubClient;
 
 abstract class AbstractApi
@@ -17,5 +19,10 @@ abstract class AbstractApi
     public function __construct(DataHubClient $client)
     {
         $this->client = $client;
+    }
+
+    protected static function uri(string $path = ''): UriInterface
+    {
+        return new Uri($path);
     }
 }

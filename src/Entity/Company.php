@@ -74,7 +74,6 @@ class Company implements JsonSerializable
             'title' => $this->getTitle(),
             'slug' => $this->getSlug(),
             'email' => $this->getEmail(),
-            'emailAddresses' => $this->getEmailAddresses(),
             'vatId' => $this->getVatId(),
             'city' => $this->getCity(),
             'country' => $this->getCountry(),

@@ -85,7 +85,6 @@ class User implements JsonSerializable
             'firstName' => $this->getFirstName(),
             'lastName' => $this->getLastName(),
             'email' => $this->getPrimaryEmail(),
-            'emailAddresses' => $this->getEmailAddresses(),
             'phone' => $this->getPhone(),
             'slackId' => $this->getSlackId(),
             'discordId' => $this->getDiscordId(),

@@ -80,7 +80,7 @@ class CompanyApi extends AbstractApi
         return CompanyFactory::fromResponse(
             $this->client->request(
                 'GET',
-                self::uri('/companies/list')->withQuery(http_build_query([
+                self::uri('/companies/' . $uuid)->withQuery(http_build_query([
                     'withOrders' => (int)$withOrders,
                     'withSubscriptions' => (int)$withSubscriptions
                 ]))

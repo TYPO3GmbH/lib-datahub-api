@@ -15,6 +15,6 @@ return new Response(200, ['content-type' => 'application/json'], '
       "certificationVersion": "7.6",
       "status": "NEW",
       "voucher": "00000000-0000-0000-0000-000000000000",
-      "certification": null
+      "history": "Exam access transferred from oelie.boelie to boelie.oelie (by oelie.boelie)"
 }
 ');

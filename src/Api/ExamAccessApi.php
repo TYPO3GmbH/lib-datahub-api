@@ -67,4 +67,37 @@ class ExamAccessApi extends AbstractApi
             )
         );
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function transferExamAccess(string $uuid, string $username): ExamAccess
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        return ExamAccessFactory::fromResponse(
+            $this->client->request(
+                'PUT',
+                self::uri('/exam-access/' . $uuid . '/transfer'),
+                json_encode(['orderUser' => $username], JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function deleteExamAccess(string $uuid): void
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        $this->client->request(
+            'DELETE',
+            self::uri('/exam-access/' . $uuid),
+        );
+    }
 }

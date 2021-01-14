@@ -56,6 +56,35 @@ class ExamAccessApiTest extends AbstractApiTest
         $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
     }
 
+    public function testTransferExamAccess(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/TransferExamAccessResponse.php'
+        ]);
+        $api = new ExamAccessApi($this->getClient($handler));
+        $entity = $api->transferExamAccess('00000000-0000-0000-0000-000000000000', 'boelie-oelie');
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
+        $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
+        $this->assertEquals(CertificationType::TCCD, $entity->getCertificationType());
+        $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
+        $this->assertEquals('Exam access transferred from oelie.boelie to boelie.oelie (by oelie.boelie)', $entity->getHistory());
+    }
+
+    public function testDeleteExamAccess(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+        ]);
+        $api = new ExamAccessApi($this->getClient($handler));
+        try {
+            $api->deleteExamAccess('00000000-0000-0000-0000-000000000000');
+            $anExceptionWasThrown = false;
+        } catch (\Exception $e) {
+            $anExceptionWasThrown = true;
+        }
+        $this->assertFalse($anExceptionWasThrown);
+    }
+
     public function getTestExamAccess(): ExamAccess
     {
         return (new ExamAccess())

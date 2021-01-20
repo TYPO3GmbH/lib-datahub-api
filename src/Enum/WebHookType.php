@@ -43,6 +43,9 @@ final class WebHookType extends AbstractEnum
     public const SUBSCRIPTION_CREATED = 'subscription_created';
     public const SUBSCRIPTION_UPDATED = 'subscription_updated';
     public const SUBSCRIPTION_DELETED = 'subscription_deleted';
+    public const VOUCHER_CODE_CREATED = 'voucher_code_created';
+    public const VOUCHER_CODE_UPDATED = 'voucher_code_updated';
+    public const VOUCHER_CODE_DELETED = 'voucher_code_deleted';
 
     protected static array $optionNames = [
         self::ADDRESS_CHANGED => 'Address record has been changed',
@@ -73,5 +76,8 @@ final class WebHookType extends AbstractEnum
         self::SUBSCRIPTION_CREATED => 'Subscription record has been created',
         self::SUBSCRIPTION_UPDATED => 'Subscription record has been changed',
         self::SUBSCRIPTION_DELETED => 'Subscription record has been deleted',
+        self::VOUCHER_CODE_CREATED => 'Voucher code record has been created',
+        self::VOUCHER_CODE_UPDATED => 'Voucher code record has been updated',
+        self::VOUCHER_CODE_DELETED => 'Voucher code record has been deleted',
     ];
 }

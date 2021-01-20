@@ -14,6 +14,7 @@ use T3G\DatahubApiLibrary\Entity\CompanyInvitation;
 use T3G\DatahubApiLibrary\Entity\EmailAddress;
 use T3G\DatahubApiLibrary\Entity\Employee;
 use T3G\DatahubApiLibrary\Entity\PreCheckResult;
+use T3G\DatahubApiLibrary\Entity\VoucherCode;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
@@ -23,6 +24,7 @@ use T3G\DatahubApiLibrary\Factory\CompanyListFactory;
 use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\PreCheckResultListFactory;
+use T3G\DatahubApiLibrary\Factory\VoucherCodeFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class CompanyApi extends AbstractApi
@@ -50,13 +52,14 @@ class CompanyApi extends AbstractApi
      * @throws DatahubResponseException
      * @return Company[]
      */
-    public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false): array
+    public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false): array
     {
         $data = $this->client->request(
             'GET',
             self::uri('/companies/list')->withQuery(http_build_query([
                 'withOrders' => (int)$withOrders,
-                'withSubscriptions' => (int)$withSubscriptions
+                'withSubscriptions' => (int)$withSubscriptions,
+                'withVoucherCodes' => (int)$withVoucherCodes
             ]))
         );
         $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
@@ -73,7 +76,7 @@ class CompanyApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function getCompany(string $uuid, bool $withOrders = false, bool $withSubscriptions = false): Company
+    public function getCompany(string $uuid, bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false): Company
     {
         $this->isValidUuidOrThrow($uuid);
 
@@ -82,7 +85,8 @@ class CompanyApi extends AbstractApi
                 'GET',
                 self::uri('/companies/' . $uuid)->withQuery(http_build_query([
                     'withOrders' => (int)$withOrders,
-                    'withSubscriptions' => (int)$withSubscriptions
+                    'withSubscriptions' => (int)$withSubscriptions,
+                    'withVoucherCodes' => (int)$withVoucherCodes
                 ]))
             )
         );
@@ -257,6 +261,19 @@ class CompanyApi extends AbstractApi
                 'POST',
                 self::uri('/companies/' . $uuid . '/emails'),
                 json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
+
+    public function createVoucherCode(string $uuid, VoucherCode $voucherCode): VoucherCode
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        return VoucherCodeFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                self::uri('/companies/' . $uuid . '/voucher-codes'),
+                json_encode($voucherCode, JSON_THROW_ON_ERROR, 512)
             )
         );
     }

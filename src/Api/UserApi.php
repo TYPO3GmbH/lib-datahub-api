@@ -12,6 +12,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Entity\EmailAddress;
 use T3G\DatahubApiLibrary\Entity\User;
+use T3G\DatahubApiLibrary\Entity\VoucherCode;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
@@ -19,6 +20,7 @@ use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 use T3G\DatahubApiLibrary\Factory\UserListFactory;
+use T3G\DatahubApiLibrary\Factory\VoucherCodeFactory;
 
 class UserApi extends AbstractApi
 {
@@ -42,18 +44,20 @@ class UserApi extends AbstractApi
      * @param string $username
      * @param bool $withOrders
      * @param bool $withSubscriptions
+     * @param bool $withVoucherCodes
      * @return User
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
-    public function getUser(string $username, bool $withOrders = false, bool $withSubscriptions = false): User
+    public function getUser(string $username, bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false): User
     {
         return UserFactory::fromResponse(
             $this->client->request(
                 'GET',
                 self::uri('/users/' . mb_strtolower($username))->withQuery(http_build_query([
                     'withOrders' => (int)$withOrders,
-                    'withSubscriptions' => (int)$withSubscriptions
+                    'withSubscriptions' => (int)$withSubscriptions,
+                    'withVoucherCodes' => (int)$withVoucherCodes
                 ])),
             )
         );
@@ -167,6 +171,17 @@ class UserApi extends AbstractApi
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/emails'),
                 json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
+
+    public function createVoucherCode(string $username, VoucherCode $voucherCode): VoucherCode
+    {
+        return VoucherCodeFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                self::uri('/users/' . mb_strtolower($username) . '/voucher-codes'),
+                json_encode($voucherCode, JSON_THROW_ON_ERROR, 512)
             )
         );
     }

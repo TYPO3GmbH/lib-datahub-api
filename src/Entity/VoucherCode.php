@@ -18,6 +18,8 @@ class VoucherCode implements JsonSerializable
     private string $uuid;
     private ?User $user = null;
     private ?Company $company = null;
+    private string $title;
+    private string $description;
     private string $voucherCode;
     private string $type = VoucherCodeType::EVENTS;
     private string $status = VoucherCodeStatus::NEW;
@@ -26,6 +28,8 @@ class VoucherCode implements JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'title' => $this->getTitle(),
+            'description' => $this->getDescription(),
             'type' => $this->getType(),
             'status' => $this->getStatus(),
             'expiresAt' => $this->getExpiresAt()->format(\DateTimeInterface::ATOM),
@@ -106,6 +110,28 @@ class VoucherCode implements JsonSerializable
     public function setExpiresAt(\DateTimeInterface $expiresAt): self
     {
         $this->expiresAt = $expiresAt;
+        return $this;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
         return $this;
     }
 }

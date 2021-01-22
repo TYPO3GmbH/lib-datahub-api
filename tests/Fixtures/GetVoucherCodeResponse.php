@@ -19,6 +19,8 @@ return new Response(200, ['content-type' => 'application/json'], '
     },
     "company": null,
     "voucherCode": "00000000-0000-0000-0000-000000000000",
+    "title": "Event Voucher",
+    "description": "200 EUR discount for one event ticket",
     "type": "EVENTS",
     "status": "NEW",
     "expiresAt": "2022-01-10T00:00:00+00:00"

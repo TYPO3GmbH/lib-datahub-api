@@ -25,6 +25,8 @@ class VoucherCodeFactory extends AbstractFactory
     {
         $code = (new VoucherCode())
             ->setUuid($data['uuid'])
+            ->setTitle($data['title'])
+            ->setDescription($data['description'])
             ->setVoucherCode($data['voucherCode'])
             ->setType($data['type'])
             ->setExpiresAt(new \DateTime($data['expiresAt']))

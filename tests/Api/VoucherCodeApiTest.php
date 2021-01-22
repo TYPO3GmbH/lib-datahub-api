@@ -25,6 +25,8 @@ class VoucherCodeApiTest extends AbstractApiTest
         ]);
         $api = new VoucherCodeApi($this->getClient($handler));
         $response = $api->getVoucherCode('00000000-0000-0000-0000-000000000000');
+        self::assertEquals('Event Voucher', $response->getTitle());
+        self::assertEquals('200 EUR discount for one event ticket', $response->getDescription());
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getUuid());
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getVoucherCode());
         self::assertEquals('max.muster', $response->getUser()->getUsername());
@@ -37,6 +39,8 @@ class VoucherCodeApiTest extends AbstractApiTest
         ]);
         $api = new VoucherCodeApi($this->getClient($handler));
         $response = $api->updateVoucherCode('00000000-0000-0000-0000-000000000000', $this->getTestVoucherCode());
+        self::assertEquals('Event Voucher', $response->getTitle());
+        self::assertEquals('200 EUR discount for one event ticket', $response->getDescription());
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getUuid());
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getVoucherCode());
         self::assertEquals('max.muster', $response->getUser()->getUsername());
@@ -70,6 +74,8 @@ class VoucherCodeApiTest extends AbstractApiTest
         return (new VoucherCode())
             ->setUuid('00000000-0000-0000-0000-000000000000')
             ->setStatus(VoucherCodeStatus::NEW)
+            ->setTitle('Event Voucher')
+            ->setDescription('200 EUR discount for one event ticket')
             ->setType(VoucherCodeType::EVENTS)
             ->setExpiresAt(new \DateTime());
     }

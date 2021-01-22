@@ -42,14 +42,12 @@ class VoucherCodeApi extends AbstractApi
         );
     }
 
-    public function redeemVoucherCode(string $uuid): VoucherCode
+    public function redeemVoucherCode(string $code): VoucherCode
     {
-        $this->isValidUuidOrThrow($uuid);
-
         return VoucherCodeFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                self::uri('/voucher-codes/' . $uuid . '/redeem')
+                self::uri('/voucher-codes/' . $code . '/redeem')
             )
         );
     }

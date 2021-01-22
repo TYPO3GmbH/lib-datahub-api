@@ -67,6 +67,11 @@ class Company implements JsonSerializable
     private ?string $photo = null;
     private ?string $logo = null;
 
+    /**
+     * @var VoucherCode[]
+     */
+    private array $voucherCodes = [];
+
     public function jsonSerialize()
     {
         return [
@@ -588,6 +593,26 @@ class Company implements JsonSerializable
     public function addEmailAddress(EmailAddress $emailAddress): self
     {
         $this->emailAddresses[] = $emailAddress;
+        return $this;
+    }
+
+    /**
+     * @return VoucherCode[]
+     */
+    public function getVoucherCodes(): array
+    {
+        return $this->voucherCodes;
+    }
+
+    public function setVoucherCodes(array $voucherCodes): self
+    {
+        $this->voucherCodes = $voucherCodes;
+        return $this;
+    }
+
+    public function addVoucherCode(VoucherCode $voucherCode): self
+    {
+        $this->voucherCodes[] = $voucherCode;
         return $this;
     }
 }

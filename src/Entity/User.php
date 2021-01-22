@@ -76,6 +76,11 @@ class User implements JsonSerializable
      */
     private array $notifications = [];
 
+    /**
+     * @var VoucherCode[]
+     */
+    private array $voucherCodes = [];
+
     private ?Subscription $membership = null;
 
     public function jsonSerialize()
@@ -535,5 +540,25 @@ class User implements JsonSerializable
     public function getGravatarString(): string
     {
         return null !== $this->getPrimaryEmail() ? md5(strtolower(trim($this->getPrimaryEmail()))) : ($this->gravatarString ?? '');
+    }
+
+    /**
+     * @return VoucherCode[]
+     */
+    public function getVoucherCodes(): array
+    {
+        return $this->voucherCodes;
+    }
+
+    public function setVoucherCodes(array $voucherCodes): self
+    {
+        $this->voucherCodes = $voucherCodes;
+        return $this;
+    }
+
+    public function addVoucherCode(VoucherCode $voucherCode): self
+    {
+        $this->voucherCodes[] = $voucherCode;
+        return $this;
     }
 }

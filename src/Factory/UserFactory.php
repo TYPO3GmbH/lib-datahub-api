@@ -62,6 +62,9 @@ class UserFactory extends AbstractFactory
         foreach ($data['approvedDocuments'] ?? [] as $approvedDocument) {
             $user->addApprovedDocument(ApprovedDocumentFactory::fromArray($approvedDocument));
         }
+        foreach ($data['voucherCodes'] ?? [] as $voucherCode) {
+            $user->addVoucherCode(VoucherCodeFactory::fromArray($voucherCode));
+        }
 
         return $user;
     }

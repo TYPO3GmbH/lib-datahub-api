@@ -42,12 +42,17 @@ class VoucherCodeApi extends AbstractApi
         );
     }
 
-    public function redeemVoucherCode(string $code): VoucherCode
+    public function redeemVoucherCode(string $code, ?string $orderNumber = null, ?string $product = null, ?string $username = null): VoucherCode
     {
         return VoucherCodeFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                self::uri('/voucher-codes/' . $code . '/redeem')
+                self::uri('/voucher-codes/' . $code . '/redeem'),
+                json_encode([
+                    'orderNumber' => $orderNumber,
+                    'username' => $username,
+                    'product' => $product
+                ], JSON_THROW_ON_ERROR)
             )
         );
     }

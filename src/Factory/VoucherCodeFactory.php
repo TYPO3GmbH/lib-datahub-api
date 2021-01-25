@@ -30,7 +30,10 @@ class VoucherCodeFactory extends AbstractFactory
             ->setVoucherCode($data['voucherCode'])
             ->setType($data['type'])
             ->setExpiresAt(new \DateTime($data['expiresAt']))
-            ->setStatus($data['status']);
+            ->setStatus($data['status'])
+            ->setOrderNumber($data['orderNumber'] ?? null)
+            ->setProduct($data['product'] ?? null)
+            ->setUsername($data['username'] ?? null);
 
         if (isset($data['user']) && null !== $data['user']) {
             $code->setUser(UserFactory::fromArray($data['user']));

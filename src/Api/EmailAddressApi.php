@@ -56,6 +56,24 @@ class EmailAddressApi extends AbstractApi
     }
 
     /**
+     * @param string $email
+     * @return bool
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws \JsonException
+     */
+    public function isUserEmailAddressUnique(string $email): bool
+    {
+        $response = $this->client->request(
+            'GET',
+            self::uri('/emails/' . $email . '/unique')
+        );
+
+        $responseContent = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        return true === $responseContent['is_unique'];
+    }
+
+    /**
      * @param string $uuid
      * @param EmailAddress $emailAddress
      * @return EmailAddress

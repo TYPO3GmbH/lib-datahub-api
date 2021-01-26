@@ -13,7 +13,7 @@ return new Response(200, ['content-type' => 'application/json'], '
   "username": "oelie-boelie",
   "firstName": "Oelie",
   "lastName": "Boelie",
-  "email": "oelie.boelie@typo3.org",
+  "email": "foo@bar.baz",
   "phone": "+4912356789",
   "discordId": "492824791867326464",
   "addresses": [
@@ -83,7 +83,7 @@ return new Response(200, ['content-type' => 'application/json'], '
   "emailAddresses": [
     {
       "uuid": "311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b",
-      "email": "oelie.boelie@typo3.org",
+      "email": "foo@bar.baz",
       "type": 273,
       "optIn": "2020-12-16T10:13:26+00:00"
     }

@@ -41,6 +41,24 @@ class EmailAddressApiTest extends AbstractApiTest
         self::assertNull($response->getOptIn());
     }
 
+    public function testIsUserEmailAddressUniquePositive(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetIsUserEmailAddressUniquePositiveResponse.php'
+        ]);
+        $response = (new EmailAddressApi($this->getClient($handler)))->isUserEmailAddressUnique('foo@bar.baz');
+        self::assertTrue($response);
+    }
+
+    public function testIsUserEmailAddressUniqueNegative(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetIsUserEmailAddressUniqueNegativeResponse.php'
+        ]);
+        $response = (new EmailAddressApi($this->getClient($handler)))->isUserEmailAddressUnique('foo@bar.baz');
+        self::assertFalse($response);
+    }
+
     public function testUpdateEmailAddress(): void
     {
         $handler = new MockHandler([

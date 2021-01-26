@@ -9,12 +9,17 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
+use T3G\DatahubApiLibrary\Entity\ReservedUser;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
+use T3G\DatahubApiLibrary\Factory\ReservedUserFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
+use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class OldUserApi extends AbstractApi
 {
+    use HandlesUuids;
+
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
@@ -38,13 +43,34 @@ class OldUserApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
+     * @throws \JsonException
+     * @throws \T3G\DatahubApiLibrary\Exception\InvalidUuidException
      */
-    public function reEnable(string $username): User
+    public function getReservedUser(string $uuid): ReservedUser
     {
+        $this->isValidUuidOrThrow($uuid);
+
+        return ReservedUserFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri('/reserved-users/' . $uuid)
+            )
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function reEnable(string $username, ?string $emailAddress = null): User
+    {
+        $query = http_build_query([
+            'email' => $emailAddress,
+        ]);
         return UserFactory::fromResponse(
             $response = $this->client->request(
                 'POST',
-                self::uri('/users/' . mb_strtolower($username) . '/reenable'),
+                self::uri('/users/' . mb_strtolower($username) . '/reenable')->withQuery($query),
             )
         );
     }

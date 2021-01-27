@@ -148,7 +148,7 @@ class UserApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                self::uri('/users/' . mb_strtolower($username) . '/certifications'),
+                self::uri('/users/' . mb_strtolower($username) . '/certifications/' . $uuid),
                 json_encode($certification, JSON_THROW_ON_ERROR, 512)
             )
         );

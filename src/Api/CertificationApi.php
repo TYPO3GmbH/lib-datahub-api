@@ -46,7 +46,7 @@ class CertificationApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'GET',
-                self::uri('/certifications/')->withQuery('withHistory=' . (int)$withHistory)
+                self::uri('/certifications/' . $uuid)->withQuery('withHistory=' . (int)$withHistory)
             )
         );
     }

@@ -21,7 +21,7 @@ class OrderSearchDemandTest extends TestCase
         static::assertNull($orderSearchDemand->getDateFrom());
         static::assertNull($orderSearchDemand->getDateUntil());
         static::assertNull($orderSearchDemand->getSearchTerm());
-        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{}');
+        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"dateField":"createdAt"}');
     }
 
     public function testWithUserId(): void
@@ -32,7 +32,7 @@ class OrderSearchDemandTest extends TestCase
         static::assertNull($orderSearchDemand->getDateFrom());
         static::assertNull($orderSearchDemand->getDateUntil());
         static::assertNull($orderSearchDemand->getSearchTerm());
-        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"companyUuid":"7bf7be08-bdb1-4823-ad24-b45d45a520a6"}');
+        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"companyUuid":"7bf7be08-bdb1-4823-ad24-b45d45a520a6","dateField":"createdAt"}');
     }
 
     public function testWithDateFrom(): void
@@ -43,7 +43,7 @@ class OrderSearchDemandTest extends TestCase
         static::assertInstanceOf(\DateTime::class, $orderSearchDemand->getDateFrom());
         static::assertNull($orderSearchDemand->getDateUntil());
         static::assertNull($orderSearchDemand->getSearchTerm());
-        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"dateFrom":"1970-01-03T04:04:45.000+00:00"}');
+        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"dateFrom":"1970-01-03T04:04:45.000+00:00","dateField":"createdAt"}');
     }
 
     public function testWithDateUntil(): void
@@ -54,7 +54,7 @@ class OrderSearchDemandTest extends TestCase
         static::assertNull($orderSearchDemand->getDateFrom());
         static::assertInstanceOf(\DateTime::class, $orderSearchDemand->getDateUntil());
         static::assertNull($orderSearchDemand->getSearchTerm());
-        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"dateUntil":"2019-05-14T00:58:09.000+00:00"}');
+        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"dateUntil":"2019-05-14T00:58:09.000+00:00","dateField":"createdAt"}');
     }
 
     public function testWithSearchTerm(): void
@@ -65,6 +65,23 @@ class OrderSearchDemandTest extends TestCase
         static::assertNull($orderSearchDemand->getDateFrom());
         static::assertNull($orderSearchDemand->getDateUntil());
         static::assertSame('foo', $orderSearchDemand->getSearchTerm());
-        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"searchTerm":"foo"}');
+        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"searchTerm":"foo","dateField":"createdAt"}');
+    }
+
+    public function testWithDateField(): void
+    {
+        $orderSearchDemand = (new OrderSearchDemand())->withDateField(OrderSearchDemand::DATE_FIELD_LAST_INVOICE_DATE);
+
+        static::assertNull($orderSearchDemand->getCompanyUuid());
+        static::assertNull($orderSearchDemand->getDateFrom());
+        static::assertNull($orderSearchDemand->getDateUntil());
+        static::assertSame(OrderSearchDemand::DATE_FIELD_LAST_INVOICE_DATE, $orderSearchDemand->getDateField());
+        static::assertSame(json_encode($orderSearchDemand, JSON_FORCE_OBJECT), '{"dateField":"lastInvoiceDate"}');
+    }
+
+    public function testUnknownDateFieldThrows(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $orderSearchDemand = (new OrderSearchDemand())->withDateField('thisIsNotAField');
     }
 }

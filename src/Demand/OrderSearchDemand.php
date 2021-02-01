@@ -10,10 +10,15 @@ namespace T3G\DatahubApiLibrary\Demand;
 
 class OrderSearchDemand implements \JsonSerializable
 {
+    public const DATE_FIELD_CREATED_AT = 'createdAt';
+    public const DATE_FIELD_LAST_INVOICE_DATE = 'lastInvoiceDate';
+    public const DATE_FIELDS = [self::DATE_FIELD_CREATED_AT, self::DATE_FIELD_LAST_INVOICE_DATE];
+
     private ?string $companyUuid = null;
     private ?\DateTime $dateFrom = null;
     private ?\DateTime $dateUntil = null;
     private ?string $searchTerm = null;
+    private string $dateField = self::DATE_FIELD_CREATED_AT;
 
     public function __construct()
     {
@@ -47,6 +52,23 @@ class OrderSearchDemand implements \JsonSerializable
         return $clone;
     }
 
+    public function withDateField(string $dateField): self
+    {
+        if (!in_array($dateField, self::DATE_FIELDS, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Date field must be one of %s. Was %s.',
+                    implode(', ', self::DATE_FIELDS),
+                    $dateField
+                ),
+                1612176566
+            );
+        }
+        $clone = clone $this;
+        $clone->dateField = $dateField;
+        return $clone;
+    }
+
     public function getCompanyUuid(): ?string
     {
         return $this->companyUuid;
@@ -65,6 +87,11 @@ class OrderSearchDemand implements \JsonSerializable
     public function getSearchTerm(): ?string
     {
         return $this->searchTerm;
+    }
+
+    public function getDateField(): string
+    {
+        return $this->dateField;
     }
 
     public function jsonSerialize()
@@ -86,6 +113,8 @@ class OrderSearchDemand implements \JsonSerializable
         if (null !== $this->searchTerm) {
             $data['searchTerm'] = $this->searchTerm;
         }
+
+        $data['dateField'] = $this->dateField;
 
         return $data;
     }

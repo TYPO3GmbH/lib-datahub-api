@@ -33,14 +33,7 @@ class DatahubResponseException extends Exception
         try {
             $data = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
             if (isset($data['errors']) && 0 < count($data['errors'])) {
-                $errorString = '';
-                foreach ($data['errors'] as $key => $error) {
-                    if (!is_string($error)) {
-                        break;
-                    }
-                    $errorString .= $key . ': ' . $error . PHP_EOL;
-                }
-
+                $errorString = $this->composeErrorList($data['errors']);
                 if (!empty($errorString)) {
                     $message = $errorString;
                 }
@@ -68,5 +61,27 @@ class DatahubResponseException extends Exception
     public function getResponse(): ResponseInterface
     {
         return $this->response;
+    }
+
+    /**
+     * @param array<int, string|array<int, mixed>> $errors
+     * @return string
+     */
+    private function composeErrorList(array $errors): string
+    {
+        $errorString = '';
+        foreach ($errors as $key => $error) {
+            if (is_string($error)) {
+                $errorString .= (!is_numeric($key) ? ($key . ': ') : '') . $error . PHP_EOL;
+                continue;
+            }
+
+            if (is_array($error)) {
+                $errorString .= $this->composeErrorList($error);
+                continue;
+            }
+        }
+
+        return $errorString;
     }
 }

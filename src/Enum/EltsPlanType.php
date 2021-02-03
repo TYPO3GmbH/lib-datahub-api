@@ -17,7 +17,7 @@ final class EltsPlanType extends AbstractEnum
 {
     public const SINGLE = 'single';
     public const PRO = 'pro';
-    public const AGENGY = 'agency';
+    public const AGENCY = 'agency';
 
     /**
      * @var array<string, string>
@@ -25,6 +25,6 @@ final class EltsPlanType extends AbstractEnum
     protected static array $optionNames = [
         self::SINGLE => 'Single Plan',
         self::PRO => 'Pro Plan',
-        self::AGENGY => 'Agency Plan',
+        self::AGENCY => 'Agency Plan',
     ];
 }

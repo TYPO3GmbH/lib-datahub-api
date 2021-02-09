@@ -18,12 +18,14 @@ final class CompanyType extends AbstractEnum
     public const AGENCY = 'AGENCY';
     public const FREELANCER = 'FREELANCER';
     public const HOSTER = 'HOSTER';
+    public const OTHER = 'OTHER';
     public const UNIVERSITY = 'UNIVERSITY';
 
     protected static array $optionNames = [
         self::AGENCY => 'Agency',
         self::FREELANCER => 'Freelancer',
         self::HOSTER => 'Hoster',
+        self::OTHER => 'Other',
         self::UNIVERSITY => 'University',
     ];
 }

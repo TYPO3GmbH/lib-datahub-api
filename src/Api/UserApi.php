@@ -27,6 +27,26 @@ class UserApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
+     */
+    public function createUser(User $user): User
+    {
+        return UserFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                self::uri('/users'),
+                json_encode([
+                    'username' => $user->getUsername(),
+                    'firstName' => $user->getFirstName(),
+                    'lastName' => $user->getLastName(),
+                    'email' => $user->getPrimaryEmail(),
+                    ], JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      * @return array<int, mixed>
      */
     public function search(string $search): array

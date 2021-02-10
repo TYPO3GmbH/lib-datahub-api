@@ -203,4 +203,19 @@ class UserApiTest extends AbstractApiTest
         $certifications = $api->getCertificationList('oelie-boelie');
         $this->assertCount(2, $certifications);
     }
+
+    public function testCreateUser(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetUserResponse.php'
+        ]);
+        $api = new UserApi($this->getClient($handler));
+        $response = $api->createUser($this->getTestUser());
+        $this->assertEquals('oelie-boelie', $response->getUsername());
+        $this->assertCount(2, $response->getAddresses());
+        $this->assertCount(2, $response->getPostalAddresses());
+        $this->assertCount(2, $response->getLinks());
+        $this->assertCount(1, $response->getCertifications());
+        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+    }
 }

@@ -28,6 +28,7 @@ class CompanyFactory extends AbstractFactory
             ->setUuid($data['uuid'])
             ->setEmail($data['email'] ?? '')
             ->setVatId($data['vatId'] ?? '')
+            ->setHubspotId($data['hubspotId'] ?? null)
             ->setDomain($data['domain'] ?? null)
             ->setCompanyType($data['companyType'] ?? CompanyType::AGENCY)
             ->setCity($data['city'] ?? null)

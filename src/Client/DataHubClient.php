@@ -54,6 +54,9 @@ class DataHubClient
         if (null !== $this->token && !$request->hasHeader('Authorization')) {
             $request = $request->withAddedHeader('Authorization', 'Bearer ' . $this->token);
         }
+        if (!$request->hasHeader('Content-Type')) {
+            $request = $request->withAddedHeader('Content-Type', 'application/json');
+        }
         if (null !== $body) {
             $stream = (new StreamFactory())->createStream($body);
             $request = $request->withBody($stream);

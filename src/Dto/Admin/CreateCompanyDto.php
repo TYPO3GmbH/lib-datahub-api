@@ -23,4 +23,6 @@ class CreateCompanyDto extends AbstractDto
      * @Assert\Choice(callback={"T3G\DatahubApiLibrary\Enum\CompanyType", "getAvailableOptions"})
      */
     public string $companyType;
+
+    public ?string $owner = null;
 }

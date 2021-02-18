@@ -28,7 +28,7 @@ class TransferEntityAssembler extends AbstractAssembler
 
     public function setTargetOrganization(string $uuid): self
     {
-        $this->dto->source = sprintf('organization:%s', $uuid);
+        $this->dto->target = sprintf('organization:%s', $uuid);
 
         return $this;
     }
@@ -41,7 +41,7 @@ class TransferEntityAssembler extends AbstractAssembler
 
     public function setTargetUser(string $username): self
     {
-        $this->dto->source = sprintf('user:%s', $username);
+        $this->dto->target = sprintf('user:%s', $username);
 
         return $this;
     }

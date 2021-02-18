@@ -16,21 +16,21 @@ class TransferEntityDto extends AbstractDto
     /**
      * @Assert\NotBlank
      */
-    public string $source;
+    public string $source = '';
 
     /**
      * @Assert\NotBlank
      */
-    public string $target;
+    public string $target = '';
 
     /**
      * @Assert\NotBlank
      * @Assert\Choice(callback={"T3G\DatahubApiLibrary\Enum\TransferableType", "getAvailableOptions"})
      */
-    public string $type;
+    public string $type = '';
 
     /**
      * @Assert\NotBlank
      */
-    public string $entityDescriber;
+    public string $entityDescriber = '';
 }

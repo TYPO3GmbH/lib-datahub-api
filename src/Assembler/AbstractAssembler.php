@@ -54,6 +54,8 @@ abstract class AbstractAssembler
             throw new \InvalidArgumentException(sprintf('%s does not define a DTO class in $dtoClassName', static::class));
         }
 
-        return new $this->dtoClassName();
+        $this->dto = new $this->dtoClassName();
+
+        return $this->dto;
     }
 }

@@ -126,4 +126,19 @@ class EnumApi extends AbstractApi
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @phpstan-return array<string,string>
+     */
+    public function getTransferableTypes(): array
+    {
+        $response = $this->client->request(
+            'GET',
+            self::uri('/enums/transferable/type'),
+        );
+
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+    }
 }

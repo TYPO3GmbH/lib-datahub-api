@@ -70,6 +70,9 @@ class CompanyFactory extends AbstractFactory
         foreach ($data['voucherCodes'] ?? [] as $voucherCode) {
             $company->addVoucherCode(VoucherCodeFactory::fromArray($voucherCode));
         }
+        foreach ($data['eltsPlans'] ?? [] as $eltsPlan) {
+            $company->addEltsPlan(EltsPlanFactory::fromArray($eltsPlan));
+        }
 
         return $company;
     }

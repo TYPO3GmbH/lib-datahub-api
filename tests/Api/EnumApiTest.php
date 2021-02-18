@@ -113,4 +113,16 @@ class EnumApiTest extends AbstractApiTest
         $this->assertContains('Blocking', $response);
         $this->assertArrayHasKey('blocking', $response);
     }
+
+    public function testGetTransferableTypesEnumResponse(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetTransferableTypesEnumResponse.php'
+        ]);
+        $api = new EnumApi($this->getClient($handler));
+        $response = $api->getTransferableTypes();
+        $this->assertIsArray($response);
+        $this->assertContains('elts', $response);
+        $this->assertArrayHasKey('elts', $response);
+    }
 }

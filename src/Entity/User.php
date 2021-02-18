@@ -83,6 +83,11 @@ class User implements JsonSerializable
 
     private ?Subscription $membership = null;
 
+    /**
+     * @var EltsPlan[]
+     */
+    private array $eltsPlans = [];
+
     public function jsonSerialize()
     {
         return [
@@ -559,6 +564,30 @@ class User implements JsonSerializable
     public function addVoucherCode(VoucherCode $voucherCode): self
     {
         $this->voucherCodes[] = $voucherCode;
+        return $this;
+    }
+
+    /**
+     * @return EltsPlan[]
+     */
+    public function getEltsPlans(): array
+    {
+        return $this->eltsPlans;
+    }
+
+    /**
+     * @param EltsPlan[] $eltsPlans
+     * @return $this
+     */
+    public function setEltsPlans(array $eltsPlans): self
+    {
+        $this->eltsPlans = $eltsPlans;
+        return $this;
+    }
+
+    public function addEltsPlan(EltsPlan $eltsPlan): self
+    {
+        $this->eltsPlans[] = $eltsPlan;
         return $this;
     }
 }

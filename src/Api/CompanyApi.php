@@ -52,14 +52,15 @@ class CompanyApi extends AbstractApi
      * @throws DatahubResponseException
      * @return Company[]
      */
-    public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false): array
+    public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false, bool $withEltsPlans = false): array
     {
         $data = $this->client->request(
             'GET',
             self::uri('/companies/list')->withQuery(http_build_query([
                 'withOrders' => (int)$withOrders,
                 'withSubscriptions' => (int)$withSubscriptions,
-                'withVoucherCodes' => (int)$withVoucherCodes
+                'withVoucherCodes' => (int)$withVoucherCodes,
+                'withEltsPlans' => (int)$withEltsPlans,
             ]))
         );
         $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
@@ -76,7 +77,7 @@ class CompanyApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function getCompany(string $uuid, bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false): Company
+    public function getCompany(string $uuid, bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false, bool $withEltsPlans = false): Company
     {
         $this->isValidUuidOrThrow($uuid);
 
@@ -86,7 +87,8 @@ class CompanyApi extends AbstractApi
                 self::uri('/companies/' . $uuid)->withQuery(http_build_query([
                     'withOrders' => (int)$withOrders,
                     'withSubscriptions' => (int)$withSubscriptions,
-                    'withVoucherCodes' => (int)$withVoucherCodes
+                    'withVoucherCodes' => (int)$withVoucherCodes,
+                    'withEltsPlans' => (int)$withEltsPlans,
                 ]))
             )
         );

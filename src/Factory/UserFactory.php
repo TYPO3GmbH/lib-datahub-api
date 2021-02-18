@@ -65,6 +65,9 @@ class UserFactory extends AbstractFactory
         foreach ($data['voucherCodes'] ?? [] as $voucherCode) {
             $user->addVoucherCode(VoucherCodeFactory::fromArray($voucherCode));
         }
+        foreach ($data['eltsPlans'] ?? [] as $eltsPlan) {
+            $user->addEltsPlan(EltsPlanFactory::fromArray($eltsPlan));
+        }
 
         return $user;
     }

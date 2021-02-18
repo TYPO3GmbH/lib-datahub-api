@@ -69,7 +69,7 @@ class UserApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
-    public function getUser(string $username, bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false): User
+    public function getUser(string $username, bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false, bool $withEltsPlans = false): User
     {
         return UserFactory::fromResponse(
             $this->client->request(
@@ -77,7 +77,8 @@ class UserApi extends AbstractApi
                 self::uri('/users/' . mb_strtolower($username))->withQuery(http_build_query([
                     'withOrders' => (int)$withOrders,
                     'withSubscriptions' => (int)$withSubscriptions,
-                    'withVoucherCodes' => (int)$withVoucherCodes
+                    'withVoucherCodes' => (int)$withVoucherCodes,
+                    'withEltsPlans' => (int)$withEltsPlans,
                 ])),
             )
         );

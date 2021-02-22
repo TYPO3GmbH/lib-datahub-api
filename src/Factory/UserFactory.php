@@ -53,6 +53,9 @@ class UserFactory extends AbstractFactory
         foreach ($data['certifications'] ?? [] as $certification) {
             $user->addCertification(CertificationFactory::fromArray($certification));
         }
+        foreach ($data['companies'] ?? [] as $company) {
+            $user->addCompany(CompanyFactory::fromArray($company));
+        }
         foreach ($data['examAccesses'] ?? [] as $examAccess) {
             $user->addExamAccess(ExamAccessFactory::fromArray($examAccess));
         }

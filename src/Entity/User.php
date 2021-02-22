@@ -52,6 +52,11 @@ class User implements JsonSerializable
     private array $certifications = [];
 
     /**
+     * @var Company[]
+     */
+    private array $companies = [];
+
+    /**
      * @var ExamAccess[]
      */
     private array $examAccesses = [];
@@ -367,6 +372,30 @@ class User implements JsonSerializable
     public function addSubscription(Subscription $subscription): self
     {
         $this->subscriptions[] = $subscription;
+        return $this;
+    }
+
+    /**
+     * @return array<int, Company>
+     */
+    public function getCompanies(): array
+    {
+        return $this->companies;
+    }
+
+    /**
+     * @param array<int, Company> $companies
+     * @return User
+     */
+    public function setCompanies(array $companies): self
+    {
+        $this->companies = $companies;
+        return $this;
+    }
+
+    public function addCompany(Company $company): self
+    {
+        $this->companies[] = $company;
         return $this;
     }
 

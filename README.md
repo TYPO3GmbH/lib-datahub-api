@@ -16,9 +16,9 @@ This library has been built in a way that it is compliant with [PSR-7](https://w
 
 If you want to use Guzzle, I recommend using the following packages:
 ```bash
-composer require guzzlehttp/guzzle
-composer require http-interop/http-factory-guzzle
-composer require ricardofiorani/guzzle-psr18-adapter
+composer require guzzlehttp/guzzle:^6.3
+composer require http-interop/http-factory-guzzle:dev-master
+composer require ricardofiorani/guzzle-psr18-adapter:1.0.x-dev
 ```
 
 ## Usage

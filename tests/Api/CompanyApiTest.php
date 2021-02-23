@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\CompanyApi;
+use T3G\DatahubApiLibrary\Demand\OrganizationSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\PSLType;
@@ -106,8 +107,8 @@ class CompanyApiTest extends AbstractApiTest
             require __DIR__ . '/../Fixtures/GetSearchCompanyResponse.php'
         ]);
         $response = (new CompanyApi($this->getClient($handler)))
-            ->search('Test Company');
-        $this->assertEquals(2, count($response));
+            ->search(new OrganizationSearchDemand('Test Company'));
+        $this->assertCount(2, $response);
     }
 
     public function testCreateCompany(): void

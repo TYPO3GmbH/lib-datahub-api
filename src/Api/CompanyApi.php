@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
+use T3G\DatahubApiLibrary\Demand\OrganizationSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Entity\CompanyInvitation;
 use T3G\DatahubApiLibrary\Entity\EmailAddress;
@@ -32,17 +33,31 @@ class CompanyApi extends AbstractApi
     use HandlesUuids;
 
     /**
+     * @param string|OrganizationSearchDemand $search
+     * @return Company[]
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @return array<int, mixed>
+     * @throws \JsonException
      */
-    public function search(string $search): array
+    public function search($search): array
     {
+        if (is_string($search)) {
+            $search = new OrganizationSearchDemand($search);
+            trigger_error(
+                sprintf('Calling %s with $search being a string is deprecated. Pass a %s instead which will become mandatory at 2021-08-22', __METHOD__, OrganizationSearchDemand::class),
+                E_USER_DEPRECATED
+            );
+        }
+
+        if (!$search instanceof OrganizationSearchDemand) {
+            throw new \TypeError(sprintf('Argument $search of %s must be of type %s', __METHOD__, OrganizationSearchDemand::class));
+        }
+
         return CompanyListFactory::fromResponse(
             $this->client->request(
                 'POST',
                 self::uri('/companies/search'),
-                json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
+                json_encode($search, JSON_THROW_ON_ERROR)
             )
         );
     }

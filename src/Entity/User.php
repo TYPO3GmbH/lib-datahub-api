@@ -400,13 +400,16 @@ class User implements JsonSerializable
     }
 
     /**
-     * @return array
+     * @return Certification[]
      */
     public function getCertifications(): array
     {
         return $this->certifications;
     }
 
+    /**
+     * @return iterable<Certification>
+     */
     public function getCertificationsListed(): iterable
     {
         return new \ArrayIterator(array_filter($this->certifications, static function (Certification $certification) {
@@ -414,6 +417,9 @@ class User implements JsonSerializable
         }));
     }
 
+    /**
+     * @return iterable<Certification>
+     */
     public function getCertificationsNotListed(): iterable
     {
         return new \ArrayIterator(array_filter($this->certifications, static function (Certification $certification) {
@@ -442,7 +448,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @param array $certifications
+     * @param Certification[] $certifications
      * @return User
      */
     public function setCertifications(array $certifications): self
@@ -584,6 +590,10 @@ class User implements JsonSerializable
         return $this->voucherCodes;
     }
 
+    /**
+     * @param VoucherCode[] $voucherCodes
+     * @return $this
+     */
     public function setVoucherCodes(array $voucherCodes): self
     {
         $this->voucherCodes = $voucherCodes;

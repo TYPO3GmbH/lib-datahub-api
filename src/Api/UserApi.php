@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Api;
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Entity\EmailAddress;
+use T3G\DatahubApiLibrary\Entity\Employee;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Entity\VoucherCode;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
@@ -47,7 +48,7 @@ class UserApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @return array<int, mixed>
+     * @return array<int, User>
      */
     public function search(string $search): array
     {
@@ -116,6 +117,7 @@ class UserApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
+     * @return Employee[]
      */
     public function getCompanyHistory(string $username): array
     {
@@ -136,6 +138,7 @@ class UserApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
+     * @return Employee[]
      */
     public function getCompanies(string $username): array
     {
@@ -175,6 +178,13 @@ class UserApi extends AbstractApi
         );
     }
 
+    /**
+     * @param string $username
+     * @param string[] $status
+     * @return Certification[]
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
     public function getCertificationList(string $username, array $status = []): array
     {
         return CertificationListFactory::fromResponse(

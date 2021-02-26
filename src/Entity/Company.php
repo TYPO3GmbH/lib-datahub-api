@@ -205,11 +205,18 @@ class Company implements JsonSerializable
         return $this;
     }
 
+    /**
+     * @return Address[]
+     */
     public function getAddresses(): array
     {
         return $this->addresses;
     }
 
+    /**
+     * @param Address[] $addresses
+     * @return $this
+     */
     public function setAddresses(array $addresses): self
     {
         $this->addresses = $addresses;
@@ -223,11 +230,18 @@ class Company implements JsonSerializable
         return $this;
     }
 
+    /**
+     * @return Employee[]
+     */
     public function getEmployees(): array
     {
         return $this->employees;
     }
 
+    /**
+     * @param Employee[] $employees
+     * @return $this
+     */
     public function setEmployees(array $employees): self
     {
         $this->employees = $employees;
@@ -237,7 +251,7 @@ class Company implements JsonSerializable
     public function getEmployee(string $username): ?Employee
     {
         foreach ($this->employees as $employee) {
-            if ($username === $employee->getUser()->getUserName()) {
+            if (null !== $employee->getUser() && $username === $employee->getUser()->getUserName()) {
                 return $employee;
             }
         }
@@ -351,7 +365,7 @@ class Company implements JsonSerializable
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->title;
     }
@@ -386,7 +400,7 @@ class Company implements JsonSerializable
     public function employeeHasRole(string $username, string $role): bool
     {
         foreach ($this->employees as $employee) {
-            if ($role === $employee->getRole() && $username === $employee->getUser()->getUsername()) {
+            if ($role === $employee->getRole() && null !== $employee->getUser() && $username === $employee->getUser()->getUsername()) {
                 return true;
             }
         }

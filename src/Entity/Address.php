@@ -329,6 +329,9 @@ class Address implements JsonSerializable
         return $string;
     }
 
+    /**
+     * @return array<string, string|null|false>
+     */
     public function toDeutschePostArray(): array
     {
         $streetAndNumber = [];
@@ -344,6 +347,9 @@ class Address implements JsonSerializable
             $number = $streetAndNumber[2] ?? $this->getStreet();
         }
         $transliterator = \Transliterator::createFromRules(':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: NFC;', \Transliterator::FORWARD);
+        if (null === $transliterator) {
+            throw new \RuntimeException(sprintf('Failed to create a %s', \Transliterator::class));
+        }
 
         return [
             'NAME' => $transliterator->transliterate($this->getFirstName() . ' ' . $this->getLastName()),

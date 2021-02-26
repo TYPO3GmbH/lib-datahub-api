@@ -20,6 +20,10 @@ class Certification implements JsonSerializable
     private string $uuid = '';
     private string $type = '';
     private string $version = '';
+
+    /**
+     * @var array<string, mixed>
+     */
     private array $user = [];
     private string $status = '';
     private string $examLocation = '';
@@ -40,6 +44,10 @@ class Certification implements JsonSerializable
     private string $proctoringApproval = CertificationProctoringApprovalStatus::UNKNOWN;
     private ?string $hubspotDealId = null;
     private ?\DateTimeInterface $validUntil = null;
+
+    /**
+     * @var array<string, string>
+     */
     private array $postFormattedAddress = [];
 
     public function jsonSerialize()
@@ -108,11 +116,18 @@ class Certification implements JsonSerializable
         return CertificationType::getName($this->getType());
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getUser(): array
     {
         return $this->user;
     }
 
+    /**
+     * @param array<string, mixed> $user
+     * @return $this
+     */
     public function setUser(array $user): self
     {
         $this->user = $user;
@@ -337,11 +352,18 @@ class Certification implements JsonSerializable
         return $this;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getPostFormattedAddress(): array
     {
         return $this->postFormattedAddress;
     }
 
+    /**
+     * @param array<string, string> $postFormattedAddress
+     * @return $this
+     */
     public function setPostFormattedAddress(array $postFormattedAddress): self
     {
         $this->postFormattedAddress = $postFormattedAddress;

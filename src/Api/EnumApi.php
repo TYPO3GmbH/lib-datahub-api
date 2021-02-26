@@ -14,6 +14,7 @@ use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 class EnumApi extends AbstractApi
 {
     /**
+     * @return array<string, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -28,6 +29,7 @@ class EnumApi extends AbstractApi
     }
 
     /**
+     * @return array<string, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -42,6 +44,7 @@ class EnumApi extends AbstractApi
     }
 
     /**
+     * @return array<string, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -56,6 +59,7 @@ class EnumApi extends AbstractApi
     }
 
     /**
+     * @return array<string, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -70,6 +74,7 @@ class EnumApi extends AbstractApi
     }
 
     /**
+     * @return array<string, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -84,6 +89,7 @@ class EnumApi extends AbstractApi
     }
 
     /**
+     * @return array<string, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -100,7 +106,7 @@ class EnumApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @phpstan-return array<string,string>
+     * @return array<string,string>
      */
     public function getSubscriptionStatus(): array
     {
@@ -113,9 +119,9 @@ class EnumApi extends AbstractApi
     }
 
     /**
+     * @return array<string, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @phpstan-return array<string,string>
      */
     public function getCompanyDeletionPreCheckTypes(): array
     {
@@ -128,9 +134,9 @@ class EnumApi extends AbstractApi
     }
 
     /**
+     * @return array<string, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @phpstan-return array<string,string>
      */
     public function getTransferableTypes(): array
     {

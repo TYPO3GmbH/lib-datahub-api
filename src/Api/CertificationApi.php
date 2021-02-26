@@ -26,7 +26,7 @@ class CertificationApi extends AbstractApi
     }
 
     /**
-     * @param array $filterAttributes
+     * @param array<string, string> $filterAttributes
      * @return Certification[]
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
@@ -107,6 +107,12 @@ class CertificationApi extends AbstractApi
         );
     }
 
+    /**
+     * @param string[] $uuids
+     * @throws \JsonException
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     */
     public function setCertificationsPrintDate(array $uuids): void
     {
         $this->client->request(

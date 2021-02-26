@@ -27,6 +27,7 @@ class GDPRApi extends AbstractApi
     }
 
     /**
+     * @return array<string, mixed>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -41,6 +42,7 @@ class GDPRApi extends AbstractApi
     }
 
     /**
+     * @return array<string, mixed>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */

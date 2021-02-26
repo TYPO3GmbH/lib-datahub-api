@@ -11,6 +11,9 @@ namespace T3G\DatahubApiLibrary\Factory;
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\MailAddressFilter;
 
+/**
+ * @method static array{entities: array<string, mixed>} responseToArray(ResponseInterface $response)
+ */
 class MailAddressFilterListFactory extends AbstractFactory
 {
     /**
@@ -25,7 +28,7 @@ class MailAddressFilterListFactory extends AbstractFactory
     }
 
     /**
-     * @param array $list
+     * @param array{entities: array<string, mixed>} $list
      * @return MailAddressFilter[]
      */
     public static function fromArray(array $list): array

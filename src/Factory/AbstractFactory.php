@@ -12,6 +12,11 @@ use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractFactory
 {
+    /**
+     * @param string $data
+     * @return array<string, mixed>
+     * @throws \JsonException
+     */
     protected static function jsonDecode(string $data): array
     {
         return json_decode($data, true, 512, JSON_THROW_ON_ERROR);
@@ -24,5 +29,9 @@ abstract class AbstractFactory
 
     abstract public static function fromResponse(ResponseInterface $response);
 
+    /**
+     * @param array<string, mixed> $data
+     * @return mixed
+     */
     abstract public static function fromArray(array $data);
 }

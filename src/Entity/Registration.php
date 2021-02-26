@@ -29,6 +29,9 @@ class Registration implements JsonSerializable
 
     private ?DateTimeInterface $validUntil = null;
 
+    /**
+     * @var array<string, string>
+     */
     private array $approvedDocuments = [];
 
     public function jsonSerialize()
@@ -133,6 +136,9 @@ class Registration implements JsonSerializable
         return $this;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getApprovedDocuments(): array
     {
         return $this->approvedDocuments;

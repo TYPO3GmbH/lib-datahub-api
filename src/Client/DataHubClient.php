@@ -81,6 +81,12 @@ class DataHubClient
         return $response;
     }
 
+    /**
+     * @param string $needle
+     * @param string[] $haystack
+     * @param bool $caseInsensitive
+     * @return string[]
+     */
     private function substrArray(string $needle, array $haystack, bool $caseInsensitive = false): array
     {
         return array_filter($haystack, static function ($item) use ($needle, $caseInsensitive) {
@@ -88,6 +94,11 @@ class DataHubClient
         });
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @return array<string, array<string, array<array<string>>|int|UriInterface|string>>
+     */
     private function getLogContext(RequestInterface $request, ResponseInterface $response): array
     {
         return [

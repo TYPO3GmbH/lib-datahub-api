@@ -14,6 +14,7 @@ use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 class BitMaskApi extends AbstractApi
 {
     /**
+     * @return array<int, string>
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */

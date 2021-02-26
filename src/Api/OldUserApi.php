@@ -21,6 +21,7 @@ class OldUserApi extends AbstractApi
     use HandlesUuids;
 
     /**
+     * @return ReservedUser[]
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */

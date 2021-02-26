@@ -30,7 +30,12 @@ class SubscriptionApi extends AbstractApi
         );
     }
 
-    /** @phpstan-return array<int,mixed> */
+    /**
+     * @return array<int,mixed>
+     * @throws \JsonException
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     */
     public function getSubscriptionProducts(): array
     {
         $data = $this->client->request(

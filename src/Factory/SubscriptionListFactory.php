@@ -11,6 +11,9 @@ namespace T3G\DatahubApiLibrary\Factory;
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Subscription;
 
+/**
+ * @method static array{entities: array<string, mixed>} responseToArray(ResponseInterface $response)
+ */
 class SubscriptionListFactory extends AbstractFactory
 {
     /**
@@ -25,7 +28,7 @@ class SubscriptionListFactory extends AbstractFactory
     }
 
     /**
-     * @param array<string, mixed> $list
+     * @param array{entities: array<string, mixed>} $list
      * @return Subscription[]
      */
     public static function fromArray(array $list): array

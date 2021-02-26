@@ -8,6 +8,7 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use App\Entity\PendingRegistration;
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\Registration;
 use T3G\DatahubApiLibrary\Entity\User;
@@ -32,6 +33,7 @@ class PendingRegistrationApi extends AbstractApi
     }
 
     /**
+     * @return PendingRegistration[]
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */

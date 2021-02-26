@@ -15,14 +15,21 @@ namespace T3G\DatahubApiLibrary\Enum;
  */
 abstract class AbstractEnum
 {
+    /**
+     * @var array<string, string>
+     */
     protected static array $optionNames = [];
 
-    public static function getName($option): string
+    public static function getName(?string $option): string
     {
         return static::$optionNames[$option] ?? ('Unknown option (' . $option . ')');
     }
 
-    public static function getAvailableOptions($withDescription = false): array
+    /**
+     * @param bool $withDescription
+     * @return array<int|string, string>
+     */
+    public static function getAvailableOptions(bool $withDescription = false): array
     {
         return $withDescription ? static::$optionNames : array_keys(static::$optionNames);
     }

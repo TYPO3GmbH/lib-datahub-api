@@ -67,7 +67,7 @@ class ExamAccess implements JsonSerializable
         return $this;
     }
 
-    public function setCertificationVersion($certificationVersion): self
+    public function setCertificationVersion(string $certificationVersion): self
     {
         $this->certificationVersion = $certificationVersion;
 

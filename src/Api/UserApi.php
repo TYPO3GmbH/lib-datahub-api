@@ -37,10 +37,11 @@ class UserApi extends AbstractApi
                 self::uri('/users'),
                 json_encode([
                     'username' => $user->getUsername(),
+                    'password' => $user->getPassword(),
                     'firstName' => $user->getFirstName(),
                     'lastName' => $user->getLastName(),
                     'email' => $user->getPrimaryEmail(),
-                    ], JSON_THROW_ON_ERROR, 512)
+                ], JSON_THROW_ON_ERROR, 512)
             )
         );
     }

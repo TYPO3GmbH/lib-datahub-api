@@ -17,6 +17,8 @@ class User implements JsonSerializable
 {
     private string $username;
 
+    private ?string $password = null;
+
     private ?string $email = null;
 
     private ?string $firstName = null;
@@ -97,6 +99,7 @@ class User implements JsonSerializable
     {
         return [
             'username' => $this->getUserName(),
+            'password' => $this->getPassword(),
             'firstName' => $this->getFirstName(),
             'lastName' => $this->getLastName(),
             'email' => $this->getPrimaryEmail(),
@@ -114,6 +117,17 @@ class User implements JsonSerializable
     public function setUsername(string $username): self
     {
         $this->username = $username;
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): self
+    {
+        $this->password = $password;
         return $this;
     }
 

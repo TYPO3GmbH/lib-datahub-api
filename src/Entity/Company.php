@@ -20,6 +20,7 @@ class Company implements JsonSerializable
     private string $companyType = CompanyType::AGENCY;
     private string $title;
     private ?string $slug = null;
+    private ?string $owner = null;
     private string $email;
     private ?string $vatId = null;
     private ?int $hubspotId = null;
@@ -84,6 +85,7 @@ class Company implements JsonSerializable
             'companyType' => $this->getCompanyType(),
             'title' => $this->getTitle(),
             'slug' => $this->getSlug(),
+            'owner' => $this->getOwner(),
             'email' => $this->getEmail(),
             'vatId' => $this->getVatId(),
             'city' => $this->getCity(),
@@ -144,6 +146,17 @@ class Company implements JsonSerializable
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+        return $this;
+    }
+
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?string $owner): self
+    {
+        $this->owner = $owner;
         return $this;
     }
 

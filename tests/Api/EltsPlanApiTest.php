@@ -10,8 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\EltsPlanApi;
-use T3G\DatahubApiLibrary\Entity\EltsPlan;
-use T3G\DatahubApiLibrary\Entity\Order;
+use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
 use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 
 class EltsPlanApiTest extends AbstractApiTest
@@ -26,10 +25,10 @@ class EltsPlanApiTest extends AbstractApiTest
         $response = (new EltsPlanApi($this->getClient($handler)))
             ->createEltsPlanForUser('oelie-boelie', $eltsPlan);
 
-        self::assertEquals($eltsPlan->getVersion(), $response->getVersion());
-        self::assertEquals($eltsPlan->getType(), $response->getType());
-        self::assertEquals($eltsPlan->getRuntime(), $response->getRuntime());
-        self::assertEquals($eltsPlan->getOrder(), $response->getOrder());
+        self::assertEquals($eltsPlan->version, $response->getVersion());
+        self::assertEquals($eltsPlan->type, $response->getType());
+        self::assertEquals($eltsPlan->runtime, $response->getRuntime());
+        self::assertEquals($eltsPlan->orderNumber, $response->getOrder()->getOrderNumber());
         self::assertCount(1, $response->getInstances());
     }
 
@@ -43,25 +42,20 @@ class EltsPlanApiTest extends AbstractApiTest
         $response = (new EltsPlanApi($this->getClient($handler)))
             ->createEltsPlanForCompany('00000000-0000-0000-0000-000000000000', $eltsPlan);
 
-        self::assertEquals($eltsPlan->getVersion(), $response->getVersion());
-        self::assertEquals($eltsPlan->getType(), $response->getType());
-        self::assertEquals($eltsPlan->getRuntime(), $response->getRuntime());
-        self::assertEquals($eltsPlan->getOrder(), $response->getOrder());
+        self::assertEquals($eltsPlan->version, $response->getVersion());
+        self::assertEquals($eltsPlan->type, $response->getType());
+        self::assertEquals($eltsPlan->runtime, $response->getRuntime());
+        self::assertEquals($eltsPlan->orderNumber, $response->getOrder()->getOrderNumber());
         self::assertCount(1, $response->getInstances());
     }
 
-    private function getTestEltsPlan(): EltsPlan
+    private function getTestEltsPlan(): CreateEltsPlanDto
     {
-        return (new EltsPlan())
-            ->setVersion('8.7')
-            ->setType(EltsPlanType::AGENCY)
-            ->setRuntime('1-3')
-            ->setOrder(
-                (new Order())
-                ->setUuid('00000000-0000-0000-0000-000000000000')
-                ->setOrderNumber('G123456')
-                ->setPayload([])
-                ->setCreatedAt(new \DateTime('2020-01-10T00:00:00+00:00'))
-            );
+        $createEltsPlanDto = new CreateEltsPlanDto();
+        $createEltsPlanDto->version = '8.7';
+        $createEltsPlanDto->type = EltsPlanType::AGENCY;
+        $createEltsPlanDto->runtime = '1-3';
+        $createEltsPlanDto->orderNumber = 'G123456';
+        return $createEltsPlanDto;
     }
 }

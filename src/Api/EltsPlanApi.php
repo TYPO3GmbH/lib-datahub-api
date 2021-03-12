@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
+use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
@@ -24,7 +25,7 @@ class EltsPlanApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function createEltsPlanForUser(string $username, EltsPlan $eltsPlan): EltsPlan
+    public function createEltsPlanForUser(string $username, CreateEltsPlanDto $eltsPlan): EltsPlan
     {
         return EltsPlanFactory::fromResponse(
             $this->client->request(
@@ -40,7 +41,7 @@ class EltsPlanApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function createEltsPlanForCompany(string $uuid, EltsPlan $eltsPlan): EltsPlan
+    public function createEltsPlanForCompany(string $uuid, CreateEltsPlanDto $eltsPlan): EltsPlan
     {
         $this->isValidUuidOrThrow($uuid);
 

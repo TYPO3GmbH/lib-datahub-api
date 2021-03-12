@@ -32,6 +32,10 @@ class EltsPlanFactory extends AbstractFactory
             ->setRuntime($data['runtime'])
             ->setVersion($data['version']);
 
+        if (isset($data['order'])) {
+            $eltsPlan->setOrder(OrderFactory::fromArray($data['order']));
+        }
+
         foreach ($data['instances'] ?? [] as $instance) {
             $eltsPlan->addInstance(EltsInstanceFactory::fromArray($instance));
         }

@@ -16,6 +16,7 @@ class EltsPlan implements JsonSerializable
     private string $version;
     private string $type;
     private string $runtime;
+    private ?Order $order = null;
 
     /**
      * @var EltsInstance[]
@@ -28,6 +29,7 @@ class EltsPlan implements JsonSerializable
             'version' => $this->getVersion(),
             'type' => $this->getType(),
             'runtime' => $this->getRuntime(),
+            'order' => $this->getOrder(),
         ];
     }
 
@@ -96,6 +98,17 @@ class EltsPlan implements JsonSerializable
     public function addInstance(EltsInstance $instance): self
     {
         $this->instances[] = $instance;
+        return $this;
+    }
+
+    public function getOrder(): ?Order
+    {
+        return $this->order;
+    }
+
+    public function setOrder(?Order $order = null): self
+    {
+        $this->order = $order;
         return $this;
     }
 }

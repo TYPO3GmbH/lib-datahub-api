@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\EltsPlanApi;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
+use T3G\DatahubApiLibrary\Entity\Order;
 use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 
 class EltsPlanApiTest extends AbstractApiTest
@@ -28,6 +29,7 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertEquals($eltsPlan->getVersion(), $response->getVersion());
         self::assertEquals($eltsPlan->getType(), $response->getType());
         self::assertEquals($eltsPlan->getRuntime(), $response->getRuntime());
+        self::assertEquals($eltsPlan->getOrder(), $response->getOrder());
         self::assertCount(1, $response->getInstances());
     }
 
@@ -44,6 +46,7 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertEquals($eltsPlan->getVersion(), $response->getVersion());
         self::assertEquals($eltsPlan->getType(), $response->getType());
         self::assertEquals($eltsPlan->getRuntime(), $response->getRuntime());
+        self::assertEquals($eltsPlan->getOrder(), $response->getOrder());
         self::assertCount(1, $response->getInstances());
     }
 
@@ -52,6 +55,13 @@ class EltsPlanApiTest extends AbstractApiTest
         return (new EltsPlan())
             ->setVersion('8.7')
             ->setType(EltsPlanType::AGENCY)
-            ->setRuntime('1-3');
+            ->setRuntime('1-3')
+            ->setOrder(
+                (new Order())
+                ->setUuid('00000000-0000-0000-0000-000000000000')
+                ->setOrderNumber('G123456')
+                ->setPayload([])
+                ->setCreatedAt(new \DateTime('2020-01-10T00:00:00+00:00'))
+            );
     }
 }

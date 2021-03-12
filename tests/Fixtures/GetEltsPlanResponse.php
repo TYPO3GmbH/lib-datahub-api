@@ -14,6 +14,13 @@ return new Response(200, ['content-type' => 'application/json'], '
       "version": "8.7",
       "type": "agency",
       "runtime": "1-3",
+      "order": {
+        "uuid": "00000000-0000-0000-0000-000000000000",
+        "orderNumber": "G123456",
+        "payload": [],
+        "invoices": [],
+        "createdAt": "2020-01-10T00:00:00+00:00"
+      },
       "instances": [
         {
             "uuid": "c5c729b5-e5c3-42f3-89ce-caa07e670fc2",

@@ -15,7 +15,7 @@ class EltsPlan implements JsonSerializable
     private string $uuid;
     private string $version;
     private string $type;
-    private ?string $title;
+    private ?string $title = null;
     private string $runtime;
     private ?Order $order = null;
     private ?\DateTimeInterface $validFrom = null;

@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 use T3G\DatahubApiLibrary\Factory\EltsPlanFactory;
 
 class EltsPlanFactoryTest extends TestCase
@@ -33,7 +34,9 @@ class EltsPlanFactoryTest extends TestCase
         if (isset($data['instances'])) {
             $instanceCount = count($data['instances']);
         }
+        self::assertEquals($data['title'] ?? EltsPlanType::getName($data['type']), $entity->getTitle());
         self::assertCount($instanceCount, $entity->getInstances());
+        self::assertEquals(isset($data['licenses']) ? $data['licenses'] : 0, $entity->getLicenses());
     }
 
     public function factoryDataProvider(): array
@@ -44,6 +47,7 @@ class EltsPlanFactoryTest extends TestCase
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'version' => '8.7',
                     'type' => 'agency',
+                    'title' => 'Agency Plan',
                     'runtime' => '1-3',
                     'validFrom' => '2020-04-01T00:00:00+00:00',
                     'validTo' => '2023-03-31T00:00:00+00:00',

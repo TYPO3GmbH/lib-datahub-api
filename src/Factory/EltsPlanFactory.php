@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Factory;
 
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
+use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 
 class EltsPlanFactory extends AbstractFactory
 {
@@ -40,6 +41,11 @@ class EltsPlanFactory extends AbstractFactory
         }
         if (isset($data['validTo'])) {
             $eltsPlan->setValidTo($data['validTo'] ? new \DateTime($data['validTo']) : null);
+        }
+        if (isset($data['title'])) {
+            $eltsPlan->setTitle($data['title']);
+        } else {
+            $eltsPlan->setTitle(EltsPlanType::getName($data['type']));
         }
         if (isset($data['licenses'])) {
             $eltsPlan->setLicenses($data['licenses']);

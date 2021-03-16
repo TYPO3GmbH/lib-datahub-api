@@ -41,6 +41,9 @@ class EltsPlanFactory extends AbstractFactory
         if (isset($data['validTo'])) {
             $eltsPlan->setValidTo($data['validTo'] ? new \DateTime($data['validTo']) : null);
         }
+        if (isset($data['licenses'])) {
+            $eltsPlan->setLicenses($data['licenses']);
+        }
 
         foreach ($data['instances'] ?? [] as $instance) {
             $eltsPlan->addInstance(EltsInstanceFactory::fromArray($instance));

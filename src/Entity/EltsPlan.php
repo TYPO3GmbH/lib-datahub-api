@@ -19,6 +19,7 @@ class EltsPlan implements JsonSerializable
     private ?Order $order = null;
     private ?\DateTimeInterface $validFrom = null;
     private ?\DateTimeInterface $validTo = null;
+    private ?int $licenses = 0;
 
     /**
      * @var EltsInstance[]
@@ -34,6 +35,7 @@ class EltsPlan implements JsonSerializable
             'order' => $this->getOrder(),
             'validFrom' => $this->getValidFrom(),
             'validTo' => $this->getValidTo(),
+            'licenses' => $this->getLicenses(),
         ];
     }
 
@@ -137,6 +139,18 @@ class EltsPlan implements JsonSerializable
     public function setOrder(?Order $order = null): self
     {
         $this->order = $order;
+        return $this;
+    }
+
+    public function getLicenses(): ?int
+    {
+        return $this->licenses;
+    }
+
+    public function setLicenses(?int $licenses): self
+    {
+        $this->licenses = $licenses;
+
         return $this;
     }
 }

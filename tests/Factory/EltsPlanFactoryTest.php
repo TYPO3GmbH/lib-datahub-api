@@ -47,6 +47,7 @@ class EltsPlanFactoryTest extends TestCase
                     'runtime' => '1-3',
                     'validFrom' => '2020-04-01T00:00:00+00:00',
                     'validTo' => '2023-03-31T00:00:00+00:00',
+                    'licenses' => null,
                     'instances' => [
                         [
                             'uuid' => 'add4c176-5fda-4b02-a877-ca3f4d48ca3f',

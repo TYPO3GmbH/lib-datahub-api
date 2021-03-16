@@ -15,6 +15,7 @@ class EltsPlan implements JsonSerializable
     private string $uuid;
     private string $version;
     private string $type;
+    private ?string $title;
     private string $runtime;
     private ?Order $order = null;
     private ?\DateTimeInterface $validFrom = null;
@@ -31,6 +32,7 @@ class EltsPlan implements JsonSerializable
         return [
             'version' => $this->getVersion(),
             'type' => $this->getType(),
+            'title' => $this->getTitle(),
             'runtime' => $this->getRuntime(),
             'order' => $this->getOrder(),
             'validFrom' => $this->getValidFrom(),
@@ -69,6 +71,17 @@ class EltsPlan implements JsonSerializable
     public function setType(string $type): self
     {
         $this->type = $type;
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
         return $this;
     }
 

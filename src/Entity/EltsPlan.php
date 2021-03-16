@@ -17,6 +17,8 @@ class EltsPlan implements JsonSerializable
     private string $type;
     private string $runtime;
     private ?Order $order = null;
+    private ?\DateTimeInterface $validFrom = null;
+    private ?\DateTimeInterface $validTo = null;
 
     /**
      * @var EltsInstance[]
@@ -30,6 +32,8 @@ class EltsPlan implements JsonSerializable
             'type' => $this->getType(),
             'runtime' => $this->getRuntime(),
             'order' => $this->getOrder(),
+            'validFrom' => $this->getValidFrom(),
+            'validTo' => $this->getValidTo(),
         ];
     }
 
@@ -74,6 +78,30 @@ class EltsPlan implements JsonSerializable
     public function setRuntime(string $runtime): self
     {
         $this->runtime = $runtime;
+        return $this;
+    }
+
+    public function getValidFrom(): ?\DateTimeInterface
+    {
+        return $this->validFrom;
+    }
+
+    public function setValidFrom(?\DateTimeInterface $validFrom): self
+    {
+        $this->validFrom = $validFrom;
+
+        return $this;
+    }
+
+    public function getValidTo(): ?\DateTimeInterface
+    {
+        return $this->validTo;
+    }
+
+    public function setValidTo(?\DateTimeInterface $validTo): self
+    {
+        $this->validTo = $validTo;
+
         return $this;
     }
 

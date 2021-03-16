@@ -20,11 +20,20 @@ class EltsPlanFactoryTest extends TestCase
     public function testFactory(array $data): void
     {
         $entity = EltsPlanFactory::fromArray($data);
+
         self::assertEquals($data['uuid'], $entity->getUuid());
         self::assertEquals($data['version'], $entity->getVersion());
         self::assertEquals($data['type'], $entity->getType());
         self::assertEquals($data['runtime'], $entity->getRuntime());
-        self::assertCount(1, $entity->getInstances());
+        $data['validFrom'] = $data['validFrom'] ?? null;
+        self::assertEquals($data['validFrom'] ? new \DateTime($data['validFrom']) : null, $entity->getValidFrom());
+        $data['validTo'] = $data['validTo'] ?? null;
+        self::assertEquals($data['validTo'] ? new \DateTime($data['validTo']) : null, $entity->getValidTo());
+        $instanceCount = 0;
+        if (isset($data['instances'])) {
+            $instanceCount = count($data['instances']);
+        }
+        self::assertCount($instanceCount, $entity->getInstances());
     }
 
     public function factoryDataProvider(): array
@@ -36,6 +45,8 @@ class EltsPlanFactoryTest extends TestCase
                     'version' => '8.7',
                     'type' => 'agency',
                     'runtime' => '1-3',
+                    'validFrom' => '2020-04-01T00:00:00+00:00',
+                    'validTo' => '2023-03-31T00:00:00+00:00',
                     'instances' => [
                         [
                             'uuid' => 'add4c176-5fda-4b02-a877-ca3f4d48ca3f',
@@ -44,6 +55,14 @@ class EltsPlanFactoryTest extends TestCase
                             'technicalContacts' => [],
                         ],
                     ],
+                ],
+            ],
+            'minimum' => [
+                'data' => [
+                    'uuid' => '00000000-0000-0000-0000-000000000000',
+                    'version' => '8.7',
+                    'type' => 'agency',
+                    'runtime' => '1-3',
                 ],
             ],
         ];

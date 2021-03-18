@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use T3G\DatahubApiLibrary\Dto\ValidateEltsCredentialsDto;
 use T3G\DatahubApiLibrary\Entity\EltsAccessToken;
 use T3G\DatahubApiLibrary\Factory\EltsAccessTokenFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
@@ -37,6 +38,15 @@ class EltsAccessTokenApi extends AbstractApi
                 'GET',
                 self::uri('/elts/access-token/' . $uuid),
             )
+        );
+    }
+
+    public function validateEltsAccessToken(ValidateEltsCredentialsDto $validateEltsCredentialsDto): void
+    {
+        $this->client->request(
+            'POST',
+            self::uri('/elts/validate-access-token'),
+            json_encode($validateEltsCredentialsDto, JSON_THROW_ON_ERROR)
         );
     }
 

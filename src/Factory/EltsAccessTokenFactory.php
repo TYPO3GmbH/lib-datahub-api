@@ -25,6 +25,8 @@ class EltsAccessTokenFactory extends AbstractFactory
     {
         $token = (new EltsAccessToken())
             ->setCreatedAt(new \DateTime($data['createdAt']))
+            ->setName($data['name'] ?? '')
+            ->setDescription($data['description'] ?? '')
             ->setToken($data['token'])
             ->setUuid($data['uuid']);
 

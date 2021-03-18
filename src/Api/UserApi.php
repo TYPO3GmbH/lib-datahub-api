@@ -67,11 +67,14 @@ class UserApi extends AbstractApi
      * @param bool $withOrders
      * @param bool $withSubscriptions
      * @param bool $withVoucherCodes
+     * @param bool $withEltsPlans
+     * @param bool $withEltsAccessTokens
+     * @param bool $withEltsGitPublicTokens
      * @return User
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
-    public function getUser(string $username, bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false, bool $withEltsPlans = false): User
+    public function getUser(string $username, bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false, bool $withEltsPlans = false, bool $withEltsAccessTokens = false, bool $withEltsGitPublicTokens = false): User
     {
         return UserFactory::fromResponse(
             $this->client->request(
@@ -81,6 +84,8 @@ class UserApi extends AbstractApi
                     'withSubscriptions' => (int)$withSubscriptions,
                     'withVoucherCodes' => (int)$withVoucherCodes,
                     'withEltsPlans' => (int)$withEltsPlans,
+                    'withEltsAccessTokens' => (int)$withEltsAccessTokens,
+                    'withEltsGitPublicTokens' => (int)$withEltsGitPublicTokens,
                 ])),
             )
         );

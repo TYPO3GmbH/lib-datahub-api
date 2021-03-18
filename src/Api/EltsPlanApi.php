@@ -70,4 +70,20 @@ class EltsPlanApi extends AbstractApi
             )
         );
     }
+
+    /**
+     * @param string $username
+     * @return array<int, string>
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws \JsonException
+     */
+    public function getEltsVersionAccess(string $username): array
+    {
+        $content = $this->client->request(
+            'GET',
+            self::uri('/elts/version-access/' . mb_strtolower($username))
+        )->getBody()->getContents();
+        return json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+    }
 }

@@ -95,6 +95,16 @@ class User implements JsonSerializable
      */
     private array $eltsPlans = [];
 
+    /**
+     * @var EltsAccessToken[]
+     */
+    private array $eltsAccessTokens = [];
+
+    /**
+     * @var EltsGitPublicKey[]
+     */
+    private array $eltsGitPublicKeys = [];
+
     public function jsonSerialize()
     {
         return [
@@ -641,6 +651,54 @@ class User implements JsonSerializable
     public function addEltsPlan(EltsPlan $eltsPlan): self
     {
         $this->eltsPlans[] = $eltsPlan;
+        return $this;
+    }
+
+    /**
+     * @return EltsAccessToken[]
+     */
+    public function getEltsAccessTokens(): array
+    {
+        return $this->eltsAccessTokens;
+    }
+
+    /**
+     * @param EltsAccessToken[] $eltsAccessTokens
+     * @return $this
+     */
+    public function setEltsAccessTokens(array $eltsAccessTokens): self
+    {
+        $this->eltsAccessTokens = $eltsAccessTokens;
+        return $this;
+    }
+
+    public function addEltsAccessToken(EltsAccessToken $eltsAccessToken): self
+    {
+        $this->eltsAccessTokens[] = $eltsAccessToken;
+        return $this;
+    }
+
+    /**
+     * @return EltsGitPublicKey[]
+     */
+    public function getEltsGitPublicKey(): array
+    {
+        return $this->eltsGitPublicKeys;
+    }
+
+    /**
+     * @param EltsGitPublicKey[] $eltsGitPublicKeys
+     * @return $this
+     */
+    public function setEltsGitPublicKeys(array $eltsGitPublicKeys): self
+    {
+        $this->eltsGitPublicKeys = $eltsGitPublicKeys;
+        return $this;
+    }
+
+    public function addEltsGitPublicKey(EltsGitPublicKey $eltsGitPublicKey): self
+    {
+        $this->eltsGitPublicKeys[] = $eltsGitPublicKey;
         return $this;
     }
 }

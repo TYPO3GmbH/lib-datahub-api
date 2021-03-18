@@ -17,12 +17,13 @@ class EltsAccessTokenApi extends AbstractApi
 {
     use HandlesUuids;
 
-    public function createEltsAccessToken(string $username): EltsAccessToken
+    public function createEltsAccessToken(string $username, EltsAccessToken $eltsAccessToken): EltsAccessToken
     {
         return EltsAccessTokenFactory::fromResponse(
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/elts-access-token'),
+                json_encode($eltsAccessToken, JSON_THROW_ON_ERROR, 512)
             )
         );
     }

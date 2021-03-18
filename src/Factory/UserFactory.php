@@ -71,6 +71,12 @@ class UserFactory extends AbstractFactory
         foreach ($data['eltsPlans'] ?? [] as $eltsPlan) {
             $user->addEltsPlan(EltsPlanFactory::fromArray($eltsPlan));
         }
+        foreach ($data['eltsAccessTokens'] ?? [] as $eltsAccessToken) {
+            $user->addEltsAccessToken(EltsAccessTokenFactory::fromArray($eltsAccessToken));
+        }
+        foreach ($data['eltsPublicKeys'] ?? [] as $eltsPublicKey) {
+            $user->addEltsGitPublicKey(EltsGitPublicKeyFactory::fromArray($eltsPublicKey));
+        }
 
         return $user;
     }

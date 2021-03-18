@@ -12,13 +12,18 @@ namespace T3G\DatahubApiLibrary\Entity;
 class EltsAccessToken implements \JsonSerializable
 {
     private string $uuid;
+    private string $name;
+    private string $description;
     private string $token;
     private \DateTimeInterface $createdAt;
     private ?User $user;
 
     public function jsonSerialize()
     {
-        return [];
+        return [
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+        ];
     }
 
     public function getUuid(): string
@@ -29,6 +34,28 @@ class EltsAccessToken implements \JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+        return $this;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
         return $this;
     }
 

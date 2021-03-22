@@ -36,6 +36,18 @@ class EltsPlanFactoryTest extends TestCase
         }
         self::assertEquals($data['title'] ?? EltsPlanType::getName($data['type']), $entity->getTitle());
         self::assertCount($instanceCount, $entity->getInstances());
+
+        $releaseNotificationsCount = 0;
+        if (isset($data['releaseNotifications'])) {
+            $releaseNotificationsCount = count($data['releaseNotifications']);
+        }
+        self::assertCount($releaseNotificationsCount, $entity->getReleaseNotifications());
+
+        $technicalContactsCount = 0;
+        if (isset($data['technicalContacts'])) {
+            $technicalContactsCount = count($data['technicalContacts']);
+        }
+        self::assertCount($technicalContactsCount, $entity->getTechnicalContacts());
         self::assertEquals(isset($data['licenses']) ? $data['licenses'] : 0, $entity->getLicenses());
     }
 
@@ -56,10 +68,30 @@ class EltsPlanFactoryTest extends TestCase
                         [
                             'uuid' => 'add4c176-5fda-4b02-a877-ca3f4d48ca3f',
                             'name' => 'Wololo',
-                            'simpleTechnicalContacts' => [],
                             'technicalContacts' => [],
                         ],
                     ],
+                    'releaseNotifications' => [
+                        [
+                            'uuid' => '33333333-3333-3333-3333-333333333333',
+                            'name' => 'From Plan 2.1',
+                            'email' => 'from-plan1@typo3.com',
+                            'inherited' => true,
+                            'owner' => 'organization:00000000-0000-0000-0000-000000000000',
+                            'accepted' => false
+                        ]
+                    ],
+                    'technicalContacts' => [
+                        [
+                            'uuid' => '44444444-4444-4444-4444-444444444444',
+                            'firstName' => 'From Plan 1',
+                            'lastName' => 'From Plan 1',
+                            'email' => 'from-plan-1@typo3.com',
+                            'accepted' => false,
+                            'inherited' => true,
+                            'username' => 'plan1_1'
+                        ]
+                    ]
                 ],
             ],
             'minimum' => [

@@ -9,11 +9,11 @@
 namespace T3G\DatahubApiLibrary\Factory;
 
 use Psr\Http\Message\ResponseInterface;
-use T3G\DatahubApiLibrary\Entity\SimpleTechnicalContact;
+use T3G\DatahubApiLibrary\Entity\TechnicalContact;
 
-class SimpleTechnicalContactFactory extends AbstractFactory
+class TechnicalContactFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): SimpleTechnicalContact
+    public static function fromResponse(ResponseInterface $response): TechnicalContact
     {
         $data = self::responseToArray($response);
 
@@ -22,14 +22,15 @@ class SimpleTechnicalContactFactory extends AbstractFactory
 
     /**
      * @param array<string, string> $data
-     * @return SimpleTechnicalContact
+     * @return TechnicalContact
      */
-    public static function fromArray(array $data): SimpleTechnicalContact
+    public static function fromArray(array $data): TechnicalContact
     {
-        return (new SimpleTechnicalContact())
+        return (new TechnicalContact())
             ->setUuid($data['uuid'])
             ->setFirstName($data['firstName'])
             ->setLastName($data['lastName'])
-            ->setEmail($data['email']);
+            ->setEmail($data['email'])
+            ->setUser($data['user'] ?? null);
     }
 }

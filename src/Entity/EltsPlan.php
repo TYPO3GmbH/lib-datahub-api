@@ -23,6 +23,16 @@ class EltsPlan implements JsonSerializable
     private ?int $licenses = 0;
 
     /**
+     * @var TechnicalContact[]
+     */
+    private array $technicalContacts = [];
+
+    /**
+     * @var ReleaseNotification[]
+     */
+    private array $releaseNotifications = [];
+
+    /**
      * @var EltsInstance[]
      */
     private array $instances = [];
@@ -164,6 +174,54 @@ class EltsPlan implements JsonSerializable
     {
         $this->licenses = $licenses;
 
+        return $this;
+    }
+
+    /**
+     * @return TechnicalContact[]
+     */
+    public function getTechnicalContacts(): array
+    {
+        return $this->technicalContacts;
+    }
+
+    /**
+     * @param TechnicalContact[] $technicalContacts
+     * @return self
+     */
+    public function setTechnicalContacts(array $technicalContacts): self
+    {
+        $this->technicalContacts = $technicalContacts;
+        return $this;
+    }
+
+    public function addTechnicalContact(TechnicalContact $technicalContacts): self
+    {
+        $this->technicalContacts[] = $technicalContacts;
+        return $this;
+    }
+
+    /**
+     * @return ReleaseNotification[]
+     */
+    public function getReleaseNotifications(): array
+    {
+        return $this->releaseNotifications;
+    }
+
+    /**
+     * @param ReleaseNotification[] $releaseNotifications
+     * @return self
+     */
+    public function setReleaseNotifications(array $releaseNotifications): self
+    {
+        $this->releaseNotifications = $releaseNotifications;
+        return $this;
+    }
+
+    public function addReleaseNotification(ReleaseNotification $releaseNotification): self
+    {
+        $this->releaseNotifications[] = $releaseNotification;
         return $this;
     }
 }

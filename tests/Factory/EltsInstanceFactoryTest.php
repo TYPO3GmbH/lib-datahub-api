@@ -22,8 +22,18 @@ class EltsInstanceFactoryTest extends TestCase
         $entity = EltsInstanceFactory::fromArray($data);
         self::assertEquals($data['uuid'], $entity->getUuid());
         self::assertEquals($data['name'], $entity->getName());
-        self::assertCount(1, $entity->getTechnicalContacts());
-        self::assertCount(1, $entity->getSimpleTechnicalContacts());
+
+        $releaseNotificationsCount = 0;
+        if (isset($data['releaseNotifications'])) {
+            $releaseNotificationsCount = count($data['releaseNotifications']);
+        }
+        self::assertCount($releaseNotificationsCount, $entity->getReleaseNotifications());
+
+        $technicalContactsCount = 0;
+        if (isset($data['technicalContacts'])) {
+            $technicalContactsCount = count($data['technicalContacts']);
+        }
+        self::assertCount($technicalContactsCount, $entity->getTechnicalContacts());
     }
 
     public function factoryDataProvider(): array
@@ -33,22 +43,25 @@ class EltsInstanceFactoryTest extends TestCase
                 'data' => [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'name' => 'Wololo',
+                    'releaseNotifications' => [
+                        [
+                            'uuid' => '33333333-3333-3333-3333-333333333333',
+                            'name' => 'From Plan 2.1',
+                            'email' => 'from-plan1@typo3.com',
+                            'inherited' => true,
+                            'owner' => 'organization:00000000-0000-0000-0000-000000000000',
+                            'accepted' => false
+                        ]
+                    ],
                     'technicalContacts' => [
                         [
+                            'uuid' => '00000000-0000-0000-0000-000000000000',
                             'username' => 'foo',
                             'firstName' => 'Foo',
                             'lastName' => 'Bar',
                             'email' => 'foo@bar.baz',
-                        ],
-                    ],
-                    'simpleTechnicalContacts' => [
-                        [
-                            'uuid' => '8084048d-5ce4-4727-9f4e-764ff07fa8a0',
-                            'firstName' => 'Baz',
-                            'lastName' => 'Bencer',
-                            'email' => 'baz@bencer.dev',
-                        ],
-                    ],
+                        ]
+                    ]
                 ],
             ],
         ];

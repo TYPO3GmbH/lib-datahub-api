@@ -54,6 +54,12 @@ class EltsPlanFactory extends AbstractFactory
         foreach ($data['instances'] ?? [] as $instance) {
             $eltsPlan->addInstance(EltsInstanceFactory::fromArray($instance));
         }
+        foreach ($data['technicalContacts'] ?? [] as $technicalContact) {
+            $eltsPlan->addTechnicalContact(TechnicalContactFactory::fromArray($technicalContact));
+        }
+        foreach ($data['releaseNotifications'] ?? [] as $releaseNotification) {
+            $eltsPlan->addReleaseNotification(ReleaseNotificationFactory::fromArray($releaseNotification));
+        }
 
         return $eltsPlan;
     }

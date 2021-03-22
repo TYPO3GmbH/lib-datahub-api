@@ -10,12 +10,13 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
 
-class SimpleTechnicalContact implements JsonSerializable
+class TechnicalContact implements JsonSerializable
 {
     private string $uuid;
     private string $firstName;
     private string $lastName;
     private string $email;
+    private ?string $user = null;
 
     /**
      * @return array<string, string>
@@ -70,6 +71,17 @@ class SimpleTechnicalContact implements JsonSerializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
+    }
+
+    public function getUser(): ?string
+    {
+        return $this->user;
+    }
+
+    public function setUser(?string $user): self
+    {
+        $this->user = $user;
         return $this;
     }
 }

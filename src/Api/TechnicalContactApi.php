@@ -9,13 +9,13 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
-use T3G\DatahubApiLibrary\Entity\SimpleTechnicalContact;
+use T3G\DatahubApiLibrary\Entity\TechnicalContact;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
-use T3G\DatahubApiLibrary\Factory\SimpleTechnicalContactFactory;
+use T3G\DatahubApiLibrary\Factory\TechnicalContactFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
-class SimpleTechnicalContactApi extends AbstractApi
+class TechnicalContactApi extends AbstractApi
 {
     use HandlesUuids;
 
@@ -24,15 +24,15 @@ class SimpleTechnicalContactApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function createSimpleTechnicalContactForInstance(string $uuid, SimpleTechnicalContact $simpleTechnicalContact): SimpleTechnicalContact
+    public function createTechnicalContactForInstance(string $uuid, TechnicalContact $technicalContact): TechnicalContact
     {
         $this->isValidUuidOrThrow($uuid);
 
-        return SimpleTechnicalContactFactory::fromResponse(
+        return TechnicalContactFactory::fromResponse(
             $this->client->request(
                 'POST',
-                self::uri('/elts/instance/' . $uuid . '/simple-technical-contact'),
-                json_encode($simpleTechnicalContact, JSON_THROW_ON_ERROR)
+                self::uri('/elts/instance/' . $uuid . '/technical-contact'),
+                json_encode($technicalContact, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -42,14 +42,14 @@ class SimpleTechnicalContactApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function getSimpleTechnicalContact(string $uuid): SimpleTechnicalContact
+    public function getTechnicalContact(string $uuid): TechnicalContact
     {
         $this->isValidUuidOrThrow($uuid);
 
-        return SimpleTechnicalContactFactory::fromResponse(
+        return TechnicalContactFactory::fromResponse(
             $this->client->request(
                 'GET',
-                self::uri('/elts/simple-technical-contact/' . $uuid)
+                self::uri('/elts/technical-contact/' . $uuid)
             )
         );
     }
@@ -59,15 +59,15 @@ class SimpleTechnicalContactApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function updateSimpleTechnicalContact(string $uuid, SimpleTechnicalContact $simpleTechnicalContact): SimpleTechnicalContact
+    public function updateTechnicalContact(string $uuid, TechnicalContact $technicalContact): TechnicalContact
     {
         $this->isValidUuidOrThrow($uuid);
 
-        return SimpleTechnicalContactFactory::fromResponse(
+        return TechnicalContactFactory::fromResponse(
             $this->client->request(
                 'PUT',
-                self::uri('/elts/simple-technical-contact/' . $uuid),
-                json_encode($simpleTechnicalContact, JSON_THROW_ON_ERROR)
+                self::uri('/elts/technical-contact/' . $uuid),
+                json_encode($technicalContact, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -77,13 +77,13 @@ class SimpleTechnicalContactApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function deleteSimpleTechnicalContact(string $uuid): void
+    public function deleteTechnicalContact(string $uuid): void
     {
         $this->isValidUuidOrThrow($uuid);
 
         $this->client->request(
             'DELETE',
-            self::uri('/elts/simple-technical-contact/' . $uuid),
+            self::uri('/elts/technical-contact/' . $uuid),
         );
     }
 }

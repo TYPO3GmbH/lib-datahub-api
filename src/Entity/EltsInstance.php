@@ -16,25 +16,22 @@ class EltsInstance implements JsonSerializable
     private string $name;
 
     /**
-     * @var User[]
+     * @var TechnicalContact[]
      */
     private array $technicalContacts = [];
 
     /**
-     * @var SimpleTechnicalContact[]
+     * @var ReleaseNotification[]
      */
-    private array $simpleTechnicalContacts = [];
+    private array $releaseNotifications = [];
 
     /**
-     * @return array{name: string, technicalContacts: string[]}
+     * @return array{name: string}
      */
     public function jsonSerialize(): array
     {
         return [
-            'name' => $this->getName(),
-            'technicalContacts' => array_unique(array_map(static function (User $user) {
-                return $user->getUsername();
-            }, $this->getTechnicalContacts())),
+            'name' => $this->getName()
         ];
     }
 
@@ -61,7 +58,7 @@ class EltsInstance implements JsonSerializable
     }
 
     /**
-     * @return User[]
+     * @return TechnicalContact[]
      */
     public function getTechnicalContacts(): array
     {
@@ -69,7 +66,7 @@ class EltsInstance implements JsonSerializable
     }
 
     /**
-     * @param User[] $technicalContacts
+     * @param TechnicalContact[] $technicalContacts
      * @return self
      */
     public function setTechnicalContacts(array $technicalContacts): self
@@ -78,33 +75,33 @@ class EltsInstance implements JsonSerializable
         return $this;
     }
 
-    public function addTechnicalContact(User $technicalContacts): self
+    public function addTechnicalContact(TechnicalContact $technicalContacts): self
     {
         $this->technicalContacts[] = $technicalContacts;
         return $this;
     }
 
     /**
-     * @return SimpleTechnicalContact[]
+     * @return ReleaseNotification[]
      */
-    public function getSimpleTechnicalContacts(): array
+    public function getReleaseNotifications(): array
     {
-        return $this->simpleTechnicalContacts;
+        return $this->releaseNotifications;
     }
 
     /**
-     * @param SimpleTechnicalContact[] $simpleTechnicalContacts
+     * @param ReleaseNotification[] $releaseNotifications
      * @return self
      */
-    public function setSimpleTechnicalContacts(array $simpleTechnicalContacts): self
+    public function setReleaseNotifications(array $releaseNotifications): self
     {
-        $this->simpleTechnicalContacts = $simpleTechnicalContacts;
+        $this->releaseNotifications = $releaseNotifications;
         return $this;
     }
 
-    public function addSimpleTechnicalContact(SimpleTechnicalContact $simpleTechnicalContact): self
+    public function addReleaseNotification(ReleaseNotification $releaseNotification): self
     {
-        $this->simpleTechnicalContacts[] = $simpleTechnicalContact;
+        $this->releaseNotifications[] = $releaseNotification;
         return $this;
     }
 }

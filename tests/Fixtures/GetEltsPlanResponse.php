@@ -25,8 +25,7 @@ return new Response(200, ['content-type' => 'application/json'], '
         {
             "uuid": "c5c729b5-e5c3-42f3-89ce-caa07e670fc2",
             "name": "Wololo, Inc.",
-            "technicalContacts": [],
-            "simpleTechnicalContacts": []
+            "technicalContacts": []
         }
       ]
     }

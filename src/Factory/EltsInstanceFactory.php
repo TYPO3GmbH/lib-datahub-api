@@ -30,12 +30,11 @@ class EltsInstanceFactory extends AbstractFactory
             ->setUuid($data['uuid'])
             ->setName($data['name']);
 
-        foreach ($data['simpleTechnicalContacts'] ?? [] as $simpleTechnicalContact) {
-            $eltsInstance->addSimpleTechnicalContact(SimpleTechnicalContactFactory::fromArray($simpleTechnicalContact));
-        }
-
         foreach ($data['technicalContacts'] ?? [] as $technicalContact) {
-            $eltsInstance->addTechnicalContact(UserFactory::fromArray($technicalContact));
+            $eltsInstance->addTechnicalContact(TechnicalContactFactory::fromArray($technicalContact));
+        }
+        foreach ($data['releaseNotifications'] ?? [] as $releaseNotification) {
+            $eltsInstance->addReleaseNotification(ReleaseNotificationFactory::fromArray($releaseNotification));
         }
 
         return $eltsInstance;

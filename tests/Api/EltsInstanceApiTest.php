@@ -11,7 +11,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\EltsInstanceApi;
 use T3G\DatahubApiLibrary\Entity\EltsInstance;
-use T3G\DatahubApiLibrary\Entity\User;
+use T3G\DatahubApiLibrary\Entity\TechnicalContact;
 
 class EltsInstanceApiTest extends AbstractApiTest
 {
@@ -82,8 +82,8 @@ class EltsInstanceApiTest extends AbstractApiTest
             ->setUuid('c5c729b5-e5c3-42f3-89ce-caa07e670fc2')
             ->setName('Wololo, Inc.')
             ->setTechnicalContacts([
-                (new User())->setUsername('foobar'),
-                (new User())->setUsername('bazbencer'),
+                (new TechnicalContact())->setUser('foobar'),
+                (new TechnicalContact())->setUser('bazbencer'),
             ]);
     }
 
@@ -92,7 +92,7 @@ class EltsInstanceApiTest extends AbstractApiTest
         return (new EltsInstance())
             ->setName('Wololo Ltd.')
             ->setTechnicalContacts([
-                (new User())->setUsername('bazbencer'),
+                (new TechnicalContact())->setUser('bazbencer'),
             ]);
     }
 }

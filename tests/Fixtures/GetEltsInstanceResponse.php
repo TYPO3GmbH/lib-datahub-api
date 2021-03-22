@@ -14,32 +14,19 @@ return new Response(200, ['content-type' => 'application/json'], '
     "name": "Wololo, Inc.",
     "technicalContacts": [
         {
+            "uuid": "c15e1db3-d663-4da0-bf2e-bf656753c900",
             "username": "foobar",
             "firstName": "Foo",
             "lastName": "Bar",
-            "emailAddresses": [
-                {
-                    "uuid": "c15e1db3-d663-4da0-bf2e-bf656753c900",
-                    "email": "foo@bar.dev",
-                    "type": 273,
-                    "optIn": null
-                }
-            ]
+            "email": "foo@bar.dev"
         },
         {
+            "uuid": "c15e1db3-d663-4da0-bf2e-bf656753c900",
             "username": "bazbencer",
             "firstName": "Baz",
             "lastName": "Bencer",
-            "emailAddresses": [
-                {
-                    "uuid": "c15e1db3-d663-4da0-bf2e-bf656753c900",
-                    "email": "foo@bar.dev",
-                    "type": 273,
-                    "optIn": null
-                }
-            ]
+            "email": "foo@bar.dev"
         }
-    ],
-    "simpleTechnicalContacts": []
+    ]
 }
 ');

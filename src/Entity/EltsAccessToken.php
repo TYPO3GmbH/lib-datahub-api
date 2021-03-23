@@ -13,7 +13,7 @@ class EltsAccessToken implements \JsonSerializable
 {
     private string $uuid;
     private string $name;
-    private string $description;
+    private string $description = '';
     private string $token;
     private \DateTimeInterface $createdAt;
     private ?User $user;

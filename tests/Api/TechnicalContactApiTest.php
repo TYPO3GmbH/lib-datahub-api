@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\TechnicalContactApi;
+use T3G\DatahubApiLibrary\Dto\CreateTechnicalContactDto;
 use T3G\DatahubApiLibrary\Entity\TechnicalContact;
 
 class TechnicalContactApiTest extends AbstractApiTest
@@ -17,17 +18,20 @@ class TechnicalContactApiTest extends AbstractApiTest
     public function testCreateTechnicalContactForInstance(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetTechnicalContactResponse.php'
+            require __DIR__ . '/../Fixtures/CreateTechnicalContactResponse.php'
         ]);
 
-        $technicalContactForGet = $this->getTestTechnicalContactForGet();
+        $technicalContact = new CreateTechnicalContactDto();
+        $technicalContact->firstName = 'Markus';
+        $technicalContact->lastName = 'Miller';
+        $technicalContact->email = 'markus.miller@typo3.com';
+        $technicalContact->instance = 'd209090d-be9e-4034-82e8-7a7ebb5b776c';
         $response = (new TechnicalContactApi($this->getClient($handler)))
-            ->createTechnicalContactForInstance('d209090d-be9e-4034-82e8-7a7ebb5b776c', $technicalContactForGet);
+            ->createTechnicalContact($technicalContact);
 
-        self::assertEquals($technicalContactForGet->getUuid(), $response->getUuid());
-        self::assertEquals($technicalContactForGet->getFirstName(), $response->getFirstName());
-        self::assertEquals($technicalContactForGet->getLastName(), $response->getLastName());
-        self::assertEquals($technicalContactForGet->getEmail(), $response->getEmail());
+        self::assertEquals($technicalContact->firstName, $response->getFirstName());
+        self::assertEquals($technicalContact->lastName, $response->getLastName());
+        self::assertEquals($technicalContact->email, $response->getEmail());
     }
 
     public function testGetTechnicalContact(): void

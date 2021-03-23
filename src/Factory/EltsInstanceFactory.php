@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Factory;
 
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\EltsInstance;
+use T3G\DatahubApiLibrary\Entity\EltsInstanceList;
 
 class EltsInstanceFactory extends AbstractFactory
 {
@@ -18,6 +19,19 @@ class EltsInstanceFactory extends AbstractFactory
         $data = self::responseToArray($response);
 
         return self::fromArray($data);
+    }
+    /**
+     * @param ResponseInterface $response
+     * @return EltsInstanceList
+     */
+    public static function fromResponseDataCollection(ResponseInterface $response): EltsInstanceList
+    {
+        $arrayResponse = self::responseToArray($response);
+        $data = array_map(
+            static fn (array $eltsInstanceData) => self::fromArray($eltsInstanceData),
+            $arrayResponse['entities']
+        );
+        return new EltsInstanceList($data);
     }
 
     /**

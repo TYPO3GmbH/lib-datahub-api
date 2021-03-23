@@ -45,6 +45,21 @@ class EltsInstanceApiTest extends AbstractApiTest
         self::assertCount(2, $response->getTechnicalContacts());
     }
 
+    public function testGetInstances(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetEltsInstancesResponse.php'
+        ]);
+
+        $response = (new EltsInstanceApi($this->getClient($handler)))->getInstances();
+
+        $instances = $response->getData();
+        self::assertCount(1, $instances);
+        self::assertEquals('c5c729b5-e5c3-42f3-89ce-caa07e670fc2', $instances[0]->getUuid());
+        self::assertEquals('Wololo, Inc.', $instances[0]->getName());
+        self::assertCount(2, $instances[0]->getTechnicalContacts());
+    }
+
     public function testUpdateInstance(): void
     {
         $handler = new MockHandler([

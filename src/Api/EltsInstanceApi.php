@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\EltsInstance;
+use T3G\DatahubApiLibrary\Entity\EltsInstanceList;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\EltsInstanceFactory;
@@ -50,6 +51,28 @@ class EltsInstanceApi extends AbstractApi
             $this->client->request(
                 'GET',
                 self::uri('/elts/instance/' . $uuid)
+            )
+        );
+    }
+
+    /**
+     * @param string|null $companyUuid
+     * @return EltsInstanceList
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function getInstances(string $companyUuid = null): EltsInstanceList
+    {
+        $uri = '/elts/instances';
+        if (null !== $companyUuid) {
+            $this->isValidUuidOrThrow($companyUuid);
+            $uri .= '/' . $companyUuid;
+        }
+        return EltsInstanceFactory::fromResponseDataCollection(
+            $this->client->request(
+                'GET',
+                self::uri($uri)
             )
         );
     }

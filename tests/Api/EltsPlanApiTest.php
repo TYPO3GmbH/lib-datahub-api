@@ -49,6 +49,41 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertCount(1, $response->getInstances());
     }
 
+    public function testGetEltsPlans(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetEltsPlansResponse.php'
+        ]);
+
+        $response = (new EltsPlanApi($this->getClient($handler)))->getPlans();
+
+        $plans = $response->getData();
+        self::assertCount(2, $plans);
+        self::assertEquals('8.7', $plans[0]->getVersion());
+        self::assertEquals('agency', $plans[0]->getType());
+        self::assertEquals('Agency Plan 8.7 ELTS', $plans[0]->getTitle());
+        self::assertEquals('2-2', $plans[0]->getRuntime());
+        self::assertEquals(new \DateTimeImmutable('2021-04-01T00:00:00+00:00'), $plans[0]->getValidFrom());
+        self::assertEquals(new \DateTimeImmutable('2022-03-31T00:00:00+00:00'), $plans[0]->getValidTo());
+        self::assertCount(2, $plans[0]->getInstances());
+        self::assertEquals(null, $plans[0]->getLicenses());
+        self::assertEquals('GELTS234', $plans[0]->getOrder()->getOrderNumber());
+        self::assertCount(2, $plans[0]->getReleaseNotifications());
+        self::assertCount(2, $plans[0]->getTechnicalContacts());
+
+        self::assertEquals('8.7', $plans[1]->getVersion());
+        self::assertEquals('pro', $plans[1]->getType());
+        self::assertEquals('Pro Plan 8.7 ELTS', $plans[1]->getTitle());
+        self::assertEquals('2-3', $plans[1]->getRuntime());
+        self::assertEquals(new \DateTimeImmutable('2021-04-01T00:00:00+00:00'), $plans[1]->getValidFrom());
+        self::assertEquals(new \DateTimeImmutable('2023-03-31T00:00:00+00:00'), $plans[1]->getValidTo());
+        self::assertCount(0, $plans[1]->getInstances());
+        self::assertSame(5, $plans[1]->getLicenses());
+        self::assertEquals(null, $plans[1]->getOrder());
+        self::assertCount(0, $plans[1]->getReleaseNotifications());
+        self::assertCount(0, $plans[1]->getTechnicalContacts());
+    }
+
     private function getTestEltsPlan(): CreateEltsPlanDto
     {
         $createEltsPlanDto = new CreateEltsPlanDto();

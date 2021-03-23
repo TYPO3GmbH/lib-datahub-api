@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
+use T3G\DatahubApiLibrary\Dto\CreateTechnicalContactDto;
 use T3G\DatahubApiLibrary\Entity\TechnicalContact;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
@@ -20,19 +21,19 @@ class TechnicalContactApi extends AbstractApi
     use HandlesUuids;
 
     /**
+     * @param CreateTechnicalContactDto $createTechnicalContactDto
+     * @return TechnicalContact
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @throws InvalidUuidException
+     * @throws \JsonException
      */
-    public function createTechnicalContactForInstance(string $uuid, TechnicalContact $technicalContact): TechnicalContact
+    public function createTechnicalContact(CreateTechnicalContactDto $createTechnicalContactDto): TechnicalContact
     {
-        $this->isValidUuidOrThrow($uuid);
-
         return TechnicalContactFactory::fromResponse(
             $this->client->request(
                 'POST',
-                self::uri('/elts/instance/' . $uuid . '/technical-contact'),
-                json_encode($technicalContact, JSON_THROW_ON_ERROR)
+                self::uri('/elts/technical-contact'),
+                json_encode($createTechnicalContactDto, JSON_THROW_ON_ERROR)
             )
         );
     }

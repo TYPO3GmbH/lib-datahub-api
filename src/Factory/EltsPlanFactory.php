@@ -10,10 +10,25 @@ namespace T3G\DatahubApiLibrary\Factory;
 
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
+use T3G\DatahubApiLibrary\Entity\EltsPlanList;
 use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 
 class EltsPlanFactory extends AbstractFactory
 {
+    /**
+     * @param ResponseInterface $response
+     * @return EltsPlanList
+     */
+    public static function fromResponseDataCollection(ResponseInterface $response): EltsPlanList
+    {
+        $arrayResponse = self::responseToArray($response);
+        $data = array_map(
+            static fn (array $eltsPlanData) => self::fromArray($eltsPlanData),
+            $arrayResponse['entities']
+        );
+        return new EltsPlanList($data);
+    }
+
     public static function fromResponse(ResponseInterface $response): EltsPlan
     {
         $data = self::responseToArray($response);

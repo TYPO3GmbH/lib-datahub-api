@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Api;
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
+use T3G\DatahubApiLibrary\Entity\EltsPlanList;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\EltsPlanFactory;
@@ -67,6 +68,28 @@ class EltsPlanApi extends AbstractApi
             $this->client->request(
                 'GET',
                 self::uri('/elts/plan/' . $uuid)
+            )
+        );
+    }
+
+    /**
+     * @param string|null $companyUuid
+     * @return EltsPlanList
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function getPlans(string $companyUuid = null): EltsPlanList
+    {
+        $uri = '/elts/plans';
+        if (null !== $companyUuid) {
+            $this->isValidUuidOrThrow($companyUuid);
+            $uri .= '/' . $companyUuid;
+        }
+        return EltsPlanFactory::fromResponseDataCollection(
+            $this->client->request(
+                'GET',
+                self::uri($uri)
             )
         );
     }

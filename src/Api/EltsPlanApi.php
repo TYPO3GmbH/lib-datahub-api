@@ -12,9 +12,11 @@ use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
 use T3G\DatahubApiLibrary\Entity\EltsPlanList;
+use T3G\DatahubApiLibrary\Entity\EltsProduct;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\EltsPlanFactory;
+use T3G\DatahubApiLibrary\Factory\EltsProductListFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class EltsPlanApi extends AbstractApi
@@ -108,5 +110,20 @@ class EltsPlanApi extends AbstractApi
             self::uri('/elts/version-access/' . mb_strtolower($username))
         )->getBody()->getContents();
         return json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * @return EltsProduct[]
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function getProducts(): array
+    {
+        return EltsProductListFactory::fromResponseDataCollection(
+            $this->client->request(
+                'GET',
+                self::uri('/elts/products')
+            )
+        )->getData();
     }
 }

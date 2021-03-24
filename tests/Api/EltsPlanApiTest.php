@@ -84,6 +84,23 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertCount(0, $plans[1]->getTechnicalContacts());
     }
 
+    public function testGetEltsProducts(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetEltsProductsResponse.php'
+        ]);
+        $eltsProducts = (new EltsPlanApi($this->getClient($handler)))->getProducts();
+
+        self::assertCount(1, $eltsProducts);
+
+        $firstPlan = $eltsProducts[0];
+        self::assertSame('8.7', $firstPlan->getVersion());
+        self::assertSame('TYPO3GmbH', $firstPlan->getVendor());
+        self::assertSame('elts-8.7-release', $firstPlan->getRepository());
+        self::assertSame('https://jira.typo3.com/servicedesk/customer/portal/12', $firstPlan->getServiceDesk());
+        self::assertCount(6, $firstPlan->getRuntimes());
+    }
+
     private function getTestEltsPlan(): CreateEltsPlanDto
     {
         $createEltsPlanDto = new CreateEltsPlanDto();

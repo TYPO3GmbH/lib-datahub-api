@@ -18,6 +18,11 @@ class EltsPlan implements JsonSerializable
     private ?string $title = null;
     private string $runtime;
     private string $owner;
+
+    /**
+     * @var array<string, string>
+     */
+    private array $ownerData = [];
     private ?Order $order = null;
     private ?\DateTimeInterface $validFrom = null;
     private ?\DateTimeInterface $validTo = null;
@@ -82,6 +87,24 @@ class EltsPlan implements JsonSerializable
     public function setOwner(string $owner): self
     {
         $this->owner = $owner;
+        return $this;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function getOwnerData(): array
+    {
+        return $this->ownerData;
+    }
+
+    /**
+     * @param array<string, string> $ownerData
+     * @return $this
+     */
+    public function setOwnerData(array $ownerData): self
+    {
+        $this->ownerData = $ownerData;
         return $this;
     }
 

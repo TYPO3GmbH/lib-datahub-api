@@ -27,6 +27,7 @@ class EltsPlanFactoryTest extends TestCase
         self::assertEquals($data['type'], $entity->getType());
         self::assertEquals($data['runtime'], $entity->getRuntime());
         self::assertEquals($data['owner'], $entity->getOwner());
+        self::assertEquals($data['ownerData'], $entity->getOwnerData());
         $data['validFrom'] = $data['validFrom'] ?? null;
         self::assertEquals($data['validFrom'] ? new \DateTime($data['validFrom']) : null, $entity->getValidFrom());
         $data['validTo'] = $data['validTo'] ?? null;
@@ -66,6 +67,10 @@ class EltsPlanFactoryTest extends TestCase
                     'validTo' => '2023-03-31T00:00:00+00:00',
                     'licenses' => null,
                     'owner' => 'user:max.muster',
+                    'ownerData' => [
+                        'title' => 'Max Muster',
+                        'email' => 'max@example.com'
+                    ],
                     'instances' => [
                         [
                             'uuid' => 'add4c176-5fda-4b02-a877-ca3f4d48ca3f',
@@ -104,6 +109,10 @@ class EltsPlanFactoryTest extends TestCase
                     'type' => 'agency',
                     'runtime' => '1-3',
                     'owner' => 'user:max.muster',
+                    'ownerData' => [
+                        'title' => 'Max Muster',
+                        'email' => 'max@example.com'
+                    ],
                 ],
             ],
         ];

@@ -86,7 +86,11 @@ return new Response(200, ['content-type' => 'application/json'], '
                             "username": null
                         }
                     ],
-                    "owner": "organization:00000000-0000-0000-0000-000000000000"
+                    "owner": "organization:00000000-0000-0000-0000-000000000000",
+                    "ownerData": {
+                        "title": "Company A",
+                        "email": "info@typo3.com"
+                    }
                 },
                 {
                     "uuid": "22222222-2222-2222-2222-222222222222",
@@ -129,7 +133,11 @@ return new Response(200, ['content-type' => 'application/json'], '
                             "username": null
                         }
                     ],
-                    "owner": "organization:00000000-0000-0000-0000-000000000000"
+                    "owner": "organization:00000000-0000-0000-0000-000000000000",
+                    "ownerData": {
+                        "title": "Company A",
+                        "email": "info@typo3.com"
+                    }
                 }
             ],
             "licenses": null,
@@ -186,6 +194,10 @@ return new Response(200, ['content-type' => 'application/json'], '
                 }
             ],
             "owner": "organization:00000000-0000-0000-0000-000000000000",
+            "ownerData": {
+                "title": "Company A",
+                "email": "info@typo3.com"
+            },
             "title": "Agency Plan 8.7 ELTS"
         },
         {
@@ -201,6 +213,10 @@ return new Response(200, ['content-type' => 'application/json'], '
             "releaseNotifications": [],
             "technicalContacts": [],
             "owner": "organization:00000000-0000-0000-0000-000000000000",
+            "ownerData": {
+                "title": "Company A",
+                "email": "info@typo3.com"
+            },
             "title": "Pro Plan 8.7 ELTS"
         }
     ],

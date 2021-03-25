@@ -48,6 +48,9 @@ class EltsInstanceFactory extends AbstractFactory
         if (isset($data['eltsPlan']) && is_array($data['eltsPlan'])) {
             $eltsInstance->setEltsPlan(EltsPlanFactory::fromArray($data['eltsPlan']));
         }
+        if (isset($data['ownerData']) && is_array($data['ownerData']) && [] !== $data['ownerData']) {
+            $eltsInstance->setOwnerData($data['ownerData']);
+        }
         foreach ($data['technicalContacts'] ?? [] as $technicalContact) {
             $eltsInstance->addTechnicalContact(TechnicalContactFactory::fromArray($technicalContact));
         }

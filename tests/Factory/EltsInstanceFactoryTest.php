@@ -23,6 +23,7 @@ class EltsInstanceFactoryTest extends TestCase
         self::assertEquals($data['uuid'], $entity->getUuid());
         self::assertEquals($data['name'], $entity->getName());
         self::assertEquals($data['owner'], $entity->getOwner());
+        self::assertEquals($data['ownerData'], $entity->getOwnerData());
         self::assertEquals($data['eltsPlan']['uuid'], $entity->getEltsPlan()->getUuid());
 
         $releaseNotificationsCount = 0;
@@ -46,6 +47,10 @@ class EltsInstanceFactoryTest extends TestCase
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'name' => 'Wololo',
                     'owner' => 'user:max.muster',
+                    'ownerData' => [
+                        'title' => 'Max Muster',
+                        'email' => 'max@example.com'
+                    ],
                     'eltsPlan' => [
                         'uuid' => '11111111-1111-1111-1111-111111111111',
                         'owner' => 'organization:00000000-0000-0000-0000-000000000000',

@@ -52,6 +52,9 @@ class EltsPlanFactory extends AbstractFactory
         if (isset($data['order']) && is_array($data['order']) && [] !== $data['order']) {
             $eltsPlan->setOrder(OrderFactory::fromArray($data['order']));
         }
+        if (isset($data['ownerData']) && is_array($data['ownerData']) && [] !== $data['ownerData']) {
+            $eltsPlan->setOwnerData($data['ownerData']);
+        }
         if (isset($data['validFrom'])) {
             $eltsPlan->setValidFrom($data['validFrom'] ? new \DateTime($data['validFrom']) : null);
         }

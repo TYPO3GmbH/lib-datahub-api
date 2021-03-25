@@ -15,6 +15,10 @@ return new Response(200, ['content-type' => 'application/json'], '
     "eltsPlan": {
         "uuid": "00000000-0000-0000-0000-000000000000",
         "owner": "user:max.muster",
+        "ownerData": {
+            "title": "Max Muster",
+            "email": "max@example.com"
+        },
         "version": "8.7",
         "type": "single",
         "runtime": "1-3",
@@ -46,6 +50,10 @@ return new Response(200, ['content-type' => 'application/json'], '
             "username": "instance1_1"
         }
     ],
-    "owner": "user:max.muster"
+    "owner": "user:max.muster",
+    "ownerData": {
+        "title": "Max Muster",
+        "email": "max@example.com"
+    }
 }
 ');

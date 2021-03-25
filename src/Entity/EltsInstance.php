@@ -15,6 +15,10 @@ class EltsInstance implements JsonSerializable
     private string $uuid;
     private string $name;
     private string $owner;
+    /**
+     * @var array<string, string>
+     */
+    private array $ownerData = [];
     private EltsPlan $eltsPlan;
 
     /**
@@ -78,6 +82,24 @@ class EltsInstance implements JsonSerializable
     public function setOwner(string $owner): self
     {
         $this->owner = $owner;
+        return $this;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function getOwnerData(): array
+    {
+        return $this->ownerData;
+    }
+
+    /**
+     * @param array<string, string> $ownerData
+     * @return $this
+     */
+    public function setOwnerData(array $ownerData): self
+    {
+        $this->ownerData = $ownerData;
         return $this;
     }
 

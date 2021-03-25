@@ -84,7 +84,11 @@ return new Response(200, ['content-type' => 'application/json'], '
                     "username": null
                 }
             ],
-            "owner": "user:max.muster"
+            "owner": "user:max.muster",
+            "ownerData": {
+                "title": "Max Muster",
+                "email": "max@example.com"
+            }
         }
     ],
     "licenses": 1,
@@ -141,6 +145,10 @@ return new Response(200, ['content-type' => 'application/json'], '
         }
     ],
     "owner": "user:max.muster",
+    "ownerData": {
+        "title": "Max Muster",
+        "email": "max@example.com"
+    },
     "title": "Single Plan 8.7 ELTS"
 }
 ');

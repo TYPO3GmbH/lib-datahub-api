@@ -17,6 +17,10 @@ return new Response(200, ['content-type' => 'application/json'], '
             "eltsPlan": {
                 "uuid": "11111111-1111-1111-1111-111111111111",
                 "owner": "organization:00000000-0000-0000-0000-000000000000",
+                "ownerData": {
+                    "title": "Company A",
+                    "email": "info@typo3.com"
+                },
                 "version": "8.7",
                 "type": "agency",
                 "runtime": "2-2",
@@ -127,7 +131,11 @@ return new Response(200, ['content-type' => 'application/json'], '
                     "username": null
                 }
             ],
-            "owner": "organization:00000000-0000-0000-0000-000000000000"
+            "owner": "organization:00000000-0000-0000-0000-000000000000",
+            "ownerData": {
+                "title": "Company A",
+                "email": "info@typo3.com"
+            }
         }
     ],
     "length": 1,

@@ -17,6 +17,7 @@ class EltsPlan implements JsonSerializable
     private string $type;
     private ?string $title = null;
     private string $runtime;
+    private string $owner;
     private ?Order $order = null;
     private ?\DateTimeInterface $validFrom = null;
     private ?\DateTimeInterface $validTo = null;
@@ -70,6 +71,17 @@ class EltsPlan implements JsonSerializable
     public function setVersion(string $version): self
     {
         $this->version = $version;
+        return $this;
+    }
+
+    public function getOwner(): string
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(string $owner): self
+    {
+        $this->owner = $owner;
         return $this;
     }
 

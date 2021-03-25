@@ -46,9 +46,10 @@ class EltsPlanFactory extends AbstractFactory
             ->setUuid($data['uuid'])
             ->setType($data['type'])
             ->setRuntime($data['runtime'])
+            ->setOwner($data['owner'])
             ->setVersion($data['version']);
 
-        if (isset($data['order'])) {
+        if (isset($data['order']) && is_array($data['order']) && [] !== $data['order']) {
             $eltsPlan->setOrder(OrderFactory::fromArray($data['order']));
         }
         if (isset($data['validFrom'])) {

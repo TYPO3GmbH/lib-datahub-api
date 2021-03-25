@@ -27,7 +27,7 @@ class EltsInstanceApiTest extends AbstractApiTest
 
         self::assertEquals($eltsIntance->getUuid(), $response->getUuid());
         self::assertEquals($eltsIntance->getName(), $response->getName());
-        self::assertCount(2, $response->getTechnicalContacts());
+        self::assertCount(1, $response->getTechnicalContacts());
     }
 
     public function testGetInstance(): void
@@ -42,7 +42,7 @@ class EltsInstanceApiTest extends AbstractApiTest
 
         self::assertEquals($eltsInstance->getUuid(), $response->getUuid());
         self::assertEquals($eltsInstance->getName(), $response->getName());
-        self::assertCount(2, $response->getTechnicalContacts());
+        self::assertCount(1, $response->getTechnicalContacts());
     }
 
     public function testGetInstances(): void
@@ -55,9 +55,9 @@ class EltsInstanceApiTest extends AbstractApiTest
 
         $instances = $response->getData();
         self::assertCount(1, $instances);
-        self::assertEquals('c5c729b5-e5c3-42f3-89ce-caa07e670fc2', $instances[0]->getUuid());
-        self::assertEquals('Wololo, Inc.', $instances[0]->getName());
-        self::assertCount(2, $instances[0]->getTechnicalContacts());
+        self::assertEquals('11111111-1111-1111-1111-111111111111', $instances[0]->getUuid());
+        self::assertEquals('Agency instance 1', $instances[0]->getName());
+        self::assertCount(4, $instances[0]->getTechnicalContacts());
     }
 
     public function testUpdateInstance(): void
@@ -94,8 +94,8 @@ class EltsInstanceApiTest extends AbstractApiTest
     private function getTestEltsInstanceForGet(): EltsInstance
     {
         return (new EltsInstance())
-            ->setUuid('c5c729b5-e5c3-42f3-89ce-caa07e670fc2')
-            ->setName('Wololo, Inc.')
+            ->setUuid('00000000-0000-0000-0000-000000000000')
+            ->setName('Single instance')
             ->setTechnicalContacts([
                 (new TechnicalContact())->setUser('foobar'),
                 (new TechnicalContact())->setUser('bazbencer'),

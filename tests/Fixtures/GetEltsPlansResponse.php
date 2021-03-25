@@ -15,7 +15,6 @@ return new Response(200, ['content-type' => 'application/json'], '
             "uuid": "11111111-1111-1111-1111-111111111111",
             "version": "8.7",
             "type": "agency",
-            "title": "Agency Plan 8.7 ELTS",
             "runtime": "2-2",
             "validFrom": "2021-04-01T00:00:00+00:00",
             "validTo": "2022-03-31T00:00:00+00:00",
@@ -86,7 +85,8 @@ return new Response(200, ['content-type' => 'application/json'], '
                             "inherited": false,
                             "username": null
                         }
-                    ]
+                    ],
+                    "owner": "organization:00000000-0000-0000-0000-000000000000"
                 },
                 {
                     "uuid": "22222222-2222-2222-2222-222222222222",
@@ -128,7 +128,8 @@ return new Response(200, ['content-type' => 'application/json'], '
                             "inherited": true,
                             "username": null
                         }
-                    ]
+                    ],
+                    "owner": "organization:00000000-0000-0000-0000-000000000000"
                 }
             ],
             "licenses": null,
@@ -183,13 +184,14 @@ return new Response(200, ['content-type' => 'application/json'], '
                     "inherited": true,
                     "username": null
                 }
-            ]
+            ],
+            "owner": "organization:00000000-0000-0000-0000-000000000000",
+            "title": "Agency Plan 8.7 ELTS"
         },
         {
             "uuid": "22222222-2222-2222-2222-222222222222",
             "version": "8.7",
             "type": "pro",
-            "title": "Pro Plan 8.7 ELTS",
             "runtime": "2-3",
             "validFrom": "2021-04-01T00:00:00+00:00",
             "validTo": "2023-03-31T00:00:00+00:00",
@@ -197,7 +199,9 @@ return new Response(200, ['content-type' => 'application/json'], '
             "licenses": 5,
             "order": null,
             "releaseNotifications": [],
-            "technicalContacts": []
+            "technicalContacts": [],
+            "owner": "organization:00000000-0000-0000-0000-000000000000",
+            "title": "Pro Plan 8.7 ELTS"
         }
     ],
     "length": 2,

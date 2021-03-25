@@ -14,6 +14,8 @@ class EltsInstance implements JsonSerializable
 {
     private string $uuid;
     private string $name;
+    private string $owner;
+    private EltsPlan $eltsPlan;
 
     /**
      * @var TechnicalContact[]
@@ -46,6 +48,17 @@ class EltsInstance implements JsonSerializable
         return $this;
     }
 
+    public function getEltsPlan(): EltsPlan
+    {
+        return $this->eltsPlan;
+    }
+
+    public function setEltsPlan(EltsPlan $eltsPlan): self
+    {
+        $this->eltsPlan = $eltsPlan;
+        return $this;
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -54,6 +67,17 @@ class EltsInstance implements JsonSerializable
     public function setName(string $name): self
     {
         $this->name = $name;
+        return $this;
+    }
+
+    public function getOwner(): string
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(string $owner): self
+    {
+        $this->owner = $owner;
         return $this;
     }
 

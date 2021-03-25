@@ -105,9 +105,9 @@ class EltsPlanApiTest extends AbstractApiTest
     {
         $createEltsPlanDto = new CreateEltsPlanDto();
         $createEltsPlanDto->version = '8.7';
-        $createEltsPlanDto->type = EltsPlanType::AGENCY;
+        $createEltsPlanDto->type = EltsPlanType::SINGLE;
         $createEltsPlanDto->runtime = '1-3';
-        $createEltsPlanDto->orderNumber = 'G123456';
+        $createEltsPlanDto->orderNumber = 'GELTS123';
         return $createEltsPlanDto;
     }
 }

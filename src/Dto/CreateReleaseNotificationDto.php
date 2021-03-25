@@ -10,10 +10,8 @@ namespace T3G\DatahubApiLibrary\Dto;
 
 class CreateReleaseNotificationDto extends AbstractDto
 {
-    public string $firstName;
-    public string $lastName;
+    public string $name;
     public string $email;
-    public string $username;
     public string $plan;
     public string $instance;
 }

@@ -15,6 +15,9 @@ class ReleaseNotification implements JsonSerializable
     private string $uuid;
     private string $name;
     private string $email;
+    private bool $accepted = false;
+    private ?EltsPlan $eltsPlan = null;
+    private ?EltsInstance $eltsInstance = null;
 
     /**
      * @return array<string, string>
@@ -57,6 +60,39 @@ class ReleaseNotification implements JsonSerializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
+    }
+
+    public function getAccepted(): bool
+    {
+        return $this->accepted;
+    }
+
+    public function setAccepted(bool $accepted): self
+    {
+        $this->accepted = $accepted;
+        return $this;
+    }
+
+    public function getEltsPlan(): ?EltsPlan
+    {
+        return $this->eltsPlan;
+    }
+
+    public function setEltsPlan(?EltsPlan $eltsPlan): self
+    {
+        $this->eltsPlan = $eltsPlan;
+        return $this;
+    }
+
+    public function getEltsInstance(): ?EltsInstance
+    {
+        return $this->eltsInstance;
+    }
+
+    public function setEltsInstance(?EltsInstance $eltsInstance): self
+    {
+        $this->eltsInstance = $eltsInstance;
         return $this;
     }
 }

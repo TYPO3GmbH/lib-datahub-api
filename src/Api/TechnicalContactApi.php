@@ -56,19 +56,20 @@ class TechnicalContactApi extends AbstractApi
     }
 
     /**
+     * @param string $uuid
+     * @return TechnicalContact
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function updateTechnicalContact(string $uuid, TechnicalContact $technicalContact): TechnicalContact
+    public function confirmTechnicalContact(string $uuid): TechnicalContact
     {
         $this->isValidUuidOrThrow($uuid);
 
         return TechnicalContactFactory::fromResponse(
             $this->client->request(
-                'PUT',
-                self::uri('/elts/technical-contact/' . $uuid),
-                json_encode($technicalContact, JSON_THROW_ON_ERROR)
+                'GET',
+                self::uri(sprintf('/elts/technical-contact/%s/confirm', $uuid))
             )
         );
     }

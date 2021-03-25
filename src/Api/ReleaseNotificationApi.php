@@ -59,6 +59,25 @@ class ReleaseNotificationApi extends AbstractApi
 
     /**
      * @param string $uuid
+     * @return ReleaseNotification
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function confirmReleaseNotification(string $uuid): ReleaseNotification
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        return ReleaseNotificationFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri(sprintf('/elts/release-notification/%s/confirm', $uuid))
+            )
+        );
+    }
+
+    /**
+     * @param string $uuid
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException

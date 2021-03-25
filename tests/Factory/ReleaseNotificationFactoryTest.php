@@ -33,6 +33,7 @@ class ReleaseNotificationFactoryTest extends TestCase
                     'uuid' => '8084048d-5ce4-4727-9f4e-764ff07fa8a0',
                     'name' => 'Baz',
                     'email' => 'baz@bencer.dev',
+                    'accepted' => true,
                 ],
             ],
         ];

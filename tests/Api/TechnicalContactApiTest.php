@@ -48,17 +48,18 @@ class TechnicalContactApiTest extends AbstractApiTest
         self::assertEquals($technicalContact->getFirstName(), $response->getFirstName());
         self::assertEquals($technicalContact->getLastName(), $response->getLastName());
         self::assertEquals($technicalContact->getEmail(), $response->getEmail());
+        self::assertEquals($technicalContact->getAccepted(), $response->getAccepted());
     }
 
-    public function testUpdateTechnicalContact(): void
+    public function testConfirmTechnicalContact(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PutTechnicalContactResponse.php'
+            require __DIR__ . '/../Fixtures/ConfirmTechnicalContactResponse.php'
         ]);
 
-        $technicalContact = $this->getTestTechnicalContactForPut();
+        $technicalContact = $this->getTestTechnicalContactForConfirm();
         $response = (new TechnicalContactApi($this->getClient($handler)))
-            ->updateTechnicalContact('d209090d-be9e-4034-82e8-7a7ebb5b776c', $technicalContact);
+            ->confirmTechnicalContact('d209090d-be9e-4034-82e8-7a7ebb5b776c');
 
         self::assertEquals('d209090d-be9e-4034-82e8-7a7ebb5b776c', $response->getUuid());
         self::assertEquals($technicalContact->getFirstName(), $response->getFirstName());
@@ -89,14 +90,17 @@ class TechnicalContactApiTest extends AbstractApiTest
             ->setUuid('d209090d-be9e-4034-82e8-7a7ebb5b776c')
             ->setFirstName('John')
             ->setLastName('Doe')
-            ->setEmail('johndoe@example.com');
+            ->setEmail('johndoe@example.com')
+            ->setAccepted(false);
     }
 
-    private function getTestTechnicalContactForPut(): TechnicalContact
+    private function getTestTechnicalContactForConfirm(): TechnicalContact
     {
         return (new TechnicalContact())
-            ->setFirstName('Joanne')
+            ->setUuid('d209090d-be9e-4034-82e8-7a7ebb5b776c')
+            ->setFirstName('John')
             ->setLastName('Doe')
-            ->setEmail('joannedoe@example.com');
+            ->setEmail('johndoe@example.com')
+            ->setAccepted(true);
     }
 }

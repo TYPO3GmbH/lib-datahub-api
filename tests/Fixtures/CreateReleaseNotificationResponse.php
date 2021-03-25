@@ -10,10 +10,17 @@ use GuzzleHttp\Psr7\Response;
 
 return new Response(200, ['content-type' => 'application/json'], '
 {
-    "uuid": "d209090d-be9e-4034-82e8-7a7ebb5b776c",
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "johndoe@example.com",
+    "uuid": "1539a7c7-3d09-42c3-9a22-e84e57bdd86a",
+    "name": "Markus Miller",
+    "email": "markus.miller@typo3.com",
+    "inherited": false,
+    "owner": "user:max.muster",
+    "eltsPlan": null,
+    "eltsInstance": {
+        "uuid": "00000000-0000-0000-0000-000000000000",
+        "name": "Single instance",
+        "owner": "user:max.muster"
+    },
     "accepted": false
 }
 ');

@@ -21,16 +21,25 @@ class TechnicalContactFactory extends AbstractFactory
     }
 
     /**
-     * @param array<string, string> $data
+     * @param array<string, mixed> $data
      * @return TechnicalContact
      */
     public static function fromArray(array $data): TechnicalContact
     {
-        return (new TechnicalContact())
+        $technicalContact = (new TechnicalContact())
             ->setUuid($data['uuid'])
             ->setFirstName($data['firstName'])
             ->setLastName($data['lastName'])
             ->setEmail($data['email'])
             ->setUser($data['user'] ?? null);
+
+        if (isset($data['eltsPlan']) && null !== $data['eltsPlan'] && is_array($data['eltsPlan'])) {
+            $technicalContact->setEltsPlan(EltsPlanFactory::fromArray($data['eltsPlan']));
+        }
+        if (isset($data['eltsInstance']) && null !== $data['eltsInstance'] && is_array($data['eltsInstance'])) {
+            $technicalContact->setEltsInstance(EltsInstanceFactory::fromArray($data['eltsInstance']));
+        }
+
+        return $technicalContact;
     }
 }

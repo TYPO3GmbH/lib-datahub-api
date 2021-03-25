@@ -14,6 +14,7 @@ return new Response(200, ['content-type' => 'application/json'], '
     "firstName": "Markus",
     "lastName": "Miller",
     "email": "markus.miller@typo3.com",
-    "username": null
+    "username": null,
+    "accepted": true
 }
 ');

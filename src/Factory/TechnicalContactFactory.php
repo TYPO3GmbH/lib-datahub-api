@@ -31,6 +31,7 @@ class TechnicalContactFactory extends AbstractFactory
             ->setFirstName($data['firstName'])
             ->setLastName($data['lastName'])
             ->setEmail($data['email'])
+            ->setAccepted($data['accepted'])
             ->setUser($data['user'] ?? null);
 
         if (isset($data['eltsPlan']) && null !== $data['eltsPlan'] && is_array($data['eltsPlan'])) {

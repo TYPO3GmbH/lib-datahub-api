@@ -32,9 +32,11 @@ class TechnicalContactFactory extends AbstractFactory
             ->setLastName($data['lastName'])
             ->setEmail($data['email'])
             ->setAccepted($data['accepted'])
-            ->setInherited($data['inherited'])
             ->setUser($data['user'] ?? null);
 
+        if (isset($data['inherited'])) {
+            $technicalContact->setInherited($data['inherited']);
+        }
         if (isset($data['eltsPlan']) && null !== $data['eltsPlan'] && is_array($data['eltsPlan'])) {
             $technicalContact->setEltsPlan(EltsPlanFactory::fromArray($data['eltsPlan']));
         }

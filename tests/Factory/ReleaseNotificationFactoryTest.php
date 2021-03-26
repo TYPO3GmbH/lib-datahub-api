@@ -34,6 +34,7 @@ class ReleaseNotificationFactoryTest extends TestCase
                     'name' => 'Baz',
                     'email' => 'baz@bencer.dev',
                     'accepted' => true,
+                    'inherited' => true,
                 ],
             ],
         ];

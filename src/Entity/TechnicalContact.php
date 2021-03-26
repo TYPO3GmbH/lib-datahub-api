@@ -17,6 +17,7 @@ class TechnicalContact implements JsonSerializable
     private string $lastName;
     private string $email;
     private bool $accepted = false;
+    private bool $inherited = false;
     private ?string $user = null;
     private ?EltsPlan $eltsPlan = null;
     private ?EltsInstance $eltsInstance = null;
@@ -96,6 +97,17 @@ class TechnicalContact implements JsonSerializable
     public function setAccepted(bool $accepted): self
     {
         $this->accepted = $accepted;
+        return $this;
+    }
+
+    public function getInherited(): bool
+    {
+        return $this->inherited;
+    }
+
+    public function setInherited(bool $inherited): self
+    {
+        $this->inherited = $inherited;
         return $this;
     }
 

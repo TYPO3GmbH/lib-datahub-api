@@ -30,7 +30,8 @@ class ReleaseNotificationFactory extends AbstractFactory
             ->setUuid($data['uuid'])
             ->setName($data['name'])
             ->setEmail($data['email'])
-            ->setAccepted($data['accepted']);
+            ->setAccepted($data['accepted'])
+            ->setInherited($data['inherited']);
 
         if (isset($data['eltsPlan']) && null !== $data['eltsPlan'] && is_array($data['eltsPlan'])) {
             $releaseNotification->setEltsPlan(EltsPlanFactory::fromArray($data['eltsPlan']));

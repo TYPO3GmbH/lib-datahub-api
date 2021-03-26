@@ -14,6 +14,7 @@ return new Response(200, ['content-type' => 'application/json'], '
     "firstName": "John",
     "lastName": "Doe",
     "email": "johndoe@example.com",
-    "accepted": true
+    "accepted": true,
+    "inherited": true
 }
 ');

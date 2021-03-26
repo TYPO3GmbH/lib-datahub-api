@@ -119,6 +119,7 @@ class EltsInstanceFactoryTest extends TestCase
                             'lastName' => 'Bar',
                             'email' => 'foo@bar.baz',
                             'accepted' => false,
+                            'inherited' => false,
                         ]
                     ]
                 ],

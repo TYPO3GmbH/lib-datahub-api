@@ -25,6 +25,7 @@ class TechnicalContactFactoryTest extends TestCase
         self::assertEquals($data['lastName'], $entity->getLastName());
         self::assertEquals($data['email'], $entity->getEmail());
         self::assertEquals($data['accepted'], $entity->getAccepted());
+        self::assertEquals($data['inherited'], $entity->getInherited());
     }
 
     public function factoryDataProvider(): array
@@ -37,6 +38,7 @@ class TechnicalContactFactoryTest extends TestCase
                     'lastName' => 'Bencer',
                     'email' => 'baz@bencer.dev',
                     'accepted' => true,
+                    'inherited' => true,
                 ],
             ],
         ];

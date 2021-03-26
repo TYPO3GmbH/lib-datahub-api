@@ -46,7 +46,8 @@ return new Response(200, ['content-type' => 'application/json'], '
             "firstName": "Baz",
             "lastName": "Bencer",
             "email": "foo@bar.dev",
-            "accepted": true
+            "accepted": true,
+            "inherited": true
         }
     ],
     "owner": "user:max.muster",

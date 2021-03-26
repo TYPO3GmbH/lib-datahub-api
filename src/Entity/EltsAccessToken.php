@@ -14,7 +14,7 @@ class EltsAccessToken implements \JsonSerializable
     private string $uuid;
     private string $name;
     private string $description = '';
-    private string $token;
+    private string $token = '';
     private \DateTimeInterface $createdAt;
     private ?User $user;
 
@@ -23,6 +23,7 @@ class EltsAccessToken implements \JsonSerializable
         return [
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'token' => $this->getToken() ?: null
         ];
     }
 

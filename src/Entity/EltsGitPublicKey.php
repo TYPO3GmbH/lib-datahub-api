@@ -15,6 +15,7 @@ class EltsGitPublicKey implements \JsonSerializable
     private string $name;
     private string $publicKey;
     private string $eltsVersion;
+    private int $githubId = 0;
 
     public function jsonSerialize()
     {
@@ -22,6 +23,7 @@ class EltsGitPublicKey implements \JsonSerializable
             'name' => $this->getName(),
             'publicKey' => $this->getPublicKey(),
             'eltsVersion' => $this->getEltsVersion(),
+            'githubId' => $this->getGithubId(),
         ];
     }
 
@@ -66,6 +68,25 @@ class EltsGitPublicKey implements \JsonSerializable
     public function setEltsVersion(string $eltsVersion): self
     {
         $this->eltsVersion = $eltsVersion;
+        return $this;
+    }
+
+    /**
+     * @internal
+     */
+    public function getGithubId(): int
+    {
+        return $this->githubId;
+    }
+
+    /**
+     * @param int $githubId
+     * @return EltsGitPublicKey
+     * @internal
+     */
+    public function setGithubId(int $githubId): self
+    {
+        $this->githubId = $githubId;
         return $this;
     }
 }

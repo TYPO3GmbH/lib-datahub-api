@@ -32,7 +32,7 @@ class TechnicalContactFactory extends AbstractFactory
             ->setLastName($data['lastName'])
             ->setEmail($data['email'])
             ->setAccepted($data['accepted'])
-            ->setUser($data['user'] ?? null);
+            ->setUser($data['username'] ?? null);
 
         if (isset($data['inherited'])) {
             $technicalContact->setInherited($data['inherited']);

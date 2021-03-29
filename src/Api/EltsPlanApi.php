@@ -126,4 +126,19 @@ class EltsPlanApi extends AbstractApi
             )
         )->getData();
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function deletePlan(string $uuid): void
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        $this->client->request(
+            'DELETE',
+            self::uri('/elts/plan/' . $uuid),
+        );
+    }
 }

@@ -110,4 +110,20 @@ class EltsPlanApiTest extends AbstractApiTest
         $createEltsPlanDto->orderNumber = 'GELTS123';
         return $createEltsPlanDto;
     }
+
+    public function testDeletePlan(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+        ]);
+        $api = new EltsPlanApi($this->getClient($handler));
+        try {
+            $api->deletePlan('c5c729b5-e5c3-42f3-89ce-caa07e670fc2');
+            $anExceptionWasThrown = false;
+        } catch (\Exception $e) {
+            $anExceptionWasThrown = true;
+        }
+
+        self::assertFalse($anExceptionWasThrown);
+    }
 }

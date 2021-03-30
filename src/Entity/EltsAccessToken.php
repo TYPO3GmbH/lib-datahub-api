@@ -13,7 +13,7 @@ class EltsAccessToken implements \JsonSerializable
 {
     private string $uuid;
     private string $name;
-    private string $description = '';
+    private ?string $description = null;
     private string $token = '';
     private \DateTimeInterface $createdAt;
     private ?User $user;
@@ -49,12 +49,12 @@ class EltsAccessToken implements \JsonSerializable
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
         return $this;

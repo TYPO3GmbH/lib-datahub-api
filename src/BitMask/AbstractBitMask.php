@@ -35,6 +35,9 @@ abstract class AbstractBitMask
 
     public static function isValidValue(int $types): bool
     {
+        if (0 > $types) {
+            return false;
+        }
         $matches = static::getLabelsFor($types);
 
         return 0 < count($matches);

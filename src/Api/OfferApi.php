@@ -79,7 +79,7 @@ class OfferApi extends AbstractApi
         return OfferFactory::fromResponse(
             $this->client->request(
                 'GET',
-                self::uri('/companies/' . $uuid)
+                self::uri('/offer/' . $uuid)
             )
         );
     }

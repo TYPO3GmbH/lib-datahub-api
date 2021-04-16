@@ -24,11 +24,13 @@ final class WebHookType extends AbstractEnum
     public const COMPANY_INVITE_STARTED = 'company_invite_started';
     public const COMPANY_INVITE_ACCEPTED = 'company_invite_accepted';
     public const COMPANY_INVITE_REVOKE = 'company_invite_revoke';
+    public const COMPANY_OFFER_CREATED = 'company_offer_created';
     public const USER_CHANGED = 'user_changed';
     public const USER_DELETED = 'user_deleted';
     public const USER_DELETE_STARTED = 'user_delete_started';
     public const USER_ADDRESS_CREATED = 'user_address_created';
     public const USER_ADDRESS_DELETED = 'user_address_deleted';
+    public const USER_OFFER_CREATED = 'user_offer_created';
     public const CERTIFICATION_CREATION_SUCCESS = 'certification_creation_success';
     public const CERTIFICATION_CREATION_FAILED = 'certification_creation_failed';
     public const EMAIL_ADDRESS_CHANGED = 'email_address_changed';
@@ -57,11 +59,13 @@ final class WebHookType extends AbstractEnum
         self::COMPANY_INVITE_STARTED => 'Company invited has been started',
         self::COMPANY_INVITE_ACCEPTED => 'Company invited has been accepted',
         self::COMPANY_INVITE_REVOKE => 'Company invited has been revoked',
+        self::COMPANY_OFFER_CREATED => 'Offer for a company has been created',
         self::USER_CHANGED => 'User record has been changed',
         self::USER_DELETED => 'User record has been deleted',
         self::USER_DELETE_STARTED => 'User record delete process has been started',
         self::USER_ADDRESS_CREATED => 'User address record has been created',
         self::USER_ADDRESS_DELETED => 'User address record has been deleted',
+        self::USER_OFFER_CREATED => 'Offer for an user has been created',
         self::CERTIFICATION_CREATION_SUCCESS => 'Certification has been created successfully and is ready to the test-taker',
         self::CERTIFICATION_CREATION_FAILED => 'Certification has been created but there is something wrong. Check the history and logs for details.',
         self::EMAIL_ADDRESS_CHANGED => 'Email address has been changed',

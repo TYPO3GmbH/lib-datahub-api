@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
+use T3G\DatahubApiLibrary\Dto\ProlongEltsPlanDto;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
 use T3G\DatahubApiLibrary\Entity\EltsPlanList;
 use T3G\DatahubApiLibrary\Entity\EltsProduct;
@@ -139,6 +140,21 @@ class EltsPlanApi extends AbstractApi
         $this->client->request(
             'DELETE',
             self::uri('/elts/plan/' . $uuid),
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function prolongPlan(ProlongEltsPlanDto $dto): EltsPlan
+    {
+        return EltsPlanFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                self::uri('/elts/prolong-plan'),
+                json_encode($dto, JSON_THROW_ON_ERROR)
+            )
         );
     }
 }

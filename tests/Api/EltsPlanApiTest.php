@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\EltsPlanApi;
 use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
+use T3G\DatahubApiLibrary\Dto\ProlongEltsPlanDto;
 use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 
 class EltsPlanApiTest extends AbstractApiTest
@@ -125,5 +126,22 @@ class EltsPlanApiTest extends AbstractApiTest
         }
 
         self::assertFalse($anExceptionWasThrown);
+    }
+
+    public function testProlongPlan(): void
+    {
+        $dto = new ProlongEltsPlanDto();
+        $dto->sourcePlan = '00000000-0000-0000-0000-000000000000';
+        $dto->runtime = '2-2';
+
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/PostEltsProlongResponse.php'
+        ]);
+        $response = (new EltsPlanApi($this->getClient($handler)))->prolongPlan($dto);
+
+        self::assertSame('11111111-1111-1111-1111-111111111111', $response->getUuid());
+        self::assertEquals('8.7', $response->getVersion());
+        self::assertEquals('single', $response->getType());
+        self::assertSame('2-2', $response->getRuntime());
     }
 }

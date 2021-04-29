@@ -18,6 +18,39 @@ return new Response(200, ['content-type' => 'application/json'], '
             "runtime": "2-2",
             "validFrom": "2021-04-01T00:00:00+00:00",
             "validTo": "2022-03-31T00:00:00+00:00",
+            "runtimes": [
+                {
+                    "uuid": "00000000-0000-0000-0000-000000000000",
+                    "runtime": "2-2",
+                    "validFrom": "2021-04-01T00:00:00+00:00",
+                    "validTo": "2022-03-31T00:00:00+00:00",
+                    "paymentStatus": "paid",
+                    "order": {
+                        "uuid": "1861f4cc-a87a-46c0-bb5a-3529a54dad32",
+                        "orderNumber": "GELTS234",
+                        "payload": {
+                            "items": [
+                                {
+                                    "title": "ELTS Order",
+                                    "quantity": 1
+                                }
+                            ]
+                        },
+                        "createdAt": "2020-05-12T05:55:59+00:00",
+                        "invoices": []
+                    }
+                }
+            ],
+            "extendables": {
+                "3-3": {
+                    "title": "Agency Plan 8.7 ELTS",
+                    "type": "agency",
+                    "version": "8.7",
+                    "runtime": "3-3",
+                    "validFrom": "2022-04-01T00:00:00+00:00",
+                    "validTo": "2023-03-31T00:00:00+00:00"
+                }
+            },
             "instances": [
                 {
                     "uuid": "11111111-1111-1111-1111-111111111111",
@@ -207,6 +240,17 @@ return new Response(200, ['content-type' => 'application/json'], '
             "runtime": "2-3",
             "validFrom": "2021-04-01T00:00:00+00:00",
             "validTo": "2023-03-31T00:00:00+00:00",
+            "runtimes": [
+                {
+                    "uuid": "00000000-0000-0000-0000-000000000000",
+                    "runtime": "2-3",
+                    "validFrom": "2021-04-01T00:00:00+00:00",
+                    "validTo": "2023-03-31T00:00:00+00:00",
+                    "paymentStatus": "paid",
+                    "order": null
+                }
+            ],
+            "extendables": [],
             "instances": [],
             "licenses": 5,
             "order": null,

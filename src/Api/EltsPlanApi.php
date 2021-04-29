@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Api;
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
 use T3G\DatahubApiLibrary\Dto\ProlongEltsPlanDto;
+use T3G\DatahubApiLibrary\Dto\UpdatePaymentStatusDto;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
 use T3G\DatahubApiLibrary\Entity\EltsPlanList;
 use T3G\DatahubApiLibrary\Entity\EltsProduct;
@@ -155,6 +156,15 @@ class EltsPlanApi extends AbstractApi
                 self::uri('/elts/prolong-plan'),
                 json_encode($dto, JSON_THROW_ON_ERROR)
             )
+        );
+    }
+
+    public function updateRuntimePaymentStatus(UpdatePaymentStatusDto $dto): void
+    {
+        $this->client->request(
+            'POST',
+            self::uri('/elts/update-runtime-payment-status'),
+            json_encode($dto, JSON_THROW_ON_ERROR)
         );
     }
 }

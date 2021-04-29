@@ -17,6 +17,16 @@ class EltsPlan implements JsonSerializable
     private string $type;
     private ?string $title = null;
     private string $runtime;
+
+    /**
+     * @var EltsPlanExtendable[]
+     */
+    private array $extendables = [];
+
+    /**
+     * @var EltsRuntime[]
+     */
+    private array $runtimes = [];
     private string $owner;
 
     /**
@@ -43,17 +53,15 @@ class EltsPlan implements JsonSerializable
      */
     private array $instances = [];
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'version' => $this->getVersion(),
             'type' => $this->getType(),
             'title' => $this->getTitle(),
-            'runtime' => $this->getRuntime(),
-            'order' => $this->getOrder(),
-            'validFrom' => $this->getValidFrom(),
-            'validTo' => $this->getValidTo(),
-            'licenses' => $this->getLicenses(),
         ];
     }
 
@@ -130,6 +138,31 @@ class EltsPlan implements JsonSerializable
         return $this;
     }
 
+    /**
+     * @return EltsPlanExtendable[]
+     */
+    public function getExtendables(): array
+    {
+        return $this->extendables;
+    }
+
+    /**
+     * @param EltsPlanExtendable[] $extendables
+     * @return self
+     */
+    public function setExtendables(array $extendables): self
+    {
+        $this->extendables = $extendables;
+        return $this;
+    }
+
+    public function addExtendable(EltsPlanExtendable $extendable): self
+    {
+        $this->extendables[$extendable->getRuntime()] = $extendable;
+
+        return $this;
+    }
+
     public function getRuntime(): string
     {
         return $this->runtime;
@@ -138,6 +171,30 @@ class EltsPlan implements JsonSerializable
     public function setRuntime(string $runtime): self
     {
         $this->runtime = $runtime;
+        return $this;
+    }
+
+    /**
+     * @return EltsRuntime[]
+     */
+    public function getRuntimes(): array
+    {
+        return $this->runtimes;
+    }
+
+    /**
+     * @param EltsRuntime[] $runtimes
+     * @return self
+     */
+    public function setRuntimes(array $runtimes): self
+    {
+        $this->runtimes = $runtimes;
+        return $this;
+    }
+
+    public function addRuntime(EltsRuntime $runtime): self
+    {
+        $this->runtimes[] = $runtime;
         return $this;
     }
 

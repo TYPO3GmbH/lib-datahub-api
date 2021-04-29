@@ -16,6 +16,30 @@ return new Response(200, ['content-type' => 'application/json'], '
     "runtime": "1-3",
     "validFrom": "2020-04-01T00:00:00+00:00",
     "validTo": "2023-03-31T00:00:00+00:00",
+    "runtimes": [
+        {
+            "uuid": "00000000-0000-0000-0000-000000000000",
+            "runtime": "1-3",
+            "validFrom": "2020-04-01T00:00:00+00:00",
+            "validTo": "2023-03-31T00:00:00+00:00",
+            "paymentStatus": "paid",
+            "order": {
+                "uuid": "b1c5f298-bdea-493e-893a-ec16a08da35a",
+                "orderNumber": "GELTS123",
+                "payload": {
+                    "items": [
+                        {
+                            "title": "ELTS Order",
+                            "quantity": 1
+                        }
+                    ]
+                },
+                "createdAt": "2020-05-12T05:55:59+00:00",
+                "invoices": []
+            }
+        }
+    ],
+    "extendables": [],
     "instances": [
         {
             "uuid": "00000000-0000-0000-0000-000000000000",

@@ -70,6 +70,12 @@ class EltsPlanFactory extends AbstractFactory
             $eltsPlan->setLicenses($data['licenses']);
         }
 
+        foreach ($data['extendables'] ?? [] as $extendable) {
+            $eltsPlan->addExtendable(EltsPlanExtendableFactory::fromArray($extendable));
+        }
+        foreach ($data['runtimes'] ?? [] as $runtime) {
+            $eltsPlan->addRuntime(EltsRuntimeFactory::fromArray($runtime));
+        }
         foreach ($data['instances'] ?? [] as $instance) {
             $eltsPlan->addInstance(EltsInstanceFactory::fromArray($instance));
         }

@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 use Http\Factory\Guzzle\RequestFactory;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -18,7 +19,12 @@ use T3G\DatahubApiLibrary\Client\DataHubClient;
 
 abstract class AbstractApiTest extends TestCase
 {
-    protected function getClient(MockHandler $handler): DataHubClient
+    /**
+     * @param MockHandler|HandlerStack $handler
+     * @return DataHubClient
+     * @throws \Exception
+     */
+    protected function getClient($handler): DataHubClient
     {
         $client = new Client(['handler' => $handler]);
         $logger = new Logger('testing-channel');

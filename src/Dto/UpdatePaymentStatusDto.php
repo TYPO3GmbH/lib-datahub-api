@@ -8,10 +8,8 @@
 
 namespace T3G\DatahubApiLibrary\Dto;
 
-class CreateEltsPlanDto extends AbstractDto
+class UpdatePaymentStatusDto extends AbstractDto
 {
-    public string $version = '';
-    public string $type = '';
-    public string $runtime = '';
     public string $orderNumber = '';
+    public string $paymentStatus = '';
 }

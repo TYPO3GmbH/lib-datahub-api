@@ -16,6 +16,7 @@ namespace T3G\DatahubApiLibrary\Enum;
 final class SubscriptionStatus extends AbstractEnum
 {
     public const ACTIVE = 'active';
+    public const EXPIRED = 'expired'; // This is no stripe status
     public const PAST_DUE = 'past_due';
     public const UNPAID = 'unpaid';
     public const CANCEL_IN_PROGRESS = 'cancel_in_progress'; // This is no stripe status
@@ -28,6 +29,7 @@ final class SubscriptionStatus extends AbstractEnum
     /** @phpstan-var array<string,string>  */
     protected static array $optionNames = [
         self::ACTIVE => 'Active subscription',
+        self::EXPIRED => 'Expired subscription',
         self::PAST_DUE => 'Past due payment',
         self::UNPAID => 'Unpaid payment',
         self::CANCEL_IN_PROGRESS => 'Cancel in progress',

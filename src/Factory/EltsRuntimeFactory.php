@@ -29,7 +29,7 @@ class EltsRuntimeFactory extends AbstractFactory
             ->setValidFrom(new \DateTimeImmutable($data['validFrom']))
             ->setValidTo(new \DateTimeImmutable($data['validTo']));
 
-        if (isset($data['order'])) {
+        if (isset($data['order']) && is_array($data['order']) && [] !== $data['order']) {
             $eltsRuntime->setOrder(OrderFactory::fromArray($data['order']));
         }
 

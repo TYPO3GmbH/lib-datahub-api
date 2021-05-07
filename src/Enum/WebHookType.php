@@ -33,6 +33,7 @@ final class WebHookType extends AbstractEnum
     public const USER_OFFER_CREATED = 'user_offer_created';
     public const CERTIFICATION_CREATION_SUCCESS = 'certification_creation_success';
     public const CERTIFICATION_CREATION_FAILED = 'certification_creation_failed';
+    public const ELTS_PLAN_CREATED = 'elts_plan_created';
     public const EMAIL_ADDRESS_CHANGED = 'email_address_changed';
     public const EXAM_ACCESS_CREATED = 'exam_access_created';
     public const EXAM_ACCESS_UPDATED = 'exam_access_updated';
@@ -68,6 +69,7 @@ final class WebHookType extends AbstractEnum
         self::USER_OFFER_CREATED => 'Offer for an user has been created',
         self::CERTIFICATION_CREATION_SUCCESS => 'Certification has been created successfully and is ready to the test-taker',
         self::CERTIFICATION_CREATION_FAILED => 'Certification has been created but there is something wrong. Check the history and logs for details.',
+        self::ELTS_PLAN_CREATED => 'EltsPlan record has been created',
         self::EMAIL_ADDRESS_CHANGED => 'Email address has been changed',
         self::EXAM_RESULTS_ARRIVED => 'The final exam results arrived.',
         self::EXAM_ACCESS_CREATED => 'An exam access record has been created',

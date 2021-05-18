@@ -16,7 +16,7 @@ class EltsPlan implements JsonSerializable
     private string $version;
     private string $type;
     private ?string $title = null;
-    private string $runtime;
+    private string $runtime = '';
 
     /**
      * @var EltsPlanExtendable[]

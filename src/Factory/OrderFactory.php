@@ -41,8 +41,11 @@ class OrderFactory extends AbstractFactory
         $order = (new Order())
             ->setUuid($data['uuid'])
             ->setOrderNumber($data['orderNumber'])
-            ->setPayload($data['payload'])
             ->setCreatedAt(isset($data['createdAt']) ? new \DateTime($data['createdAt']) : new \DateTime());
+
+        if (!empty($data['payload'])) {
+            $order->setPayload($data['payload']);
+        }
 
         foreach ($data['invoices'] ?? [] as $invoice) {
             $order->addInvoice(

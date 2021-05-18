@@ -99,6 +99,22 @@ class EltsPlanApi extends AbstractApi
     }
 
     /**
+     * @return EltsPlanList
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function getPlansExport(): EltsPlanList
+    {
+        $uri = '/elts/plans/export';
+        return EltsPlanFactory::fromResponseDataCollection(
+            $this->client->request(
+                'GET',
+                self::uri($uri)
+            )
+        );
+    }
+
+    /**
      * @param string $username
      * @return array<int, string>
      * @throws ClientExceptionInterface

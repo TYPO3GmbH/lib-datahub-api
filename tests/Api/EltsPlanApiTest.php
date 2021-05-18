@@ -111,6 +111,39 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertCount(0, $plans[1]->getTechnicalContacts());
     }
 
+    public function testGetEltsPlansExport(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetEltsPlansExportResponse.php'
+        ]);
+
+        $response = (new EltsPlanApi($this->getClient($handler)))->getPlans();
+
+        $plans = $response->getData();
+        self::assertCount(5, $plans);
+        self::assertSame('8.7', $plans[0]->getVersion());
+        self::assertSame('single', $plans[0]->getType());
+        self::assertSame('Single Plan', $plans[0]->getTitle());
+        self::assertSame('', $plans[0]->getRuntime());
+        self::assertCount(2, $plans[0]->getRuntimes());
+        self::assertSame($plans[0]->getRuntimes()[0]->getRuntime(), '1-1');
+        self::assertSame($plans[0]->getRuntimes()[0]->getOrder()->getOrderNumber(), 'GELTS123');
+        self::assertCount(0, $plans[0]->getReleaseNotifications());
+        self::assertCount(0, $plans[0]->getTechnicalContacts());
+
+        self::assertSame('8.7', $plans[1]->getVersion());
+        self::assertSame('agency', $plans[1]->getType());
+        self::assertSame('Agency Plan', $plans[1]->getTitle());
+        self::assertSame('', $plans[1]->getRuntime());
+        self::assertCount(1, $plans[1]->getRuntimes());
+        self::assertSame($plans[1]->getRuntimes()[0]->getRuntime(), '2-2');
+        self::assertNotNull($plans[1]->getRuntimes()[0]->getOrder());
+        self::assertCount(0, $plans[1]->getInstances());
+        self::assertNull($plans[1]->getOrder());
+        self::assertCount(0, $plans[1]->getReleaseNotifications());
+        self::assertCount(0, $plans[1]->getTechnicalContacts());
+    }
+
     public function testGetEltsProducts(): void
     {
         $handler = new MockHandler([

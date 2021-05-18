@@ -25,10 +25,14 @@ class EltsRuntimeFactory extends AbstractFactory
         $eltsRuntime = (new EltsRuntime())
             ->setUuid($data['uuid'])
             ->setRuntime($data['runtime'])
-            ->setPaymentStatus($data['paymentStatus'])
-            ->setValidFrom(new \DateTimeImmutable($data['validFrom']))
-            ->setValidTo(new \DateTimeImmutable($data['validTo']));
+            ->setPaymentStatus($data['paymentStatus']);
 
+        if (isset($data['validFrom'])) {
+            $eltsRuntime->setValidFrom(new \DateTimeImmutable($data['validFrom']));
+        }
+        if (isset($data['validTo'])) {
+            $eltsRuntime->setValidTo(new \DateTimeImmutable($data['validTo']));
+        }
         if (isset($data['order']) && is_array($data['order']) && [] !== $data['order']) {
             $eltsRuntime->setOrder(OrderFactory::fromArray($data['order']));
         }

@@ -330,7 +330,7 @@ class Address implements JsonSerializable
     }
 
     /**
-     * @return array<string, string|null|false>
+     * @return array<string, string|null>
      */
     public function toDeutschePostArray(): array
     {
@@ -352,12 +352,12 @@ class Address implements JsonSerializable
         }
 
         return [
-            'NAME' => $transliterator->transliterate($this->getFirstName() . ' ' . $this->getLastName()),
-            'ZUSATZ' => $transliterator->transliterate($this->getAdditionalAddressLine1() ?? ''),
-            'STRASSE' => $transliterator->transliterate($street),
-            'NUMMER' => $transliterator->transliterate($number),
-            'PLZ' => $transliterator->transliterate($this->getZip()),
-            'STADT' => $transliterator->transliterate($this->getCity()),
+            'NAME' => (string) $transliterator->transliterate($this->getFirstName() . ' ' . $this->getLastName()),
+            'ZUSATZ' => (string) $transliterator->transliterate($this->getAdditionalAddressLine1() ?? ''),
+            'STRASSE' => (string) $transliterator->transliterate($street),
+            'NUMMER' => (string) $transliterator->transliterate($number),
+            'PLZ' => (string) $transliterator->transliterate($this->getZip()),
+            'STADT' => (string) $transliterator->transliterate($this->getCity()),
             'LAND' => $this->getCountryIso3(),
             'ADRESS_TYP' => 'HOUSE',
             'REFERENZ' => null,

@@ -46,7 +46,7 @@ class Certification implements JsonSerializable
     private ?\DateTimeInterface $validUntil = null;
 
     /**
-     * @var array<string, string>
+     * @var array<string, string|null>
      */
     private array $postFormattedAddress = [];
 
@@ -353,7 +353,7 @@ class Certification implements JsonSerializable
     }
 
     /**
-     * @return array<string, string>
+     * @return array<string, string|null>
      */
     public function getPostFormattedAddress(): array
     {
@@ -361,7 +361,7 @@ class Certification implements JsonSerializable
     }
 
     /**
-     * @param array<string, string> $postFormattedAddress
+     * @param array<string, string|null> $postFormattedAddress
      * @return $this
      */
     public function setPostFormattedAddress(array $postFormattedAddress): self

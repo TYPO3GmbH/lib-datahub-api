@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Demand\OrganizationSearchDemand;
+use T3G\DatahubApiLibrary\Dto\Admin\MergeCompanyDto;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Entity\CompanyInvitation;
 use T3G\DatahubApiLibrary\Entity\EmailAddress;
@@ -60,6 +61,25 @@ class CompanyApi extends AbstractApi
                 json_encode($search, JSON_THROW_ON_ERROR)
             )
         );
+    }
+
+    /**
+     * @param string $sourceCompany
+     * @param string $targetCompany
+     * @param MergeCompanyDto $mergeCompanyDto
+     * @return array<string, string>
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws \JsonException
+     */
+    public function merge(string $sourceCompany, string $targetCompany, MergeCompanyDto $mergeCompanyDto): array
+    {
+        $response = $this->client->request(
+            'POST',
+            self::uri(sprintf('/companies/merge/%s/%s', $sourceCompany, $targetCompany)),
+            json_encode($mergeCompanyDto, JSON_THROW_ON_ERROR)
+        );
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**

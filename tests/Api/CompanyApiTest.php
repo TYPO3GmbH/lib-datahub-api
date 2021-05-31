@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\CompanyApi;
+use T3G\DatahubApiLibrary\Assembler\Admin\MergeCompanyAssembler;
 use T3G\DatahubApiLibrary\Demand\OrganizationSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
@@ -225,6 +226,26 @@ class CompanyApiTest extends AbstractApiTest
             $anExceptionWasThrown = true;
         }
         $this->assertFalse($anExceptionWasThrown);
+    }
+
+    public function testMergeCompanies(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/CompaniesMergeResponse.php'
+        ]);
+        $api = new CompanyApi($this->getClient($handler));
+        $mergeCompanyDto = (new MergeCompanyAssembler())
+            ->create([
+                'title' => 'a0000000-0000-0000-0000-000000000000',
+                'slug' => 'a0000000-0000-0000-0000-000000000000',
+                'companyType' => 'a0000000-0000-0000-0000-000000000000',
+                'vatId' => 'a0000000-0000-0000-0000-000000000000',
+                'hubspotId' => 'a0000000-0000-0000-0000-000000000000',
+                'domain' => 'a0000000-0000-0000-0000-000000000000'
+            ])->getDto();
+        $response = $api->merge('a0000000-0000-0000-0000-000000000000', 'b0000000-0000-0000-0000-000000000001', $mergeCompanyDto);
+        self::assertSame('a0000000-0000-0000-0000-000000000000', $response['source']);
+        self::assertSame('b0000000-0000-0000-0000-000000000000', $response['target']);
     }
 
     private function getTestCompany(): Company

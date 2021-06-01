@@ -27,4 +27,18 @@ class ValidationApi extends AbstractApi
 
         return true;
     }
+
+    public function validateUsernameUniqueness(string $username): bool
+    {
+        try {
+            $this->client->request(
+                'GET',
+                self::uri('/validation/validate-username/' . mb_strtolower($username))
+            );
+        } catch (DatahubResponseException $e) {
+            return false;
+        }
+
+        return true;
+    }
 }

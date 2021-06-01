@@ -33,7 +33,7 @@ class ValidationApi extends AbstractApi
         try {
             $this->client->request(
                 'GET',
-                self::uri('/validation/validate-username/' . mb_strtolower($username))
+                self::uri('/validation/username/' . mb_strtolower($username))
             );
         } catch (DatahubResponseException $e) {
             return false;

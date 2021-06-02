@@ -90,7 +90,8 @@ class UserFactoryTest extends TestCase
                                 'label' => 'Russia'
                             ],
                             'zip' => '1234 QZ',
-                            'type' => 2
+                            'type' => 2,
+                            'checksum' => '857f7bdf4322df6bffec0fbba1481f9169dbf8d2f779923ea48f1c0d1e2809d1',
                         ]
                     ],
                     'links' => [

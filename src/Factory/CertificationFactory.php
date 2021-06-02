@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Certification;
 
+/**
+ * @extends AbstractFactory<Certification>
+ */
 class CertificationFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): Certification
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): Certification
     {
         $certification = (new Certification())

@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Link;
 
+/**
+ * @extends AbstractFactory<Link>
+ */
 class LinkFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): Link
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): Link
     {
         return (new Link())

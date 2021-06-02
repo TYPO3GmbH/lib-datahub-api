@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\ReleaseNotification;
 
+/**
+ * @extends AbstractFactory<ReleaseNotification>
+ */
 class ReleaseNotificationFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): ReleaseNotification
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array<string, mixed> $data
      * @return ReleaseNotification

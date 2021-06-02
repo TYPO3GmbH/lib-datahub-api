@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\EltsPlanExtendable;
 
+/**
+ * @extends AbstractFactory<EltsPlanExtendable>
+ */
 class EltsPlanExtendableFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): EltsPlanExtendable
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array<string, mixed> $data
      * @return EltsPlanExtendable

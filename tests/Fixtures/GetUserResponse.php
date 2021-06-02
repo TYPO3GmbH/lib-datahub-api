@@ -34,7 +34,8 @@ return new Response(200, ['content-type' => 'application/json'], '
       },
       "countryState": null,
       "companyName": null,
-      "type": 16
+      "type": 16,
+      "checksum": "30489455e915553ca09f9430fb95d6ab055c64326fd9ec17d7a4655f2a4d4fe5"
     },
     {
       "uuid": "00000000-0000-0000-0000-000000000000",
@@ -53,12 +54,13 @@ return new Response(200, ['content-type' => 'application/json'], '
       },
       "countryState": null,
       "companyName": null,
-      "type": 16
+      "type": 16,
+      "checksum": "30489455e915553ca09f9430fb95d6ab055c64326fd9ec17d7a4655f2a4d4fe5"
     }
   ],
   "links": [
     {
-        "uuid": "00000000-0000-0000-0000-000000000000",
+      "uuid": "00000000-0000-0000-0000-000000000000",
       "url": "https:\/\/naegler.hamburg",
       "icon": "website"
     },

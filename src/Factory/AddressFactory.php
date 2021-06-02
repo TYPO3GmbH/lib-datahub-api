@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Address;
 
+/**
+ * @extends AbstractFactory<Address>
+ */
 class AddressFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): Address
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): Address
     {
         return (new Address())
@@ -40,6 +35,7 @@ class AddressFactory extends AbstractFactory
             ->setType($data['type'])
             ->setCompanyName($data['companyName'] ?? null)
             ->setLatitude($data['latitude'] ?? 0.0)
-            ->setLongitude($data['longitude'] ?? 0.0);
+            ->setLongitude($data['longitude'] ?? 0.0)
+            ->setChecksum($data['checksum']);
     }
 }

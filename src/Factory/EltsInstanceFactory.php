@@ -12,14 +12,11 @@ use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\EltsInstance;
 use T3G\DatahubApiLibrary\Entity\EltsInstanceList;
 
+/**
+ * @extends AbstractFactory<EltsInstance>
+ */
 class EltsInstanceFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): EltsInstance
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
     /**
      * @param ResponseInterface $response
      * @return EltsInstanceList

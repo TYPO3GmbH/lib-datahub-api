@@ -9,18 +9,13 @@
 namespace T3G\DatahubApiLibrary\Factory;
 
 use DateTime;
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\ApprovedDocument;
 
+/**
+ * @extends AbstractFactory<ApprovedDocument>
+ */
 class ApprovedDocumentFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): ApprovedDocument
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): ApprovedDocument
     {
         $approvedDocument = (new ApprovedDocument())

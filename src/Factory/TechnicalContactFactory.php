@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\TechnicalContact;
 
+/**
+ * @extends AbstractFactory<TechnicalContact>
+ */
 class TechnicalContactFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): TechnicalContact
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array<string, mixed> $data
      * @return TechnicalContact

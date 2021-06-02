@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\ExamAccess;
 
+/**
+ * @extends AbstractFactory<ExamAccess>
+ */
 class ExamAccessFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): ExamAccess
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): ExamAccess
     {
         $entity = (new ExamAccess())

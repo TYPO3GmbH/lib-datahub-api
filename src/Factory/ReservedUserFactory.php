@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\ReservedUser;
 
+/**
+ * @extends AbstractFactory<ReservedUser>
+ */
 class ReservedUserFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): ReservedUser
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param  array<string, mixed> $data
      *

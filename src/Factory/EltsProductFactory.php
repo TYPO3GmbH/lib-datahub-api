@@ -9,16 +9,13 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\EltsProduct;
 
+/**
+ * @extends AbstractFactory<EltsProduct>
+ */
 class EltsProductFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): EltsProduct
-    {
-        return self::fromArray(self::responseToArray($response));
-    }
-
     public static function fromArray(array $data): EltsProduct
     {
         $eltsProduct = (new EltsProduct())

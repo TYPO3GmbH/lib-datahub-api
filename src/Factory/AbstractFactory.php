@@ -10,6 +10,9 @@ namespace T3G\DatahubApiLibrary\Factory;
 
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @template T
+ */
 abstract class AbstractFactory
 {
     /**
@@ -27,7 +30,16 @@ abstract class AbstractFactory
         return self::jsonDecode((string)$response->getBody());
     }
 
-    abstract public static function fromResponse(ResponseInterface $response);
+    /**
+     * @param ResponseInterface $response
+     * @return T
+     */
+    public static function fromResponse(ResponseInterface $response)
+    {
+        $data = self::responseToArray($response);
+
+        return static::fromArray($data);
+    }
 
     /**
      * @param array<string, mixed> $data

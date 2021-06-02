@@ -8,7 +8,6 @@
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
-use DateTime;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
@@ -49,7 +48,7 @@ class CompanyFactoryTest extends TestCase
             $data['employees'][0]['joinedAt'],
             $entity->getEmployee($data['employees'][0]['user']['username'])
                 ->getJoinedAt()
-                ->format(DateTime::ATOM)
+                ->format(\DateTimeInterface::ATOM)
         );
         $this->assertEquals(
             $data['employees'][0]['role'],
@@ -111,7 +110,8 @@ class CompanyFactoryTest extends TestCase
                         'zip' => '1234 QZ',
                         'type' => 16,
                         'latitude' => 12.94856534257,
-                        'longitude' => 8.765486753485
+                        'longitude' => 8.765486753485,
+                        'checksum' => 'fd4208f5e890fa65bf45e47c6b14ae5c3f16cd086dd9984c06b197970f45874c',
                     ],
                     'city' => 'Moscow',
                     'country' => [
@@ -135,7 +135,8 @@ class CompanyFactoryTest extends TestCase
                         'zip' => '1234 QZ',
                         'type' => 16,
                         'latitude' => 12.94856534257,
-                        'longitude' => 8.765486753485
+                        'longitude' => 8.765486753485,
+                        'checksum' => 'fd4208f5e890fa65bf45e47c6b14ae5c3f16cd086dd9984c06b197970f45874c',
                     ]],
                     'teaserText' => '<b><i>I\'m Honest Joe and welcome to Jackass.</i>',
                     'profilePageText' => '<b><i>Hello world</i>',

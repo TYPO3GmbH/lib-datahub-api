@@ -9,18 +9,13 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\VoucherCode;
 
+/**
+ * @extends AbstractFactory<VoucherCode>
+ */
 class VoucherCodeFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): VoucherCode
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): VoucherCode
     {
         $code = (new VoucherCode())

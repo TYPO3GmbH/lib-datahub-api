@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\EltsRuntime;
 
+/**
+ * @extends AbstractFactory<EltsRuntime>
+ */
 class EltsRuntimeFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): EltsRuntime
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): EltsRuntime
     {
         $eltsRuntime = (new EltsRuntime())

@@ -8,20 +8,15 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Notification\IncompletePaymentNotification;
 use T3G\DatahubApiLibrary\Notification\NotificationInterface;
 use T3G\DatahubApiLibrary\Notification\UnknownNotification;
 
+/**
+ * @extends AbstractFactory<NotificationInterface>
+ */
 class NotificationFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): NotificationInterface
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array<string, mixed> $data
      * @return NotificationInterface

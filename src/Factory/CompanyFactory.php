@@ -8,19 +8,14 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Company;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 
+/**
+ * @extends AbstractFactory<Company>
+ */
 class CompanyFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): Company
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): Company
     {
         $company = (new Company())

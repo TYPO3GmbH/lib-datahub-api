@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Subscription;
 
+/**
+ * @extends AbstractFactory<Subscription>
+ */
 class SubscriptionFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): Subscription
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): Subscription
     {
         $subscription = (new Subscription())

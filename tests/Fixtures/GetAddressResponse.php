@@ -29,6 +29,7 @@ return new Response(200, ['content-type' => 'application/json'], '
         "label": "Nordrhein-Westfalen"
       },
       "companyName": "Aldi",
-      "type": 16
+      "type": 16,
+      "checksum": "30489455e915553ca09f9430fb95d6ab055c64326fd9ec17d7a4655f2a4d4fe5"
     }
 ');

@@ -13,20 +13,10 @@ use T3G\DatahubApiLibrary\Entity\ReservedUser;
 
 /**
  * @method static array{entities: array<string, mixed>} responseToArray(ResponseInterface $response)
+ * @extends AbstractFactory<ReservedUser[]>
  */
 class ReservedUserListFactory extends AbstractFactory
 {
-    /**
-     * @param ResponseInterface $response
-     * @return ReservedUser[]
-     */
-    public static function fromResponse(ResponseInterface $response): array
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array{entities: array<string, mixed>} $list
      * @return ReservedUser[]

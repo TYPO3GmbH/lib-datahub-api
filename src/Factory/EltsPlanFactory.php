@@ -13,6 +13,9 @@ use T3G\DatahubApiLibrary\Entity\EltsPlan;
 use T3G\DatahubApiLibrary\Entity\EltsPlanList;
 use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 
+/**
+ * @extends AbstractFactory<EltsPlan>
+ */
 class EltsPlanFactory extends AbstractFactory
 {
     /**
@@ -27,13 +30,6 @@ class EltsPlanFactory extends AbstractFactory
             $arrayResponse['entities']
         );
         return new EltsPlanList($data);
-    }
-
-    public static function fromResponse(ResponseInterface $response): EltsPlan
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
     }
 
     /**

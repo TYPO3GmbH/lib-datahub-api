@@ -13,6 +13,9 @@ use T3G\DatahubApiLibrary\Entity\Invoice;
 use T3G\DatahubApiLibrary\Entity\Order;
 use T3G\DatahubApiLibrary\Entity\OrderList;
 
+/**
+ * @extends AbstractFactory<Order>
+ */
 class OrderFactory extends AbstractFactory
 {
     /**
@@ -27,13 +30,6 @@ class OrderFactory extends AbstractFactory
             $arrayResponse['data']
         );
         return new OrderList($arrayResponse['meta'], $arrayResponse['links'], $data);
-    }
-
-    public static function fromResponse(ResponseInterface $response): Order
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
     }
 
     public static function fromArray(array $data): Order

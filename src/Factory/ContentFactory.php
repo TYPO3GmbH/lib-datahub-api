@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Content;
 
+/**
+ * @extends AbstractFactory<Content>
+ */
 class ContentFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): Content
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): Content
     {
         return (new Content())

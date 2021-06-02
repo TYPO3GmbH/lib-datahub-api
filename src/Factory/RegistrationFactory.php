@@ -9,18 +9,13 @@
 namespace T3G\DatahubApiLibrary\Factory;
 
 use DateTime;
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Registration;
 
+/**
+ * @extends AbstractFactory<Registration>
+ */
 class RegistrationFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): Registration
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): Registration
     {
         return (new Registration())

@@ -8,18 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\UserEmail;
 
+/**
+ * @extends AbstractFactory<UserEmail>
+ */
 class UserEmailFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): UserEmail
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array<string, string> $data
      * @return UserEmail

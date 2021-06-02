@@ -13,20 +13,10 @@ use T3G\DatahubApiLibrary\Entity\CompanyInvitation;
 
 /**
  * @method static array{entities: array<string, mixed>} responseToArray(ResponseInterface $response)
+ * @extends AbstractFactory<CompanyInvitation[]>
  */
 class CompanyInvitationListFactory extends AbstractFactory
 {
-    /**
-     * @param ResponseInterface $response
-     * @return CompanyInvitation[]
-     */
-    public static function fromResponse(ResponseInterface $response): array
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array{entities: array<string, mixed>} $list
      * @return CompanyInvitation[]

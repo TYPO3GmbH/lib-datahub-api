@@ -13,13 +13,11 @@ use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\EltsProduct;
 use T3G\DatahubApiLibrary\Entity\EltsProductList;
 
+/**
+ * @extends AbstractFactory<EltsProduct>
+ */
 class EltsProductListFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): EltsProduct
-    {
-        return self::fromArray(self::responseToArray($response));
-    }
-
     /**
      * @param ResponseInterface $response
      * @return EltsProductList

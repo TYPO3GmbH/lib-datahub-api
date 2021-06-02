@@ -13,6 +13,8 @@ use T3G\DatahubApiLibrary\BitMask\AddressType;
 
 class Address implements JsonSerializable
 {
+    use ChecksumTrait;
+
     private string $uuid = '';
 
     private string $title = '';

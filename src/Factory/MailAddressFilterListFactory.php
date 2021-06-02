@@ -13,20 +13,10 @@ use T3G\DatahubApiLibrary\Entity\MailAddressFilter;
 
 /**
  * @method static array{entities: array<string, mixed>} responseToArray(ResponseInterface $response)
+ * @extends AbstractFactory<MailAddressFilter[]>
  */
 class MailAddressFilterListFactory extends AbstractFactory
 {
-    /**
-     * @param ResponseInterface $response
-     * @return MailAddressFilter[]
-     */
-    public static function fromResponse(ResponseInterface $response): array
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array{entities: array<string, mixed>} $list
      * @return MailAddressFilter[]

@@ -13,13 +13,11 @@ use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Offer;
 use T3G\DatahubApiLibrary\Entity\OfferList;
 
+/**
+ * @extends AbstractFactory<Offer>
+ */
 class OfferListFactory extends AbstractFactory
 {
-    public static function fromResponse(ResponseInterface $response): Offer
-    {
-        return self::fromArray(self::responseToArray($response));
-    }
-
     public static function fromResponseDataCollection(ResponseInterface $response): OfferList
     {
         $arrayResponse = self::responseToArray($response);

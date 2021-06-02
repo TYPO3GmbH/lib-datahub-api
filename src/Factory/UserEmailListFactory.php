@@ -13,20 +13,10 @@ use T3G\DatahubApiLibrary\Entity\UserEmail;
 
 /**
  * @method static array{entities: array<string, mixed>} responseToArray(ResponseInterface $response)
+ * @extends AbstractFactory<UserEmail[]>
  */
 class UserEmailListFactory extends AbstractFactory
 {
-    /**
-     * @param ResponseInterface $response
-     * @return UserEmail[]
-     */
-    public static function fromResponse(ResponseInterface $response): array
-    {
-        $data = self::responseToArray($response);
-
-        return self::fromArray($data);
-    }
-
     /**
      * @param array{entities: array<string, mixed>} $list
      * @return UserEmail[]

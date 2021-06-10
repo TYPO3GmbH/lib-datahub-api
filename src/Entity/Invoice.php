@@ -10,9 +10,12 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 class Invoice implements \JsonSerializable
 {
+    private string $uuid = '';
     private \DateTimeInterface $date;
     private string $link;
     private ?string $title = null;
+    private string $number = '';
+    private string $identifier = '';
 
     public function jsonSerialize()
     {
@@ -20,7 +23,20 @@ class Invoice implements \JsonSerializable
             'date' => $this->getDate()->format(\DateTimeInterface::ATOM),
             'link' => $this->getLink(),
             'title' => $this->getTitle(),
+            'number' => $this->getNumber(),
+            'identifier' => $this->getIdentifier(),
         ];
+    }
+
+    public function getUuid(): string
+    {
+        return $this->uuid;
+    }
+
+    public function setUuid(string $uuid): self
+    {
+        $this->uuid = $uuid;
+        return $this;
     }
 
     public function getDate(): \DateTimeInterface
@@ -53,6 +69,28 @@ class Invoice implements \JsonSerializable
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+        return $this;
+    }
+
+    public function getNumber(): string
+    {
+        return $this->number;
+    }
+
+    public function setNumber(string $number): self
+    {
+        $this->number = $number;
+        return $this;
+    }
+
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
+    }
+
+    public function setIdentifier(string $identifier): self
+    {
+        $this->identifier = $identifier;
         return $this;
     }
 }

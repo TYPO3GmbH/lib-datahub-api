@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Api;
 
 use T3G\DatahubApiLibrary\Demand\OrderSearchDemand;
+use T3G\DatahubApiLibrary\Entity\Invoice;
 use T3G\DatahubApiLibrary\Entity\Order;
 use T3G\DatahubApiLibrary\Entity\OrderList;
 use T3G\DatahubApiLibrary\Factory\OrderFactory;
@@ -99,6 +100,19 @@ class OrderApi extends AbstractApi
                 'PUT',
                 self::uri('/order/' . $uuid),
                 json_encode($order, JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
+
+    public function addInvoice(string $orderUuid, Invoice $invoice): Order
+    {
+        $this->isValidUuidOrThrow($orderUuid);
+
+        return OrderFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                self::uri(sprintf('/order/%s/invoice', $orderUuid)),
+                json_encode($invoice, JSON_THROW_ON_ERROR, 512)
             )
         );
     }

@@ -11,6 +11,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\OrderApi;
 use T3G\DatahubApiLibrary\Demand\OrderSearchDemand;
+use T3G\DatahubApiLibrary\Entity\Invoice;
 use T3G\DatahubApiLibrary\Entity\Order;
 
 class OrderApiTest extends AbstractApiTest
@@ -26,6 +27,9 @@ class OrderApiTest extends AbstractApiTest
         $this->assertIsArray($response->getPayload());
         $this->assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
         $this->assertCount(1, $response->getInvoices());
+        $firstInvoice = $response->getInvoices()[0];
+        $this->assertSame('https://dienmam.com/invoice', $firstInvoice->getLink());
+        $this->assertSame((new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))->getTimestamp(), $firstInvoice->getDate()->getTimestamp());
     }
 
     /**
@@ -90,6 +94,25 @@ class OrderApiTest extends AbstractApiTest
         $this->assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
     }
 
+    public function testAddInvoice(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetOrderResponse.php'
+        ]);
+        $response = (new OrderApi($this->getClient($handler)))
+            ->addInvoice('00000000-0000-0000-0000-000000000000', $this->getTestInvoice());
+        self::assertEquals('A12345', $response->getOrderNumber());
+        self::assertIsArray($response->getPayload());
+        self::assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
+        self::assertIsArray($response->getInvoices());
+        $invoice = $response->getInvoices()[0];
+        self::assertSame('Test-Title', $invoice->getTitle());
+        self::assertSame('https://dienmam.com/invoice', $invoice->getLink());
+        self::assertSame((new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))->getTimestamp(), $invoice->getDate()->getTimestamp());
+        self::assertSame('I12345', $invoice->getNumber());
+        self::assertSame('in_1234', $invoice->getIdentifier());
+    }
+
     public function testDeleteMailAddressFilter(): void
     {
         $handler = new MockHandler([
@@ -114,5 +137,17 @@ class OrderApiTest extends AbstractApiTest
                     ['foo' => 'bar']
                 ]
             ]);
+    }
+
+    private function getTestInvoice(): Invoice
+    {
+        return (new Invoice())
+            ->setUuid('00000000-0000-0000-0000-000000000000')
+            ->setTitle('Test-Title')
+            ->setNumber('I12345')
+            ->setIdentifier('in_1234')
+            ->setLink('https://dienmam.com/invoice')
+            ->setDate(new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))
+        ;
     }
 }

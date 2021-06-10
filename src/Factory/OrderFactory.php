@@ -9,7 +9,6 @@
 namespace T3G\DatahubApiLibrary\Factory;
 
 use Psr\Http\Message\ResponseInterface;
-use T3G\DatahubApiLibrary\Entity\Invoice;
 use T3G\DatahubApiLibrary\Entity\Order;
 use T3G\DatahubApiLibrary\Entity\OrderList;
 
@@ -44,12 +43,7 @@ class OrderFactory extends AbstractFactory
         }
 
         foreach ($data['invoices'] ?? [] as $invoice) {
-            $order->addInvoice(
-                (new Invoice())
-                    ->setLink($invoice['link'])
-                    ->setDate(new \DateTime($invoice['date']))
-                    ->setTitle($invoice['title'] ?? null)
-            );
+            $order->addInvoice(InvoiceFactory::fromArray($invoice));
         }
 
         return $order;

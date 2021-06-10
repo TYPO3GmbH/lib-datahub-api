@@ -24,6 +24,14 @@ class OrderFactoryTest extends TestCase
         $this->assertEquals($data['orderNumber'], $entity->getOrderNumber());
         $this->assertEquals($data['payload'], $entity->getPayload());
         $this->assertEquals((new \DateTime('2020-01-10T00:00:00+00:00'))->getTimestamp(), $entity->getCreatedAt()->getTimestamp());
+        if (!empty($data['invoices'])) {
+            $invoice = $entity->getInvoices()[0];
+            $this->assertEquals($data['invoices'][0]['uuid'], $invoice->getUuid());
+            $this->assertEquals($data['invoices'][0]['identifier'], $invoice->getIdentifier());
+            $this->assertEquals($data['invoices'][0]['link'], $invoice->getLink());
+            $this->assertEquals($data['invoices'][0]['title'], $invoice->getTitle());
+            $this->assertEquals((new \DateTime($data['invoices'][0]['date']))->getTimestamp(), $invoice->getDate()->getTimestamp());
+        }
     }
 
     public function factoryDataProvider(): array
@@ -37,6 +45,27 @@ class OrderFactoryTest extends TestCase
                     'payload' => [
                         'items' => [
                             ['foo' => 'bar']
+                        ]
+                    ]
+                ]
+            ],
+            'allValuesSet with invoices' => [
+                'data' => [
+                    'uuid' => '00000000-0000-0000-0000-000000000000',
+                    'orderNumber' => 'D12345',
+                    'createdAt' => '2020-01-10T00:00:00+00:00',
+                    'payload' => [
+                        'items' => [
+                            ['foo' => 'bar']
+                        ]
+                    ],
+                    'invoices' => [
+                        [
+                            'uuid' => '00000000-0000-0000-0000-000000000000',
+                            'identifier' => 'in_1234',
+                            'link' => '/account/foo',
+                            'title' => 'Test-Invoice',
+                            'date' => '2020-01-10T00:00:00+00:00',
                         ]
                     ]
                 ]

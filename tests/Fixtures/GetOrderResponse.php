@@ -14,6 +14,14 @@ return new Response(200, ['content-type' => 'application/json'], '
       "payload": {"items": [ {"foo": "bar"} ]},
       "uuid": "00000000-0000-0000-0000-000000000000",
       "createdAt": "2020-01-10T00:00:00+00:00",
-      "invoices": [{"link": "https://dienmam.com/invoice", "date": "2020-01-10T00:00:00+00:00"}]
+      "invoices": [
+        {
+            "title": "Test-Title",
+            "number": "I12345",
+            "identifier": "in_1234",
+            "link": "https://dienmam.com/invoice",
+            "date": "2020-01-10T00:00:00+00:00"
+        }
+      ]
     }
 ');

@@ -73,10 +73,10 @@
     },
     "scripts": {
         "t3g:cgl": [
-            "php-cs-fixer fix --config php_cs.dist -v --dry-run"
+            "php-cs-fixer fix --config .php-cs-fixer.dist.php -v --dry-run"
         ],
         "t3g:cgl:fix": [
-            "php-cs-fixer fix --config .php_cs.dist"
+            "php-cs-fixer fix --config .php-cs-fixer.dist.php"
         ],
         "t3g:test:php": [
             "@t3g:test:php:unit"

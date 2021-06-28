@@ -29,8 +29,7 @@ class Order implements JsonSerializable
     {
         return [
             'orderNumber' => $this->getOrderNumber(),
-            'payload' => $this->getPayload(),
-            'invoices' => $this->invoices,
+            'payload' => $this->getPayload()
         ];
     }
 

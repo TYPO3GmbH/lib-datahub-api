@@ -58,15 +58,6 @@ class OrderApi extends AbstractApi
         );
     }
 
-    /**
-     * @deprecated since 16.07.2020, will be remove after 16.01.2021. Use createOrderForUser or createOrderForCompany instead
-     */
-    public function createOrder(string $username, Order $order): Order
-    {
-        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 16.01.2021. Use createOrderForUser or createOrderForCompany instead', E_USER_DEPRECATED);
-        return $this->createOrderForUser($username, $order);
-    }
-
     public function createOrderForUser(string $username, Order $order): Order
     {
         return OrderFactory::fromResponse(

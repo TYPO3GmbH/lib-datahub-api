@@ -8,7 +8,6 @@
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
-use DateTime;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Factory\CompanyInvitationFactory;
 
@@ -24,7 +23,7 @@ class CompanyInvitationFactoryTest extends TestCase
         $this->assertEquals($data['username'], $entity->getUsername());
         $this->assertEquals($data['email'], $entity->getEmail());
         $this->assertEquals($data['inviteCode'], $entity->getInviteCode());
-        $this->assertEquals($data['validUntil'], $entity->getValidUntil()->format(DateTime::ATOM));
+        $this->assertEquals($data['validUntil'], $entity->getValidUntil()->format(\DateTimeInterface::ATOM));
     }
 
     public function factoryDataProvider(): array

@@ -15,8 +15,6 @@ return new Response(200, ['content-type' => 'application/json'], '
     "email": "spammer@spam.org",
     "deleteDate": "2020-01-10T00:00:00+00:00",
     "otrsIssue": "123",
-    "deletedBy": "Admin",
-    "gitlabIssue": "234",
     "comment": "Is a spammer",
     "status": "DELETED"
 }

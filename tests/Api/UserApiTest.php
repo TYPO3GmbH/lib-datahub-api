@@ -8,7 +8,6 @@
 
 namespace T3G\DatahubApiLibrary\Tests\Api;
 
-use DateTime;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\UserApi;
 use T3G\DatahubApiLibrary\Entity\Certification;
@@ -138,7 +137,6 @@ class UserApiTest extends AbstractApiTest
             ->setUsername('oelie-boelie')
             ->setFirstName('Oelie')
             ->setLastName('Boelie')
-            ->setEmail('oelie@boelie.nl')
             ->setPhone(null);
     }
 
@@ -155,15 +153,15 @@ class UserApiTest extends AbstractApiTest
             ->setExamUrl('https://exam.typo3.com/exam/00000000-0000-0000-0000-000000000000')
             ->setExamAccessCode('00000000-0000-0000-0000-000000000000')
             ->setExamProctoringInstructions('Vote for Zoidberg!')
-            ->setExamStartDate(new DateTime('2020-06-02T00:00:00+00:00'))
-            ->setExamEndDate(new DateTime('2022-06-02T00:00:00+00:00'))
+            ->setExamStartDate(new \DateTime('2020-06-02T00:00:00+00:00'))
+            ->setExamEndDate(new \DateTime('2022-06-02T00:00:00+00:00'))
             ->setExamDuration(90)
         ;
 
         $api = new UserApi($this->getClient($handler));
         $response = $api->createCertification('oelie-boelie', $certification);
         $this->assertEquals('TCCE', $response->getType());
-        $this->assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(DateTime::ATOM));
+        $this->assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(\DateTimeInterface::ATOM));
         $this->assertEquals('online', $response->getExamLocation());
         $this->assertEquals('UNKNOWN', $response->getStatus());
     }
@@ -181,15 +179,15 @@ class UserApiTest extends AbstractApiTest
             ->setExamUrl('https://exam.typo3.com/exam/00000000-0000-0000-0000-000000000000')
             ->setExamAccessCode('00000000-0000-0000-0000-000000000000')
             ->setExamProctoringInstructions('Vote for Zoidberg!')
-            ->setExamStartDate(new DateTime('2020-06-02T00:00:00+00:00'))
-            ->setExamEndDate(new DateTime('2022-06-02T00:00:00+00:00'))
+            ->setExamStartDate(new \DateTime('2020-06-02T00:00:00+00:00'))
+            ->setExamEndDate(new \DateTime('2022-06-02T00:00:00+00:00'))
             ->setExamDuration(90)
         ;
 
         $api = new UserApi($this->getClient($handler));
         $response = $api->updateCertification('oelie-boelie', '00000000-0000-0000-0000-000000000000', $certification);
         $this->assertEquals('TCCE', $response->getType());
-        $this->assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(DateTime::ATOM));
+        $this->assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(\DateTimeInterface::ATOM));
         $this->assertEquals('online', $response->getExamLocation());
         $this->assertEquals('UNKNOWN', $response->getStatus());
     }

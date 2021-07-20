@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Enum\EltsPlanType;
+use T3G\DatahubApiLibrary\Enum\PaymentStatus;
 use T3G\DatahubApiLibrary\Factory\EltsPlanFactory;
 
 class EltsPlanFactoryTest extends TestCase
@@ -25,7 +26,7 @@ class EltsPlanFactoryTest extends TestCase
         self::assertEquals($data['uuid'], $entity->getUuid());
         self::assertEquals($data['version'], $entity->getVersion());
         self::assertEquals($data['type'], $entity->getType());
-        self::assertEquals($data['runtime'], $entity->getRuntime());
+        self::assertEquals($data['runtimes'][0]['runtime'], $entity->getRuntimes()[0]->getRuntime());
         self::assertEquals($data['owner'], $entity->getOwner());
         self::assertEquals($data['ownerData'], $entity->getOwnerData());
         $data['validFrom'] = $data['validFrom'] ?? null;
@@ -62,9 +63,16 @@ class EltsPlanFactoryTest extends TestCase
                     'version' => '8.7',
                     'type' => 'agency',
                     'title' => 'Agency Plan',
-                    'runtime' => '1-3',
                     'validFrom' => '2020-04-01T00:00:00+00:00',
                     'validTo' => '2023-03-31T00:00:00+00:00',
+                    'runtimes' => [
+                        [
+                            'uuid' => '00000000-0000-0000-0000-000000000000',
+                            'runtime' => '1-3',
+                            'orderNumber' => 'GELTS123',
+                            'paymentStatus' => PaymentStatus::PAID
+                        ]
+                    ],
                     'licenses' => null,
                     'owner' => 'user:max.muster',
                     'ownerData' => [
@@ -107,7 +115,14 @@ class EltsPlanFactoryTest extends TestCase
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'version' => '8.7',
                     'type' => 'agency',
-                    'runtime' => '1-3',
+                    'runtimes' => [
+                        [
+                            'uuid' => '00000000-0000-0000-0000-000000000000',
+                            'runtime' => '1-3',
+                            'orderNumber' => 'GELTS123',
+                            'paymentStatus' => PaymentStatus::PAID
+                        ]
+                    ],
                     'owner' => 'user:max.muster',
                     'ownerData' => [
                         'title' => 'Max Muster',

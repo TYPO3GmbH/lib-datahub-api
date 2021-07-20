@@ -8,7 +8,6 @@
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
-use DateTime;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 
@@ -24,11 +23,11 @@ class EmployeeFactoryTest extends TestCase
         $this->assertEquals($data['uuid'], $entity->getUuid());
         $this->assertEquals($data['role'], $entity->getRole());
         if (null !== $data['leftAt']) {
-            $this->assertEquals($data['leftAt'], $entity->getLeftAt()->format(DateTime::ATOM));
+            $this->assertEquals($data['leftAt'], $entity->getLeftAt()->format(\DateTimeInterface::ATOM));
         } else {
             $this->assertNull($entity->getLeftAt());
         }
-        $this->assertEquals($data['joinedAt'], $entity->getJoinedAt()->format(DateTime::ATOM));
+        $this->assertEquals($data['joinedAt'], $entity->getJoinedAt()->format(\DateTimeInterface::ATOM));
 
         if (isset($data['user'])) {
             $this->assertEquals($data['user']['username'], $entity->getUser()->getUsername());

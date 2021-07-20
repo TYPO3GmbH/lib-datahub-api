@@ -13,7 +13,6 @@ return new Response(200, ['content-type' => 'application/json'], '
     "uuid": "00000000-0000-0000-0000-000000000000",
     "version": "8.7",
     "type": "single",
-    "runtime": "1-3",
     "validFrom": "2020-04-01T00:00:00+00:00",
     "validTo": "2023-03-31T00:00:00+00:00",
     "runtimes": [

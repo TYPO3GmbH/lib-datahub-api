@@ -8,7 +8,6 @@
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
-use DateTime;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Factory\ApprovedDocumentFactory;
 
@@ -23,7 +22,7 @@ class ApprovedDocumentFactoryTest extends TestCase
         $entity = ApprovedDocumentFactory::fromArray($data);
         $this->assertEquals($data['documentIdentifier'], $entity->getDocumentIdentifier());
         $this->assertEquals($data['documentVersion'], $entity->getDocumentVersion());
-        $this->assertEquals($data['approveDate'], $entity->getApproveDate()->format(DateTime::ATOM));
+        $this->assertEquals($data['approveDate'], $entity->getApproveDate()->format(\DateTimeInterface::ATOM));
         $this->assertEquals($data['user']['username'], $entity->getUser()->getUsername());
     }
 

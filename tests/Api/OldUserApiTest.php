@@ -25,9 +25,7 @@ class OldUserApiTest extends AbstractApiTest
         $entity = array_pop($response);
         $this->assertArrayHasKey('username', $entity);
         $this->assertArrayHasKey('email', $entity);
-        $this->assertArrayHasKey('deletedBy', $entity);
         $this->assertArrayHasKey('deleteDate', $entity);
-        $this->assertArrayHasKey('gitlabIssue', $entity);
         $this->assertArrayHasKey('otrsIssue', $entity);
         $this->assertArrayHasKey('comment', $entity);
     }
@@ -41,7 +39,7 @@ class OldUserApiTest extends AbstractApiTest
         self::assertEquals('11111111-1111-1111-1111-111111111111', $response->getUuid());
         self::assertEquals('serious.spam', $response->getUsername());
         self::assertEquals('spammer@spam.org', $response->getEmail());
-        self::assertEquals('2020-01-10T00:00:00+00:00', $response->getDeleteDate()->format(\DateTime::ATOM));
+        self::assertEquals('2020-01-10T00:00:00+00:00', $response->getDeleteDate()->format(\DateTimeInterface::ATOM));
         self::assertEquals('123', $response->getOtrsIssue());
         self::assertEquals('Is a spammer', $response->getComment());
         self::assertEquals('DELETED', $response->getStatus());

@@ -33,7 +33,7 @@ class EltsPlanApiTest extends AbstractApiTest
 
         self::assertEquals($eltsPlan->version, $response->getVersion());
         self::assertEquals($eltsPlan->type, $response->getType());
-        self::assertEquals($eltsPlan->runtime, $response->getRuntime());
+        self::assertEquals($eltsPlan->runtime, $response->getRuntimes()[0]->getRuntime());
         self::assertEquals($eltsPlan->orderNumber, $response->getOrder()->getOrderNumber());
         self::assertCount(1, $response->getRuntimes());
         self::assertSame($response->getRuntimes()[0]->getRuntime(), $eltsPlan->runtime);
@@ -54,7 +54,7 @@ class EltsPlanApiTest extends AbstractApiTest
 
         self::assertEquals($eltsPlan->version, $response->getVersion());
         self::assertEquals($eltsPlan->type, $response->getType());
-        self::assertEquals($eltsPlan->runtime, $response->getRuntime());
+        self::assertEquals($eltsPlan->runtime, $response->getRuntimes()[0]->getRuntime());
         self::assertEquals($eltsPlan->orderNumber, $response->getOrder()->getOrderNumber());
         self::assertCount(1, $response->getRuntimes());
         self::assertSame($response->getRuntimes()[0]->getRuntime(), $eltsPlan->runtime);
@@ -76,11 +76,10 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertSame('8.7', $plans[0]->getVersion());
         self::assertSame('agency', $plans[0]->getType());
         self::assertSame('Agency Plan 8.7 ELTS', $plans[0]->getTitle());
-        self::assertSame('2-2', $plans[0]->getRuntime());
         self::assertEquals(new \DateTimeImmutable('2021-04-01T00:00:00+00:00'), $plans[0]->getValidFrom());
         self::assertEquals(new \DateTimeImmutable('2022-03-31T00:00:00+00:00'), $plans[0]->getValidTo());
         self::assertCount(1, $plans[0]->getRuntimes());
-        self::assertSame($plans[0]->getRuntimes()[0]->getRuntime(), $plans[0]->getRuntime());
+        self::assertSame($plans[0]->getRuntimes()[0]->getRuntime(), '2-2');
         self::assertSame($plans[0]->getRuntimes()[0]->getOrder()->getOrderNumber(), $plans[0]->getOrder()->getOrderNumber());
         self::assertEquals(new \DateTimeImmutable('2021-04-01T00:00:00+00:00'), $plans[0]->getRuntimes()[0]->getValidFrom());
         self::assertEquals(new \DateTimeImmutable('2022-03-31T00:00:00+00:00'), $plans[0]->getRuntimes()[0]->getValidTo());
@@ -95,11 +94,10 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertSame('8.7', $plans[1]->getVersion());
         self::assertSame('pro', $plans[1]->getType());
         self::assertSame('Pro Plan 8.7 ELTS', $plans[1]->getTitle());
-        self::assertSame('2-3', $plans[1]->getRuntime());
         self::assertEquals(new \DateTimeImmutable('2021-04-01T00:00:00+00:00'), $plans[1]->getValidFrom());
         self::assertEquals(new \DateTimeImmutable('2023-03-31T00:00:00+00:00'), $plans[1]->getValidTo());
         self::assertCount(1, $plans[1]->getRuntimes());
-        self::assertSame($plans[1]->getRuntimes()[0]->getRuntime(), $plans[1]->getRuntime());
+        self::assertSame($plans[1]->getRuntimes()[0]->getRuntime(), '2-3');
         self::assertNull($plans[1]->getRuntimes()[0]->getOrder());
         self::assertEquals(new \DateTimeImmutable('2021-04-01T00:00:00+00:00'), $plans[1]->getRuntimes()[0]->getValidFrom());
         self::assertEquals(new \DateTimeImmutable('2023-03-31T00:00:00+00:00'), $plans[1]->getRuntimes()[0]->getValidTo());
@@ -124,7 +122,6 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertSame('8.7', $plans[0]->getVersion());
         self::assertSame('single', $plans[0]->getType());
         self::assertSame('Single Plan', $plans[0]->getTitle());
-        self::assertSame('', $plans[0]->getRuntime());
         self::assertCount(2, $plans[0]->getRuntimes());
         self::assertSame($plans[0]->getRuntimes()[0]->getRuntime(), '1-1');
         self::assertSame($plans[0]->getRuntimes()[0]->getOrder()->getOrderNumber(), 'GELTS123');
@@ -134,7 +131,6 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertSame('8.7', $plans[1]->getVersion());
         self::assertSame('agency', $plans[1]->getType());
         self::assertSame('Agency Plan', $plans[1]->getTitle());
-        self::assertSame('', $plans[1]->getRuntime());
         self::assertCount(1, $plans[1]->getRuntimes());
         self::assertSame($plans[1]->getRuntimes()[0]->getRuntime(), '2-2');
         self::assertNotNull($plans[1]->getRuntimes()[0]->getOrder());
@@ -201,7 +197,7 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertSame('11111111-1111-1111-1111-111111111111', $response->getUuid());
         self::assertEquals('8.7', $response->getVersion());
         self::assertEquals('single', $response->getType());
-        self::assertSame('2-2', $response->getRuntime());
+        self::assertSame('2-2', $response->getRuntimes()[0]->getRuntime());
     }
 
     public function testUpdateRuntimePaymentStatus(): void

@@ -383,18 +383,6 @@ class Company implements JsonSerializable
         return $this->title;
     }
 
-    /**
-     * @param string $username
-     * @param string $role
-     * @return bool
-     * @deprecated since 24.06.2020, will be remove after 24.12.2020. Use employeeHasRole(), isEmployee(), isManager() or isOwner() instead
-     */
-    public function hasRole(string $username, string $role): bool
-    {
-        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 24.12.2020. Use employeeHasRole(), isEmployee(), isManager() or isOwner() instead', E_USER_DEPRECATED);
-        return $this->employeeHasRole($username, $role);
-    }
-
     public function isEmployee(string $username): bool
     {
         return $this->employeeHasRole($username, EmployeeRole::EMPLOYEE);

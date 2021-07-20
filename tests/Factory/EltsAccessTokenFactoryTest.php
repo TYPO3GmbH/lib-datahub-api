@@ -25,7 +25,7 @@ class EltsAccessTokenFactoryTest extends TestCase
         self::assertEquals($data['name'], $entity->getName());
         self::assertEquals($data['description'] ?? null, $entity->getDescription());
         self::assertEquals($data['token'], $entity->getToken());
-        self::assertEquals($data['createdAt'], $entity->getCreatedAt()->format(\DateTime::ATOM));
+        self::assertEquals($data['createdAt'], $entity->getCreatedAt()->format(\DateTimeInterface::ATOM));
     }
 
     public function factoryDataProvider(): array

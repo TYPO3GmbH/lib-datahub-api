@@ -16,7 +16,6 @@ class EltsPlan implements JsonSerializable
     private string $version;
     private string $type;
     private ?string $title = null;
-    private string $runtime = '';
 
     /**
      * @var EltsPlanExtendable[]
@@ -160,17 +159,6 @@ class EltsPlan implements JsonSerializable
     {
         $this->extendables[$extendable->getRuntime()] = $extendable;
 
-        return $this;
-    }
-
-    public function getRuntime(): string
-    {
-        return $this->runtime;
-    }
-
-    public function setRuntime(string $runtime): self
-    {
-        $this->runtime = $runtime;
         return $this;
     }
 

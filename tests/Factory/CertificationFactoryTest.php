@@ -8,7 +8,6 @@
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
-use DateTime;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 
@@ -26,7 +25,7 @@ class CertificationFactoryTest extends TestCase
         $this->assertEquals($data['examLocation'], $entity->getExamLocation());
         $this->assertEquals($data['hubspotDealId'] ?? null, $entity->getHubspotDealId());
         if (null !== $data['examDate']) {
-            $this->assertEquals($data['examDate'], $entity->getExamDate()->format(DateTime::ATOM));
+            $this->assertEquals($data['examDate'], $entity->getExamDate()->format(\DateTimeInterface::ATOM));
         }
         if (null !== $data['proctoringLink']) {
             $this->assertEquals($data['proctoringLink'], $entity->getProctoringLink());

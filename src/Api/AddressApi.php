@@ -151,45 +151,4 @@ class AddressApi extends AbstractApi
             self::uri('/company/addresses/' . $uuid),
         );
     }
-
-    // Deprecated methods
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws DatahubResponseException
-     * @throws InvalidUuidException
-     * @deprecated since 24.04.2020, will be remove after 24.10.2020. Use getUserAddress or getCompanyAddress instead
-     * @codeCoverageIgnore
-     */
-    public function getAddress(string $uuid): Address
-    {
-        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 24.10.2020. Use getUserAddress or getCompanyAddress instead', E_USER_DEPRECATED);
-        return $this->getUserAddress($uuid);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws DatahubResponseException
-     * @throws InvalidUuidException
-     * @deprecated since 24.04.2020, will be remove after 24.10.2020. Use UpdateUserAddress or UpdateCompanyAddress instead
-     * @codeCoverageIgnore
-     */
-    public function updateAddress(string $uuid, Address $address): Address
-    {
-        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 24.10.2020. Use UpdateUserAddress or UpdateCompanyAddress instead', E_USER_DEPRECATED);
-        return $this->updateUserAddress($uuid, $address);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws DatahubResponseException
-     * @throws InvalidUuidException
-     * @deprecated since 24.04.2020, will be remove after 24.10.2020. Use deleteUserAddress or deleteCompanyAddress instead
-     * @codeCoverageIgnore
-     */
-    public function deleteAddress(string $uuid): void
-    {
-        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 24.10.2020. Use deleteUserAddress or deleteCompanyAddress instead', E_USER_DEPRECATED);
-        $this->deleteUserAddress($uuid);
-    }
 }

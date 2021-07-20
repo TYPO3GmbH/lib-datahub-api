@@ -19,6 +19,29 @@ return new Response(200, ['content-type' => 'application/json'], '
   "licenses": 1,
   "order": null,
   "owner": "user:oelie.boelie",
-  "title": "Single Plan 8.7 ELTS"
+  "title": "Single Plan 8.7 ELTS",
+  "runtimes": [
+    {
+      "uuid": "00000000-0000-0000-0000-000000000000",
+      "runtime": "2-2",
+      "validFrom": "2020-04-01T00:00:00+00:00",
+      "validTo": "2023-03-31T00:00:00+00:00",
+      "paymentStatus": "paid",
+      "order": {
+      "uuid": "b1c5f298-bdea-493e-893a-ec16a08da35a",
+        "orderNumber": "GELTS123",
+        "payload": {
+          "items": [
+            {
+              "title": "ELTS Order",
+              "quantity": 1
+            }
+          ]
+        },
+        "createdAt": "2020-05-12T05:55:59+00:00",
+        "invoices": []
+      }
+    }
+  ]
 }
 ');

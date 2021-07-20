@@ -21,7 +21,6 @@ class UserFactory extends AbstractFactory
             ->setUserName($data['username'])
             ->setLastName($data['lastName'] ?? null)
             ->setFirstName($data['firstName'] ?? null)
-            ->setEmail($data['email'] ?? null)
             ->setPhone($data['phone'] ?? null)
             ->setSlackId($data['slackId'] ?? null)
             ->setDiscordId($data['discordId'] ?? null)

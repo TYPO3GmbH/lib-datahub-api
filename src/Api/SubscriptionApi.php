@@ -71,21 +71,6 @@ class SubscriptionApi extends AbstractApi
         );
     }
 
-    /**
-     * @return array<int, Subscription>
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
-     */
-    public function getImportedMemberships(): array
-    {
-        return SubscriptionListFactory::fromResponse(
-            $this->client->request(
-                'GET',
-                self::uri('/subscription/imported-memberships')
-            )
-        );
-    }
-
     public function createSubscriptionForUser(string $username, Subscription $subscription): Subscription
     {
         return SubscriptionFactory::fromResponse(

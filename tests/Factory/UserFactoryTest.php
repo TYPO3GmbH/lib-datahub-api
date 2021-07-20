@@ -24,7 +24,6 @@ class UserFactoryTest extends TestCase
         $this->assertEquals($data['username'], $entity->getUsername());
         $this->assertEquals($data['firstName'], $entity->getFirstName());
         $this->assertEquals($data['lastName'], $entity->getLastName());
-        $this->assertEquals($data['email'], $entity->getPrimaryEmail());
         $this->assertEquals($data['phone'], $entity->getPhone());
         $this->assertCount(count($data['addresses'] ?? []), $entity->getAddresses());
         $this->assertCount(count($data['links'] ?? []), $entity->getLinks());
@@ -47,7 +46,6 @@ class UserFactoryTest extends TestCase
                     'username' => 'oelie-boelie',
                     'firstName' => 'Oelie',
                     'lastName' => 'Boelie',
-                    'email' => 'oelie@boelie.nl',
                     'emailAddresses' => [
                         [
                             'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
@@ -64,7 +62,6 @@ class UserFactoryTest extends TestCase
                     'username' => 'oelie-boelie',
                     'firstName' => 'Oelie',
                     'lastName' => 'Boelie',
-                    'email' => 'oelie@boelie.nl',
                     'emailAddresses' => [
                         [
                             'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
@@ -171,7 +168,6 @@ class UserFactoryTest extends TestCase
                     'username' => 'oelie-boelie',
                     'firstName' => 'Oelie',
                     'lastName' => 'Boelie',
-                    'email' => 'oelie@boelie.nl',
                     'emailAddresses' => [
                         [
                             'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',

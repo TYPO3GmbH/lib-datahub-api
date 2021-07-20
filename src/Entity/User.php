@@ -141,15 +141,6 @@ class User implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @deprecated will be removed after 14.12.2021. Use getPrimaryEmail(), getBillingEmail() or getVotingEmail() instead
-     */
-    public function getEmail(): ?string
-    {
-        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 14.12.2021. Use getPrimaryEmail(), getBillingEmail() or getVotingEmail() instead', E_USER_DEPRECATED);
-        return $this->getPrimaryEmail();
-    }
-
     public function getPrimaryEmail(): ?string
     {
         return $this->getEmailByType(EmailType::PRIMARY);
@@ -173,16 +164,6 @@ class User implements JsonSerializable
             }
         }
         return null;
-    }
-
-    /**
-     * @deprecated will be removed after 14.12.2021. Use setEmailAddresses() instead
-     */
-    public function setEmail(?string $email): self
-    {
-        trigger_error(__METHOD__ . ' has been marked as deprecated and will be removed after 14.12.2021. Use setEmailAddresses() instead', E_USER_DEPRECATED);
-        $this->email = $email;
-        return $this;
     }
 
     public function getFirstName(): ?string

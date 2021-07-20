@@ -8,7 +8,6 @@
 
 namespace T3G\DatahubApiLibrary\Tests\Api;
 
-use DateTime;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\RegistrationApi;
 use T3G\DatahubApiLibrary\Entity\Registration;
@@ -28,7 +27,7 @@ class RegistrationApiTest extends AbstractApiTest
         $this->assertEquals('Boelie', $response->getLastName());
         $this->assertEquals('lidl', $response->getLocation());
         $this->assertEquals('a9fde411-e46f-4fca-80f4-347bf3b57ca3', $response->getRegistrationCode());
-        $this->assertEquals('2020-04-13T14:24:21+00:00', $response->getValidUntil()->format(DateTime::ATOM));
+        $this->assertEquals('2020-04-13T14:24:21+00:00', $response->getValidUntil()->format(\DateTimeInterface::ATOM));
     }
 
     public function testConfirmRegistration(): void

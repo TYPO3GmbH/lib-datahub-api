@@ -28,7 +28,7 @@ class SubscriptionFactoryTest extends TestCase
         self::assertEquals($data['subscriptionType'], $entity->getSubscriptionType());
         self::assertEquals($data['subscriptionSubType'], $entity->getSubscriptionSubType());
         self::assertEquals($data['subscriptionStatus'], $entity->getSubscriptionStatus());
-        self::assertEquals($data['validUntil'], $entity->getValidUntil()->format(\DateTime::ATOM));
+        self::assertEquals($data['validUntil'], $entity->getValidUntil()->format(\DateTimeInterface::ATOM));
         self::assertEquals($data['payload'] ?? null, $entity->getPayload());
         self::assertEquals($data['history'] ?? null, $entity->getHistory());
 

@@ -9,6 +9,7 @@
 namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
+use T3G\DatahubApiLibrary\Enum\PaymentStatus;
 
 class EltsPlan implements JsonSerializable
 {
@@ -160,6 +161,34 @@ class EltsPlan implements JsonSerializable
         $this->extendables[$extendable->getRuntime()] = $extendable;
 
         return $this;
+    }
+
+    public function getRuntime(): string
+    {
+        $paidRuntimes = array_filter($this->runtimes, static function (EltsRuntime $eltsRuntime) {
+            return PaymentStatus::PAID === $eltsRuntime->getPaymentStatus();
+        });
+
+        $activeRuntime = null;
+        $now = new \DateTimeImmutable();
+
+        foreach ($paidRuntimes as $runtime) {
+            if ($runtime->getValidFrom() <= $now && $runtime->getValidTo() >= $now) {
+                $activeRuntime = $runtime;
+                break;
+            }
+        }
+
+        if (null !== $activeRuntime) {
+            return $activeRuntime->getRuntime();
+        }
+
+        $paidRuntime = end($paidRuntimes);
+        if (false !== $paidRuntime) {
+            return $paidRuntime->getRuntime();
+        }
+
+        return '';
     }
 
     /**

@@ -38,6 +38,7 @@ final class WebHookType extends AbstractEnum
     public const EXAM_ACCESS_CREATED = 'exam_access_created';
     public const EXAM_ACCESS_UPDATED = 'exam_access_updated';
     public const EXAM_RESULTS_ARRIVED = 'exam_results_arrived';
+    public const EXAM_STATUS_PASSED = 'exam_status_passed';
     public const EXAM_STARTED = 'exam_started';
     public const PROCTORING_RESULTS_ARRIVED = 'proctoring_results_arrived';
     public const ORDER_CREATED = 'order_created';
@@ -72,6 +73,7 @@ final class WebHookType extends AbstractEnum
         self::ELTS_PLAN_CREATED => 'EltsPlan record has been created',
         self::EMAIL_ADDRESS_CHANGED => 'Email address has been changed',
         self::EXAM_RESULTS_ARRIVED => 'The final exam results arrived.',
+        self::EXAM_STATUS_PASSED => 'The final exam status is passed.',
         self::EXAM_ACCESS_CREATED => 'An exam access record has been created',
         self::EXAM_ACCESS_UPDATED => 'An exam access record has been updated',
         self::EXAM_STARTED => 'An exam has started, a certification record was updated.',

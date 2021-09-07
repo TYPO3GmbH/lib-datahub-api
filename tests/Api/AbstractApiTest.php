@@ -8,13 +8,13 @@
 
 namespace T3G\DatahubApiLibrary\Tests\Api;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use Http\Factory\Guzzle\RequestFactory;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
-use RicardoFiorani\GuzzlePsr18Adapter\Client;
 use T3G\DatahubApiLibrary\Client\DataHubClient;
 
 abstract class AbstractApiTest extends TestCase

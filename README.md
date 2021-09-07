@@ -18,7 +18,6 @@ If you want to use Guzzle, I recommend using the following packages:
 ```bash
 composer require guzzlehttp/guzzle:^6.3
 composer require http-interop/http-factory-guzzle:dev-master
-composer require ricardofiorani/guzzle-psr18-adapter:1.0.x-dev
 ```
 
 ## Usage
@@ -27,7 +26,7 @@ To start using the library you can use any of the API classes provided. They hav
 
 **NOTE**: This is the usage if you use the guzzle packages mentioned above. Feel free to use any other PSR compliant library if you wish.
 ```php
-$httpClient = new \RicardoFiorani\GuzzlePsr18Adapter\Client();
+$httpClient = new \GuzzleHttp\Client();
 $requestFactory = new \Http\Factory\Guzzle\RequestFactory();
 $datahubClient = new \T3G\DatahubApiLibrary\Client\DataHubClient($httpClient, $requestFactory, 'YourTokenHere');
 $userApi = new \T3G\DatahubApiLibrary\Api\UserApi($datahubClient);

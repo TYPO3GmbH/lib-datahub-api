@@ -17,6 +17,7 @@ use Psr\Http\Message\UriInterface;
 use Psr\Log\LoggerInterface;
 use Sunrise\Stream\StreamFactory;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
+use T3G\DatahubApiLibrary\Service\SecurityService;
 
 class DataHubClient
 {
@@ -98,14 +99,20 @@ class DataHubClient
      * @param RequestInterface $request
      * @param ResponseInterface $response
      * @return array<string, array<string, array<array<string>>|int|UriInterface|string>>
+     * @throws \JsonException
      */
     private function getLogContext(RequestInterface $request, ResponseInterface $response): array
     {
+        $body = (string)$request->getBody();
+        $bodyAsArray = [];
+        if (!empty($body)) {
+            $bodyAsArray = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+        }
         return [
             'request' => [
                 'method' => $request->getMethod(),
                 'endpoint' => $request->getUri(),
-                'body' => (string)$request->getBody(),
+                'body' => json_encode(SecurityService::anonymizeSensitiveData($bodyAsArray), JSON_THROW_ON_ERROR),
                 'base_uri' => $this->baseUri,
                 'headers' => $request->getHeaders(),
             ],

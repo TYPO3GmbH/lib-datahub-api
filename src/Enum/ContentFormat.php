@@ -16,10 +16,12 @@ namespace T3G\DatahubApiLibrary\Enum;
 final class ContentFormat extends AbstractEnum
 {
     public const HTML = 'html';
+    public const JSON = 'json';
     public const MARKDOWN = 'markdown';
 
     protected static array $optionNames = [
         self::HTML => 'HTML format',
+        self::JSON => 'JSON format',
         self::MARKDOWN => 'Markdown format',
     ];
 }

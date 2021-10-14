@@ -28,4 +28,18 @@ class ContentApi extends AbstractApi
             )
         );
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function getFAQ(string $identifier = '_all'): Content
+    {
+        return ContentFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri(sprintf('/content/faq/%s', $identifier))
+            )
+        );
+    }
 }

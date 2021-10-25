@@ -67,6 +67,24 @@ class CertificationApiTest extends AbstractApiTest
         $this->assertNull($certification->getCertificatePrintDate());
     }
 
+    public function testGetCertificationsForListingFilteredByType(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetCertificationsForListingResponseFilteredByType.php'
+        ]);
+        $certifications = (new CertificationApi($this->getClient($handler)))->getCertificationsForListing('TCEE');
+        $certification = $certifications[0];
+        $this->assertSame('00000000-0000-0000-0000-000000000000', $certification->getUuid());
+        $this->assertSame('TCCE', $certification->getType());
+        $this->assertSame('foo bar', $certification->getAddress());
+        $this->assertSame('UNKNOWN', $certification->getStatus());
+        $this->assertSame('online', $certification->getExamLocation());
+        $this->assertSame('1234', $certification->getHubspotDealId());
+        $this->assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
+        $this->assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
+        $this->assertNull($certification->getCertificatePrintDate());
+    }
+
     public function testGetCertificationsForPrint(): void
     {
         $handler = new MockHandler([

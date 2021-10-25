@@ -97,14 +97,17 @@ class CertificationApi extends AbstractApi
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      */
-    public function getCertificationsForListing(): array
+    public function getCertificationsForListing(?string $certificationType = null): array
     {
-        return CertificationListFactory::fromResponse(
-            $this->client->request(
-                'GET',
-                self::uri('/certifications/get-for-listing'),
-            )
-        );
+        $queryString = '';
+        if (!empty($certificationType)) {
+            $queryString = 'type=' . $certificationType;
+        }
+
+        return CertificationListFactory::fromResponse($this->client->request(
+            'GET',
+            self::uri('/certifications/get-for-listing')->withQuery($queryString),
+        ));
     }
 
     /**

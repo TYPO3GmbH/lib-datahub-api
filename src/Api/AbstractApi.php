@@ -21,6 +21,11 @@ abstract class AbstractApi
         $this->client = $client;
     }
 
+    public function getDatahubClient(): DataHubClient
+    {
+        return $this->client;
+    }
+
     protected static function uri(string $path = ''): UriInterface
     {
         return new Uri($path);

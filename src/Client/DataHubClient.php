@@ -22,13 +22,9 @@ use T3G\DatahubApiLibrary\Service\SecurityService;
 class DataHubClient
 {
     private ClientInterface $httpClient;
-
     private RequestFactoryInterface $requestFactory;
-
     private ?string $token;
-
     private string $baseUri;
-
     private ?LoggerInterface $logger;
 
     public function __construct(
@@ -43,6 +39,18 @@ class DataHubClient
         $this->token = $token;
         $this->baseUri = $baseUri;
         $this->logger = $logger;
+    }
+
+    public function setHttpClient(ClientInterface $httpClient): self
+    {
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
+
+    public function getHttpClient(): ClientInterface
+    {
+        return $this->httpClient;
     }
 
     /**

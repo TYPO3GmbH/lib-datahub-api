@@ -41,4 +41,18 @@ class ValidationApi extends AbstractApi
 
         return true;
     }
+
+    public function validateOrganizationDomainUniqueness(string $domain): bool
+    {
+        try {
+            $this->client->request(
+                'GET',
+                self::uri('/validation/organization/domain/' . mb_strtolower($domain))
+            );
+        } catch (DatahubResponseException $e) {
+            return false;
+        }
+
+        return true;
+    }
 }

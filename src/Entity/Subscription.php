@@ -197,10 +197,4 @@ class Subscription implements JsonSerializable
     {
         return null !== $dateTime ? $dateTime->format(\DateTimeInterface::ATOM) :  null;
     }
-
-    public function isHonoraryMembershipSubscription(): bool
-    {
-        return $this->isMembershipSubscription()
-            && str_starts_with($this->getSubscriptionIdentifier(), 'honorary:');
-    }
 }

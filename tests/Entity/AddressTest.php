@@ -27,7 +27,7 @@ class AddressTest extends TestCase
     public function deutschePostDataProvider(): array
     {
         return [
-            'normal address' => [
+            'basic address' => [
                 'address' => (new Address())
                     ->setFirstName('Oelie')
                     ->setLastName('Boelie')
@@ -38,6 +38,51 @@ class AddressTest extends TestCase
                     ->setAdditionalAddressLine1('Test GmbH'),
                 'expected' => [
                     'NAME' => 'Oelie Boelie',
+                    'NAME2' => '',
+                    'ZUSATZ' => 'Test GmbH',
+                    'STRASSE' => 'Teststreet',
+                    'NUMMER' => '123',
+                    'PLZ' => '12345',
+                    'STADT' => 'Berlin',
+                    'LAND' => 'DEU',
+                    'ADRESS_TYP' => 'HOUSE',
+                    'REFERENZ' => null,
+                ]
+            ],
+            'company address' => [
+                'address' => (new Address())
+                    ->setCompanyName('Company Name')
+                    ->setCity('Berlin')
+                    ->setCountryIso3('DEU')
+                    ->setStreet('Teststreet 123')
+                    ->setZip('12345')
+                    ->setAdditionalAddressLine1('Department B'),
+                'expected' => [
+                    'NAME' => 'Company Name',
+                    'NAME2' => '',
+                    'ZUSATZ' => 'Department B',
+                    'STRASSE' => 'Teststreet',
+                    'NUMMER' => '123',
+                    'PLZ' => '12345',
+                    'STADT' => 'Berlin',
+                    'LAND' => 'DEU',
+                    'ADRESS_TYP' => 'HOUSE',
+                    'REFERENZ' => null,
+                ]
+            ],
+            'complete address' => [
+                'address' => (new Address())
+                    ->setCompanyName('Company Name')
+                    ->setFirstName('Oelie')
+                    ->setLastName('Boelie')
+                    ->setCity('Berlin')
+                    ->setCountryIso3('DEU')
+                    ->setStreet('Teststreet 123')
+                    ->setZip('12345')
+                    ->setAdditionalAddressLine1('Test GmbH'),
+                'expected' => [
+                    'NAME' => 'Company Name',
+                    'NAME2' => 'Oelie Boelie',
                     'ZUSATZ' => 'Test GmbH',
                     'STRASSE' => 'Teststreet',
                     'NUMMER' => '123',
@@ -59,6 +104,7 @@ class AddressTest extends TestCase
                     ->setAdditionalAddressLine1('Tæçt GmbH'),
                 'expected' => [
                     'NAME' => 'Oelie Boelie',
+                    'NAME2' => '',
                     'ZUSATZ' => 'Taect GmbH',
                     'STRASSE' => 'Teststrasse',
                     'NUMMER' => '123',
@@ -80,6 +126,7 @@ class AddressTest extends TestCase
                     ->setAdditionalAddressLine1('Test GmbH'),
                 'expected' => [
                     'NAME' => 'Oelie Boelie',
+                    'NAME2' => '',
                     'ZUSATZ' => 'Test GmbH',
                     'STRASSE' => 'Teststreet',
                     'NUMMER' => '123g',
@@ -101,6 +148,7 @@ class AddressTest extends TestCase
                     ->setAdditionalAddressLine1('Test GmbH'),
                 'expected' => [
                     'NAME' => 'Oelie Boelie',
+                    'NAME2' => '',
                     'ZUSATZ' => 'Test GmbH',
                     'STRASSE' => 'Teststreet',
                     'NUMMER' => '123',
@@ -122,6 +170,7 @@ class AddressTest extends TestCase
                     ->setAdditionalAddressLine1('Test GmbH'),
                 'expected' => [
                     'NAME' => 'Oelie Boelie',
+                    'NAME2' => '',
                     'ZUSATZ' => 'Test GmbH',
                     'STRASSE' => 'Teststreet',
                     'NUMMER' => '123-125',
@@ -143,6 +192,7 @@ class AddressTest extends TestCase
                     ->setAdditionalAddressLine1('Test GmbH'),
                 'expected' => [
                     'NAME' => 'Oelie Boelie',
+                    'NAME2' => '',
                     'ZUSATZ' => 'Test GmbH',
                     'STRASSE' => 'TESTSTREET',
                     'NUMMER' => '123',
@@ -164,6 +214,7 @@ class AddressTest extends TestCase
                     ->setAdditionalAddressLine1('Test GmbH'),
                 'expected' => [
                     'NAME' => 'Oelie Boelie',
+                    'NAME2' => '',
                     'ZUSATZ' => 'Test GmbH',
                     'STRASSE' => 'teststreet',
                     'NUMMER' => '123',

@@ -19,9 +19,11 @@ class Address implements JsonSerializable
 
     private string $title = '';
 
-    private string $firstName = '';
+    private ?string $companyName = null;
 
-    private string $lastName = '';
+    private ?string $firstName = null;
+
+    private ?string $lastName = null;
 
     private ?string $additionalAddressLine1 = null;
 
@@ -42,8 +44,6 @@ class Address implements JsonSerializable
     private ?string $state = null;
 
     private ?string $stateLabel = null;
-
-    private ?string $companyName = null;
 
     private int $type = 0X000;
 
@@ -91,23 +91,34 @@ class Address implements JsonSerializable
         return $this;
     }
 
-    public function getFirstName(): string
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+
+    public function setCompanyName(?string $companyName): self
+    {
+        $this->companyName = $companyName;
+        return $this;
+    }
+
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
         return $this;
     }
 
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
         return $this;
@@ -223,17 +234,6 @@ class Address implements JsonSerializable
         return $this;
     }
 
-    public function getCompanyName(): ?string
-    {
-        return $this->companyName;
-    }
-
-    public function setCompanyName(?string $companyName): self
-    {
-        $this->companyName = $companyName;
-        return $this;
-    }
-
     public function getType(): int
     {
         return $this->type;
@@ -317,7 +317,13 @@ class Address implements JsonSerializable
 
     public function __toString(): string
     {
-        $string = $this->firstName . ' ' . $this->lastName . PHP_EOL;
+        $string = '';
+        if ($this->companyName) {
+            $string .= $this->companyName . PHP_EOL;
+        }
+        if ($this->firstName || $this->lastName) {
+            $string .= trim(($this->firstName ?? '') . ' ' . ($this->lastName ?? '')) . PHP_EOL;
+        }
         if ($this->additionalAddressLine1) {
             $string .= $this->additionalAddressLine1 . PHP_EOL;
         }
@@ -336,6 +342,14 @@ class Address implements JsonSerializable
      */
     public function toDeutschePostArray(): array
     {
+        $nameBlock = [];
+        if ($this->getCompanyName()) {
+            $nameBlock[] = $this->getCompanyName();
+        }
+        if ($this->getFirstName() || $this->getLastName()) {
+            $nameBlock[] = trim(($this->getFirstName() ?? '') . ' ' . ($this->getLastName() ?? ''));
+        }
+
         $streetAndNumber = [];
         if (1 === preg_match('/^\d/', $this->getStreet())) {
             // House number comes BEFORE the street name (English, French, etc.)
@@ -354,7 +368,8 @@ class Address implements JsonSerializable
         }
 
         return [
-            'NAME' => (string) $transliterator->transliterate($this->getFirstName() . ' ' . $this->getLastName()),
+            'NAME' => (string) $transliterator->transliterate($nameBlock[0] ?? ''),
+            'NAME2' => (string) $transliterator->transliterate($nameBlock[1] ?? ''),
             'ZUSATZ' => (string) $transliterator->transliterate($this->getAdditionalAddressLine1() ?? ''),
             'STRASSE' => (string) $transliterator->transliterate($street),
             'NUMMER' => (string) $transliterator->transliterate($number),

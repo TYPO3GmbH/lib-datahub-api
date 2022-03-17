@@ -10,7 +10,10 @@ namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\BitMask\EmailType;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
+use T3G\DatahubApiLibrary\Enum\CertificationVersion;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
+use T3G\DatahubApiLibrary\Enum\ExamAccessStatus;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
 
 class CompanyFactoryTest extends TestCase
@@ -64,6 +67,15 @@ class CompanyFactoryTest extends TestCase
         $this->assertEquals($data['logo'] ?? null, $entity->getLogo());
         if (isset($data['headquarter'])) {
             $this->assertEquals($data['headquarter']['uuid'], $entity->getHeadquarter()->getUuid());
+        }
+        if (isset($data['examAccesses'])) {
+            foreach ($data['examAccesses'] as $examKey => $examAccess) {
+                $this->assertEquals($examAccess['uuid'], $entity->getExamAccesses()[$examKey]->getUuid());
+                $this->assertEquals($examAccess['voucher'], $entity->getExamAccesses()[$examKey]->getVoucher());
+                $this->assertEquals($examAccess['certificationType'], $entity->getExamAccesses()[$examKey]->getCertificationType());
+                $this->assertEquals($examAccess['certificationVersion'], $entity->getExamAccesses()[$examKey]->getCertificationVersion());
+                $this->assertEquals($examAccess['status'], $entity->getExamAccesses()[$examKey]->getStatus());
+            }
         }
     }
 
@@ -143,6 +155,22 @@ class CompanyFactoryTest extends TestCase
                     'contactFormAddress' => 'contact@typ03.org',
                     'photo' => 'https://my.typo3.org/companies/00000000-0000-0000-0000-000000000000/photo.jpeg',
                     'logo' => 'https://my.typo3.org/companies/00000000-0000-0000-0000-000000000000/logo.png',
+                    'examAccesses' => [
+                        [
+                            'uuid' => '22222222-2222-2222-2222-222222222222',
+                            'voucher' => null,
+                            'certificationType' => CertificationType::TCCD,
+                            'certificationVersion' => CertificationVersion::TEN,
+                            'status' => ExamAccessStatus::NEW
+                        ],
+                        [
+                            'uuid' => '33333333-3333-3333-3333-333333333333',
+                            'voucher' => '33333333-3333-3333-3333-333333333333',
+                            'certificationType' => CertificationType::TCCC,
+                            'certificationVersion' => CertificationVersion::NINE,
+                            'status' => ExamAccessStatus::READY
+                        ]
+                    ]
                 ],
             ],
             'missing company type, expect AGENCY' => [

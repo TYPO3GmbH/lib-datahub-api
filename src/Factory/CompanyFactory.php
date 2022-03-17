@@ -68,6 +68,9 @@ class CompanyFactory extends AbstractFactory
         foreach ($data['eltsPlans'] ?? [] as $eltsPlan) {
             $company->addEltsPlan(EltsPlanFactory::fromArray($eltsPlan));
         }
+        foreach ($data['examAccesses'] ?? [] as $examAccess) {
+            $company->addExamAccess(ExamAccessFactory::fromArray($examAccess));
+        }
 
         return $company;
     }

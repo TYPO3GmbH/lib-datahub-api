@@ -20,33 +20,46 @@ class ExamAccessApiTest extends AbstractApiTest
     public function testGetExamAccess(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetExamAccessResponse.php'
+            require __DIR__ . '/../Fixtures/ExamAccessApi/GetExamAccessResponse.php'
         ]);
         $api = new ExamAccessApi($this->getClient($handler));
         $entity = $api->getExamAccess('00000000-0000-0000-0000-000000000000');
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
+        $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
+        $this->assertEquals(CertificationType::TCCI, $entity->getCertificationType());
+        $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
+    }
+
+    public function testCreateExamAccessForUser(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/ExamAccessApi/CreateExamAccessForUserResponse.php'
+        ]);
+        $api = new ExamAccessApi($this->getClient($handler));
+        $entity = $api->createExamAccessForUser('oelie-boelie', $this->getTestExamAccess());
         $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
         $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
         $this->assertEquals(CertificationType::TCCD, $entity->getCertificationType());
         $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
     }
 
-    public function testCreateExamAccess(): void
+    public function testCreateExamAccessForCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetExamAccessResponse.php'
+            require __DIR__ . '/../Fixtures/ExamAccessApi/CreateExamAccessForCompanyResponse.php'
         ]);
         $api = new ExamAccessApi($this->getClient($handler));
-        $entity = $api->createExamAccess('oelie-boelie', $this->getTestExamAccess());
+        $entity = $api->createExamAccessForCompany('00000000-0000-0000-0000-000000000000', $this->getTestExamAccess());
         $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
-        $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
-        $this->assertEquals(CertificationType::TCCD, $entity->getCertificationType());
+        $this->assertEquals(CertificationVersion::TEN, $entity->getCertificationVersion());
+        $this->assertEquals(CertificationType::TCCC, $entity->getCertificationType());
         $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
     }
 
     public function testUpdateExamAccess(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetExamAccessResponse.php'
+            require __DIR__ . '/../Fixtures/ExamAccessApi/UpdateExamAccessResponse.php'
         ]);
         $api = new ExamAccessApi($this->getClient($handler));
         $entity = $api->updateExamAccess('00000000-0000-0000-0000-000000000000', $this->getTestExamAccess());
@@ -59,7 +72,7 @@ class ExamAccessApiTest extends AbstractApiTest
     public function testTransferExamAccess(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/TransferExamAccessResponse.php'
+            require __DIR__ . '/../Fixtures/ExamAccessApi/TransferExamAccessResponse.php'
         ]);
         $api = new ExamAccessApi($this->getClient($handler));
         $entity = $api->transferExamAccess('00000000-0000-0000-0000-000000000000', 'boelie-oelie');
@@ -73,7 +86,7 @@ class ExamAccessApiTest extends AbstractApiTest
     public function testDeleteExamAccess(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/ExamAccessApi/DeleteExamAccessResponse.php'
         ]);
         $api = new ExamAccessApi($this->getClient($handler));
         try {

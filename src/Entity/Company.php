@@ -79,6 +79,11 @@ class Company implements JsonSerializable
      */
     private array $eltsPlans = [];
 
+    /**
+     * @var ExamAccess[]
+     */
+    private array $examAccesses = [];
+
     public function jsonSerialize()
     {
         return [
@@ -669,6 +674,29 @@ class Company implements JsonSerializable
     public function addEltsPlan(EltsPlan $eltsPlan): self
     {
         $this->eltsPlans[] = $eltsPlan;
+        return $this;
+    }
+
+    /**
+     * @return ExamAccess[]
+     */
+    public function getExamAccesses(): array
+    {
+        return $this->examAccesses;
+    }
+
+    /**
+     * @param ExamAccess[] $examAccesses
+     */
+    public function setExamAccesses(array $examAccesses): self
+    {
+        $this->examAccesses = $examAccesses;
+        return $this;
+    }
+
+    public function addExamAccess(ExamAccess $examAccess): self
+    {
+        $this->examAccesses[] = $examAccess;
         return $this;
     }
 }

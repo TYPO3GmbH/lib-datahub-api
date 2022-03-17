@@ -39,12 +39,30 @@ class ExamAccessApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
-    public function createExamAccess(string $username, ExamAccess $examAccess): ExamAccess
+    public function createExamAccessForUser(string $username, ExamAccess $examAccess): ExamAccess
     {
         return ExamAccessFactory::fromResponse(
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/exam-access'),
+                json_encode($examAccess, JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function createExamAccessForCompany(string $companyUuid, ExamAccess $examAccess): ExamAccess
+    {
+        $this->isValidUuidOrThrow($companyUuid);
+
+        return ExamAccessFactory::fromResponse(
+            $this->client->request(
+                'POST',
+                self::uri('/companies/' . $companyUuid . '/exam-access'),
                 json_encode($examAccess, JSON_THROW_ON_ERROR, 512)
             )
         );
@@ -81,7 +99,7 @@ class ExamAccessApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/exam-access/' . $uuid . '/transfer'),
-                json_encode(['orderUser' => $username], JSON_THROW_ON_ERROR, 512)
+                json_encode(['user' => $username], JSON_THROW_ON_ERROR, 512)
             )
         );
     }

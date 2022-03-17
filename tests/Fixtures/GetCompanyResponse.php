@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -123,6 +125,22 @@ return new Response(200, ['content-type' => 'application/json'], '
       "role": "EMPLOYEE",
       "joinedAt": "2021-02-26T00:00:00+00:00",
       "leftAt": null
+    }
+  ],
+  "examAccesses": [
+    {
+      "uuid": "22222222-2222-2222-2222-222222222222",
+      "voucher": null,
+      "certificationType": "TCCD",
+      "certificationVersion": "10.4",
+      "status": "NEW"
+    },
+    {
+      "uuid": "33333333-3333-3333-3333-333333333333",
+      "voucher": "33333333-3333-3333-3333-333333333333",
+      "certificationType": "TCCC",
+      "certificationVersion": "9.5",
+      "status": "READY"
     }
   ]
 }

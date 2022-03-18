@@ -17,18 +17,12 @@ class ExamAccessFactory extends AbstractFactory
 {
     public static function fromArray(array $data): ExamAccess
     {
-        $entity = (new ExamAccess())
+        return (new ExamAccess())
             ->setUuid($data['uuid'])
             ->setCertificationType($data['certificationType'])
             ->setCertificationVersion($data['certificationVersion'])
             ->setStatus($data['status'])
             ->setVoucher($data['voucher'] ?? null)
             ->setHistory($data['history'] ?? null);
-
-        if ($data['certification'] ?? false) {
-            $entity->setCertification(CertificationFactory::fromArray($data['certification']));
-        }
-
-        return $entity;
     }
 }

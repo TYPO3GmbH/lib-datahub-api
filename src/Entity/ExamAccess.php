@@ -24,8 +24,6 @@ class ExamAccess implements JsonSerializable
 
     private ?string $history = null;
 
-    private ?Certification $certification = null;
-
     public function jsonSerialize()
     {
         return [
@@ -105,17 +103,6 @@ class ExamAccess implements JsonSerializable
     public function setHistory(?string $history): self
     {
         $this->history = $history;
-        return $this;
-    }
-
-    public function getCertification(): ?Certification
-    {
-        return $this->certification;
-    }
-
-    public function setCertification(?Certification $certification): self
-    {
-        $this->certification = $certification;
         return $this;
     }
 

@@ -14,7 +14,6 @@ return new Response(200, ['content-type' => 'application/json'], '
       "certificationType": "TCCC",
       "certificationVersion": "10.4",
       "status": "NEW",
-      "voucher": "00000000-0000-0000-0000-000000000000",
-      "certification": null
+      "voucher": "00000000-0000-0000-0000-000000000000"
 }
 ');

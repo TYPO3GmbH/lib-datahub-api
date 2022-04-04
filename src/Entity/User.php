@@ -141,25 +141,25 @@ class User implements JsonSerializable
         return $this;
     }
 
-    public function getPrimaryEmail(): ?string
+    public function getPrimaryEmail(bool $onlyOptIn = true): ?string
     {
-        return $this->getEmailByType(EmailType::PRIMARY);
+        return $this->getEmailByType(EmailType::PRIMARY, $onlyOptIn);
     }
 
-    public function getBillingEmail(): ?string
+    public function getBillingEmail(bool $onlyOptIn = true): ?string
     {
-        return $this->getEmailByType(EmailType::BILLING);
+        return $this->getEmailByType(EmailType::BILLING, $onlyOptIn);
     }
 
-    public function getVotingEmail(): ?string
+    public function getVotingEmail(bool $onlyOptIn = true): ?string
     {
-        return $this->getEmailByType(EmailType::VOTING);
+        return $this->getEmailByType(EmailType::VOTING, $onlyOptIn);
     }
 
-    public function getEmailByType(int $type): ?string
+    public function getEmailByType(int $type, bool $onlyOptIn = true): ?string
     {
         foreach ($this->getEmailAddresses() as $address) {
-            if ($type === ($address->getType() & $type)) {
+            if ($type === ($address->getType() & $type) && (null !== $address->getOptIn() || !$onlyOptIn)) {
                 return $address->getEmail();
             }
         }

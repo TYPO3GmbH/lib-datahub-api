@@ -27,7 +27,7 @@ return new Response(
                 "uuid": "55555555-5555-5555-5555-555555555555",
                 "email": "oelie@boelie.nl",
                 "type": 273,
-                "optIn": null
+                "optIn": "2020-01-01T00:00:00+00:00"
             }
         ]
     }

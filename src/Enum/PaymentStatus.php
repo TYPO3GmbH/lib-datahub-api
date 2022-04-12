@@ -18,10 +18,18 @@ final class PaymentStatus extends AbstractEnum
     public const FAILED = 'failed';
     public const PAID = 'paid';
     public const PENDING = 'pending';
+    public const DRAFT = 'draft';
+    public const OPEN = 'open';
+    public const UNCOLLECTIBLE = 'uncollectible';
+    public const VOID = 'void';
 
     protected static array $optionNames = [
         self::FAILED => 'failed',
         self::PAID => 'paid',
-        self::PENDING => 'pending'
+        self::PENDING => 'pending',
+        self::DRAFT => 'draft',
+        self::OPEN => 'open',
+        self::UNCOLLECTIBLE => 'uncollectible',
+        self::VOID => 'void'
     ];
 }

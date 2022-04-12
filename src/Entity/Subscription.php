@@ -28,6 +28,7 @@ class Subscription implements JsonSerializable
     private ?string $history = null;
     private ?User $user = null;
     private ?Company $company = null;
+    private ?string $paymentStatus = null;
 
     public function jsonSerialize()
     {
@@ -39,6 +40,7 @@ class Subscription implements JsonSerializable
             'stripeLink' => $this->getStripeLink(),
             'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
             'payload' => $this->getPayload(),
+            'paymentStatus' => $this->getPaymentStatus()
         ];
     }
 
@@ -191,6 +193,17 @@ class Subscription implements JsonSerializable
 
         return in_array($this->getSubscriptionSubType(), [MembershipType::SILVER, MembershipType::GOLD, MembershipType::PLATINUM], true)
             && in_array($this->getSubscriptionStatus(), [SubscriptionStatus::ACTIVE, SubscriptionStatus::TRIALING], true);
+    }
+
+    public function getPaymentStatus(): ?string
+    {
+        return $this->paymentStatus;
+    }
+
+    public function setPaymentStatus(?string $paymentStatus): self
+    {
+        $this->paymentStatus = $paymentStatus;
+        return $this;
     }
 
     private function formatDateIfGiven(?\DateTimeInterface $dateTime): ?string

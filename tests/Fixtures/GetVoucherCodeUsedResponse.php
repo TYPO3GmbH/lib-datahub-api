@@ -22,12 +22,12 @@ return new Response(200, ['content-type' => 'application/json'], '
     "title": "Event Voucher",
     "description": "200 EUR discount for one event ticket",
     "type": "EVENTS",
-    "status": "NEW",
+    "status": "USED",
     "expiresAt": "2030-01-10T00:00:00+00:00",
     "usages": 1,
-    "redemptions": 0,
+    "redemptions": 1,
     "isExpired": false,
-    "isUsed": false,
-    "isRedeemable": true
+    "isUsed": true,
+    "isRedeemable": false
 }
 ');

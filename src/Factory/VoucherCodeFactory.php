@@ -28,7 +28,13 @@ class VoucherCodeFactory extends AbstractFactory
             ->setStatus($data['status'])
             ->setOrderNumber($data['orderNumber'] ?? null)
             ->setProduct($data['product'] ?? null)
-            ->setUsername($data['username'] ?? null);
+            ->setUsername($data['username'] ?? null)
+            ->setUsages($data['usages'] ?? 1)
+            ->setRedemptions($data['redemptions'] ?? 0)
+            ->setIsExpired($data['isExpired'] ?? false)
+            ->setIsUsed($data['isUsed'] ?? false)
+            ->setIsRedeemable($data['isRedeemable'] ?? false)
+        ;
 
         if (isset($data['user']) && null !== $data['user']) {
             $code->setUser(UserFactory::fromArray($data['user']));

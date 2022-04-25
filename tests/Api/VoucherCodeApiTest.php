@@ -30,32 +30,50 @@ class VoucherCodeApiTest extends AbstractApiTest
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getUuid());
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getVoucherCode());
         self::assertEquals('max.muster', $response->getUser()->getUsername());
+        self::assertEquals(VoucherCodeStatus::NEW, $response->getStatus());
+        self::assertEquals(1, $response->getUsages());
+        self::assertEquals(0, $response->getRedemptions());
+        self::assertEquals(false, $response->getIsExpired());
+        self::assertEquals(false, $response->getIsUsed());
+        self::assertEquals(true, $response->getIsRedeemable());
     }
 
     public function testUpdateVoucherCode(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetVoucherCodeResponse.php'
+            require __DIR__ . '/../Fixtures/GetVoucherCodeUpdatedResponse.php'
         ]);
         $api = new VoucherCodeApi($this->getClient($handler));
         $response = $api->updateVoucherCode('00000000-0000-0000-0000-000000000000', $this->getTestVoucherCode());
-        self::assertEquals('Event Voucher', $response->getTitle());
+        self::assertEquals('Event Voucher Updated', $response->getTitle());
         self::assertEquals('200 EUR discount for one event ticket', $response->getDescription());
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getUuid());
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getVoucherCode());
         self::assertEquals('max.muster', $response->getUser()->getUsername());
+        self::assertEquals(VoucherCodeStatus::NEW, $response->getStatus());
+        self::assertEquals(1, $response->getUsages());
+        self::assertEquals(0, $response->getRedemptions());
+        self::assertEquals(false, $response->getIsExpired());
+        self::assertEquals(false, $response->getIsUsed());
+        self::assertEquals(true, $response->getIsRedeemable());
     }
 
     public function testRedeemVoucherCode(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetVoucherCodeResponse.php'
+            require __DIR__ . '/../Fixtures/GetVoucherCodeUsedResponse.php'
         ]);
         $api = new VoucherCodeApi($this->getClient($handler));
         $response = $api->redeemVoucherCode('00000000-0000-0000-0000-000000000000');
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getUuid());
         self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getVoucherCode());
         self::assertEquals('max.muster', $response->getUser()->getUsername());
+        self::assertEquals(VoucherCodeStatus::USED, $response->getStatus());
+        self::assertEquals(1, $response->getUsages());
+        self::assertEquals(1, $response->getRedemptions());
+        self::assertEquals(false, $response->getIsExpired());
+        self::assertEquals(true, $response->getIsUsed());
+        self::assertEquals(false, $response->getIsRedeemable());
     }
 
     public function testDeleteVoucherCode(): void
@@ -73,10 +91,9 @@ class VoucherCodeApiTest extends AbstractApiTest
     {
         return (new VoucherCode())
             ->setUuid('00000000-0000-0000-0000-000000000000')
-            ->setStatus(VoucherCodeStatus::NEW)
             ->setTitle('Event Voucher')
             ->setDescription('200 EUR discount for one event ticket')
             ->setType(VoucherCodeType::EVENTS)
-            ->setExpiresAt(new \DateTime());
+            ->setExpiresAt(new \DateTime('next month'));
     }
 }

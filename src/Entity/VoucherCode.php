@@ -27,6 +27,11 @@ class VoucherCode implements JsonSerializable
     private ?string $orderNumber = null;
     private ?string $product = null;
     private ?string $username = null;
+    private ?int $usages = 1;
+    private int $redemptions = 0;
+    private bool $isExpired = false;
+    private bool $isUsed = false;
+    private bool $isRedeemable = false;
 
     public function jsonSerialize()
     {
@@ -39,6 +44,8 @@ class VoucherCode implements JsonSerializable
             'orderNumber' => $this->getOrderNumber(),
             'product' => $this->getProduct(),
             'username' => $this->getUsername(),
+            'usages' => $this->getUsages(),
+            'redemptions' => $this->getRedemptions(),
         ];
     }
 
@@ -171,6 +178,61 @@ class VoucherCode implements JsonSerializable
     public function setUsername(?string $username): self
     {
         $this->username = $username;
+        return $this;
+    }
+
+    public function getUsages(): ?int
+    {
+        return $this->usages;
+    }
+
+    public function setUsages(?int $usages): self
+    {
+        $this->usages = $usages;
+        return $this;
+    }
+
+    public function getRedemptions(): int
+    {
+        return $this->redemptions;
+    }
+
+    public function setRedemptions(int $redemptions): self
+    {
+        $this->redemptions = $redemptions;
+        return $this;
+    }
+
+    public function getIsExpired(): bool
+    {
+        return $this->isExpired;
+    }
+
+    public function setIsExpired(bool $isExpired): self
+    {
+        $this->isExpired = $isExpired;
+        return $this;
+    }
+
+    public function getIsUsed(): bool
+    {
+        return $this->isUsed;
+    }
+
+    public function setIsUsed(bool $isUsed): self
+    {
+        $this->isUsed = $isUsed;
+        return $this;
+    }
+
+    public function getIsRedeemable(): bool
+    {
+        return $this->isRedeemable;
+    }
+
+    public function setIsRedeemable(bool $isRedeemable): self
+    {
+        $this->isRedeemable = $isRedeemable;
         return $this;
     }
 }

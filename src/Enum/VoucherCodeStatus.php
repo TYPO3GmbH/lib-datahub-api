@@ -15,12 +15,14 @@ namespace T3G\DatahubApiLibrary\Enum;
 class VoucherCodeStatus extends AbstractEnum
 {
     public const NEW = 'NEW';
+    public const CHARGED = 'CHARGED';
     public const USED = 'USED';
     public const EXPIRED = 'EXPIRED';
 
     protected static array $optionNames = [
         self::NEW => 'New',
+        self::CHARGED => 'Charged',
         self::USED => 'Used',
-        self::EXPIRED => 'Expired',
+        self::EXPIRED => 'Expired'
     ];
 }

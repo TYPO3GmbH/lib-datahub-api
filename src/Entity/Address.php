@@ -362,7 +362,16 @@ class Address implements JsonSerializable
             $street = $streetAndNumber[1] ?? $this->getStreet();
             $number = $streetAndNumber[2] ?? $this->getStreet();
         }
-        $transliterator = \Transliterator::createFromRules(':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: NFC;', \Transliterator::FORWARD);
+
+        $transliteratorRules = [
+            'Any-Latin',
+            'DE-ASCII',
+            'Latin-ASCII',
+            'NFD',
+            '[:Nonspacing Mark:] Remove',
+            'NFC',
+        ];
+        $transliterator = \Transliterator::create(implode(';', $transliteratorRules), \Transliterator::FORWARD);
         if (null === $transliterator) {
             throw new \RuntimeException(sprintf('Failed to create a %s', \Transliterator::class));
         }

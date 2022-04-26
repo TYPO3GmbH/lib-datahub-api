@@ -99,17 +99,105 @@ class AddressTest extends TestCase
                     ->setLastName('Bőelie')
                     ->setCity('Bérlin')
                     ->setCountryIso3('DEU')
-                    ->setStreet('Teststraße 123')
+                    ->setStreet('Sträßchenweg 123')
                     ->setZip('12345')
                     ->setAdditionalAddressLine1('Tæçt GmbH'),
                 'expected' => [
                     'NAME' => 'Oelie Boelie',
                     'NAME2' => '',
                     'ZUSATZ' => 'Taect GmbH',
-                    'STRASSE' => 'Teststrasse',
+                    'STRASSE' => 'Straesschenweg',
                     'NUMMER' => '123',
                     'PLZ' => '12345',
                     'STADT' => 'Berlin',
+                    'LAND' => 'DEU',
+                    'ADRESS_TYP' => 'HOUSE',
+                    'REFERENZ' => null,
+                ]
+            ],
+            'address with foreign charsets (russian)' => [
+                'address' => (new Address())
+                    ->setFirstName('Анна')
+                    ->setLastName('Мюстер')
+                    ->setCity('Düsseldorf')
+                    ->setCountryIso3('DEU')
+                    ->setStreet('Sträßchenweg 123')
+                    ->setZip('12345')
+                    ->setAdditionalAddressLine1('Tæçt GmbH'),
+                'expected' => [
+                    'NAME' => 'Anna Muster',
+                    'NAME2' => '',
+                    'ZUSATZ' => 'Taect GmbH',
+                    'STRASSE' => 'Straesschenweg',
+                    'NUMMER' => '123',
+                    'PLZ' => '12345',
+                    'STADT' => 'Duesseldorf',
+                    'LAND' => 'DEU',
+                    'ADRESS_TYP' => 'HOUSE',
+                    'REFERENZ' => null,
+                ]
+            ],
+            'address with foreign charsets (chinese)' => [
+                'address' => (new Address())
+                    ->setFirstName('安娜')
+                    ->setLastName('穆斯特')
+                    ->setCity('Düsseldorf')
+                    ->setCountryIso3('DEU')
+                    ->setStreet('Sträßchenweg 123')
+                    ->setZip('12345')
+                    ->setAdditionalAddressLine1('Tæçt GmbH'),
+                'expected' => [
+                    'NAME' => 'an na mu si te',
+                    'NAME2' => '',
+                    'ZUSATZ' => 'Taect GmbH',
+                    'STRASSE' => 'Straesschenweg',
+                    'NUMMER' => '123',
+                    'PLZ' => '12345',
+                    'STADT' => 'Duesseldorf',
+                    'LAND' => 'DEU',
+                    'ADRESS_TYP' => 'HOUSE',
+                    'REFERENZ' => null,
+                ]
+            ],
+            'address with foreign charsets (greek)' => [
+                'address' => (new Address())
+                    ->setFirstName('Άννα')
+                    ->setLastName('Μάστερ')
+                    ->setCity('Düsseldorf')
+                    ->setCountryIso3('DEU')
+                    ->setStreet('Sträßchenweg 123')
+                    ->setZip('12345')
+                    ->setAdditionalAddressLine1('Tæçt GmbH'),
+                'expected' => [
+                    'NAME' => 'Anna Master',
+                    'NAME2' => '',
+                    'ZUSATZ' => 'Taect GmbH',
+                    'STRASSE' => 'Straesschenweg',
+                    'NUMMER' => '123',
+                    'PLZ' => '12345',
+                    'STADT' => 'Duesseldorf',
+                    'LAND' => 'DEU',
+                    'ADRESS_TYP' => 'HOUSE',
+                    'REFERENZ' => null,
+                ]
+            ],
+            'address with foreign charsets (hindi)' => [
+                'address' => (new Address())
+                    ->setFirstName('अन्ना')
+                    ->setLastName('मस्टर')
+                    ->setCity('Düsseldorf')
+                    ->setCountryIso3('DEU')
+                    ->setStreet('Sträßchenweg 123')
+                    ->setZip('12345')
+                    ->setAdditionalAddressLine1('Tæçt GmbH'),
+                'expected' => [
+                    'NAME' => 'anna mastara',
+                    'NAME2' => '',
+                    'ZUSATZ' => 'Taect GmbH',
+                    'STRASSE' => 'Straesschenweg',
+                    'NUMMER' => '123',
+                    'PLZ' => '12345',
+                    'STADT' => 'Duesseldorf',
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,

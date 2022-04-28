@@ -29,7 +29,7 @@ class VoucherCodeFactory extends AbstractFactory
             ->setOrderNumber($data['orderNumber'] ?? null)
             ->setProduct($data['product'] ?? null)
             ->setUsername($data['username'] ?? null)
-            ->setUsages($data['usages'] ?? 1)
+            ->setUsages(isset($data['usages']) ? $data['usages'] : 1)
             ->setRedemptions($data['redemptions'] ?? 0)
             ->setIsExpired($data['isExpired'] ?? false)
             ->setIsUsed($data['isUsed'] ?? false)

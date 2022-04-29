@@ -24,7 +24,9 @@ class UserFactoryTest extends TestCase
         $this->assertEquals($data['username'], $entity->getUsername());
         $this->assertEquals($data['firstName'], $entity->getFirstName());
         $this->assertEquals($data['lastName'], $entity->getLastName());
-        $this->assertEquals($data['phone'], $entity->getPhone());
+        if (isset($data['phone'])) {
+            $this->assertEquals($data['phone'], $entity->getPhone());
+        }
         $this->assertCount(count($data['addresses'] ?? []), $entity->getAddresses());
         $this->assertCount(count($data['links'] ?? []), $entity->getLinks());
         $this->assertCount(count($data['certifications'] ?? []), $entity->getCertifications());
@@ -36,6 +38,7 @@ class UserFactoryTest extends TestCase
         if (!empty($data['notifications'])) {
             $this->assertInstanceOf($data['notifications'][0]['type'], $entity->getNotifications()[0]);
         }
+        $this->assertEquals($data['emailAddresses'][0]['email'], $entity->getPrimaryEmail());
     }
 
     public function factoryDataProvider(): array
@@ -177,6 +180,21 @@ class UserFactoryTest extends TestCase
                         ]
                     ],
                     'phone' => null
+                ]
+            ],
+            'user-resource-primary' => [
+                'data' => [
+                    'username' => 'oelie-boelie',
+                    'firstName' => 'Oelie',
+                    'lastName' => 'Boelie',
+                    'emailAddresses' => [
+                        [
+                            'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
+                            'email' => 'oelie@boelie.nl',
+                            'type' => 273,
+                            'optIn' => '2020-12-16T10:13:26+00:00'
+                        ]
+                    ]
                 ]
             ]
         ];

@@ -24,7 +24,12 @@ class ContentApi extends AbstractApi
         return ContentFactory::fromResponse(
             $this->client->request(
                 'GET',
-                self::uri('/content/' . $identifier . '/' . $version . '/' . $format)
+                self::uri('/content'),
+                json_encode([
+                    'identifier' => $identifier,
+                    'version' => $version,
+                    'format' => $format,
+                ], JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -41,5 +46,21 @@ class ContentApi extends AbstractApi
                 self::uri(sprintf('/content/faq/%s', $identifier))
             )
         );
+    }
+
+    /**
+     * @return array<int, array{type: string, name: string}>
+     */
+    public function getDirectory(string $directory, string $ref = 'master'): array
+    {
+        $response = $this->client->request(
+            'GET',
+            self::uri(sprintf('/content/directory'))->withQuery(http_build_query([
+                'd' => $directory,
+                'ref' => $ref,
+            ]))
+        );
+
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
     }
 }

@@ -53,4 +53,16 @@ class ContentApiTest extends AbstractApiTest
         $this->assertEquals(null, $contentData['sections'][0]['questions'][0]['blocks'][0]['image_url']);
         $this->assertEquals('left', $contentData['sections'][0]['questions'][0]['blocks'][0]['image_position']);
     }
+
+    public function testGetDirectory(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetDirectoryResponse.php'
+        ]);
+        $api = new ContentApi($this->getClient($handler));
+        $response = $api->getDirectory('foo', 'task/bar');
+        $this->assertIsArray($response);
+        $this->assertCount(1, array_filter($response, static fn ($item) => 'dir' === $item['type']));
+        $this->assertCount(5, array_filter($response, static fn ($item) => 'file' === $item['type']));
+    }
 }

@@ -21,6 +21,7 @@ class CertificationFactory extends AbstractFactory
             ->setUuid($data['uuid'])
             ->setType($data['type'])
             ->setVersion($data['version'])
+            ->setAuditType($data['auditType'])
             ->setStatus($data['status'])
             ->setExamLocation($data['examLocation'])
             ->setHistory($data['history'] ?? null)

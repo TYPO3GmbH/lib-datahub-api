@@ -13,6 +13,7 @@ return new Response(200, ['content-type' => 'application/json'], '
   "uuid": "00000000-0000-0000-0000-000000000000",
   "type": "TCCE",
   "version": "10.4",
+  "auditType": "PRESENCE",
   "user": {
     "username": "oelie-boelie"
   },

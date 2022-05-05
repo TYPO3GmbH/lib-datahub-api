@@ -106,6 +106,7 @@ class UserFactoryTest extends TestCase
                             'uuid' => '00000000-0000-0000-0000-000000000000',
                             'type' => 'TCCI',
                             'version' => '10.4',
+                            'auditType' => 'PRESENCE',
                             'status' => 'PASSED',
                             'examLocation' => 'Aldi',
                             'examDate' => '2020-02-26T00:00:00+00:00',

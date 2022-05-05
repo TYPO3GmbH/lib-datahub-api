@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 use DateTimeInterface;
 use JsonSerializable;
+use T3G\DatahubApiLibrary\Enum\CertificationAuditType;
 use T3G\DatahubApiLibrary\Enum\CertificationProctoringApprovalStatus;
 use T3G\DatahubApiLibrary\Enum\CertificationTestResult;
 use T3G\DatahubApiLibrary\Enum\CertificationType;
@@ -25,6 +26,7 @@ class Certification implements JsonSerializable
      * @var array<string, mixed>
      */
     private array $user = [];
+    private string $auditType = '';
     private string $status = '';
     private string $examLocation = '';
     private ?DateTimeInterface $examDate = null;
@@ -55,6 +57,7 @@ class Certification implements JsonSerializable
         return [
             'type' => $this->getType(),
             'version' => $this->getVersion(),
+            'auditType' => $this->getAuditType(),
             'examLocation' => $this->getExamLocation(),
             'examDate' => $this->formatDateIfGiven($this->getExamDate()),
             'proctoringLink' => $this->getProctoringLink(),
@@ -107,6 +110,21 @@ class Certification implements JsonSerializable
             throw new \InvalidArgumentException('Invalid certification version');
         }
         $this->version = $version;
+
+        return $this;
+    }
+
+    public function getAuditType(): string
+    {
+        return $this->auditType;
+    }
+
+    public function setAuditType(string $auditType): self
+    {
+        if (!in_array($auditType, CertificationAuditType::getAvailableOptions(), true)) {
+            throw new \InvalidArgumentException('Invalid audit type');
+        }
+        $this->auditType = $auditType;
 
         return $this;
     }

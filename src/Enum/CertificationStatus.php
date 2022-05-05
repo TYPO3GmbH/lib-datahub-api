@@ -30,6 +30,6 @@ final class CertificationStatus extends AbstractEnum
         self::WAIT_PROCTOR => 'The exam is waiting for proctoring results',
         self::FAILED => 'Failed',
         self::PASSED => 'Passed',
-        self::IN_PRINT => 'In print'
+        self::IN_PRINT => 'In print',
     ];
 }

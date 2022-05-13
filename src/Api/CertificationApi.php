@@ -127,6 +127,22 @@ class CertificationApi extends AbstractApi
         );
     }
 
+    /**
+     * @param array<string, string> $postFormattedAddress
+     */
+    public function setAddress(string $uuid, array $postFormattedAddress): Certification
+    {
+        return CertificationFactory::fromResponse(
+            $this->client->request(
+                'PUT',
+                self::uri('/certifications/' . $uuid . '/address'),
+                json_encode([
+                    'postFormattedAddress' => $postFormattedAddress,
+                ], JSON_THROW_ON_ERROR)
+            )
+        );
+    }
+
     public function deleteCertification(string $uuid): void
     {
         $this->client->request('DELETE', self::uri('/certifications/' . $uuid));

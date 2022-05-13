@@ -10,6 +10,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\CertificationApi;
+use T3G\DatahubApiLibrary\Entity\Address;
 use T3G\DatahubApiLibrary\Entity\Certification;
 
 class CertificationApiTest extends AbstractApiTest
@@ -149,6 +150,21 @@ class CertificationApiTest extends AbstractApiTest
         $this->assertNull($certification->getCertificatePrintDate());
     }
 
+    public function testSetCertificationAddress(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetCertificationSetAddressResponse.php'
+        ]);
+        $certification = (new CertificationApi($this->getClient($handler)))->setAddress('00000000-0000-0000-0000-000000000000', ['postFormattedAddress' => $this->getTestCertificationAddress()->toDeutschePostArray()]);
+        $this->assertSame('Max Mustermann', $certification->getPostFormattedAddress()['NAME']);
+        $this->assertSame('Musterabteilung', $certification->getPostFormattedAddress()['ZUSATZ']);
+        $this->assertSame('Musterstraße', $certification->getPostFormattedAddress()['STRASSE']);
+        $this->assertSame('123', $certification->getPostFormattedAddress()['NUMMER']);
+        $this->assertSame('12345', $certification->getPostFormattedAddress()['PLZ']);
+        $this->assertSame('Musterdorf', $certification->getPostFormattedAddress()['STADT']);
+        $this->assertSame('DEU', $certification->getPostFormattedAddress()['LAND']);
+    }
+
     public function testStartCertification(): void
     {
         $handler = new MockHandler([
@@ -192,5 +208,20 @@ class CertificationApiTest extends AbstractApiTest
             ->setStatus('UNKNOWN')
             ->setExamDate(new \DateTime('2020-06-02T00:00:00+00:00'))
             ->setExamUrl('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000');
+    }
+
+    private function getTestCertificationAddress(): Address
+    {
+        return (new Address())
+            ->setUuid('00000000-0000-0000-0000-000000000000')
+            ->setTitle('Home')
+            ->setFirstName('Max')
+            ->setLastName('Mustermann')
+            ->setAdditionalAddressLine1('Musterabteilung')
+            ->setCity('Musterdorf')
+            ->setCountry('Germany')
+            ->setStreet('Musterstraße 123')
+            ->setZip('12345')
+            ->setType(2);
     }
 }

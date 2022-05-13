@@ -128,7 +128,7 @@ class CertificationApi extends AbstractApi
     }
 
     /**
-     * @param array<string, string> $postFormattedAddress
+     * @param array<string, string|null> $postFormattedAddress
      */
     public function setAddress(string $uuid, array $postFormattedAddress): Certification
     {

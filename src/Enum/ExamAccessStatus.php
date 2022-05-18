@@ -15,13 +15,13 @@ namespace T3G\DatahubApiLibrary\Enum;
  */
 final class ExamAccessStatus extends AbstractEnum
 {
-    public const NEW = 'NEW';
     public const READY = 'READY';
+    public const EXPIRED = 'EXPIRED';
     public const USED = 'USED';
 
     protected static array $optionNames = [
-        self::NEW => 'New',
         self::READY => 'Ready to use',
+        self::EXPIRED => 'Expired',
         self::USED => 'Voucher used',
     ];
 }

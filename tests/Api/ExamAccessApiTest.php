@@ -25,9 +25,26 @@ class ExamAccessApiTest extends AbstractApiTest
         $api = new ExamAccessApi($this->getClient($handler));
         $entity = $api->getExamAccess('00000000-0000-0000-0000-000000000000');
         $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getVoucher());
         $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
         $this->assertEquals(CertificationType::TCCI, $entity->getCertificationType());
-        $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
+        $this->assertEquals(ExamAccessStatus::READY, $entity->getStatus());
+        $this->assertEquals(false, $entity->getUsed());
+    }
+
+    public function testGetByVoucher(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/ExamAccessApi/GetExamAccessResponse.php'
+        ]);
+        $api = new ExamAccessApi($this->getClient($handler));
+        $entity = $api->getByVoucher('00000000-0000-0000-0000-000000000000');
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getVoucher());
+        $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
+        $this->assertEquals(CertificationType::TCCI, $entity->getCertificationType());
+        $this->assertEquals(ExamAccessStatus::READY, $entity->getStatus());
+        $this->assertEquals(false, $entity->getUsed());
     }
 
     public function testCreateExamAccessForUser(): void
@@ -38,9 +55,11 @@ class ExamAccessApiTest extends AbstractApiTest
         $api = new ExamAccessApi($this->getClient($handler));
         $entity = $api->createExamAccessForUser('oelie-boelie', $this->getTestExamAccess());
         $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getVoucher());
         $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
         $this->assertEquals(CertificationType::TCCD, $entity->getCertificationType());
-        $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
+        $this->assertEquals(ExamAccessStatus::READY, $entity->getStatus());
+        $this->assertEquals(false, $entity->getUsed());
     }
 
     public function testCreateExamAccessForCompany(): void
@@ -51,9 +70,11 @@ class ExamAccessApiTest extends AbstractApiTest
         $api = new ExamAccessApi($this->getClient($handler));
         $entity = $api->createExamAccessForCompany('00000000-0000-0000-0000-000000000000', $this->getTestExamAccess());
         $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getVoucher());
         $this->assertEquals(CertificationVersion::TEN, $entity->getCertificationVersion());
         $this->assertEquals(CertificationType::TCCC, $entity->getCertificationType());
-        $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
+        $this->assertEquals(ExamAccessStatus::READY, $entity->getStatus());
+        $this->assertEquals(false, $entity->getUsed());
     }
 
     public function testUpdateExamAccess(): void
@@ -64,9 +85,11 @@ class ExamAccessApiTest extends AbstractApiTest
         $api = new ExamAccessApi($this->getClient($handler));
         $entity = $api->updateExamAccess('00000000-0000-0000-0000-000000000000', $this->getTestExamAccess());
         $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getVoucher());
         $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
         $this->assertEquals(CertificationType::TCCD, $entity->getCertificationType());
-        $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
+        $this->assertEquals(ExamAccessStatus::READY, $entity->getStatus());
+        $this->assertEquals(false, $entity->getUsed());
     }
 
     public function testTransferExamAccess(): void
@@ -77,10 +100,12 @@ class ExamAccessApiTest extends AbstractApiTest
         $api = new ExamAccessApi($this->getClient($handler));
         $entity = $api->transferExamAccess('00000000-0000-0000-0000-000000000000', 'boelie-oelie');
         $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getUuid());
+        $this->assertEquals('00000000-0000-0000-0000-000000000000', $entity->getVoucher());
         $this->assertEquals(CertificationVersion::SEVEN, $entity->getCertificationVersion());
         $this->assertEquals(CertificationType::TCCD, $entity->getCertificationType());
-        $this->assertEquals(ExamAccessStatus::NEW, $entity->getStatus());
+        $this->assertEquals(ExamAccessStatus::READY, $entity->getStatus());
         $this->assertEquals('Exam access transferred from oelie.boelie to boelie.oelie (by oelie.boelie)', $entity->getHistory());
+        $this->assertEquals(false, $entity->getUsed());
     }
 
     public function testDeleteExamAccess(): void
@@ -101,10 +126,12 @@ class ExamAccessApiTest extends AbstractApiTest
     public function getTestExamAccess(): ExamAccess
     {
         return (new ExamAccess())
-            ->setStatus(ExamAccessStatus::NEW)
+            ->setStatus(ExamAccessStatus::READY)
             ->setUuid('00000000-0000-0000-0000-000000000000')
             ->setCertificationType(CertificationType::TCCD)
             ->setCertificationVersion(CertificationVersion::SEVEN)
-            ->setVoucher('00000000-0000-0000-0000-000000000000');
+            ->setVoucher('00000000-0000-0000-0000-000000000000')
+            ->setUsed(false)
+        ;
     }
 }

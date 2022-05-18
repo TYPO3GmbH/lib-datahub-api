@@ -25,27 +25,83 @@ class ExamAccessFactoryTest extends TestCase
         $this->assertEquals($data['status'], $entity->getStatus());
         $this->assertEquals($data['voucher'], $entity->getVoucher());
         $this->assertEquals($data['uuid'], $entity->getUuid());
+        $this->assertEquals(isset($data['createdAt']) ? new \DateTime($data['createdAt']) : null, $entity->getCreatedAt());
+        $this->assertEquals(isset($data['validUntil']) ? new \DateTime($data['validUntil']) : null, $entity->getValidUntil());
+
+        if (isset($date['used'])) {
+            $this->assertEquals($data['used'], $entity->getUsed());
+        } else {
+            $this->assertEquals(false, $entity->getUsed());
+        }
+
+        if (isset($data['company'])) {
+            $this->assertEquals($data['company']['uuid'], $entity->getCompany()->getUuid());
+            $this->assertEquals($data['company']['companyType'], $entity->getCompany()->getCompanyType());
+            $this->assertEquals($data['company']['title'], $entity->getCompany()->getTitle());
+            $this->assertEquals($data['company']['slug'], $entity->getCompany()->getSlug());
+        }
+        if (isset($data['user'])) {
+            $this->assertEquals($data['user']['username'], $entity->getUser()->getUsername());
+            $this->assertEquals($data['user']['firstName'], $entity->getUser()->getFirstName());
+            $this->assertEquals($data['user']['lastName'], $entity->getUser()->getLastName());
+        }
     }
 
     public function factoryDataProvider(): array
     {
         return [
-            'minimalValuesSet' => [
+            'legacy' => [
                 'data' => [
+                    'uuid' => '00000000-0000-0000-0000-0000000000000',
+                    'voucher' => '',
                     'certificationType' => 'TCCI',
                     'certificationVersion' => '10.4',
                     'status' => 'NEW',
-                    'voucher' => '',
-                    'uuid' => '00000000-0000-0000-0000-0000000000000',
                 ]
             ],
-            'allValuesSet' => [
+            'minimalValuesSet' => [
                 'data' => [
+                    'uuid' => '00000000-0000-0000-0000-0000000000000',
+                    'voucher' => '00000000-0000-0000-0000-0000000000000',
+                    'certificationType' => 'TCCI',
+                    'certificationVersion' => '10.4',
+                    'status' => 'READY',
+                    'used' => false,
+                ]
+            ],
+            'allValuesSetCompany' => [
+                'data' => [
+                    'uuid' => '00000000-0000-0000-0000-0000000000000',
+                    'voucher' => '00000000-0000-0000-0000-0000000000000',
+                    'company' => [
+                        'uuid' => '00000000-0000-0000-0000-000000000000',
+                        'companyType' => 'AGENCY',
+                        'title' => 'Company A',
+                        'slug' => 'company-a'
+                    ],
                     'certificationType' => 'TCCI',
                     'certificationVersion' => '9.5',
                     'status' => 'READY',
-                    'voucher' => '00000000-0000-0000-0000-0000000000001',
+                    'createdAt' => '2022-03-10T00:00:00+00:00',
+                    'validUntil' => '2022-01-10T00:00:00+00:00',
+                    'used' => false
+                ]
+            ],
+            'allValuesSetUser' => [
+                'data' => [
                     'uuid' => '00000000-0000-0000-0000-0000000000000',
+                    'voucher' => '00000000-0000-0000-0000-0000000000000',
+                    'user' => [
+                        'username' => 'max.muster',
+                        'firstName' => 'Max',
+                        'lastName' => 'Muster'
+                    ],
+                    'certificationType' => 'TCCI',
+                    'certificationVersion' => '9.5',
+                    'status' => 'READY',
+                    'createdAt' => '2022-03-10T00:00:00+00:00',
+                    'validUntil' => '2022-01-10T00:00:00+00:00',
+                    'used' => false
                 ]
             ]
         ];

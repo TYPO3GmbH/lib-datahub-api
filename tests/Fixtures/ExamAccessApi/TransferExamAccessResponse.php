@@ -13,8 +13,9 @@ return new Response(200, ['content-type' => 'application/json'], '
       "uuid": "00000000-0000-0000-0000-000000000000",
       "certificationType": "TCCD",
       "certificationVersion": "7.6",
-      "status": "NEW",
+      "status": "READY",
       "voucher": "00000000-0000-0000-0000-000000000000",
-      "history": "Exam access transferred from oelie.boelie to boelie.oelie (by oelie.boelie)"
+      "history": "Exam access transferred from oelie.boelie to boelie.oelie (by oelie.boelie)",
+      "used": false
 }
 ');

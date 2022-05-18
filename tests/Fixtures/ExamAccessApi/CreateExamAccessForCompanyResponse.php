@@ -13,7 +13,8 @@ return new Response(200, ['content-type' => 'application/json'], '
       "uuid": "00000000-0000-0000-0000-000000000000",
       "certificationType": "TCCC",
       "certificationVersion": "10.4",
-      "status": "NEW",
-      "voucher": "00000000-0000-0000-0000-000000000000"
+      "status": "READY",
+      "voucher": "00000000-0000-0000-0000-000000000000",
+      "used": false
 }
 ');

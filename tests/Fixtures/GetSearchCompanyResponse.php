@@ -283,10 +283,10 @@ return new Response(200, ['content-type' => 'application/json'], '
       "examAccesses": [
         {
           "uuid": "22222222-2222-2222-2222-222222222222",
-          "voucher": null,
+          "voucher": "22222222-2222-2222-2222-222222222222",
           "certificationType": "TCCD",
           "certificationVersion": "10.4",
-          "status": "NEW"
+          "status": "READY"
         },
         {
           "uuid": "33333333-3333-3333-3333-333333333333",

@@ -38,6 +38,22 @@ class ExamAccessApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function getByVoucher(string $uuid): ExamAccess
+    {
+        $this->isValidUuidOrThrow($uuid);
+        return ExamAccessFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri('/exam-access/voucher/' . $uuid),
+            )
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function createExamAccessForUser(string $username, ExamAccess $examAccess): ExamAccess
     {

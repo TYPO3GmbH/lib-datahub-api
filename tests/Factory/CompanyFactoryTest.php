@@ -158,10 +158,10 @@ class CompanyFactoryTest extends TestCase
                     'examAccesses' => [
                         [
                             'uuid' => '22222222-2222-2222-2222-222222222222',
-                            'voucher' => null,
+                            'voucher' => '22222222-2222-2222-2222-222222222222',
                             'certificationType' => CertificationType::TCCD,
                             'certificationVersion' => CertificationVersion::TEN,
-                            'status' => ExamAccessStatus::NEW
+                            'status' => ExamAccessStatus::READY
                         ],
                         [
                             'uuid' => '33333333-3333-3333-3333-333333333333',

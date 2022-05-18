@@ -13,11 +13,28 @@ use T3G\DatahubApiLibrary\Entity\ExamAccess;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\ExamAccessFactory;
+use T3G\DatahubApiLibrary\Factory\ExamAccessListFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class ExamAccessApi extends AbstractApi
 {
     use HandlesUuids;
+
+    /**
+     * @param array<string, string> $filterAttributes
+     * @return ExamAccess[]
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     */
+    public function getExamAccesses(array $filterAttributes = []): array
+    {
+        return ExamAccessListFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri('/exam-access/')->withQuery(http_build_query($filterAttributes))
+            )
+        );
+    }
 
     /**
      * @throws ClientExceptionInterface

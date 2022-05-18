@@ -21,7 +21,7 @@ class ExamAccessFactory extends AbstractFactory
             ->setUuid($data['uuid'])
             ->setCertificationType($data['certificationType'])
             ->setCertificationVersion($data['certificationVersion'])
-            ->setStatus($data['status'])
+            ->setStatus($data['status'] ?? null)
             ->setVoucher($data['voucher'] ?? null)
             ->setHistory($data['history'] ?? null)
             ->setUsed($data['used'] ?? false)

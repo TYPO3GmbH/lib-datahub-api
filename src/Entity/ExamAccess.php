@@ -19,11 +19,11 @@ class ExamAccess implements JsonSerializable
     private string $certificationType;
     private string $certificationVersion;
     private ?string $voucher = null;
-    private string $status;
+    private ?string $status = null;
     private ?string $history = null;
     private ?DateTimeInterface $createdAt = null;
     private ?DateTimeInterface $validUntil = null;
-    private bool $used;
+    private ?bool $used = null;
 
     public function jsonSerialize()
     {
@@ -104,12 +104,12 @@ class ExamAccess implements JsonSerializable
         return $this;
     }
 
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(?string $status): self
     {
         $this->status = $status;
         return $this;
@@ -148,12 +148,12 @@ class ExamAccess implements JsonSerializable
         return $this;
     }
 
-    public function getUsed(): bool
+    public function getUsed(): ?bool
     {
         return $this->used;
     }
 
-    public function setUsed(bool $used): self
+    public function setUsed(?bool $used): self
     {
         $this->used = $used;
 

@@ -46,6 +46,7 @@ class Certification implements JsonSerializable
     private string $proctoringApproval = CertificationProctoringApprovalStatus::UNKNOWN;
     private ?string $hubspotDealId = null;
     private ?\DateTimeInterface $validUntil = null;
+    private ?string $appendToHistory = '';
 
     /**
      * @var array<string, string|null>
@@ -74,6 +75,7 @@ class Certification implements JsonSerializable
             'hubspotDealId' => $this->getHubspotDealId(),
             'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
             'postFormattedAddress' => $this->getPostFormattedAddress(),
+            'appendToHistory' => $this->getAppendToHistory(),
         ];
     }
 
@@ -385,6 +387,17 @@ class Certification implements JsonSerializable
     public function setPostFormattedAddress(array $postFormattedAddress): self
     {
         $this->postFormattedAddress = $postFormattedAddress;
+        return $this;
+    }
+
+    public function getAppendToHistory(): ?string
+    {
+        return $this->appendToHistory;
+    }
+
+    public function setAppendToHistory(?string $appendToHistory): self
+    {
+        $this->appendToHistory = $appendToHistory;
         return $this;
     }
 }

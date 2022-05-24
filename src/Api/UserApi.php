@@ -40,7 +40,7 @@ class UserApi extends AbstractApi
                     'password' => $user->getPassword(),
                     'firstName' => $user->getFirstName(),
                     'lastName' => $user->getLastName(),
-                    'email' => $user->getPrimaryEmail(),
+                    'email' => $user->getPrimaryEmail(false),
                 ], JSON_THROW_ON_ERROR, 512)
             )
         );

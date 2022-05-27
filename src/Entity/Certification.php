@@ -30,6 +30,8 @@ class Certification implements JsonSerializable
     private string $status = '';
     private string $examLocation = '';
     private ?DateTimeInterface $examDate = null;
+    private bool $ndaSigned = false;
+    private bool $rulesAccepted = false;
     private ?string $proctoringLink = null;
     private string $address = '';
     private ?string $examUrl = null;
@@ -47,6 +49,7 @@ class Certification implements JsonSerializable
     private ?string $hubspotDealId = null;
     private ?\DateTimeInterface $validUntil = null;
     private ?string $appendToHistory = '';
+    private ?string $userExamUuid = null;
 
     /**
      * @var array<string, string|null>
@@ -61,6 +64,8 @@ class Certification implements JsonSerializable
             'auditType' => $this->getAuditType(),
             'examLocation' => $this->getExamLocation(),
             'examDate' => $this->formatDateIfGiven($this->getExamDate()),
+            'ndaSigned' => $this->isNdaSigned(),
+            'rulesAccepted' => $this->isRulesAccepted(),
             'proctoringLink' => $this->getProctoringLink(),
             'address' => $this->getAddress(),
             'examUrl' => $this->getExamUrl(),
@@ -76,6 +81,7 @@ class Certification implements JsonSerializable
             'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
             'postFormattedAddress' => $this->getPostFormattedAddress(),
             'appendToHistory' => $this->getAppendToHistory(),
+            'userExamUuid' => $this->getUserExamUuid(),
         ];
     }
 
@@ -154,6 +160,19 @@ class Certification implements JsonSerializable
         return $this;
     }
 
+    /**
+     * This is a computed value based on different properties.
+     *
+     * Stages:
+     *   * UNKNOWN: early interim state and should never be a real result
+     *   * PREPARATION_REQUIRED: the exam needs preparation by the exam taker by signing the NDA, accepting the rules and setting an address
+     *   * READY: only ProctorU - all data is set and the exam may be scheduled by the exam taker
+     *   * SCHEDULED: if ProctorU, an appointment is made; for on-site exams this is implicitly defined by the exam's event
+     *   * WAIT_PROCTOR: only ProctorU - exam is finished and passed, ProctorU either needs to send its results or there are open incidents
+     *   * PASSED: the exam is passed; if ProctorU, there are either no incidents or the proctoring has been approved manually
+     *   * FAILED: the exam is failed; if ProctorU and the scoring would result in "passed", there are incidents and the proctoring has been declined manually
+     *   * IN_PRINT: the print date of the certification is set
+     */
     public function getStatus(): string
     {
         return $this->status;
@@ -187,6 +206,30 @@ class Certification implements JsonSerializable
         return $this;
     }
 
+    public function isNdaSigned(): bool
+    {
+        return $this->ndaSigned;
+    }
+
+    public function setNdaSigned(bool $ndaSigned): self
+    {
+        $this->ndaSigned = $ndaSigned;
+
+        return $this;
+    }
+
+    public function isRulesAccepted(): bool
+    {
+        return $this->rulesAccepted;
+    }
+
+    public function setRulesAccepted(bool $rulesAccepted): self
+    {
+        $this->rulesAccepted = $rulesAccepted;
+
+        return $this;
+    }
+
     public function getProctoringLink(): ?string
     {
         return $this->proctoringLink;
@@ -196,6 +239,15 @@ class Certification implements JsonSerializable
     {
         $this->proctoringLink = $proctoringLink;
         return $this;
+    }
+
+    public function isSchedulable(): bool
+    {
+        if (CertificationAuditType::PROCTORU !== $this->getAuditType()) {
+            return false;
+        }
+
+        return $this->isNdaSigned() && $this->isRulesAccepted() && '' !== $this->getAddress();
     }
 
     public function getAddress(): string
@@ -398,6 +450,17 @@ class Certification implements JsonSerializable
     public function setAppendToHistory(?string $appendToHistory): self
     {
         $this->appendToHistory = $appendToHistory;
+        return $this;
+    }
+
+    public function getUserExamUuid(): ?string
+    {
+        return $this->userExamUuid;
+    }
+
+    public function setUserExamUuid(?string $userExamUuid): self
+    {
+        $this->userExamUuid = $userExamUuid;
         return $this;
     }
 }

@@ -29,6 +29,7 @@ class CertificationApiTest extends AbstractApiTest
         $this->assertSame('1234', $certification->getHubspotDealId());
         $this->assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
         $this->assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
+        $this->assertSame('a5a90afd-9495-4ce1-aaef-3f5ccb0e7ec6', $certification->getUserExamUuid());
         $this->assertNull($certification->getCertificatePrintDate());
     }
 

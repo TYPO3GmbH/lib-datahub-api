@@ -92,6 +92,8 @@ return new Response(200, ['content-type' => 'application/json'], '
       "status": "PASSED",
       "examLocation": "Aldi",
       "examDate": "2020-02-26T00:00:00+00:00",
+      "ndaSigned": true,
+      "rulesAccepted": true,
       "proctoringLink": null,
       "examUrl": "https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000"
     }

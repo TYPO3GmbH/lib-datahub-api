@@ -61,6 +61,15 @@ class CertificationFactory extends AbstractFactory
         if (isset($data['proctoringApproval'])) {
             $certification->setProctoringApproval($data['proctoringApproval']);
         }
+        if (isset($data['ndaSigned'])) {
+            $certification->setNdaSigned($data['ndaSigned']);
+        }
+        if (isset($data['rulesAccepted'])) {
+            $certification->setRulesAccepted($data['rulesAccepted']);
+        }
+        if (isset($data['userExamUuid'])) {
+            $certification->setUserExamUuid($data['userExamUuid']);
+        }
         return $certification;
     }
 }

@@ -20,6 +20,8 @@ return new Response(200, ['content-type' => 'application/json'], '
   "status": "UNKNOWN",
   "examLocation": "online",
   "examDate": "2020-06-02T00:00:00+00:00",
+  "ndaSigned": true,
+  "rulesAccepted": true,
   "proctoringLink": null,
   "examUrl": "https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000",
   "examTestResult": "NO_RESULT",

@@ -45,6 +45,8 @@ class CertificationFactoryTest extends TestCase
                     'status' => 'PASSED',
                     'examLocation' => 'Aldi',
                     'examDate' => null,
+                    'ndaSigned' => false,
+                    'rulesAccepted' => false,
                     'proctoringLink' => null,
                     'examUrl' => 'https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000',
                 ]
@@ -59,6 +61,8 @@ class CertificationFactoryTest extends TestCase
                     'examLocation' => 'Aldi',
                     'hubspotDealId' => '1234',
                     'examDate' => '2020-02-26T00:00:00+00:00',
+                    'ndaSigned' => true,
+                    'rulesAccepted' => true,
                     'proctoringLink' => 'https://example.com/00000000-0000-0000-0000-000000000000',
                     'examUrl' => 'https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000',
                 ]

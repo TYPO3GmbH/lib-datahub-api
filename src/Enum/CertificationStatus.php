@@ -16,6 +16,7 @@ namespace T3G\DatahubApiLibrary\Enum;
 final class CertificationStatus extends AbstractEnum
 {
     public const UNKNOWN = 'UNKNOWN';
+    public const PREPARATION_REQUIRED = 'PREPARATION_REQUIRED';
     public const READY = 'READY';
     public const SCHEDULED = 'SCHEDULED';
     public const WAIT_PROCTOR = 'WAIT_PROCTOR';
@@ -25,6 +26,7 @@ final class CertificationStatus extends AbstractEnum
 
     protected static array $optionNames = [
         self::UNKNOWN => 'Unknown',
+        self::PREPARATION_REQUIRED => 'Preparation required',
         self::READY => 'Ready for the student',
         self::SCHEDULED => 'The exam is scheduled',
         self::WAIT_PROCTOR => 'The exam is waiting for proctoring results',

@@ -187,6 +187,20 @@ class CertificationApiTest extends AbstractApiTest
         $this->assertNull($certification->getCertificatePrintDate());
     }
 
+    public function testUpdateCertification(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/UpdateCertificationResponse.php'
+        ]);
+
+        $api = new CertificationApi($this->getClient($handler));
+        $response = $api->updateCertification('00000000-0000-0000-0000-000000000000', $this->getTestCertificate());
+        $this->assertEquals('TCCE', $response->getType());
+        $this->assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(\DateTimeInterface::ATOM));
+        $this->assertEquals('online', $response->getExamLocation());
+        $this->assertEquals('UNKNOWN', $response->getStatus());
+    }
+
     public function testDeleteCertification(): void
     {
         $handler = new MockHandler([

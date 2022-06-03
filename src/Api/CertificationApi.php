@@ -144,6 +144,17 @@ class CertificationApi extends AbstractApi
         );
     }
 
+    public function updateCertification(string $uuid, Certification $certification): Certification
+    {
+        return CertificationFactory::fromResponse(
+            $this->client->request(
+                'PUT',
+                self::uri('/certifications/' . $uuid),
+                json_encode($certification, JSON_THROW_ON_ERROR, 512)
+            )
+        );
+    }
+
     public function deleteCertification(string $uuid): void
     {
         $this->client->request('DELETE', self::uri('/certifications/' . $uuid));

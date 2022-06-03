@@ -156,7 +156,11 @@ class CertificationApiTest extends AbstractApiTest
         $handler = new MockHandler([
             require __DIR__ . '/../Fixtures/GetCertificationSetAddressResponse.php'
         ]);
-        $certification = (new CertificationApi($this->getClient($handler)))->setAddress('00000000-0000-0000-0000-000000000000', ['postFormattedAddress' => $this->getTestCertificationAddress()->toDeutschePostArray()]);
+        $certification = (new CertificationApi($this->getClient($handler)))->setAddress(
+            '00000000-0000-0000-0000-000000000000',
+            $this->getTestCertificationAddress()->toDeutschePostArray(),
+            ''
+        );
         $this->assertSame('Max Mustermann', $certification->getPostFormattedAddress()['NAME']);
         $this->assertSame('Musterabteilung', $certification->getPostFormattedAddress()['ZUSATZ']);
         $this->assertSame('Musterstraße', $certification->getPostFormattedAddress()['STRASSE']);

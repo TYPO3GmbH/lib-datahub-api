@@ -130,7 +130,7 @@ class CertificationApi extends AbstractApi
     /**
      * @param array<string, string|null> $postFormattedAddress
      */
-    public function setAddress(string $uuid, array $postFormattedAddress): Certification
+    public function setAddress(string $uuid, array $postFormattedAddress, string $address): Certification
     {
         return CertificationFactory::fromResponse(
             $this->client->request(
@@ -138,6 +138,7 @@ class CertificationApi extends AbstractApi
                 self::uri('/certifications/' . $uuid . '/address'),
                 json_encode([
                     'postFormattedAddress' => $postFormattedAddress,
+                    'address' => $address,
                 ], JSON_THROW_ON_ERROR)
             )
         );

@@ -76,6 +76,7 @@ class Certification implements JsonSerializable
             'examDuration' => $this->getExamDuration(),
             'examTestResult' => $this->getExamTestResult(),
             'certificatePrintDate' => $this->formatDateIfGiven($this->getCertificatePrintDate()),
+            'proctoringStatus' => $this->getProctoringStatus(),
             'proctoringApproval' => $this->getProctoringApproval(),
             'hubspotDealId' => $this->getHubspotDealId(),
             'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),

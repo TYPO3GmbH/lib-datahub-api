@@ -50,7 +50,7 @@ class Certification implements JsonSerializable
     private ?\DateTimeInterface $validUntil = null;
     private ?string $appendToHistory = '';
     private ?string $userExamUuid = null;
-    private bool $finished = true;
+    private bool $finished = false;
 
     /**
      * @var array<string, string|null>

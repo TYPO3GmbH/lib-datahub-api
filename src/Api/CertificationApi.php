@@ -8,6 +8,7 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use T3G\DatahubApiLibrary\Demand\CertificationSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
@@ -37,6 +38,23 @@ class CertificationApi extends AbstractApi
             $this->client->request(
                 'GET',
                 self::uri('/certifications/')->withQuery(http_build_query($filterAttributes))
+            )
+        );
+    }
+
+    /**
+     * @param CertificationSearchDemand $searchDemand
+     * @return Certification[]
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     */
+    public function getCertificationsFiltered(CertificationSearchDemand $searchDemand): array
+    {
+        return CertificationListFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri('/certifications/'),
+                serialize($searchDemand)
             )
         );
     }

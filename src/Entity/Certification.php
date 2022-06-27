@@ -50,6 +50,7 @@ class Certification implements JsonSerializable
     private ?\DateTimeInterface $validUntil = null;
     private ?string $appendToHistory = '';
     private ?string $userExamUuid = null;
+    private bool $finished = true;
 
     /**
      * @var array<string, string|null>
@@ -83,6 +84,7 @@ class Certification implements JsonSerializable
             'postFormattedAddress' => $this->getPostFormattedAddress(),
             'appendToHistory' => $this->getAppendToHistory(),
             'userExamUuid' => $this->getUserExamUuid(),
+            'finished' => $this->isFinished(),
         ];
     }
 
@@ -462,6 +464,18 @@ class Certification implements JsonSerializable
     public function setUserExamUuid(?string $userExamUuid): self
     {
         $this->userExamUuid = $userExamUuid;
+        return $this;
+    }
+
+    public function isFinished(): bool
+    {
+        return $this->finished;
+    }
+
+    public function setFinished(bool $finished): self
+    {
+        $this->finished = $finished;
+
         return $this;
     }
 }

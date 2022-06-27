@@ -19,6 +19,8 @@ final class CertificationStatus extends AbstractEnum
     public const PREPARATION_REQUIRED = 'PREPARATION_REQUIRED';
     public const READY = 'READY';
     public const SCHEDULED = 'SCHEDULED';
+    public const FINISHED = 'FINISHED';
+    public const WAIT_RESULTS = 'WAIT_RESULTS';
     public const WAIT_PROCTOR = 'WAIT_PROCTOR';
     public const FAILED = 'FAILED';
     public const PASSED = 'PASSED';
@@ -29,6 +31,8 @@ final class CertificationStatus extends AbstractEnum
         self::PREPARATION_REQUIRED => 'Preparation required',
         self::READY => 'Ready for the student',
         self::SCHEDULED => 'The exam is scheduled',
+        self::FINISHED => 'The exam is finished',
+        self::WAIT_RESULTS => 'The exam is waiting for results',
         self::WAIT_PROCTOR => 'The exam is waiting for proctoring results',
         self::FAILED => 'Failed',
         self::PASSED => 'Passed',

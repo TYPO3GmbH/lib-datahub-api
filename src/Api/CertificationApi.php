@@ -54,7 +54,7 @@ class CertificationApi extends AbstractApi
             $this->client->request(
                 'GET',
                 self::uri('/certifications/'),
-                serialize($searchDemand)
+                json_encode($searchDemand, JSON_THROW_ON_ERROR)
             )
         );
     }

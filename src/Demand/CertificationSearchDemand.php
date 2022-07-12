@@ -18,6 +18,8 @@ class CertificationSearchDemand implements \JsonSerializable
     private string $term = '';
     /** @var array<int, string> */
     private array $status = [];
+    private ?int $limit = null;
+    private ?int $offset = 0;
 
     public function getSortDirection(): string
     {
@@ -86,5 +88,25 @@ class CertificationSearchDemand implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return get_object_vars($this);
+    }
+
+    public function getLimit(): ?int
+    {
+        return $this->limit;
+    }
+
+    public function setLimit(?int $limit): void
+    {
+        $this->limit = $limit;
+    }
+
+    public function getOffset(): ?int
+    {
+        return $this->offset;
+    }
+
+    public function setOffset(?int $offset): void
+    {
+        $this->offset = $offset;
     }
 }

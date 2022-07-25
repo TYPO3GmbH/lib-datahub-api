@@ -17,6 +17,7 @@ use T3G\DatahubApiLibrary\Entity\EmailAddress;
 use T3G\DatahubApiLibrary\Entity\Employee;
 use T3G\DatahubApiLibrary\Entity\PreCheckResult;
 use T3G\DatahubApiLibrary\Entity\VoucherCode;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
@@ -313,5 +314,24 @@ class CompanyApi extends AbstractApi
                 json_encode($voucherCode, JSON_THROW_ON_ERROR, 512)
             )
         );
+    }
+
+    /**
+     * @param string $uuid
+     * @return array<int, MembershipType::*>
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws \JsonException
+     */
+    public function getAllowedMemberships(string $uuid): array
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        $response = $this->client->request(
+            'GET',
+            self::uri('/companies/' . $uuid . '/allowed-memberships'),
+        );
+
+        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
     }
 }

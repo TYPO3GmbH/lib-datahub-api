@@ -8,8 +8,10 @@
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Demand\SubscriptionFilterQuery;
 use T3G\DatahubApiLibrary\Entity\Subscription;
+use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\SubscriptionFactory;
 use T3G\DatahubApiLibrary\Factory\SubscriptionListFactory;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
@@ -125,6 +127,20 @@ class SubscriptionApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/subscription/' . $uuid . '/transfer-to-organization/' . $organizationUuid)
+            )
+        );
+    }
+
+    /**
+     * @return array<int, Subscription>
+     * @throws DatahubResponseException|ClientExceptionInterface
+     */
+    public function getNewMembersOfPreviousMonth(): array
+    {
+        return SubscriptionListFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri('/subscription/new-members')
             )
         );
     }

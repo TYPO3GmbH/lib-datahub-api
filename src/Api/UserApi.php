@@ -12,6 +12,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Entity\EmailAddress;
 use T3G\DatahubApiLibrary\Entity\Employee;
+use T3G\DatahubApiLibrary\Entity\PreCheckResult;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Entity\VoucherCode;
 use T3G\DatahubApiLibrary\Enum\MembershipType;
@@ -20,6 +21,7 @@ use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
 use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
+use T3G\DatahubApiLibrary\Factory\PreCheckResultListFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 use T3G\DatahubApiLibrary\Factory\UserListFactory;
 use T3G\DatahubApiLibrary\Factory\VoucherCodeFactory;
@@ -239,5 +241,21 @@ class UserApi extends AbstractApi
         );
 
         return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * @param string $username
+     * @return PreCheckResult[]
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     */
+    public function deletionPreCheck(string $username): array
+    {
+        return PreCheckResultListFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri('/users/' . mb_strtolower($username) . '/user-pre-deletion-check')
+            )
+        );
     }
 }

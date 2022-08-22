@@ -22,6 +22,11 @@ class InvoiceFactory extends AbstractFactory
             ->setDate(new \DateTime($data['date']))
             ->setTitle($data['title'] ?? null);
 
+        if (!empty($data['documentType'])) {
+            $invoice->setDocumentType($data['documentType']);
+        } else {
+            $invoice->setDocumentType('invoice');
+        }
         if (!empty($data['uuid'])) {
             $invoice->setUuid($data['uuid']);
         }

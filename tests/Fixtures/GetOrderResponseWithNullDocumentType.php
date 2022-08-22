@@ -20,8 +20,7 @@ return new Response(200, ['content-type' => 'application/json'], '
             "number": "I12345",
             "identifier": "in_1234",
             "link": "https://dienmam.com/invoice",
-            "date": "2020-01-10T00:00:00+00:00",
-            "documentType": "invoice"
+            "date": "2020-01-10T00:00:00+00:00"
         }
       ]
     }

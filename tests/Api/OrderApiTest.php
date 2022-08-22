@@ -101,16 +101,48 @@ class OrderApiTest extends AbstractApiTest
         ]);
         $response = (new OrderApi($this->getClient($handler)))
             ->addInvoice('00000000-0000-0000-0000-000000000000', $this->getTestInvoice());
-        self::assertEquals('A12345', $response->getOrderNumber());
-        self::assertIsArray($response->getPayload());
-        self::assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
-        self::assertIsArray($response->getInvoices());
+        $this->assertResponse($response);
         $invoice = $response->getInvoices()[0];
-        self::assertSame('Test-Title', $invoice->getTitle());
-        self::assertSame('https://dienmam.com/invoice', $invoice->getLink());
-        self::assertSame((new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))->getTimestamp(), $invoice->getDate()->getTimestamp());
-        self::assertSame('I12345', $invoice->getNumber());
-        self::assertSame('in_1234', $invoice->getIdentifier());
+        self::assertSame('invoice', $invoice->getDocumentType());
+    }
+
+    public function testAddInvoiceWithoutType(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetOrderResponseWithNullDocumentType.php'
+        ]);
+
+        $response = (new OrderApi($this->getClient($handler)))
+            ->addInvoice('00000000-0000-0000-0000-000000000000', $this->getTestInvoiceWithoutType());
+        $this->assertResponse($response);
+        $invoice = $response->getInvoices()[0];
+        self::assertSame('invoice', $invoice->getDocumentType());
+    }
+
+    public function testAddCreditNote(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetOrderResponseWithCreditNote.php'
+        ]);
+
+        $response = (new OrderApi($this->getClient($handler)))
+            ->addInvoice('00000000-0000-0000-0000-000000000000', $this->getTestCreditNote());
+        $this->assertResponse($response);
+        $invoice = $response->getInvoices()[0];
+        self::assertSame('credit_note', $invoice->getDocumentType());
+    }
+
+    public function testAddEmptyDocumentType(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetOrderResponseWithEmptyDocumentType.php'
+        ]);
+
+        $response = (new OrderApi($this->getClient($handler)))
+            ->addInvoice('00000000-0000-0000-0000-000000000000', $this->getTestDocumentEmptyType());
+        $this->assertResponse($response);
+        $invoice = $response->getInvoices()[0];
+        self::assertSame('invoice', $invoice->getDocumentType());
     }
 
     public function testDeleteMailAddressFilter(): void
@@ -148,6 +180,63 @@ class OrderApiTest extends AbstractApiTest
             ->setIdentifier('in_1234')
             ->setLink('https://dienmam.com/invoice')
             ->setDate(new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))
+            ->setDocumentType('invoice')
         ;
+    }
+
+    private function getTestInvoiceWithoutType(): Invoice
+    {
+        return (new Invoice())
+            ->setUuid('00000000-0000-0000-0000-000000000000')
+            ->setTitle('Test-Title')
+            ->setNumber('I12345')
+            ->setIdentifier('in_1234')
+            ->setLink('https://dienmam.com/invoice')
+            ->setDate(new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))
+            ;
+    }
+
+    private function getTestDocumentEmptyType(): Invoice
+    {
+        return (new Invoice())
+            ->setUuid('00000000-0000-0000-0000-000000000000')
+            ->setTitle('Test-Title')
+            ->setNumber('I12345')
+            ->setIdentifier('in_1234')
+            ->setLink('https://dienmam.com/invoice')
+            ->setDate(new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))
+            ->setDocumentType('')
+            ;
+    }
+
+    /**
+     * @param Order $response
+     * @return void
+     */
+    public function assertResponse(Order $response): void
+    {
+        self::assertEquals('A12345', $response->getOrderNumber());
+        self::assertIsArray($response->getPayload());
+        self::assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
+        self::assertIsArray($response->getInvoices());
+        $invoice = $response->getInvoices()[0];
+        self::assertSame('Test-Title', $invoice->getTitle());
+        self::assertSame('https://dienmam.com/invoice', $invoice->getLink());
+        self::assertSame((new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))->getTimestamp(), $invoice->getDate()->getTimestamp());
+        self::assertSame('I12345', $invoice->getNumber());
+        self::assertSame('in_1234', $invoice->getIdentifier());
+    }
+
+    private function getTestCreditNote(): Invoice
+    {
+        return (new Invoice())
+            ->setUuid('00000000-0000-0000-0000-000000000000')
+            ->setTitle('Test-Title')
+            ->setNumber('I12345')
+            ->setIdentifier('in_1234')
+            ->setLink('https://dienmam.com/invoice')
+            ->setDate(new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))
+            ->setDocumentType('credit_note')
+            ;
     }
 }

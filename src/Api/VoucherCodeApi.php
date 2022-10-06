@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -51,7 +52,7 @@ class VoucherCodeApi extends AbstractApi
                 json_encode([
                     'orderNumber' => $orderNumber,
                     'username' => $username,
-                    'product' => $product
+                    'product' => $product,
                 ], JSON_THROW_ON_ERROR)
             )
         );

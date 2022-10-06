@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,21 +18,12 @@ use T3G\DatahubApiLibrary\Notification\NotificationInterface;
 class User implements JsonSerializable
 {
     private string $username;
-
     private ?string $password = null;
-
-    private ?string $email = null;
-
     private ?string $firstName = null;
-
     private ?string $lastName = null;
-
     private ?string $phone = null;
-
     private ?string $slackId = null;
-
     private ?string $discordId = null;
-
     private ?string $gravatarString = null;
 
     /**
@@ -87,7 +80,6 @@ class User implements JsonSerializable
      * @var VoucherCode[]
      */
     private array $voucherCodes = [];
-
     private ?Subscription $membership = null;
 
     /**
@@ -127,6 +119,7 @@ class User implements JsonSerializable
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -138,6 +131,7 @@ class User implements JsonSerializable
     public function setPassword(?string $password): self
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -163,6 +157,7 @@ class User implements JsonSerializable
                 return $address->getEmail();
             }
         }
+
         return null;
     }
 
@@ -174,6 +169,7 @@ class User implements JsonSerializable
     public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -185,6 +181,7 @@ class User implements JsonSerializable
     public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
@@ -196,6 +193,7 @@ class User implements JsonSerializable
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -207,6 +205,7 @@ class User implements JsonSerializable
     public function setSlackId(?string $slackId): self
     {
         $this->slackId = $slackId;
+
         return $this;
     }
 
@@ -218,6 +217,7 @@ class User implements JsonSerializable
     public function setDiscordId(?string $discordId): self
     {
         $this->discordId = $discordId;
+
         return $this;
     }
 
@@ -239,6 +239,7 @@ class User implements JsonSerializable
 
     /**
      * @param bool $ascending Set true for ascending order, false for descending order
+     *
      * @return Order[]
      */
     public function getOrdersSortedByTime(bool $ascending = true): array
@@ -265,17 +266,20 @@ class User implements JsonSerializable
 
     /**
      * @param Address[] $addresses
+     *
      * @return User
      */
     public function setAddresses(array $addresses): self
     {
         $this->addresses = $addresses;
+
         return $this;
     }
 
     public function addAddress(Address $address): self
     {
         $this->addresses[] = $address;
+
         return $this;
     }
 
@@ -289,17 +293,20 @@ class User implements JsonSerializable
 
     /**
      * @param Link[] $links
+     *
      * @return User
      */
     public function setLinks(array $links): self
     {
         $this->links = $links;
+
         return $this;
     }
 
     public function addLink(Link $link): self
     {
         $this->links[] = $link;
+
         return $this;
     }
 
@@ -313,23 +320,27 @@ class User implements JsonSerializable
 
     /**
      * @param EmailAddress[] $emailAddresses
+     *
      * @return User
      */
     public function setEmailAddresses(array $emailAddresses): self
     {
         $this->emailAddresses = $emailAddresses;
+
         return $this;
     }
 
     public function addEmailAddress(EmailAddress $emailAddress): self
     {
         $this->emailAddresses[] = $emailAddress;
+
         return $this;
     }
 
     public function addOrder(Order $order): self
     {
         $this->orders[] = $order;
+
         return $this;
     }
 
@@ -343,17 +354,20 @@ class User implements JsonSerializable
 
     /**
      * @param NotificationInterface[] $notifications
+     *
      * @return $this
      */
     public function setNotifications(array $notifications): self
     {
         $this->notifications = $notifications;
+
         return $this;
     }
 
     public function addNotification(NotificationInterface $notification): self
     {
         $this->notifications[] = $notification;
+
         return $this;
     }
     /**
@@ -366,17 +380,20 @@ class User implements JsonSerializable
 
     /**
      * @param Subscription[] $subscriptions
+     *
      * @return User
      */
     public function setSubscriptions(array $subscriptions): self
     {
         $this->subscriptions = $subscriptions;
+
         return $this;
     }
 
     public function addSubscription(Subscription $subscription): self
     {
         $this->subscriptions[] = $subscription;
+
         return $this;
     }
 
@@ -390,17 +407,20 @@ class User implements JsonSerializable
 
     /**
      * @param array<int, Company> $companies
+     *
      * @return User
      */
     public function setCompanies(array $companies): self
     {
         $this->companies = $companies;
+
         return $this;
     }
 
     public function addCompany(Company $company): self
     {
         $this->companies[] = $company;
+
         return $this;
     }
 
@@ -454,17 +474,20 @@ class User implements JsonSerializable
 
     /**
      * @param Certification[] $certifications
+     *
      * @return User
      */
     public function setCertifications(array $certifications): self
     {
         $this->certifications = $certifications;
+
         return $this;
     }
 
     public function addCertification(Certification $certification): self
     {
         $this->certifications[] = $certification;
+
         return $this;
     }
 
@@ -478,23 +501,27 @@ class User implements JsonSerializable
 
     /**
      * @param ExamAccess[] $examAccesses
+     *
      * @return User
      */
     public function setExamAccesses(array $examAccesses): self
     {
         $this->examAccesses = $examAccesses;
+
         return $this;
     }
 
     public function addExamAccess(ExamAccess $examAccess): self
     {
         $this->examAccesses[] = $examAccess;
+
         return $this;
     }
 
     public function addApprovedDocument(ApprovedDocument $approvedDocument): self
     {
         $this->approvedDocuments[] = $approvedDocument;
+
         return $this;
     }
 
@@ -508,31 +535,37 @@ class User implements JsonSerializable
 
     /**
      * @param Subscription|null $membership
+     *
      * @return User
      */
     public function setMembership(?Subscription $membership): self
     {
         $this->membership = $membership;
+
         return $this;
     }
 
     /**
      * @param ApprovedDocument[] $approvedDocuments
+     *
      * @return User
      */
     public function setApprovedDocuments(array $approvedDocuments): self
     {
         $this->approvedDocuments = $approvedDocuments;
+
         return $this;
     }
 
     /**
      * @param Order[] $orders
+     *
      * @return User
      */
     public function setOrders(array $orders): self
     {
         $this->orders = $orders;
+
         return $this;
     }
 
@@ -579,6 +612,7 @@ class User implements JsonSerializable
     public function setGravatarString(?string $gravatarString): self
     {
         $this->gravatarString = $gravatarString;
+
         return $this;
     }
 
@@ -597,17 +631,20 @@ class User implements JsonSerializable
 
     /**
      * @param VoucherCode[] $voucherCodes
+     *
      * @return $this
      */
     public function setVoucherCodes(array $voucherCodes): self
     {
         $this->voucherCodes = $voucherCodes;
+
         return $this;
     }
 
     public function addVoucherCode(VoucherCode $voucherCode): self
     {
         $this->voucherCodes[] = $voucherCode;
+
         return $this;
     }
 
@@ -621,17 +658,20 @@ class User implements JsonSerializable
 
     /**
      * @param EltsPlan[] $eltsPlans
+     *
      * @return $this
      */
     public function setEltsPlans(array $eltsPlans): self
     {
         $this->eltsPlans = $eltsPlans;
+
         return $this;
     }
 
     public function addEltsPlan(EltsPlan $eltsPlan): self
     {
         $this->eltsPlans[] = $eltsPlan;
+
         return $this;
     }
 
@@ -645,17 +685,20 @@ class User implements JsonSerializable
 
     /**
      * @param EltsAccessToken[] $eltsAccessTokens
+     *
      * @return $this
      */
     public function setEltsAccessTokens(array $eltsAccessTokens): self
     {
         $this->eltsAccessTokens = $eltsAccessTokens;
+
         return $this;
     }
 
     public function addEltsAccessToken(EltsAccessToken $eltsAccessToken): self
     {
         $this->eltsAccessTokens[] = $eltsAccessToken;
+
         return $this;
     }
 
@@ -669,17 +712,20 @@ class User implements JsonSerializable
 
     /**
      * @param EltsGitPublicKey[] $eltsGitPublicKeys
+     *
      * @return $this
      */
     public function setEltsGitPublicKeys(array $eltsGitPublicKeys): self
     {
         $this->eltsGitPublicKeys = $eltsGitPublicKeys;
+
         return $this;
     }
 
     public function addEltsGitPublicKey(EltsGitPublicKey $eltsGitPublicKey): self
     {
         $this->eltsGitPublicKeys[] = $eltsGitPublicKey;
+
         return $this;
     }
 }

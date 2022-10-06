@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -14,41 +16,23 @@ use T3G\DatahubApiLibrary\BitMask\AddressType;
 class Address implements JsonSerializable
 {
     use ChecksumTrait;
-
     private string $uuid = '';
-
     private string $title = '';
-
     private ?string $companyName = null;
-
     private ?string $firstName = null;
-
     private ?string $lastName = null;
-
     private ?string $additionalAddressLine1 = null;
-
     private ?string $additionalAddressLine2 = null;
-
     private string $street = '';
-
     private string $city = '';
-
     private string $zip = '';
-
     private string $country = '';
-
     private string $countryLabel = '';
-
     private string $countryIso3 = '';
-
     private ?string $state = null;
-
     private ?string $stateLabel = null;
-
-    private int $type = 0X000;
-
+    private int $type = 0x000;
     private float $latitude = 0.0;
-
     private float $longitude = 0.0;
 
     public function jsonSerialize()
@@ -77,6 +61,7 @@ class Address implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -88,6 +73,7 @@ class Address implements JsonSerializable
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -99,6 +85,7 @@ class Address implements JsonSerializable
     public function setCompanyName(?string $companyName): self
     {
         $this->companyName = $companyName;
+
         return $this;
     }
 
@@ -110,6 +97,7 @@ class Address implements JsonSerializable
     public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -121,6 +109,7 @@ class Address implements JsonSerializable
     public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
@@ -132,6 +121,7 @@ class Address implements JsonSerializable
     public function setAdditionalAddressLine1(?string $additionalAddressLine1): self
     {
         $this->additionalAddressLine1 = $additionalAddressLine1;
+
         return $this;
     }
 
@@ -143,6 +133,7 @@ class Address implements JsonSerializable
     public function setAdditionalAddressLine2(?string $additionalAddressLine2): self
     {
         $this->additionalAddressLine2 = $additionalAddressLine2;
+
         return $this;
     }
 
@@ -154,6 +145,7 @@ class Address implements JsonSerializable
     public function setStreet(string $street): self
     {
         $this->street = $street;
+
         return $this;
     }
 
@@ -165,6 +157,7 @@ class Address implements JsonSerializable
     public function setCity(string $city): self
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -176,6 +169,7 @@ class Address implements JsonSerializable
     public function setZip(string $zip): self
     {
         $this->zip = $zip;
+
         return $this;
     }
 
@@ -187,6 +181,7 @@ class Address implements JsonSerializable
     public function setCountry(string $country): self
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -198,6 +193,7 @@ class Address implements JsonSerializable
     public function setCountryLabel(string $countryLabel): self
     {
         $this->countryLabel = $countryLabel;
+
         return $this;
     }
 
@@ -209,6 +205,7 @@ class Address implements JsonSerializable
     public function setCountryIso3(string $countryIso3): self
     {
         $this->countryIso3 = $countryIso3;
+
         return $this;
     }
 
@@ -220,6 +217,7 @@ class Address implements JsonSerializable
     public function setState(?string $state): self
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -231,6 +229,7 @@ class Address implements JsonSerializable
     public function setStateLabel(?string $stateLabel): self
     {
         $this->stateLabel = $stateLabel;
+
         return $this;
     }
 
@@ -242,6 +241,7 @@ class Address implements JsonSerializable
     public function setType(int $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -301,6 +301,7 @@ class Address implements JsonSerializable
     public function setLatitude(float $latitude): self
     {
         $this->latitude = $latitude;
+
         return $this;
     }
 
@@ -312,6 +313,7 @@ class Address implements JsonSerializable
     public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
+
         return $this;
     }
 

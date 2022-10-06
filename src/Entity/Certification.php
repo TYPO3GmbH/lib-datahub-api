@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -96,6 +98,7 @@ class Certification implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -107,6 +110,7 @@ class Certification implements JsonSerializable
     public function setType(string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -155,11 +159,13 @@ class Certification implements JsonSerializable
 
     /**
      * @param array<string, mixed> $user
+     *
      * @return $this
      */
     public function setUser(array $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -184,6 +190,7 @@ class Certification implements JsonSerializable
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -195,6 +202,7 @@ class Certification implements JsonSerializable
     public function setExamLocation(string $examLocation): self
     {
         $this->examLocation = $examLocation;
+
         return $this;
     }
 
@@ -206,6 +214,7 @@ class Certification implements JsonSerializable
     public function setExamDate(?DateTimeInterface $examDate): self
     {
         $this->examDate = $examDate;
+
         return $this;
     }
 
@@ -241,6 +250,7 @@ class Certification implements JsonSerializable
     public function setProctoringLink(?string $proctoringLink): self
     {
         $this->proctoringLink = $proctoringLink;
+
         return $this;
     }
 
@@ -261,6 +271,7 @@ class Certification implements JsonSerializable
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -272,6 +283,7 @@ class Certification implements JsonSerializable
     public function setExamUrl(?string $examUrl): self
     {
         $this->examUrl = $examUrl;
+
         return $this;
     }
 
@@ -283,6 +295,7 @@ class Certification implements JsonSerializable
     public function setExamAccessCode(?string $examAccessCode): self
     {
         $this->examAccessCode = $examAccessCode;
+
         return $this;
     }
 
@@ -294,6 +307,7 @@ class Certification implements JsonSerializable
     public function setExamProctoringInstructions(?string $examProctoringInstructions): self
     {
         $this->examProctoringInstructions = $examProctoringInstructions;
+
         return $this;
     }
 
@@ -305,6 +319,7 @@ class Certification implements JsonSerializable
     public function setExamStartDate(?DateTimeInterface $examStartDate): self
     {
         $this->examStartDate = $examStartDate;
+
         return $this;
     }
 
@@ -316,6 +331,7 @@ class Certification implements JsonSerializable
     public function setExamEndDate(?DateTimeInterface $examEndDate): self
     {
         $this->examEndDate = $examEndDate;
+
         return $this;
     }
 
@@ -327,6 +343,7 @@ class Certification implements JsonSerializable
     public function setExamDuration(?int $examDuration): self
     {
         $this->examDuration = $examDuration;
+
         return $this;
     }
 
@@ -338,6 +355,7 @@ class Certification implements JsonSerializable
     public function setHistory(?string $history): self
     {
         $this->history = $history;
+
         return $this;
     }
 
@@ -349,6 +367,7 @@ class Certification implements JsonSerializable
     public function setExamTestResult(string $examTestResult): self
     {
         $this->examTestResult = $examTestResult;
+
         return $this;
     }
 
@@ -360,6 +379,7 @@ class Certification implements JsonSerializable
     public function setProctoringStatus(?string $proctoringStatus): self
     {
         $this->proctoringStatus = $proctoringStatus;
+
         return $this;
     }
 
@@ -371,6 +391,7 @@ class Certification implements JsonSerializable
     public function setCertificatePrintDate(?DateTimeInterface $certificatePrintDate): self
     {
         $this->certificatePrintDate = $certificatePrintDate;
+
         return $this;
     }
 
@@ -382,6 +403,7 @@ class Certification implements JsonSerializable
     public function setIncidents(?int $incidents): self
     {
         $this->incidents = $incidents;
+
         return $this;
     }
 
@@ -393,10 +415,11 @@ class Certification implements JsonSerializable
     public function setProctoringApproval(string $proctoringApproval): self
     {
         $this->proctoringApproval = $proctoringApproval;
+
         return $this;
     }
 
-    private function formatDateIfGiven(?\DateTimeInterface $dateTime): ?string
+    private function formatDateIfGiven(?DateTimeInterface $dateTime): ?string
     {
         if (!$dateTime instanceof \DateTimeInterface) {
             return null;
@@ -413,6 +436,7 @@ class Certification implements JsonSerializable
     public function setHubspotDealId(?string $hubspotDealId): self
     {
         $this->hubspotDealId = $hubspotDealId;
+
         return $this;
     }
 
@@ -424,6 +448,7 @@ class Certification implements JsonSerializable
     public function setValidUntil(?DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
+
         return $this;
     }
 
@@ -437,11 +462,13 @@ class Certification implements JsonSerializable
 
     /**
      * @param array<string, string|null> $postFormattedAddress
+     *
      * @return $this
      */
     public function setPostFormattedAddress(array $postFormattedAddress): self
     {
         $this->postFormattedAddress = $postFormattedAddress;
+
         return $this;
     }
 
@@ -453,6 +480,7 @@ class Certification implements JsonSerializable
     public function setAppendToHistory(?string $appendToHistory): self
     {
         $this->appendToHistory = $appendToHistory;
+
         return $this;
     }
 
@@ -464,6 +492,7 @@ class Certification implements JsonSerializable
     public function setUserExamUuid(?string $userExamUuid): self
     {
         $this->userExamUuid = $userExamUuid;
+
         return $this;
     }
 

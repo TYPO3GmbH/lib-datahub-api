@@ -16,6 +16,7 @@ class CertificationSearchDemand implements \JsonSerializable
     private string $sortField = 'examDate';
     private ?string $filter = null;
     private string $term = '';
+
     /** @var array<int, string> */
     private array $status = [];
     private ?int $limit = null;

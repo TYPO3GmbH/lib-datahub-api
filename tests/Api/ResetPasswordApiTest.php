@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,7 +18,7 @@ class ResetPasswordApiTest extends AbstractApiTest
     public function testResetPassword(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new PasswordResetApi($this->getClient($handler));
         try {
@@ -25,6 +27,6 @@ class ResetPasswordApiTest extends AbstractApiTest
         } catch (\Exception $e) {
             $anExceptionWasThrown = true;
         }
-        $this->assertFalse($anExceptionWasThrown);
+        self::assertFalse($anExceptionWasThrown);
     }
 }

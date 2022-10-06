@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -42,6 +44,7 @@ class TechnicalContact implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -53,6 +56,7 @@ class TechnicalContact implements JsonSerializable
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -64,6 +68,7 @@ class TechnicalContact implements JsonSerializable
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
@@ -75,6 +80,7 @@ class TechnicalContact implements JsonSerializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -86,6 +92,7 @@ class TechnicalContact implements JsonSerializable
     public function setUser(?string $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -97,6 +104,7 @@ class TechnicalContact implements JsonSerializable
     public function setAccepted(bool $accepted): self
     {
         $this->accepted = $accepted;
+
         return $this;
     }
 
@@ -108,6 +116,7 @@ class TechnicalContact implements JsonSerializable
     public function setInherited(bool $inherited): self
     {
         $this->inherited = $inherited;
+
         return $this;
     }
 
@@ -119,6 +128,7 @@ class TechnicalContact implements JsonSerializable
     public function setEltsPlan(?EltsPlan $eltsPlan): self
     {
         $this->eltsPlan = $eltsPlan;
+
         return $this;
     }
 
@@ -130,6 +140,7 @@ class TechnicalContact implements JsonSerializable
     public function setEltsInstance(?EltsInstance $eltsInstance): self
     {
         $this->eltsInstance = $eltsInstance;
+
         return $this;
     }
 }

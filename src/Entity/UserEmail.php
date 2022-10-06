@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -31,6 +33,7 @@ class UserEmail implements JsonSerializable
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -42,6 +45,7 @@ class UserEmail implements JsonSerializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 }

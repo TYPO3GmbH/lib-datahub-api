@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -12,11 +14,15 @@ use T3G\DatahubApiLibrary\Dto\AbstractDto;
 
 abstract class AbstractAssembler
 {
-    protected string $dtoClassName = '';
+    /**
+     * @var class-string<AbstractDto>
+     */
+    protected string $dtoClassName;
     protected AbstractDto $dto;
 
     /**
      * @param array<string, mixed> $data
+     *
      * @return AbstractAssembler
      */
     public function create(array $data): self
@@ -50,10 +56,6 @@ abstract class AbstractAssembler
 
     protected function createNewStub(): AbstractDto
     {
-        if ('' === $this->dtoClassName) {
-            throw new \InvalidArgumentException(sprintf('%s does not define a DTO class in $dtoClassName', static::class));
-        }
-
         $this->dto = new $this->dtoClassName();
 
         return $this->dto;

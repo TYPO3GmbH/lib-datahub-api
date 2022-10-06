@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -17,13 +19,13 @@ class ApprovedDodcumentApiTest extends AbstractApiTest
     public function testApproveDocument(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetApprovedDocumentResponse.php'
+            require __DIR__ . '/../Fixtures/GetApprovedDocumentResponse.php',
         ]);
         $response = (new ApprovedDocumentApi($this->getClient($handler)))
             ->approveDocument('oelie-boelie', $this->getTestApprovedDocument());
-        $this->assertEquals('foo', $response->getDocumentIdentifier());
-        $this->assertEquals('1.2.3', $response->getDocumentVersion());
-        $this->assertEquals('2020-02-26T00:00:00+00:00', $response->getApproveDate()->format(\DateTimeInterface::ATOM));
+        self::assertEquals('foo', $response->getDocumentIdentifier());
+        self::assertEquals('1.2.3', $response->getDocumentVersion());
+        self::assertEquals('2020-02-26T00:00:00+00:00', $response->getApproveDate()->format(\DateTimeInterface::ATOM));
     }
 
     private function getTestApprovedDocument(): ApprovedDocument

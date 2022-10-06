@@ -25,7 +25,6 @@ final class SubscriptionType extends AbstractEnum
         self::MEMBERSHIP => MembershipType::class,
         self::PSL => PSLType::class,
     ];
-
     protected static array $optionNames = [
         self::MEMBERSHIP => 'Membership',
         self::PSL => 'Professional Service Listing',
@@ -33,8 +32,9 @@ final class SubscriptionType extends AbstractEnum
 
     /**
      * @param string $type
-     * @param bool $withDescription
-     * @return null|array<int|string, string>
+     * @param bool   $withDescription
+     *
+     * @return array<int|string, string>|null
      */
     public static function getAllowedSubTypes(string $type, bool $withDescription = false): ?array
     {
@@ -42,6 +42,7 @@ final class SubscriptionType extends AbstractEnum
         if (null !== $subTypeEnumClass && is_a($subTypeEnumClass, AbstractEnum::class, true)) {
             return $subTypeEnumClass::getAvailableOptions($withDescription);
         }
+
         return null;
     }
 }

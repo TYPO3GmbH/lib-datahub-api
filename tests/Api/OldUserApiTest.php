@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,24 +18,24 @@ class OldUserApiTest extends AbstractApiTest
     public function testSearch(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PostSearchOldUsersResponse.php'
+            require __DIR__ . '/../Fixtures/PostSearchOldUsersResponse.php',
         ]);
         $api = new OldUserApi($this->getClient($handler));
         $response = $api->search('neo');
-        $this->assertIsArray($response);
-        $this->assertCount(3, $response);
+        self::assertIsArray($response);
+        self::assertCount(3, $response);
         $entity = array_pop($response);
-        $this->assertArrayHasKey('username', $entity);
-        $this->assertArrayHasKey('email', $entity);
-        $this->assertArrayHasKey('deleteDate', $entity);
-        $this->assertArrayHasKey('otrsIssue', $entity);
-        $this->assertArrayHasKey('comment', $entity);
+        self::assertArrayHasKey('username', $entity);
+        self::assertArrayHasKey('email', $entity);
+        self::assertArrayHasKey('deleteDate', $entity);
+        self::assertArrayHasKey('otrsIssue', $entity);
+        self::assertArrayHasKey('comment', $entity);
     }
 
     public function testGetReservedUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetReservedUserResponse.php'
+            require __DIR__ . '/../Fixtures/GetReservedUserResponse.php',
         ]);
         $response = (new OldUserApi($this->getClient($handler)))->getReservedUser('11111111-1111-1111-1111-111111111111');
         self::assertEquals('11111111-1111-1111-1111-111111111111', $response->getUuid());
@@ -48,30 +50,30 @@ class OldUserApiTest extends AbstractApiTest
     public function testReEnable(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserResponse.php',
         ]);
         $api = new OldUserApi($this->getClient($handler));
         $response = $api->reEnable('oelie-boelie');
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertSame('oelie.boelie@typo3.org', $response->getPrimaryEmail());
-        $this->assertCount(2, $response->getAddresses());
-        $this->assertCount(2, $response->getLinks());
-        $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertSame('oelie.boelie@typo3.org', $response->getPrimaryEmail());
+        self::assertCount(2, $response->getAddresses());
+        self::assertCount(2, $response->getLinks());
+        self::assertCount(1, $response->getCertifications());
+        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testReEnableWithEmail(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponseWithUpdatedEmail.php'
+            require __DIR__ . '/../Fixtures/GetUserResponseWithUpdatedEmail.php',
         ]);
         $api = new OldUserApi($this->getClient($handler));
         $response = $api->reEnable('oelie-boelie', 'foo@bar.baz');
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertSame('foo@bar.baz', $response->getPrimaryEmail());
-        $this->assertCount(2, $response->getAddresses());
-        $this->assertCount(2, $response->getLinks());
-        $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertSame('foo@bar.baz', $response->getPrimaryEmail());
+        self::assertCount(2, $response->getAddresses());
+        self::assertCount(2, $response->getLinks());
+        self::assertCount(1, $response->getCertifications());
+        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -14,6 +15,7 @@ class Offer
     private string $uuid;
     private \DateTimeInterface $createdAt;
     private \DateTimeInterface $validUntil;
+
     /**
      * @var array<string, mixed>
      */
@@ -30,6 +32,7 @@ class Offer
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -41,6 +44,7 @@ class Offer
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -52,6 +56,7 @@ class Offer
     public function setValidUntil(\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
+
         return $this;
     }
 
@@ -65,11 +70,13 @@ class Offer
 
     /**
      * @param array<string, mixed> $payload
+     *
      * @return Offer
      */
     public function setPayload(array $payload): self
     {
         $this->payload = $payload;
+
         return $this;
     }
 
@@ -81,6 +88,7 @@ class Offer
     public function setOfferNumber(string $offerNumber): self
     {
         $this->offerNumber = $offerNumber;
+
         return $this;
     }
 
@@ -92,6 +100,7 @@ class Offer
     public function setCartIdentifier(string $cartIdentifier): self
     {
         $this->cartIdentifier = $cartIdentifier;
+
         return $this;
     }
 
@@ -103,6 +112,7 @@ class Offer
     public function setTotal(float $total): self
     {
         $this->total = $total;
+
         return $this;
     }
 }

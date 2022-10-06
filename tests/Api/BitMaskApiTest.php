@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,15 +18,15 @@ class BitMaskApiTest extends AbstractApiTest
     public function testGetAddressTypes(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetAddressTypesBitMaskResponse.php'
+            require __DIR__ . '/../Fixtures/GetAddressTypesBitMaskResponse.php',
         ]);
         $response = (new BitMaskApi($this->getClient($handler)))->getAddressTypes();
-        $this->assertIsArray($response);
-        $this->assertContains('Invoice', $response);
-        $this->assertArrayHasKey(1, $response);
-        $this->assertContains('Delivery', $response);
-        $this->assertArrayHasKey(256, $response);
-        $this->assertContains('Postal', $response);
-        $this->assertArrayHasKey(16, $response);
+        self::assertIsArray($response);
+        self::assertContains('Invoice', $response);
+        self::assertArrayHasKey(1, $response);
+        self::assertContains('Delivery', $response);
+        self::assertArrayHasKey(256, $response);
+        self::assertContains('Postal', $response);
+        self::assertArrayHasKey(16, $response);
     }
 }

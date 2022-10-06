@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -11,11 +13,8 @@ namespace T3G\DatahubApiLibrary\Entity;
 class Content
 {
     private string $identifier;
-
     private string $format;
-
     private string $content;
-
     private string $version;
 
     public function getIdentifier(): string
@@ -26,6 +25,7 @@ class Content
     public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
+
         return $this;
     }
 
@@ -37,6 +37,7 @@ class Content
     public function setFormat(string $format): self
     {
         $this->format = $format;
+
         return $this;
     }
 
@@ -48,6 +49,7 @@ class Content
     public function setContent(string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -59,6 +61,7 @@ class Content
     public function setVersion(string $version): self
     {
         $this->version = $version;
+
         return $this;
     }
 }

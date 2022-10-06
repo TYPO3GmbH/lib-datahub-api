@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -23,112 +25,112 @@ class UserApiTest extends AbstractApiTest
     public function testGetUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $response = $api->getUser('oelie-boelie');
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertCount(2, $response->getAddresses());
-        $this->assertCount(2, $response->getPostalAddresses());
-        $this->assertCount(2, $response->getLinks());
-        $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertCount(2, $response->getAddresses());
+        self::assertCount(2, $response->getPostalAddresses());
+        self::assertCount(2, $response->getLinks());
+        self::assertCount(1, $response->getCertifications());
+        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetUserWithOrders(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponseWithOrders.php'
+            require __DIR__ . '/../Fixtures/GetUserResponseWithOrders.php',
         ]);
         $response = (new UserApi($this->getClient($handler)))
             ->getUser('oelie-boelie', true);
-        $this->assertEquals('oelie-boelie', $response->getUsername());
+        self::assertEquals('oelie-boelie', $response->getUsername());
         $orders = $response->getOrders();
-        $this->assertCount(1, $orders);
-        $this->assertSame('A12345', $orders[0]->getOrderNumber());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $orders[0]->getPayload());
-        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertCount(1, $orders);
+        self::assertSame('A12345', $orders[0]->getOrderNumber());
+        self::assertSame(['items' => [['foo' => 'bar']]], $orders[0]->getPayload());
+        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetUserWithSubscriptions(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponseWithSubscriptions.php'
+            require __DIR__ . '/../Fixtures/GetUserResponseWithSubscriptions.php',
         ]);
         $response = (new UserApi($this->getClient($handler)))
             ->getUser('oelie-boelie', false, true);
-        $this->assertEquals('oelie-boelie', $response->getUsername());
+        self::assertEquals('oelie-boelie', $response->getUsername());
 
         $subscriptions = $response->getSubscriptions();
-        $this->assertCount(1, $subscriptions);
-        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
-        $this->assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
-        $this->assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
-        $this->assertSame(SubscriptionType::MEMBERSHIP, $subscriptions[0]->getSubscriptionType());
-        $this->assertSame(MembershipType::ACADEMIC_BRONZE, $subscriptions[0]->getSubscriptionSubType());
-        $this->assertSame(SubscriptionStatus::ACTIVE, $subscriptions[0]->getSubscriptionStatus());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $subscriptions[0]->getPayload());
+        self::assertCount(1, $subscriptions);
+        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
+        self::assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
+        self::assertSame(SubscriptionType::MEMBERSHIP, $subscriptions[0]->getSubscriptionType());
+        self::assertSame(MembershipType::ACADEMIC_BRONZE, $subscriptions[0]->getSubscriptionSubType());
+        self::assertSame(SubscriptionStatus::ACTIVE, $subscriptions[0]->getSubscriptionStatus());
+        self::assertSame(['items' => [['foo' => 'bar']]], $subscriptions[0]->getPayload());
     }
 
     public function testGetSearchUsers(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetSearchUserResponse.php'
+            require __DIR__ . '/../Fixtures/GetSearchUserResponse.php',
         ]);
         $response = (new UserApi($this->getClient($handler)))
             ->search('oelie-boelie');
-        $this->assertEquals(2, count($response));
+        self::assertEquals(2, count($response));
     }
 
     public function testGetProfile(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetProfileResponse.php'
+            require __DIR__ . '/../Fixtures/GetProfileResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $response = $api->getProfile('oelie-boelie');
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertEquals('Oelie', $response->getFirstName());
-        $this->assertEquals('Boelie', $response->getLastName());
-        $this->assertEquals('oelie@boelie.nl', $response->getPrimaryEmail());
-        $this->assertEquals(null, $response->getPhone());
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertEquals('Oelie', $response->getFirstName());
+        self::assertEquals('Boelie', $response->getLastName());
+        self::assertEquals('oelie@boelie.nl', $response->getPrimaryEmail());
+        self::assertNull($response->getPhone());
     }
 
     public function testUpdateUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $response = $api->updateUser('oelie-boelie', $this->getTestUser());
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertCount(2, $response->getAddresses());
-        $this->assertCount(2, $response->getLinks());
-        $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertCount(2, $response->getAddresses());
+        self::assertCount(2, $response->getLinks());
+        self::assertCount(1, $response->getCertifications());
+        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetCompanyHistory(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserCompaniesResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserCompaniesResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $response = $api->getCompanyHistory('oelie-boelie');
-        $this->assertCount(1, $response);
-        $this->assertEquals(CompanyType::UNIVERSITY, $response[0]->getCompany()->getCompanyType());
-        $this->assertEquals('Dien Mam International', $response[0]->getCompany()->getTitle());
+        self::assertCount(1, $response);
+        self::assertEquals(CompanyType::UNIVERSITY, $response[0]->getCompany()->getCompanyType());
+        self::assertEquals('Dien Mam International', $response[0]->getCompany()->getTitle());
     }
 
     public function testGetCompanies(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserCompaniesResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserCompaniesResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $response = $api->getCompanies('oelie-boelie');
-        $this->assertCount(1, $response);
-        $this->assertEquals('Dien Mam International', $response[0]->getCompany()->getTitle());
+        self::assertCount(1, $response);
+        self::assertEquals('Dien Mam International', $response[0]->getCompany()->getTitle());
     }
 
     public function getTestUser(): User
@@ -143,7 +145,7 @@ class UserApiTest extends AbstractApiTest
     public function testCreateCertification(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PostCertificationResponse.php'
+            require __DIR__ . '/../Fixtures/PostCertificationResponse.php',
         ]);
 
         $certification = (new Certification())
@@ -160,16 +162,16 @@ class UserApiTest extends AbstractApiTest
 
         $api = new UserApi($this->getClient($handler));
         $response = $api->createCertification('oelie-boelie', $certification);
-        $this->assertEquals('TCCE', $response->getType());
-        $this->assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(\DateTimeInterface::ATOM));
-        $this->assertEquals('online', $response->getExamLocation());
-        $this->assertEquals('UNKNOWN', $response->getStatus());
+        self::assertEquals('TCCE', $response->getType());
+        self::assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(\DateTimeInterface::ATOM));
+        self::assertEquals('online', $response->getExamLocation());
+        self::assertEquals('UNKNOWN', $response->getStatus());
     }
 
     public function testUpdateCertification(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PostCertificationResponse.php'
+            require __DIR__ . '/../Fixtures/PostCertificationResponse.php',
         ]);
 
         $certification = (new Certification())
@@ -186,34 +188,34 @@ class UserApiTest extends AbstractApiTest
 
         $api = new UserApi($this->getClient($handler));
         $response = $api->updateCertification('oelie-boelie', '00000000-0000-0000-0000-000000000000', $certification);
-        $this->assertEquals('TCCE', $response->getType());
-        $this->assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(\DateTimeInterface::ATOM));
-        $this->assertEquals('online', $response->getExamLocation());
-        $this->assertEquals('UNKNOWN', $response->getStatus());
+        self::assertEquals('TCCE', $response->getType());
+        self::assertEquals('2020-06-02T00:00:00+00:00', $response->getExamDate()->format(\DateTimeInterface::ATOM));
+        self::assertEquals('online', $response->getExamLocation());
+        self::assertEquals('UNKNOWN', $response->getStatus());
     }
 
     public function testGetCertificationList(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCertificationsResponse.php'
+            require __DIR__ . '/../Fixtures/GetCertificationsResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $certifications = $api->getCertificationList('oelie-boelie');
-        $this->assertCount(2, $certifications);
+        self::assertCount(2, $certifications);
     }
 
     public function testCreateUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $response = $api->createUser($this->getTestUser());
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertCount(2, $response->getAddresses());
-        $this->assertCount(2, $response->getPostalAddresses());
-        $this->assertCount(2, $response->getLinks());
-        $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertCount(2, $response->getAddresses());
+        self::assertCount(2, $response->getPostalAddresses());
+        self::assertCount(2, $response->getLinks());
+        self::assertCount(1, $response->getCertifications());
+        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 }

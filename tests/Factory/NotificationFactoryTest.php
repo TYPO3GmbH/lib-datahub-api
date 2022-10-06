@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,6 +20,7 @@ class NotificationFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      * @param array $expectations
      */
@@ -43,7 +46,7 @@ class NotificationFactoryTest extends TestCase
                     'subscription' => 'stripe:foo:bar',
                     'stripeLink' => 'https://pay.stripe.com/foo',
                     'type' => IncompletePaymentNotification::class,
-                    'message' => 'Incomplete payment for company 00000000-0000-0000-0000-000000000000'
+                    'message' => 'Incomplete payment for company 00000000-0000-0000-0000-000000000000',
                 ],
                 'expectations' => [
                     '__class' => IncompletePaymentNotification::class,
@@ -51,14 +54,14 @@ class NotificationFactoryTest extends TestCase
                     'getCompanyTitle' => 'Foo Company',
                     'getSubscription' => 'stripe:foo:bar',
                     'getStripeLink' => 'https://pay.stripe.com/foo',
-                    'getMessage' => 'Incomplete payment for company 00000000-0000-0000-0000-000000000000'
-                ]
+                    'getMessage' => 'Incomplete payment for company 00000000-0000-0000-0000-000000000000',
+                ],
             ],
             'unknown type' => [
                 'data' => [
                     'type' => 'AnyInvalidNotificationType',
                 ],
-                'expectations' => ['__class' => UnknownNotification::class]
+                'expectations' => ['__class' => UnknownNotification::class],
             ],
         ];
     }

@@ -22,7 +22,6 @@ final class PaymentStatus extends AbstractEnum
     public const OPEN = 'open';
     public const UNCOLLECTIBLE = 'uncollectible';
     public const VOID = 'void';
-
     protected static array $optionNames = [
         self::FAILED => 'failed',
         self::PAID => 'paid',
@@ -30,6 +29,6 @@ final class PaymentStatus extends AbstractEnum
         self::DRAFT => 'draft',
         self::OPEN => 'open',
         self::UNCOLLECTIBLE => 'uncollectible',
-        self::VOID => 'void'
+        self::VOID => 'void',
     ];
 }

@@ -16,7 +16,6 @@ class EmailType extends AbstractBitMask
     public const PRIMARY = 0x0001; // 1
     public const BILLING = 0x0010; // 16
     public const VOTING = 0x0100;  // 256
-
     protected static array $bits = [
         self::NONE => 'None',
         self::PRIMARY => 'Primary',

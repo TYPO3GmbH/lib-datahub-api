@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -23,170 +25,170 @@ class CompanyApiTest extends AbstractApiTest
     public function testGetCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyResponse.php'
+            require __DIR__ . '/../Fixtures/GetCompanyResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000');
-        $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
-        $this->assertEquals('Test Company', $response->getTitle());
-        $this->assertEquals('test-company', $response->getSlug());
-        $this->assertEquals('typo3.com', $response->getDomain());
-        $this->assertCount(4, $response->getEmployees());
-        $this->assertCount(2, $response->getAddresses());
-        $this->assertCount(2, $response->getPostalAddresses());
-        $this->assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
-        $this->assertEquals(true, $response->isFoundingPartner());
-        $this->assertEquals(true, $response->isPsl());
+        self::assertEquals(CompanyType::AGENCY, $response->getCompanyType());
+        self::assertEquals('Test Company', $response->getTitle());
+        self::assertEquals('test-company', $response->getSlug());
+        self::assertEquals('typo3.com', $response->getDomain());
+        self::assertCount(4, $response->getEmployees());
+        self::assertCount(2, $response->getAddresses());
+        self::assertCount(2, $response->getPostalAddresses());
+        self::assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
+        self::assertTrue($response->isFoundingPartner());
+        self::assertTrue($response->isPsl());
     }
 
     public function testDeletionPreCheck(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetDeletionPreCheckResponse.php'
+            require __DIR__ . '/../Fixtures/GetDeletionPreCheckResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->deletionPreCheck('00000000-0000-0000-0000-000000000000');
-        $this->assertCount(2, $response);
-        $this->assertEquals('App\\Service\\CompanyPreDeletionCheck\\AddressesPreCheck', $response[0]->getSource());
-        $this->assertEquals('info', $response[0]->getType());
-        $this->assertEquals(true, $response[0]->getResult());
-        $this->assertEquals(['amountOfAddresses' => 0], $response[0]->getAdditionalData());
-        $this->assertEquals('App\\Service\\CompanyPreDeletionCheck\\MembersPreCheck', $response[1]->getSource());
-        $this->assertEquals('blocking', $response[1]->getType());
-        $this->assertEquals(false, $response[1]->getResult());
-        $this->assertEquals(['amountOfEmployees' => 1, 'amountOfInvitations' => 0], $response[1]->getAdditionalData());
+        self::assertCount(2, $response);
+        self::assertEquals('App\\Service\\CompanyPreDeletionCheck\\AddressesPreCheck', $response[0]->getSource());
+        self::assertEquals('info', $response[0]->getType());
+        self::assertTrue($response[0]->getResult());
+        self::assertEquals(['amountOfAddresses' => 0], $response[0]->getAdditionalData());
+        self::assertEquals('App\\Service\\CompanyPreDeletionCheck\\MembersPreCheck', $response[1]->getSource());
+        self::assertEquals('blocking', $response[1]->getType());
+        self::assertFalse($response[1]->getResult());
+        self::assertEquals(['amountOfEmployees' => 1, 'amountOfInvitations' => 0], $response[1]->getAdditionalData());
     }
 
     public function testGetCompanyWithOrders(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyResponseWithOrders.php'
+            require __DIR__ . '/../Fixtures/GetCompanyResponseWithOrders.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000', true);
-        $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
-        $this->assertEquals('Test Company', $response->getTitle());
-        $this->assertEquals('test-company', $response->getSlug());
+        self::assertEquals(CompanyType::AGENCY, $response->getCompanyType());
+        self::assertEquals('Test Company', $response->getTitle());
+        self::assertEquals('test-company', $response->getSlug());
         $orders = $response->getOrders();
-        $this->assertCount(1, $orders);
-        $this->assertSame('A12345', $orders[0]->getOrderNumber());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $orders[0]->getPayload());
+        self::assertCount(1, $orders);
+        self::assertSame('A12345', $orders[0]->getOrderNumber());
+        self::assertSame(['items' => [['foo' => 'bar']]], $orders[0]->getPayload());
     }
 
     public function testGetCompanyWithSubscriptions(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyResponseWithSubscriptions.php'
+            require __DIR__ . '/../Fixtures/GetCompanyResponseWithSubscriptions.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->getCompany('00000000-0000-0000-0000-000000000000', false, true);
-        $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
-        $this->assertEquals('Test Company', $response->getTitle());
-        $this->assertEquals('test-company', $response->getSlug());
+        self::assertEquals(CompanyType::AGENCY, $response->getCompanyType());
+        self::assertEquals('Test Company', $response->getTitle());
+        self::assertEquals('test-company', $response->getSlug());
         $subscriptions = $response->getSubscriptions();
-        $this->assertCount(3, $subscriptions);
-        $this->assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
+        self::assertCount(3, $subscriptions);
+        self::assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
 
-        $this->assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
-        $this->assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
-        $this->assertSame(SubscriptionType::PSL, $subscriptions[0]->getSubscriptionType());
-        $this->assertSame(PSLType::MAP_VIEW, $subscriptions[0]->getSubscriptionSubType());
-        $this->assertSame(SubscriptionStatus::ACTIVE, $subscriptions[0]->getSubscriptionStatus());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $subscriptions[0]->getPayload());
+        self::assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
+        self::assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
+        self::assertSame(SubscriptionType::PSL, $subscriptions[0]->getSubscriptionType());
+        self::assertSame(PSLType::MAP_VIEW, $subscriptions[0]->getSubscriptionSubType());
+        self::assertSame(SubscriptionStatus::ACTIVE, $subscriptions[0]->getSubscriptionStatus());
+        self::assertSame(['items' => [['foo' => 'bar']]], $subscriptions[0]->getPayload());
 
-        $this->assertSame('11111111-1111-1111-1111-111111111111', $subscriptions[1]->getUuid());
-        $this->assertSame('sub_BBBBBBBBB', $subscriptions[1]->getSubscriptionIdentifier());
-        $this->assertSame(SubscriptionType::PSL, $subscriptions[1]->getSubscriptionType());
-        $this->assertSame(PSLType::PROFILE_BUNDLE, $subscriptions[1]->getSubscriptionSubType());
-        $this->assertSame(SubscriptionStatus::INCOMPLETE_EXPIRED, $subscriptions[1]->getSubscriptionStatus());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $subscriptions[1]->getPayload());
+        self::assertSame('11111111-1111-1111-1111-111111111111', $subscriptions[1]->getUuid());
+        self::assertSame('sub_BBBBBBBBB', $subscriptions[1]->getSubscriptionIdentifier());
+        self::assertSame(SubscriptionType::PSL, $subscriptions[1]->getSubscriptionType());
+        self::assertSame(PSLType::PROFILE_BUNDLE, $subscriptions[1]->getSubscriptionSubType());
+        self::assertSame(SubscriptionStatus::INCOMPLETE_EXPIRED, $subscriptions[1]->getSubscriptionStatus());
+        self::assertSame(['items' => [['foo' => 'bar']]], $subscriptions[1]->getPayload());
     }
 
     public function testGetSearchCompanies(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetSearchCompanyResponse.php'
+            require __DIR__ . '/../Fixtures/GetSearchCompanyResponse.php',
         ]);
         $response = (new CompanyApi($this->getClient($handler)))
             ->search(new OrganizationSearchDemand('Test Company'));
-        $this->assertCount(2, $response);
+        self::assertCount(2, $response);
     }
 
     public function testCreateCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyResponse.php'
+            require __DIR__ . '/../Fixtures/GetCompanyResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->createCompany($this->getTestCompany());
-        $this->assertEquals(CompanyType::AGENCY, $response->getCompanyType());
-        $this->assertEquals('Test Company', $response->getTitle());
-        $this->assertEquals('test-company', $response->getSlug());
+        self::assertEquals(CompanyType::AGENCY, $response->getCompanyType());
+        self::assertEquals('Test Company', $response->getTitle());
+        self::assertEquals('test-company', $response->getSlug());
     }
 
     public function testUpdateCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyResponse.php'
+            require __DIR__ . '/../Fixtures/GetCompanyResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->updateCompany('00000000-0000-0000-0000-000000000000', $this->getTestCompany());
-        $this->assertEquals('Test Company', $response->getTitle());
-        $this->assertEquals('test-company', $response->getSlug());
-        $this->assertCount(4, $response->getEmployees());
-        $this->assertCount(2, $response->getAddresses());
+        self::assertEquals('Test Company', $response->getTitle());
+        self::assertEquals('test-company', $response->getSlug());
+        self::assertCount(4, $response->getEmployees());
+        self::assertCount(2, $response->getAddresses());
     }
 
     public function testInviteEmployee(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyInviteResponse.php'
+            require __DIR__ . '/../Fixtures/GetCompanyInviteResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->inviteEmployee('00000000-0000-0000-0000-000000000000', 'oelie-boelie', 'EMPLOYEE');
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertEquals('oelie@boelie.nl', $response->getEmail());
-        $this->assertEquals('abcd', $response->getInviteCode());
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertEquals('oelie@boelie.nl', $response->getEmail());
+        self::assertEquals('abcd', $response->getInviteCode());
     }
 
     public function testConfirmEmployee(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetConfirmCompanyInviteResponse.php'
+            require __DIR__ . '/../Fixtures/GetConfirmCompanyInviteResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->confirmEmployeeInvitation('00000000-0000-0000-0000-000000000000');
-        $this->assertEquals('oelie-boelie', $response->getUser()->getUsername());
-        $this->assertEquals('oelie@boelie.nl', $response->getUser()->getPrimaryEmail());
-        $this->assertEquals('EMPLOYEE', $response->getRole());
+        self::assertEquals('oelie-boelie', $response->getUser()->getUsername());
+        self::assertEquals('oelie@boelie.nl', $response->getUser()->getPrimaryEmail());
+        self::assertEquals('EMPLOYEE', $response->getRole());
     }
 
     public function testUpdateEmployee(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEmployeeResponse.php'
+            require __DIR__ . '/../Fixtures/GetEmployeeResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->updateEmployee('00000000-0000-0000-0000-000000000000', 'MANAGER');
-        $this->assertEquals('oelie-boelie', $response->getUser()->getUsername());
-        $this->assertEquals('oelie@boelie.nl', $response->getUser()->getPrimaryEmail());
-        $this->assertEquals('MANAGER', $response->getRole());
+        self::assertEquals('oelie-boelie', $response->getUser()->getUsername());
+        self::assertEquals('oelie@boelie.nl', $response->getUser()->getPrimaryEmail());
+        self::assertEquals('MANAGER', $response->getRole());
     }
 
     public function testGetInvitations(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyInvitationsReponse.php'
+            require __DIR__ . '/../Fixtures/GetCompanyInvitationsReponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->getOpenInvitations('00000000-0000-0000-0000-000000000000');
-        $this->assertCount(1, $response);
+        self::assertCount(1, $response);
     }
 
     public function testDeleteCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         try {
@@ -195,13 +197,13 @@ class CompanyApiTest extends AbstractApiTest
         } catch (\Exception $e) {
             $anExceptionWasThrown = true;
         }
-        $this->assertFalse($anExceptionWasThrown);
+        self::assertFalse($anExceptionWasThrown);
     }
 
     public function testRevokeEmployeeInvitation(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         try {
@@ -210,13 +212,13 @@ class CompanyApiTest extends AbstractApiTest
         } catch (\Exception $e) {
             $anExceptionWasThrown = true;
         }
-        $this->assertFalse($anExceptionWasThrown);
+        self::assertFalse($anExceptionWasThrown);
     }
 
     public function testDeleteEmployee(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         try {
@@ -225,13 +227,13 @@ class CompanyApiTest extends AbstractApiTest
         } catch (\Exception $e) {
             $anExceptionWasThrown = true;
         }
-        $this->assertFalse($anExceptionWasThrown);
+        self::assertFalse($anExceptionWasThrown);
     }
 
     public function testMergeCompanies(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/CompaniesMergeResponse.php'
+            require __DIR__ . '/../Fixtures/CompaniesMergeResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $mergeCompanyDto = (new MergeCompanyAssembler())
@@ -241,7 +243,7 @@ class CompanyApiTest extends AbstractApiTest
                 'companyType' => 'a0000000-0000-0000-0000-000000000000',
                 'vatId' => 'a0000000-0000-0000-0000-000000000000',
                 'hubspotId' => 'a0000000-0000-0000-0000-000000000000',
-                'domain' => 'a0000000-0000-0000-0000-000000000000'
+                'domain' => 'a0000000-0000-0000-0000-000000000000',
             ])->getDto();
         $response = $api->merge('a0000000-0000-0000-0000-000000000000', 'b0000000-0000-0000-0000-000000000001', $mergeCompanyDto);
         self::assertSame('a0000000-0000-0000-0000-000000000000', $response['source']);

@@ -18,7 +18,6 @@ final class ExamAccessStatus extends AbstractEnum
     public const READY = 'READY';
     public const EXPIRED = 'EXPIRED';
     public const USED = 'USED';
-
     protected static array $optionNames = [
         self::READY => 'Ready to use',
         self::EXPIRED => 'Expired',

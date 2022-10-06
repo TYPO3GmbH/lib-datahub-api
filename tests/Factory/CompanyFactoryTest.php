@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -20,61 +22,62 @@ class CompanyFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $entity = CompanyFactory::fromArray($data);
-        $this->assertEquals($data['uuid'], $entity->getUuid());
-        $this->assertEquals($data['companyType'] ?? CompanyType::AGENCY, $entity->getCompanyType());
-        $this->assertEquals($data['title'], $entity->getTitle());
-        $this->assertEquals($data['email'], $entity->getEmail());
-        $this->assertEquals($data['vatId'], $entity->getVatId());
-        $this->assertEquals($data['city'] ?? null, $entity->getCity());
-        $this->assertEquals($data['country']['iso'] ?? null, $entity->getCountry());
-        $this->assertCount(1, $entity->getEmailAddresses());
-        $this->assertEquals(
+        self::assertEquals($data['uuid'], $entity->getUuid());
+        self::assertEquals($data['companyType'] ?? CompanyType::AGENCY, $entity->getCompanyType());
+        self::assertEquals($data['title'], $entity->getTitle());
+        self::assertEquals($data['email'], $entity->getEmail());
+        self::assertEquals($data['vatId'], $entity->getVatId());
+        self::assertEquals($data['city'] ?? null, $entity->getCity());
+        self::assertEquals($data['country']['iso'] ?? null, $entity->getCountry());
+        self::assertCount(1, $entity->getEmailAddresses());
+        self::assertEquals(
             $data['emailAddresses'][0]['email'],
             $entity->getEmailAddresses()[0]->getEmail()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $data['emailAddresses'][0]['type'],
             $entity->getEmailAddresses()[0]->getType()
         );
-        $this->assertEquals(
+        self::assertEquals(
             $data['employees'][0]['role'],
             $entity->getEmployee($data['employees'][0]['user']['username'])
                 ->getRole()
         );
-        $this->assertCount(1, $entity->getEmployees());
-        $this->assertEquals(
+        self::assertCount(1, $entity->getEmployees());
+        self::assertEquals(
             $data['employees'][0]['joinedAt'],
             $entity->getEmployee($data['employees'][0]['user']['username'])
                 ->getJoinedAt()
                 ->format(\DateTimeInterface::ATOM)
         );
-        $this->assertEquals(
+        self::assertEquals(
             $data['employees'][0]['role'],
             $entity->getEmployee($data['employees'][0]['user']['username'])
                 ->getRole()
         );
-        $this->assertEquals($data['backlink'] ?? null, $entity->getBacklink());
-        $this->assertCount(count($data['mapLocations'] ?? []), $entity->getMapLocations());
-        $this->assertEquals($data['teaserText'] ?? null, $entity->getTeaserText());
-        $this->assertEquals($data['profilePageText'] ?? null, $entity->getProfilePageText());
-        $this->assertEquals($data['contactFormAddress'] ?? null, $entity->getContactFormAddress());
-        $this->assertEquals($data['photo'] ?? null, $entity->getPhoto());
-        $this->assertEquals($data['logo'] ?? null, $entity->getLogo());
+        self::assertEquals($data['backlink'] ?? null, $entity->getBacklink());
+        self::assertCount(count($data['mapLocations'] ?? []), $entity->getMapLocations());
+        self::assertEquals($data['teaserText'] ?? null, $entity->getTeaserText());
+        self::assertEquals($data['profilePageText'] ?? null, $entity->getProfilePageText());
+        self::assertEquals($data['contactFormAddress'] ?? null, $entity->getContactFormAddress());
+        self::assertEquals($data['photo'] ?? null, $entity->getPhoto());
+        self::assertEquals($data['logo'] ?? null, $entity->getLogo());
         if (isset($data['headquarter'])) {
-            $this->assertEquals($data['headquarter']['uuid'], $entity->getHeadquarter()->getUuid());
+            self::assertEquals($data['headquarter']['uuid'], $entity->getHeadquarter()->getUuid());
         }
         if (isset($data['examAccesses'])) {
             foreach ($data['examAccesses'] as $examKey => $examAccess) {
-                $this->assertEquals($examAccess['uuid'], $entity->getExamAccesses()[$examKey]->getUuid());
-                $this->assertEquals($examAccess['voucher'], $entity->getExamAccesses()[$examKey]->getVoucher());
-                $this->assertEquals($examAccess['certificationType'], $entity->getExamAccesses()[$examKey]->getCertificationType());
-                $this->assertEquals($examAccess['certificationVersion'], $entity->getExamAccesses()[$examKey]->getCertificationVersion());
-                $this->assertEquals($examAccess['status'], $entity->getExamAccesses()[$examKey]->getStatus());
+                self::assertEquals($examAccess['uuid'], $entity->getExamAccesses()[$examKey]->getUuid());
+                self::assertEquals($examAccess['voucher'], $entity->getExamAccesses()[$examKey]->getVoucher());
+                self::assertEquals($examAccess['certificationType'], $entity->getExamAccesses()[$examKey]->getCertificationType());
+                self::assertEquals($examAccess['certificationVersion'], $entity->getExamAccesses()[$examKey]->getCertificationVersion());
+                self::assertEquals($examAccess['status'], $entity->getExamAccesses()[$examKey]->getStatus());
             }
         }
     }
@@ -103,7 +106,7 @@ class CompanyFactoryTest extends TestCase
                             'username' => 'oelie-boelie',
                             'firstName' => 'Oelie',
                             'lastName' => 'Boelie',
-                        ]]
+                        ], ],
                     ],
                     'headquarter' => [
                         'uuid' => '00000000-0000-0000-0000-000000000000',
@@ -117,7 +120,7 @@ class CompanyFactoryTest extends TestCase
                         'country' => [
                             'iso' => 'RU',
                             'iso3' => 'RUS',
-                            'label' => 'Russia'
+                            'label' => 'Russia',
                         ],
                         'zip' => '1234 QZ',
                         'type' => 16,
@@ -142,7 +145,7 @@ class CompanyFactoryTest extends TestCase
                         'country' => [
                             'iso' => 'RU',
                             'iso3' => 'RUS',
-                            'label' => 'Russia'
+                            'label' => 'Russia',
                         ],
                         'zip' => '1234 QZ',
                         'type' => 16,
@@ -161,16 +164,16 @@ class CompanyFactoryTest extends TestCase
                             'voucher' => '22222222-2222-2222-2222-222222222222',
                             'certificationType' => CertificationType::TCCD,
                             'certificationVersion' => CertificationVersion::TEN,
-                            'status' => ExamAccessStatus::READY
+                            'status' => ExamAccessStatus::READY,
                         ],
                         [
                             'uuid' => '33333333-3333-3333-3333-333333333333',
                             'voucher' => '33333333-3333-3333-3333-333333333333',
                             'certificationType' => CertificationType::TCCC,
                             'certificationVersion' => CertificationVersion::NINE,
-                            'status' => ExamAccessStatus::READY
-                        ]
-                    ]
+                            'status' => ExamAccessStatus::READY,
+                        ],
+                    ],
                 ],
             ],
             'missing company type, expect AGENCY' => [
@@ -193,10 +196,10 @@ class CompanyFactoryTest extends TestCase
                             'username' => 'oelie-boelie',
                             'firstName' => 'Oelie',
                             'lastName' => 'Boelie',
-                        ]]
-                    ]
-                ]
-            ]
+                        ], ],
+                    ],
+                ],
+            ],
         ];
     }
 }

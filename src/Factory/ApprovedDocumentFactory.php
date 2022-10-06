@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -26,6 +28,7 @@ class ApprovedDocumentFactory extends AbstractFactory
             $approvedDocument
                 ->setUser(UserFactory::fromArray($data['user']));
         }
+
         return $approvedDocument;
     }
 }

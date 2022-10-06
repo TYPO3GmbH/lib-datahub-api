@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,6 +17,7 @@ class OfferFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
@@ -40,7 +43,7 @@ class OfferFactoryTest extends TestCase
                     'payload' => ['foo' => 'bar'],
                     'offerNumber' => 'TO-1234',
                     'cartIdentifier' => 'df5c125c-d643-4a7b-933b-0cbeb3403ee5',
-                    'total' => 4200.00
+                    'total' => 4200.00,
                 ],
             ],
         ];

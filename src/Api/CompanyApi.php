@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -28,6 +30,7 @@ use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\PreCheckResultListFactory;
 use T3G\DatahubApiLibrary\Factory\VoucherCodeFactory;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class CompanyApi extends AbstractApi
@@ -36,7 +39,9 @@ class CompanyApi extends AbstractApi
 
     /**
      * @param string|OrganizationSearchDemand $search
+     *
      * @return Company[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
@@ -65,10 +70,12 @@ class CompanyApi extends AbstractApi
     }
 
     /**
-     * @param string $sourceCompany
-     * @param string $targetCompany
+     * @param string          $sourceCompany
+     * @param string          $targetCompany
      * @param MergeCompanyDto $mergeCompanyDto
+     *
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
@@ -80,31 +87,34 @@ class CompanyApi extends AbstractApi
             self::uri(sprintf('/companies/merge/%s/%s', $sourceCompany, $targetCompany)),
             json_encode($mergeCompanyDto, JSON_THROW_ON_ERROR)
         );
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+
+        return JsonUtility::decode((string) $response->getBody());
     }
 
     /**
+     * @return Company[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @return Company[]
      */
     public function listCompanies(bool $withOrders = false, bool $withSubscriptions = false, bool $withVoucherCodes = false, bool $withEltsPlans = false): array
     {
-        $data = $this->client->request(
+        $response = $this->client->request(
             'GET',
             self::uri('/companies/list')->withQuery(http_build_query([
-                'withOrders' => (int)$withOrders,
-                'withSubscriptions' => (int)$withSubscriptions,
-                'withVoucherCodes' => (int)$withVoucherCodes,
-                'withEltsPlans' => (int)$withEltsPlans,
+                'withOrders' => (int) $withOrders,
+                'withSubscriptions' => (int) $withSubscriptions,
+                'withVoucherCodes' => (int) $withVoucherCodes,
+                'withEltsPlans' => (int) $withEltsPlans,
             ]))
         );
-        $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $data = JsonUtility::decode((string) $response->getBody());
 
         $companies = [];
         foreach ($data as $datum) {
             $companies[] = CompanyFactory::fromArray($datum);
         }
+
         return $companies;
     }
 
@@ -121,10 +131,10 @@ class CompanyApi extends AbstractApi
             $this->client->request(
                 'GET',
                 self::uri('/companies/' . $uuid)->withQuery(http_build_query([
-                    'withOrders' => (int)$withOrders,
-                    'withSubscriptions' => (int)$withSubscriptions,
-                    'withVoucherCodes' => (int)$withVoucherCodes,
-                    'withEltsPlans' => (int)$withEltsPlans,
+                    'withOrders' => (int) $withOrders,
+                    'withSubscriptions' => (int) $withSubscriptions,
+                    'withVoucherCodes' => (int) $withVoucherCodes,
+                    'withEltsPlans' => (int) $withEltsPlans,
                 ]))
             )
         );
@@ -273,7 +283,9 @@ class CompanyApi extends AbstractApi
 
     /**
      * @param string $companyUuid
+     *
      * @return PreCheckResult[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException
@@ -318,7 +330,9 @@ class CompanyApi extends AbstractApi
 
     /**
      * @param string $uuid
+     *
      * @return array<int, MembershipType::*>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
@@ -332,6 +346,6 @@ class CompanyApi extends AbstractApi
             self::uri('/companies/' . $uuid . '/allowed-memberships'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        return JsonUtility::decode((string) $response->getBody());
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,7 +20,7 @@ class ReleaseNotificationApiTest extends AbstractApiTest
     public function testCreateReleaseNotificationForInstance(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/CreateReleaseNotificationResponse.php'
+            require __DIR__ . '/../Fixtures/CreateReleaseNotificationResponse.php',
         ]);
 
         $releaseNotification = new CreateReleaseNotificationDto();
@@ -36,7 +38,7 @@ class ReleaseNotificationApiTest extends AbstractApiTest
     public function testGetReleaseNotification(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetReleaseNotificationResponse.php'
+            require __DIR__ . '/../Fixtures/GetReleaseNotificationResponse.php',
         ]);
 
         $releaseNotification = $this->getTestReleaseNotificationForGet();
@@ -52,7 +54,7 @@ class ReleaseNotificationApiTest extends AbstractApiTest
     public function testConfirmReleaseNotification(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/ConfirmReleaseNotificationResponse.php'
+            require __DIR__ . '/../Fixtures/ConfirmReleaseNotificationResponse.php',
         ]);
 
         $releaseNotification = $this->getTestReleaseNotificationForConfirm();
@@ -68,7 +70,7 @@ class ReleaseNotificationApiTest extends AbstractApiTest
     public function testDeleteReleaseNotification(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
 
         $api = new ReleaseNotificationApi($this->getClient($handler));

@@ -18,10 +18,9 @@ final class MailAddressFilterType extends AbstractEnum
     public const ALLOWED_TLD = 'ALLOWED_TLD';
     public const DENIED_DOMAIN = 'DENIED_DOMAIN';
     public const ALLOWED_DOMAIN = 'ALLOWED_DOMAIN';
-
     protected static array $optionNames = [
         self::ALLOWED_TLD => 'allowed TLD',
         self::DENIED_DOMAIN => 'denied domain',
-        self::ALLOWED_DOMAIN => 'allowed domain'
+        self::ALLOWED_DOMAIN => 'allowed domain',
     ];
 }

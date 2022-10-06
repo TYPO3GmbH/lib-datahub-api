@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -17,6 +19,7 @@ class EltsPlanFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
@@ -70,14 +73,14 @@ class EltsPlanFactoryTest extends TestCase
                             'uuid' => '00000000-0000-0000-0000-000000000000',
                             'runtime' => '1-3',
                             'orderNumber' => 'GELTS123',
-                            'paymentStatus' => PaymentStatus::PAID
-                        ]
+                            'paymentStatus' => PaymentStatus::PAID,
+                        ],
                     ],
                     'licenses' => null,
                     'owner' => 'user:max.muster',
                     'ownerData' => [
                         'title' => 'Max Muster',
-                        'email' => 'max@example.com'
+                        'email' => 'max@example.com',
                     ],
                     'instances' => [
                         [
@@ -94,8 +97,8 @@ class EltsPlanFactoryTest extends TestCase
                             'email' => 'from-plan1@typo3.com',
                             'inherited' => true,
                             'owner' => 'organization:00000000-0000-0000-0000-000000000000',
-                            'accepted' => false
-                        ]
+                            'accepted' => false,
+                        ],
                     ],
                     'technicalContacts' => [
                         [
@@ -105,9 +108,9 @@ class EltsPlanFactoryTest extends TestCase
                             'email' => 'from-plan-1@typo3.com',
                             'accepted' => false,
                             'inherited' => true,
-                            'username' => 'plan1_1'
-                        ]
-                    ]
+                            'username' => 'plan1_1',
+                        ],
+                    ],
                 ],
             ],
             'minimum' => [
@@ -120,13 +123,13 @@ class EltsPlanFactoryTest extends TestCase
                             'uuid' => '00000000-0000-0000-0000-000000000000',
                             'runtime' => '1-3',
                             'orderNumber' => 'GELTS123',
-                            'paymentStatus' => PaymentStatus::PAID
-                        ]
+                            'paymentStatus' => PaymentStatus::PAID,
+                        ],
                     ],
                     'owner' => 'user:max.muster',
                     'ownerData' => [
                         'title' => 'Max Muster',
-                        'email' => 'max@example.com'
+                        'email' => 'max@example.com',
                     ],
                 ],
             ],

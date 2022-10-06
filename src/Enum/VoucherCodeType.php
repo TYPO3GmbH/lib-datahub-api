@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -16,7 +17,6 @@ class VoucherCodeType extends AbstractEnum
 {
     public const EVENTS = 'EVENTS';
     public const CERTIFICATIONS = 'CERTIFICATIONS';
-
     protected static array $optionNames = [
         self::EVENTS => 'Events',
         self::CERTIFICATIONS => 'Certifications',

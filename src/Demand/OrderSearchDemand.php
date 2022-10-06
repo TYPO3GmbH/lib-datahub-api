@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -13,7 +15,6 @@ class OrderSearchDemand implements \JsonSerializable
     public const DATE_FIELD_CREATED_AT = 'createdAt';
     public const DATE_FIELD_LAST_INVOICE_DATE = 'lastInvoiceDate';
     public const DATE_FIELDS = [self::DATE_FIELD_CREATED_AT, self::DATE_FIELD_LAST_INVOICE_DATE];
-
     private ?string $companyUuid = null;
     private ?\DateTime $dateFrom = null;
     private ?\DateTime $dateUntil = null;
@@ -28,6 +29,7 @@ class OrderSearchDemand implements \JsonSerializable
     {
         $clone = clone $this;
         $clone->companyUuid = $companyUuid;
+
         return $clone;
     }
 
@@ -35,6 +37,7 @@ class OrderSearchDemand implements \JsonSerializable
     {
         $clone = clone $this;
         $clone->dateFrom = $dateFrom;
+
         return $clone;
     }
 
@@ -42,6 +45,7 @@ class OrderSearchDemand implements \JsonSerializable
     {
         $clone = clone $this;
         $clone->dateUntil = $dateUntil;
+
         return $clone;
     }
 
@@ -49,23 +53,18 @@ class OrderSearchDemand implements \JsonSerializable
     {
         $clone = clone $this;
         $clone->searchTerm = $searchTerm;
+
         return $clone;
     }
 
     public function withDateField(string $dateField): self
     {
         if (!in_array($dateField, self::DATE_FIELDS, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'Date field must be one of %s. Was %s.',
-                    implode(', ', self::DATE_FIELDS),
-                    $dateField
-                ),
-                1612176566
-            );
+            throw new \InvalidArgumentException(sprintf('Date field must be one of %s. Was %s.', implode(', ', self::DATE_FIELDS), $dateField), 1612176566);
         }
         $clone = clone $this;
         $clone->dateField = $dateField;
+
         return $clone;
     }
 

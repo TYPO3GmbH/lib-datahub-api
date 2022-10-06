@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -23,7 +25,7 @@ class ValidateEltsCredentialsAssemblerTest extends TestCase
         $assembler = new ValidateEltsCredentialsAssembler();
         $dto = $assembler->create($data)->getDto();
 
-        static::assertSame($data['username'], $dto->username);
-        static::assertSame($data['token'], $dto->token);
+        self::assertSame($data['username'], $dto->username);
+        self::assertSame($data['token'], $dto->token);
     }
 }

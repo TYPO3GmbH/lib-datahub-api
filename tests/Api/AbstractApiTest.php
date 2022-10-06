@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -21,7 +23,9 @@ abstract class AbstractApiTest extends TestCase
 {
     /**
      * @param MockHandler|HandlerStack $handler
+     *
      * @return DataHubClient
+     *
      * @throws \Exception
      */
     protected function getClient($handler): DataHubClient

@@ -23,7 +23,6 @@ final class MembershipType extends AbstractEnum
     public const GOLD = 'GOLD';
     public const PLATINUM = 'PLATINUM';
     public const SILVER = 'SILVER';
-
     protected static array $optionNames = [
         self::ACADEMIC_BRONZE => 'Academic Bronze',
         self::ACADEMIC_GOLD => 'Academic Gold',

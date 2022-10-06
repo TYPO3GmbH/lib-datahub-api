@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -32,7 +34,7 @@ abstract class AbstractNotification implements NotificationInterface
     {
         return [
             'type' => $this->getType(),
-            'message' => $this->getMessage()
+            'message' => $this->getMessage(),
         ];
     }
 
@@ -44,6 +46,7 @@ abstract class AbstractNotification implements NotificationInterface
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -55,6 +58,7 @@ abstract class AbstractNotification implements NotificationInterface
     public function setType(string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 }

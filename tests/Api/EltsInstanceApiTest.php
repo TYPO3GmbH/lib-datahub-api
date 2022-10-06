@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,7 +20,7 @@ class EltsInstanceApiTest extends AbstractApiTest
     public function testCreateInstanceForPlan(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsInstanceResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsInstanceResponse.php',
         ]);
 
         $eltsIntance = $this->getTestEltsInstanceForGet();
@@ -33,7 +35,7 @@ class EltsInstanceApiTest extends AbstractApiTest
     public function testGetInstance(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsInstanceResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsInstanceResponse.php',
         ]);
 
         $eltsInstance = $this->getTestEltsInstanceForGet();
@@ -48,7 +50,7 @@ class EltsInstanceApiTest extends AbstractApiTest
     public function testGetInstances(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsInstancesResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsInstancesResponse.php',
         ]);
 
         $response = (new EltsInstanceApi($this->getClient($handler)))->getInstances();
@@ -63,7 +65,7 @@ class EltsInstanceApiTest extends AbstractApiTest
     public function testUpdateInstance(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PutEltsInstanceResponse.php'
+            require __DIR__ . '/../Fixtures/PutEltsInstanceResponse.php',
         ]);
 
         $eltsInstance = $this->getTestEltsInstanceForPut();
@@ -78,7 +80,7 @@ class EltsInstanceApiTest extends AbstractApiTest
     public function testDeleteInstance(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new EltsInstanceApi($this->getClient($handler));
         try {

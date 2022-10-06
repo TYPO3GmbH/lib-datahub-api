@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,13 +20,14 @@ use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
 use T3G\DatahubApiLibrary\Dto\ProlongEltsPlanDto;
 use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 use T3G\DatahubApiLibrary\Enum\PaymentStatus;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class EltsPlanApiTest extends AbstractApiTest
 {
     public function testCreateEltsPlanForUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsPlanResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsPlanResponse.php',
         ]);
 
         $eltsPlan = $this->getTestEltsPlan();
@@ -45,7 +48,7 @@ class EltsPlanApiTest extends AbstractApiTest
     public function testCreateEltsPlanForCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsPlanResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsPlanResponse.php',
         ]);
 
         $eltsPlan = $this->getTestEltsPlan();
@@ -66,7 +69,7 @@ class EltsPlanApiTest extends AbstractApiTest
     public function testGetEltsPlans(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsPlansResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsPlansResponse.php',
         ]);
 
         $response = (new EltsPlanApi($this->getClient($handler)))->getPlans();
@@ -86,7 +89,7 @@ class EltsPlanApiTest extends AbstractApiTest
         self::assertCount(1, $plans[0]->getExtendables());
         self::assertArrayHasKey('3-3', $plans[0]->getExtendables());
         self::assertCount(2, $plans[0]->getInstances());
-        self::assertEquals(null, $plans[0]->getLicenses());
+        self::assertSame(0, $plans[0]->getLicenses());
         self::assertEquals('GELTS234', $plans[0]->getOrder()->getOrderNumber());
         self::assertCount(2, $plans[0]->getReleaseNotifications());
         self::assertCount(2, $plans[0]->getTechnicalContacts());
@@ -112,7 +115,7 @@ class EltsPlanApiTest extends AbstractApiTest
     public function testGetEltsPlansExport(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsPlansExportResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsPlansExportResponse.php',
         ]);
 
         $response = (new EltsPlanApi($this->getClient($handler)))->getPlans();
@@ -143,7 +146,7 @@ class EltsPlanApiTest extends AbstractApiTest
     public function testGetEltsProducts(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsProductsResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsProductsResponse.php',
         ]);
         $eltsProducts = (new EltsPlanApi($this->getClient($handler)))->getProducts();
 
@@ -164,13 +167,14 @@ class EltsPlanApiTest extends AbstractApiTest
         $createEltsPlanDto->type = EltsPlanType::SINGLE;
         $createEltsPlanDto->runtime = '1-3';
         $createEltsPlanDto->orderNumber = 'GELTS123';
+
         return $createEltsPlanDto;
     }
 
     public function testDeletePlan(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new EltsPlanApi($this->getClient($handler));
         try {
@@ -190,7 +194,7 @@ class EltsPlanApiTest extends AbstractApiTest
         $dto->runtime = '2-2';
 
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PostEltsProlongResponse.php'
+            require __DIR__ . '/../Fixtures/PostEltsProlongResponse.php',
         ]);
         $response = (new EltsPlanApi($this->getClient($handler)))->prolongPlan($dto);
 
@@ -209,7 +213,7 @@ class EltsPlanApiTest extends AbstractApiTest
 
         $container = [];
         $mockHandler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $handlerStack = HandlerStack::create($mockHandler);
         $handlerStack->push(Middleware::history($container));
@@ -220,6 +224,6 @@ class EltsPlanApiTest extends AbstractApiTest
 
         /** @var Request $request */
         $request = reset($container)['request'];
-        self::assertSame($dto->toArray(), json_decode((string)$request->getBody(), true, 512, JSON_THROW_ON_ERROR));
+        self::assertSame($dto->toArray(), JsonUtility::decode((string) $request->getBody()));
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -20,13 +22,14 @@ class ExamAccessListFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $list = ExamAccessListFactory::fromArray($data);
         foreach ($list as $entity) {
-            $this->assertInstanceOf(ExamAccess::class, $entity);
+            self::assertInstanceOf(ExamAccess::class, $entity);
         }
     }
 
@@ -42,7 +45,7 @@ class ExamAccessListFactoryTest extends TestCase
                             'user' => [
                                 'username' => 'max.muster',
                                 'firstName' => 'Max',
-                                'lastName' => 'Muster'
+                                'lastName' => 'Muster',
                             ],
                             'company' => null,
                             'certificationType' => CertificationType::TCCC,
@@ -50,7 +53,7 @@ class ExamAccessListFactoryTest extends TestCase
                             'status' => ExamAccessStatus::READY,
                             'history' => null,
                             'createdAt' => (new \DateTime('now'))->format(\DateTimeInterface::ATOM),
-                            'validUntil' => (new \DateTime('+3 months'))->format(\DateTimeInterface::ATOM)
+                            'validUntil' => (new \DateTime('+3 months'))->format(\DateTimeInterface::ATOM),
 
                         ],
                         [
@@ -61,18 +64,18 @@ class ExamAccessListFactoryTest extends TestCase
                                 'uuid' => '00000000-0000-0000-0000-000000000000',
                                 'companyType' => CompanyType::AGENCY,
                                 'title' => 'Company A',
-                                'slug' => 'company-a'
+                                'slug' => 'company-a',
                             ],
                             'certificationType' => CertificationType::TCCD,
                             'certificationVersion' => CertificationVersion::NINE,
                             'status' => ExamAccessStatus::USED,
                             'history' => null,
                             'createdAt' => (new \DateTime('now'))->format(\DateTimeInterface::ATOM),
-                            'validUntil' => (new \DateTime('+3 months'))->format(\DateTimeInterface::ATOM)
+                            'validUntil' => (new \DateTime('+3 months'))->format(\DateTimeInterface::ATOM),
                         ],
                     ],
                     'length' => 2,
-                    'type' => 'App\\Entity\\ExamAccessList'
+                    'type' => 'App\\Entity\\ExamAccessList',
                 ],
             ],
         ];

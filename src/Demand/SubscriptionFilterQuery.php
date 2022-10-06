@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -34,6 +36,7 @@ class SubscriptionFilterQuery
     public function setSubscriptionIdentifier(string $subscriptionIdentifier): self
     {
         $this->subscriptionIdentifier = $subscriptionIdentifier;
+
         return $this;
     }
 
@@ -45,17 +48,20 @@ class SubscriptionFilterQuery
 
     /**
      * @param array<int, string> $subscriptionStatus
+     *
      * @return $this
      */
     public function setSubscriptionStatus(array $subscriptionStatus): self
     {
         $this->subscriptionStatus = $subscriptionStatus;
+
         return $this;
     }
 
     public function addSubscriptionStatus(string $subscriptionStatus): self
     {
         $this->subscriptionStatus[] = $subscriptionStatus;
+
         return $this;
     }
 
@@ -67,17 +73,20 @@ class SubscriptionFilterQuery
 
     /**
      * @param array<int, string> $subscriptionType
+     *
      * @return $this
      */
     public function setSubscriptionType(array $subscriptionType): self
     {
         $this->subscriptionType = $subscriptionType;
+
         return $this;
     }
 
     public function addSubscriptionType(string $subscriptionType): self
     {
         $this->subscriptionType[] = $subscriptionType;
+
         return $this;
     }
 
@@ -89,17 +98,20 @@ class SubscriptionFilterQuery
 
     /**
      * @param array<int, string> $subscriptionSubType
+     *
      * @return $this
      */
     public function setSubscriptionSubType(array $subscriptionSubType): self
     {
         $this->subscriptionSubType = $subscriptionSubType;
+
         return $this;
     }
 
     public function addSubscriptionSubType(string $subscriptionSubType): self
     {
         $this->subscriptionSubType[] = $subscriptionSubType;
+
         return $this;
     }
 
@@ -118,6 +130,7 @@ class SubscriptionFilterQuery
         if ([] !== $this->subscriptionSubType) {
             $params['subscriptionSubType'] = $this->subscriptionSubType;
         }
+
         return http_build_query($params);
     }
 }

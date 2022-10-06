@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -12,6 +14,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\Content;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\ContentFactory;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class ContentApi extends AbstractApi
 {
@@ -61,6 +64,6 @@ class ContentApi extends AbstractApi
             ]))
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        return JsonUtility::decode((string) $response->getBody());
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -39,6 +41,7 @@ class ReleaseNotification implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -50,6 +53,7 @@ class ReleaseNotification implements JsonSerializable
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -61,6 +65,7 @@ class ReleaseNotification implements JsonSerializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -72,6 +77,7 @@ class ReleaseNotification implements JsonSerializable
     public function setAccepted(bool $accepted): self
     {
         $this->accepted = $accepted;
+
         return $this;
     }
 
@@ -83,6 +89,7 @@ class ReleaseNotification implements JsonSerializable
     public function setInherited(bool $inherited): self
     {
         $this->inherited = $inherited;
+
         return $this;
     }
 
@@ -94,6 +101,7 @@ class ReleaseNotification implements JsonSerializable
     public function setEltsPlan(?EltsPlan $eltsPlan): self
     {
         $this->eltsPlan = $eltsPlan;
+
         return $this;
     }
 
@@ -105,6 +113,7 @@ class ReleaseNotification implements JsonSerializable
     public function setEltsInstance(?EltsInstance $eltsInstance): self
     {
         $this->eltsInstance = $eltsInstance;
+
         return $this;
     }
 }

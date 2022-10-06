@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -19,7 +21,7 @@ class EmailAddressApiTest extends AbstractApiTest
     public function testGetAllUserEmailAddresses(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserEmailAddressesListResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserEmailAddressesListResponse.php',
         ]);
         $response = (new EmailAddressApi($this->getClient($handler)))->getAllUserEmailAddresses();
         self::assertIsArray($response);
@@ -32,7 +34,7 @@ class EmailAddressApiTest extends AbstractApiTest
     public function testGetEmailAddress(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEmailAddressResponse.php'
+            require __DIR__ . '/../Fixtures/GetEmailAddressResponse.php',
         ]);
         $response = (new EmailAddressApi($this->getClient($handler)))->getEmailAddress('00000000-0000-0000-0000-000000000000');
         self::assertSame('00000000-0000-0000-0000-000000000000', $response->getUuid());
@@ -44,7 +46,7 @@ class EmailAddressApiTest extends AbstractApiTest
     public function testIsUserEmailAddressUniquePositive(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetIsUserEmailAddressUniquePositiveResponse.php'
+            require __DIR__ . '/../Fixtures/GetIsUserEmailAddressUniquePositiveResponse.php',
         ]);
         $response = (new EmailAddressApi($this->getClient($handler)))->isUserEmailAddressUnique('foo@bar.baz');
         self::assertTrue($response);
@@ -53,7 +55,7 @@ class EmailAddressApiTest extends AbstractApiTest
     public function testIsUserEmailAddressUniqueNegative(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetIsUserEmailAddressUniqueNegativeResponse.php'
+            require __DIR__ . '/../Fixtures/GetIsUserEmailAddressUniqueNegativeResponse.php',
         ]);
         $response = (new EmailAddressApi($this->getClient($handler)))->isUserEmailAddressUnique('foo@bar.baz');
         self::assertFalse($response);
@@ -62,7 +64,7 @@ class EmailAddressApiTest extends AbstractApiTest
     public function testUpdateEmailAddress(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEmailAddressResponse.php'
+            require __DIR__ . '/../Fixtures/GetEmailAddressResponse.php',
         ]);
         $response = (new EmailAddressApi($this->getClient($handler)))->updateEmailAddress('00000000-0000-0000-0000-000000000000', $this->getEmailAddress());
         self::assertSame('00000000-0000-0000-0000-000000000000', $response->getUuid());
@@ -74,7 +76,7 @@ class EmailAddressApiTest extends AbstractApiTest
     public function testDeleteEmailAddress(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new EmailAddressApi($this->getClient($handler));
         try {

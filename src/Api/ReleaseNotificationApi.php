@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -22,7 +24,9 @@ class ReleaseNotificationApi extends AbstractApi
 
     /**
      * @param CreateReleaseNotificationDto $createReleaseNotificationDto
+     *
      * @return ReleaseNotification
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
@@ -40,7 +44,9 @@ class ReleaseNotificationApi extends AbstractApi
 
     /**
      * @param string $uuid
+     *
      * @return ReleaseNotification
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException
@@ -59,7 +65,9 @@ class ReleaseNotificationApi extends AbstractApi
 
     /**
      * @param string $uuid
+     *
      * @return ReleaseNotification
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException
@@ -78,6 +86,7 @@ class ReleaseNotificationApi extends AbstractApi
 
     /**
      * @param string $uuid
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException

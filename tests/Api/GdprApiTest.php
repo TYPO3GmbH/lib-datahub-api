@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,7 +18,7 @@ class GdprApiTest extends AbstractApiTest
     public function testRequestUserDeletion(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new GDPRApi($this->getClient($handler));
         try {
@@ -25,31 +27,31 @@ class GdprApiTest extends AbstractApiTest
         } catch (\Exception $e) {
             $anExceptionWasThrown = true;
         }
-        $this->assertFalse($anExceptionWasThrown);
+        self::assertFalse($anExceptionWasThrown);
     }
 
     public function testConfirmUserDeletion(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/ConfirmDeleteUserResponse.php'
+            require __DIR__ . '/../Fixtures/ConfirmDeleteUserResponse.php',
         ]);
         $api = new GDPRApi($this->getClient($handler));
         $data = $api->confirmUserDeletion('oelie-boelie');
 
-        $this->assertArrayHasKey('username', $data);
-        $this->assertArrayHasKey('otrsIssue', $data);
-        $this->assertArrayHasKey('deleteDate', $data);
-        $this->assertArrayHasKey('comment', $data);
+        self::assertArrayHasKey('username', $data);
+        self::assertArrayHasKey('otrsIssue', $data);
+        self::assertArrayHasKey('deleteDate', $data);
+        self::assertArrayHasKey('comment', $data);
     }
 
     public function testGetUsersInDeletionProcess(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetGdprUsersInProgressResponse.php'
+            require __DIR__ . '/../Fixtures/GetGdprUsersInProgressResponse.php',
         ]);
         $api = new GDPRApi($this->getClient($handler));
         $data = $api->getUsersInDeletionProcess();
 
-        $this->assertCount(1, $data);
+        self::assertCount(1, $data);
     }
 }

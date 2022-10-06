@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,15 +17,16 @@ class ApprovedDocumentFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $entity = ApprovedDocumentFactory::fromArray($data);
-        $this->assertEquals($data['documentIdentifier'], $entity->getDocumentIdentifier());
-        $this->assertEquals($data['documentVersion'], $entity->getDocumentVersion());
-        $this->assertEquals($data['approveDate'], $entity->getApproveDate()->format(\DateTimeInterface::ATOM));
-        $this->assertEquals($data['user']['username'], $entity->getUser()->getUsername());
+        self::assertEquals($data['documentIdentifier'], $entity->getDocumentIdentifier());
+        self::assertEquals($data['documentVersion'], $entity->getDocumentVersion());
+        self::assertEquals($data['approveDate'], $entity->getApproveDate()->format(\DateTimeInterface::ATOM));
+        self::assertEquals($data['user']['username'], $entity->getUser()->getUsername());
     }
 
     public function factoryDataProvider(): array
@@ -39,10 +42,10 @@ class ApprovedDocumentFactoryTest extends TestCase
                         'firstName' => 'Oelie',
                         'lastName' => 'Boelie',
                         'email' => 'oelie@boelie.nl',
-                        'phone' => null
+                        'phone' => null,
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }

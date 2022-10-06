@@ -19,7 +19,6 @@ final class CertificationType extends AbstractEnum
     public const TCCD = 'TCCD';
     public const TCCI = 'TCCI';
     public const TCCE = 'TCCE';
-
     protected static array $optionNames = [
         self::TCCC => 'TYPO3 CMS Certified Consultant',
         self::TCCD => 'TYPO3 CMS Certified Developer',

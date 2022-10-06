@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -14,6 +16,7 @@ use T3G\DatahubApiLibrary\Entity\Subscription;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\SubscriptionFactory;
 use T3G\DatahubApiLibrary\Factory\SubscriptionListFactory;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class SubscriptionApi extends AbstractApi
@@ -34,17 +37,19 @@ class SubscriptionApi extends AbstractApi
 
     /**
      * @return array<int,mixed>
+     *
      * @throws \JsonException
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      */
     public function getSubscriptionProducts(): array
     {
-        $data = $this->client->request(
+        $response = $this->client->request(
             'GET',
             self::uri('/subscription/products')
-        )->getBody();
-        return json_decode((string)$data, true, 512, JSON_THROW_ON_ERROR);
+        );
+
+        return JsonUtility::decode((string) $response->getBody());
     }
 
     public function getSubscriptionBySubscriptionIdentifier(string $subscriptionIdentifier): Subscription
@@ -59,7 +64,9 @@ class SubscriptionApi extends AbstractApi
 
     /**
      * @param SubscriptionFilterQuery $subscriptionFilterQuery
+     *
      * @return array<int, Subscription>
+     *
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      */
@@ -133,6 +140,7 @@ class SubscriptionApi extends AbstractApi
 
     /**
      * @return array<int, Subscription>
+     *
      * @throws DatahubResponseException|ClientExceptionInterface
      */
     public function getNewMembersOfPreviousMonth(): array

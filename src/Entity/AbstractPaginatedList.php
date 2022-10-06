@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -10,20 +12,26 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
 
+/**
+ * @template D
+ */
 abstract class AbstractPaginatedList implements JsonSerializable
 {
     /** @var array<string, mixed> */
     protected array $meta;
+
     /** @var array<string, mixed> */
     protected array $links;
-    /** @var array<int, mixed> */
+
+    /** @var array<int, D> */
     protected array $data;
 
     /**
      * AbstractPaginatedList constructor.
+     *
      * @param array<string, mixed> $meta
      * @param array<string, mixed> $links
-     * @param array<int, mixed> $data
+     * @param array<int, D>        $data
      */
     public function __construct(array $meta, array $links, array $data)
     {

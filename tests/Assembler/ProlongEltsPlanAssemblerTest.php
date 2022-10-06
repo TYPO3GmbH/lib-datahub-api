@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -24,8 +26,8 @@ class ProlongEltsPlanAssemblerTest extends TestCase
         $assembler = new ProlongEltsPlanAssembler();
         $dto = $assembler->create($data)->getDto();
 
-        static::assertSame($data['sourcePlan'], $dto->sourcePlan);
-        static::assertSame($data['runtime'], $dto->runtime);
-        static::assertSame($data['orderNumber'], $dto->orderNumber);
+        self::assertSame($data['sourcePlan'], $dto->sourcePlan);
+        self::assertSame($data['runtime'], $dto->runtime);
+        self::assertSame($data['orderNumber'], $dto->orderNumber);
     }
 }

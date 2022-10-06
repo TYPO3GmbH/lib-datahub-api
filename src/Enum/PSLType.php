@@ -29,7 +29,6 @@ final class PSLType extends AbstractEnum
     public const ADDITIONAL_LOCATION = 'additional_location';
     public const PROFILE_BUNDLE = 'profile_bundle';
     public const PHOTO = 'photo';
-
     protected static array $optionNames = [
         self::LOGO => 'Logo',
         self::BACKLINK => 'Backlink',

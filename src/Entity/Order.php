@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -13,11 +15,8 @@ use JsonSerializable;
 class Order implements JsonSerializable
 {
     private string $uuid;
-
     private string $orderNumber;
-
     private array $payload;
-
     private \DateTimeInterface $createdAt;
 
     /**
@@ -29,7 +28,7 @@ class Order implements JsonSerializable
     {
         return [
             'orderNumber' => $this->getOrderNumber(),
-            'payload' => $this->getPayload()
+            'payload' => $this->getPayload(),
         ];
     }
 
@@ -41,6 +40,7 @@ class Order implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -52,6 +52,7 @@ class Order implements JsonSerializable
     public function setOrderNumber(string $orderNumber): self
     {
         $this->orderNumber = $orderNumber;
+
         return $this;
     }
 
@@ -63,6 +64,7 @@ class Order implements JsonSerializable
     public function setPayload(array $payload): self
     {
         $this->payload = $payload;
+
         return $this;
     }
 
@@ -74,6 +76,7 @@ class Order implements JsonSerializable
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -95,6 +98,7 @@ class Order implements JsonSerializable
     public function addInvoice(Invoice $invoice): self
     {
         $this->invoices[] = $invoice;
+
         return $this;
     }
 
@@ -103,6 +107,7 @@ class Order implements JsonSerializable
         $this->invoices = array_filter($this->invoices, static function (Invoice $i) use ($invoice) {
             return $i->getLink() !== $invoice->getLink();
         });
+
         return $this;
     }
 }

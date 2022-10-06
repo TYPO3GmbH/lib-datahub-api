@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,7 +18,7 @@ use T3G\DatahubApiLibrary\Entity\ReservedUser;
 class ReservedUserFactory extends AbstractFactory
 {
     /**
-     * @param  array<string, mixed> $data
+     * @param array<string, mixed> $data
      *
      * @return ReservedUser
      */

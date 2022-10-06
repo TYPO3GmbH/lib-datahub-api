@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -19,7 +21,7 @@ class ApiErrorTest extends AbstractApiTest
     public function testErrorWithNoBody(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NotFoundResponse.php'
+            require __DIR__ . '/../Fixtures/NotFoundResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $this->expectException(DatahubResponseException::class);
@@ -30,7 +32,7 @@ class ApiErrorTest extends AbstractApiTest
     public function testErrorWithErrorMessage(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/ForbiddenWithErrorResponse.php'
+            require __DIR__ . '/../Fixtures/ForbiddenWithErrorResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $this->expectException(DatahubResponseException::class);
@@ -41,13 +43,13 @@ class ApiErrorTest extends AbstractApiTest
     public function testUuidValidation(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetConfirmCompanyInviteResponse.php'
+            require __DIR__ . '/../Fixtures/GetConfirmCompanyInviteResponse.php',
         ]);
         $api = new CompanyApi($this->getClient($handler));
         $response = $api->confirmEmployeeInvitation('00000000-0000-0000-0000-000000000000');
-        $this->assertEquals('oelie-boelie', $response->getUser()->getUsername());
-        $this->assertEquals('oelie@boelie.nl', $response->getUser()->getPrimaryEmail());
-        $this->assertEquals('EMPLOYEE', $response->getRole());
+        self::assertEquals('oelie-boelie', $response->getUser()->getUsername());
+        self::assertEquals('oelie@boelie.nl', $response->getUser()->getPrimaryEmail());
+        self::assertEquals('EMPLOYEE', $response->getRole());
 
         $this->expectException(InvalidUuidException::class);
         $api->confirmEmployeeInvitation('not-a-uuid');
@@ -56,7 +58,7 @@ class ApiErrorTest extends AbstractApiTest
     public function testErrorWhenNonJsonContentTypeHeader(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NonJsonContentTypeHeaderInResponse.php'
+            require __DIR__ . '/../Fixtures/NonJsonContentTypeHeaderInResponse.php',
         ]);
         $api = new UserApi($this->getClient($handler));
         $this->expectException(DatahubResponseException::class);

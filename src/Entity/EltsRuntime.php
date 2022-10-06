@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -25,6 +27,7 @@ class EltsRuntime
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -36,6 +39,7 @@ class EltsRuntime
     public function setRuntime(string $runtime): self
     {
         $this->runtime = $runtime;
+
         return $this;
     }
 
@@ -47,6 +51,7 @@ class EltsRuntime
     public function setOrder(?Order $order): self
     {
         $this->order = $order;
+
         return $this;
     }
 
@@ -58,6 +63,7 @@ class EltsRuntime
     public function setPaymentStatus(string $paymentStatus): self
     {
         $this->paymentStatus = $paymentStatus;
+
         return $this;
     }
 
@@ -69,6 +75,7 @@ class EltsRuntime
     public function setValidFrom(?\DateTimeInterface $validFrom): self
     {
         $this->validFrom = $validFrom;
+
         return $this;
     }
 
@@ -80,6 +87,7 @@ class EltsRuntime
     public function setValidTo(?\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
+
         return $this;
     }
 }

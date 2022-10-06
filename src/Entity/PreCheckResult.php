@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -13,11 +15,8 @@ use JsonSerializable;
 class PreCheckResult implements JsonSerializable
 {
     private string $source;
-
     private string $type;
-
     private bool $result;
-
     private array $additionalData;
 
     public function jsonSerialize()
@@ -26,7 +25,7 @@ class PreCheckResult implements JsonSerializable
             'source' => $this->getSource(),
             'type' => $this->getType(),
             'result' => $this->getResult(),
-            'additionalData' => $this->getAdditionalData()
+            'additionalData' => $this->getAdditionalData(),
         ];
     }
 
@@ -38,6 +37,7 @@ class PreCheckResult implements JsonSerializable
     public function setSource(string $source): self
     {
         $this->source = $source;
+
         return $this;
     }
 
@@ -49,6 +49,7 @@ class PreCheckResult implements JsonSerializable
     public function setType(string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -60,6 +61,7 @@ class PreCheckResult implements JsonSerializable
     public function setResult(bool $result): self
     {
         $this->result = $result;
+
         return $this;
     }
 
@@ -73,11 +75,13 @@ class PreCheckResult implements JsonSerializable
 
     /**
      * @param array<string, mixed> $additionalData
+     *
      * @return PreCheckResult
      */
     public function setAdditionalData(array $additionalData): self
     {
         $this->additionalData = $additionalData;
+
         return $this;
     }
 }

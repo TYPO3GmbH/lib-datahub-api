@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -19,7 +21,7 @@ class AdminCompanyApiTest extends AbstractApiTest
     public function testCreateCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyResponse.php'
+            require __DIR__ . '/../Fixtures/GetCompanyResponse.php',
         ]);
         $api = new AdminCompanyApi($this->getClient($handler));
 
@@ -36,7 +38,7 @@ class AdminCompanyApiTest extends AbstractApiTest
     public function testUpdateCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyResponse.php'
+            require __DIR__ . '/../Fixtures/GetCompanyResponse.php',
         ]);
         $api = new AdminCompanyApi($this->getClient($handler));
 

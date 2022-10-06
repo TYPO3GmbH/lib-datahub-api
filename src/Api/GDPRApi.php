@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -10,6 +12,7 @@ namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class GDPRApi extends AbstractApi
 {
@@ -28,6 +31,7 @@ class GDPRApi extends AbstractApi
 
     /**
      * @return array<string, mixed>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -38,11 +42,12 @@ class GDPRApi extends AbstractApi
             self::uri('/users/' . mb_strtolower($username))
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        return JsonUtility::decode((string) $response->getBody());
     }
 
     /**
      * @return array<string, mixed>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -53,6 +58,6 @@ class GDPRApi extends AbstractApi
             self::uri('/reserved-users/pending-deletions')
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['entities'];
+        return JsonUtility::decode((string) $response->getBody())['entities'] ?? [];
     }
 }

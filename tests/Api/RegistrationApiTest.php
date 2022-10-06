@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -17,31 +19,31 @@ class RegistrationApiTest extends AbstractApiTest
     public function testRegistration(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PutRegistrationResponse.php'
+            require __DIR__ . '/../Fixtures/PutRegistrationResponse.php',
         ]);
         $api = new RegistrationApi($this->getClient($handler));
         $response = $api->register($this->getTestRegistration());
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertEquals('oelie@boelie.nl', $response->getEmail());
-        $this->assertEquals('Oelie', $response->getFirstName());
-        $this->assertEquals('Boelie', $response->getLastName());
-        $this->assertEquals('lidl', $response->getLocation());
-        $this->assertEquals('a9fde411-e46f-4fca-80f4-347bf3b57ca3', $response->getRegistrationCode());
-        $this->assertEquals('2020-04-13T14:24:21+00:00', $response->getValidUntil()->format(\DateTimeInterface::ATOM));
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertEquals('oelie@boelie.nl', $response->getEmail());
+        self::assertEquals('Oelie', $response->getFirstName());
+        self::assertEquals('Boelie', $response->getLastName());
+        self::assertEquals('lidl', $response->getLocation());
+        self::assertEquals('a9fde411-e46f-4fca-80f4-347bf3b57ca3', $response->getRegistrationCode());
+        self::assertEquals('2020-04-13T14:24:21+00:00', $response->getValidUntil()->format(\DateTimeInterface::ATOM));
     }
 
     public function testConfirmRegistration(): void
     {
         $handler = new MockHandler([
             require __DIR__ . '/../Fixtures/GetUserResponse.php',
-            require __DIR__ . '/../Fixtures/ConfirmRegistrationExtendedResponse.php'
+            require __DIR__ . '/../Fixtures/ConfirmRegistrationExtendedResponse.php',
         ]);
         $api = new RegistrationApi($this->getClient($handler));
         $user = $api->confirmRegistration('a9fde411-e46f-4fca-80f4-347bf3b57ca3');
-        $this->assertEquals('oelie-boelie', $user->getUsername());
+        self::assertEquals('oelie-boelie', $user->getUsername());
 
         $user = $api->confirmRegistration('a9fde411-e46f-4fca-80f4-347bf3b57ca3');
-        $this->assertEquals('oelie-boelie', $user->getUsername());
+        self::assertEquals('oelie-boelie', $user->getUsername());
     }
 
     public function getTestRegistration(): Registration

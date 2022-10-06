@@ -28,7 +28,6 @@ final class LinkIcons extends AbstractEnum
     public const GITLAB = 'gitlab';
     public const BITBUCKET = 'bitbucket';
     public const STACKOVERFLOW = 'stackoverflow';
-
     protected static array $optionNames = [
         self::WEBSITE => 'Website',
         self::TWITTER => 'Twitter',

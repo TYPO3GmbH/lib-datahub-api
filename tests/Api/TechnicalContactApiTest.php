@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,7 +20,7 @@ class TechnicalContactApiTest extends AbstractApiTest
     public function testCreateTechnicalContactForInstance(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/CreateTechnicalContactResponse.php'
+            require __DIR__ . '/../Fixtures/CreateTechnicalContactResponse.php',
         ]);
 
         $technicalContact = new CreateTechnicalContactDto();
@@ -37,7 +39,7 @@ class TechnicalContactApiTest extends AbstractApiTest
     public function testGetTechnicalContact(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetTechnicalContactResponse.php'
+            require __DIR__ . '/../Fixtures/GetTechnicalContactResponse.php',
         ]);
 
         $technicalContact = $this->getTestTechnicalContactForGet();
@@ -54,7 +56,7 @@ class TechnicalContactApiTest extends AbstractApiTest
     public function testConfirmTechnicalContact(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/ConfirmTechnicalContactResponse.php'
+            require __DIR__ . '/../Fixtures/ConfirmTechnicalContactResponse.php',
         ]);
 
         $technicalContact = $this->getTestTechnicalContactForConfirm();
@@ -70,7 +72,7 @@ class TechnicalContactApiTest extends AbstractApiTest
     public function testDeleteTechnicalContact(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
 
         $api = new TechnicalContactApi($this->getClient($handler));

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -57,7 +59,9 @@ class EltsInstanceApi extends AbstractApi
 
     /**
      * @param string|null $companyUuid
+     *
      * @return EltsInstanceList
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException
@@ -69,6 +73,7 @@ class EltsInstanceApi extends AbstractApi
             $this->isValidUuidOrThrow($companyUuid);
             $uri .= '/' . $companyUuid;
         }
+
         return EltsInstanceFactory::fromResponseDataCollection(
             $this->client->request(
                 'GET',

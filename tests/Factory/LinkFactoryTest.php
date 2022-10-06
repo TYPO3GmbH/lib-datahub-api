@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,14 +17,15 @@ class LinkFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $entity = LinkFactory::fromArray($data);
-        $this->assertEquals($data['uuid'], $entity->getUuid());
-        $this->assertEquals($data['icon'], $entity->getIcon());
-        $this->assertEquals($data['url'], $entity->getUrl());
+        self::assertEquals($data['uuid'], $entity->getUuid());
+        self::assertEquals($data['icon'], $entity->getIcon());
+        self::assertEquals($data['url'], $entity->getUrl());
     }
 
     public function factoryDataProvider(): array
@@ -32,9 +35,9 @@ class LinkFactoryTest extends TestCase
                 'data' => [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'icon' => 'github',
-                    'url' => 'https://github.com/oelie-boelie'
-                ]
-            ]
+                    'url' => 'https://github.com/oelie-boelie',
+                ],
+            ],
         ];
     }
 }

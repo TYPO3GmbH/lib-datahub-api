@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,29 +18,30 @@ class UserFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $entity = UserFactory::fromArray($data);
-        $this->assertEquals($data['username'], $entity->getUsername());
-        $this->assertEquals($data['firstName'], $entity->getFirstName());
-        $this->assertEquals($data['lastName'], $entity->getLastName());
+        self::assertEquals($data['username'], $entity->getUsername());
+        self::assertEquals($data['firstName'], $entity->getFirstName());
+        self::assertEquals($data['lastName'], $entity->getLastName());
         if (isset($data['phone'])) {
-            $this->assertEquals($data['phone'], $entity->getPhone());
+            self::assertEquals($data['phone'], $entity->getPhone());
         }
-        $this->assertCount(count($data['addresses'] ?? []), $entity->getAddresses());
-        $this->assertCount(count($data['links'] ?? []), $entity->getLinks());
-        $this->assertCount(count($data['certifications'] ?? []), $entity->getCertifications());
-        $this->assertCount(count($data['approvedDocuments'] ?? []), $entity->getApprovedDocuments());
+        self::assertCount(count($data['addresses'] ?? []), $entity->getAddresses());
+        self::assertCount(count($data['links'] ?? []), $entity->getLinks());
+        self::assertCount(count($data['certifications'] ?? []), $entity->getCertifications());
+        self::assertCount(count($data['approvedDocuments'] ?? []), $entity->getApprovedDocuments());
         if (!empty($data['membership'])) {
-            $this->assertEquals($data['membership']['subscriptionSubType'], $entity->getMembership()->getSubscriptionSubType());
+            self::assertEquals($data['membership']['subscriptionSubType'], $entity->getMembership()->getSubscriptionSubType());
         }
-        $this->assertCount(count($data['subscriptions'] ?? []), $entity->getSubscriptions());
+        self::assertCount(count($data['subscriptions'] ?? []), $entity->getSubscriptions());
         if (!empty($data['notifications'])) {
-            $this->assertInstanceOf($data['notifications'][0]['type'], $entity->getNotifications()[0]);
+            self::assertInstanceOf($data['notifications'][0]['type'], $entity->getNotifications()[0]);
         }
-        $this->assertEquals($data['emailAddresses'][0]['email'], $entity->getPrimaryEmail());
+        self::assertEquals($data['emailAddresses'][0]['email'], $entity->getPrimaryEmail());
     }
 
     public function factoryDataProvider(): array
@@ -54,11 +57,11 @@ class UserFactoryTest extends TestCase
                             'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
                             'email' => 'oelie@boelie.nl',
                             'type' => 273,
-                            'optIn' => '2020-12-16T10:13:26+00:00'
-                        ]
+                            'optIn' => '2020-12-16T10:13:26+00:00',
+                        ],
                     ],
-                    'phone' => '+31612345678'
-                ]
+                    'phone' => '+31612345678',
+                ],
             ],
             'allValuesSet and relations' => [
                 'data' => [
@@ -70,8 +73,8 @@ class UserFactoryTest extends TestCase
                             'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
                             'email' => 'oelie@boelie.nl',
                             'type' => 273,
-                            'optIn' => '2020-12-16T10:13:26+00:00'
-                        ]
+                            'optIn' => '2020-12-16T10:13:26+00:00',
+                        ],
                     ],
                     'phone' => '+31612345678',
                     'addresses' => [
@@ -87,19 +90,19 @@ class UserFactoryTest extends TestCase
                             'country' => [
                                 'iso' => 'RU',
                                 'iso3' => 'RUS',
-                                'label' => 'Russia'
+                                'label' => 'Russia',
                             ],
                             'zip' => '1234 QZ',
                             'type' => 2,
                             'checksum' => '857f7bdf4322df6bffec0fbba1481f9169dbf8d2f779923ea48f1c0d1e2809d1',
-                        ]
+                        ],
                     ],
                     'links' => [
                         [
                             'uuid' => '00000000-0000-0000-0000-000000000000',
                             'icon' => 'github',
-                            'url' => 'https://github.com/oelie-boelie'
-                        ]
+                            'url' => 'https://github.com/oelie-boelie',
+                        ],
                     ],
                     'certifications' => [
                         [
@@ -114,7 +117,7 @@ class UserFactoryTest extends TestCase
                             'rulesAccepted' => true,
                             'proctoringLink' => 'https://example.com/00000000-0000-0000-0000-000000000000',
                             'examUrl' => 'https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000',
-                        ]
+                        ],
                     ],
                     'examAccesses' => [
                         [
@@ -123,7 +126,7 @@ class UserFactoryTest extends TestCase
                             'certificationType' => 'TCCI',
                             'certificationVersion' => '10.4',
                             'status' => 'READY',
-                        ]
+                        ],
                     ],
                     'membership' => [
                         'uuid' => '00000000-0000-0000-0000-000000000000',
@@ -141,7 +144,7 @@ class UserFactoryTest extends TestCase
                             'subscriptionSubType' => 'SILVER',
                             'subscriptionStatus' => 'active',
                             'validUntil' => '2021-09-03T10:00:00+00:00',
-                        ]
+                        ],
                     ],
                     'approvedDocuments' => [
                         [
@@ -153,9 +156,9 @@ class UserFactoryTest extends TestCase
                                 'firstName' => 'Oelie',
                                 'lastName' => 'Boelie',
                                 'email' => 'oelie@boelie.nl',
-                                'phone' => null
+                                'phone' => null,
                             ],
-                        ]
+                        ],
                     ],
                     'notifications' => [
                         [
@@ -164,10 +167,10 @@ class UserFactoryTest extends TestCase
                             'subscription' => 'stripe:sub_I7xrK6SffVrwic:si_I7xrOvfj9FPO82',
                             'stripeLink' => 'https://foo.com/bar',
                             'type' => IncompletePaymentNotification::class,
-                            'message' => 'Incomplete payment for company d6abf140-c946-474f-8e3a-2a55ea7bdd71'
-                        ]
-                    ]
-                ]
+                            'message' => 'Incomplete payment for company d6abf140-c946-474f-8e3a-2a55ea7bdd71',
+                        ],
+                    ],
+                ],
             ],
             'nullPhone' => [
                 'data' => [
@@ -179,11 +182,11 @@ class UserFactoryTest extends TestCase
                             'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
                             'email' => 'oelie@boelie.nl',
                             'type' => 273,
-                            'optIn' => '2020-12-16T10:13:26+00:00'
-                        ]
+                            'optIn' => '2020-12-16T10:13:26+00:00',
+                        ],
                     ],
-                    'phone' => null
-                ]
+                    'phone' => null,
+                ],
             ],
             'user-resource-primary' => [
                 'data' => [
@@ -195,11 +198,11 @@ class UserFactoryTest extends TestCase
                             'uuid' => '311b4cf9-761f-4fb3-b1e4-6b23e4a91c0b',
                             'email' => 'oelie@boelie.nl',
                             'type' => 273,
-                            'optIn' => '2020-12-16T10:13:26+00:00'
-                        ]
-                    ]
-                ]
-            ]
+                            'optIn' => '2020-12-16T10:13:26+00:00',
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 }

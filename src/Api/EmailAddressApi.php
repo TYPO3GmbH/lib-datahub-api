@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,6 +17,7 @@ use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\UserEmailListFactory;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class EmailAddressApi extends AbstractApi
@@ -23,6 +26,7 @@ class EmailAddressApi extends AbstractApi
 
     /**
      * @return UserEmail[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -38,7 +42,9 @@ class EmailAddressApi extends AbstractApi
 
     /**
      * @param string $uuid
+     *
      * @return EmailAddress
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException
@@ -57,7 +63,9 @@ class EmailAddressApi extends AbstractApi
 
     /**
      * @param string $email
+     *
      * @return bool
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
@@ -69,14 +77,17 @@ class EmailAddressApi extends AbstractApi
             self::uri('/emails/' . $email . '/unique')
         );
 
-        $responseContent = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $responseContent = JsonUtility::decode((string) $response->getBody());
+
         return true === $responseContent['is_unique'];
     }
 
     /**
-     * @param string $uuid
+     * @param string       $uuid
      * @param EmailAddress $emailAddress
+     *
      * @return EmailAddress
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException
@@ -97,6 +108,7 @@ class EmailAddressApi extends AbstractApi
 
     /**
      * @param string $uuid
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException

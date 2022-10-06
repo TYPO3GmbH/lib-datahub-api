@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -22,7 +24,9 @@ class ExamAccessApi extends AbstractApi
 
     /**
      * @param array<string, string> $filterAttributes
+     *
      * @return ExamAccess[]
+     *
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      */
@@ -44,6 +48,7 @@ class ExamAccessApi extends AbstractApi
     public function getExamAccess(string $uuid): ExamAccess
     {
         $this->isValidUuidOrThrow($uuid);
+
         return ExamAccessFactory::fromResponse(
             $this->client->request(
                 'GET',
@@ -60,6 +65,7 @@ class ExamAccessApi extends AbstractApi
     public function getByVoucher(string $uuid): ExamAccess
     {
         $this->isValidUuidOrThrow($uuid);
+
         return ExamAccessFactory::fromResponse(
             $this->client->request(
                 'GET',

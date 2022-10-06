@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -13,13 +15,9 @@ use DateTimeInterface;
 class CompanyInvitation
 {
     private string $username;
-
     private string $email;
-
     private string $inviteCode;
-
     private DateTimeInterface $validUntil;
-
     private string $role;
 
     public function getUsername(): string
@@ -30,6 +28,7 @@ class CompanyInvitation
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -41,6 +40,7 @@ class CompanyInvitation
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -52,6 +52,7 @@ class CompanyInvitation
     public function setInviteCode(string $inviteCode): self
     {
         $this->inviteCode = $inviteCode;
+
         return $this;
     }
 
@@ -63,6 +64,7 @@ class CompanyInvitation
     public function setValidUntil(DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
+
         return $this;
     }
 
@@ -74,6 +76,7 @@ class CompanyInvitation
     public function setRole(string $role): self
     {
         $this->role = $role;
+
         return $this;
     }
 }

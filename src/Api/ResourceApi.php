@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -21,7 +23,9 @@ class ResourceApi extends AbstractApi
 {
     /**
      * @param string $username
+     *
      * @return User
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -38,7 +42,9 @@ class ResourceApi extends AbstractApi
     /**
      * @param array<int, string> $usernames
      * @param array<int, string> $filters
+     *
      * @return array<int, User>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -58,7 +64,9 @@ class ResourceApi extends AbstractApi
 
     /**
      * @param string $uuid
+     *
      * @return Certification
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -75,7 +83,9 @@ class ResourceApi extends AbstractApi
     /**
      * @param array<int, string> $identifiers
      * @param array<int, string> $filters
+     *
      * @return array<int, Certification>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */

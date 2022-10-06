@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -20,6 +21,7 @@ class EltsProductListFactory extends AbstractFactory
 {
     /**
      * @param ResponseInterface $response
+     *
      * @return EltsProductList
      */
     public static function fromResponseDataCollection(ResponseInterface $response): EltsProductList
@@ -29,6 +31,7 @@ class EltsProductListFactory extends AbstractFactory
             static fn (array $eltsInstanceData) => self::fromArray($eltsInstanceData),
             $arrayResponse
         );
+
         return new EltsProductList($data);
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -25,6 +26,7 @@ class OfferListFactory extends AbstractFactory
             static fn (array $offerData) => self::fromArray($offerData),
             $arrayResponse['entities']
         );
+
         return new OfferList($data);
     }
 

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -14,6 +16,7 @@ use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\ReservedUserFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class OldUserApi extends AbstractApi
@@ -22,6 +25,7 @@ class OldUserApi extends AbstractApi
 
     /**
      * @return ReservedUser[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -33,12 +37,7 @@ class OldUserApi extends AbstractApi
             json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
         );
 
-        return json_decode(
-            (string)$response->getBody(),
-            true,
-            512,
-            JSON_THROW_ON_ERROR
-        )['entities'];
+        return JsonUtility::decode((string) $response->getBody())['entities'] ?? [];
     }
 
     /**
@@ -68,6 +67,7 @@ class OldUserApi extends AbstractApi
         $query = http_build_query([
             'email' => $emailAddress,
         ]);
+
         return UserFactory::fromResponse(
             $response = $this->client->request(
                 'POST',

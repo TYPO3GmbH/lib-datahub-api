@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -20,14 +22,14 @@ class DatahubResponseExceptionTest extends AbstractApiTest
     public function testException(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/AccessDeniedResponse.php'
+            require __DIR__ . '/../Fixtures/AccessDeniedResponse.php',
         ]);
         try {
             $api = new PendingRegistrationApi($this->getClient($handler));
             $api->getPendingRegistrations();
         } catch (DatahubResponseException $e) {
-            $this->assertInstanceOf(ResponseInterface::class, $e->getResponse());
-            $this->assertInstanceOf(RequestInterface::class, $e->getRequest());
+            self::assertInstanceOf(ResponseInterface::class, $e->getResponse());
+            self::assertInstanceOf(RequestInterface::class, $e->getRequest());
         }
     }
 }

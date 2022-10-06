@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,6 +17,7 @@ class EltsInstance implements JsonSerializable
     private string $uuid;
     private string $name;
     private string $owner;
+
     /**
      * @var array<string, string>
      */
@@ -37,7 +40,7 @@ class EltsInstance implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'name' => $this->getName()
+            'name' => $this->getName(),
         ];
     }
 
@@ -49,6 +52,7 @@ class EltsInstance implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -60,6 +64,7 @@ class EltsInstance implements JsonSerializable
     public function setEltsPlan(EltsPlan $eltsPlan): self
     {
         $this->eltsPlan = $eltsPlan;
+
         return $this;
     }
 
@@ -71,6 +76,7 @@ class EltsInstance implements JsonSerializable
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -82,6 +88,7 @@ class EltsInstance implements JsonSerializable
     public function setOwner(string $owner): self
     {
         $this->owner = $owner;
+
         return $this;
     }
 
@@ -95,11 +102,13 @@ class EltsInstance implements JsonSerializable
 
     /**
      * @param array<string, string> $ownerData
+     *
      * @return $this
      */
     public function setOwnerData(array $ownerData): self
     {
         $this->ownerData = $ownerData;
+
         return $this;
     }
 
@@ -113,17 +122,20 @@ class EltsInstance implements JsonSerializable
 
     /**
      * @param TechnicalContact[] $technicalContacts
+     *
      * @return self
      */
     public function setTechnicalContacts(array $technicalContacts): self
     {
         $this->technicalContacts = $technicalContacts;
+
         return $this;
     }
 
     public function addTechnicalContact(TechnicalContact $technicalContacts): self
     {
         $this->technicalContacts[] = $technicalContacts;
+
         return $this;
     }
 
@@ -137,17 +149,20 @@ class EltsInstance implements JsonSerializable
 
     /**
      * @param ReleaseNotification[] $releaseNotifications
+     *
      * @return self
      */
     public function setReleaseNotifications(array $releaseNotifications): self
     {
         $this->releaseNotifications = $releaseNotifications;
+
         return $this;
     }
 
     public function addReleaseNotification(ReleaseNotification $releaseNotification): self
     {
         $this->releaseNotifications[] = $releaseNotification;
+
         return $this;
     }
 }

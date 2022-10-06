@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -10,11 +12,13 @@ namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class EnumApi extends AbstractApi
 {
     /**
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -25,11 +29,12 @@ class EnumApi extends AbstractApi
             self::uri('/enums/certification/status'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 
     /**
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -40,11 +45,12 @@ class EnumApi extends AbstractApi
             self::uri('/enums/certification/type'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 
     /**
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -55,11 +61,12 @@ class EnumApi extends AbstractApi
             self::uri('/enums/employee/role'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 
     /**
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -70,11 +77,12 @@ class EnumApi extends AbstractApi
             self::uri('/enums/membership/type'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 
     /**
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -85,11 +93,12 @@ class EnumApi extends AbstractApi
             self::uri('/enums/link/icons'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 
     /**
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -100,13 +109,14 @@ class EnumApi extends AbstractApi
             self::uri('/enums/subscription/type'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 
     /**
+     * @return array<string,string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @return array<string,string>
      */
     public function getSubscriptionStatus(): array
     {
@@ -115,11 +125,12 @@ class EnumApi extends AbstractApi
             self::uri('/enums/subscription/status'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 
     /**
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -130,11 +141,12 @@ class EnumApi extends AbstractApi
             self::uri('/enums/company/deletion-pre-check-type'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 
     /**
      * @return array<string, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -145,6 +157,6 @@ class EnumApi extends AbstractApi
             self::uri('/enums/transferable/type'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['data'];
+        return JsonUtility::decode((string) $response->getBody())['data'] ?? [];
     }
 }

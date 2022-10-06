@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,24 +18,25 @@ class SubscriptionFilterQueryTest extends TestCase
     public function getQueryAsStringDataProvider(): array
     {
         return [
-            'subscriptionIdentifier' => [ ['subscriptionIdentifier' => 'foo'], 'subscriptionIdentifier=foo' ],
-            'subscriptionStatus' => [ ['subscriptionStatus' => ['foo']], 'subscriptionStatus%5B0%5D=foo' ],
-            'subscriptionType' => [ ['subscriptionType' => ['foo']], 'subscriptionType%5B0%5D=foo' ],
-            'subscriptionSubType' => [ ['subscriptionSubType' => ['foo']], 'subscriptionSubType%5B0%5D=foo' ],
-            'subscriptionStatus 2' => [ ['subscriptionStatus' => ['foo', 'bar']], 'subscriptionStatus%5B0%5D=foo&subscriptionStatus%5B1%5D=bar' ],
-            'subscriptionType 2' => [ ['subscriptionType' => ['foo', 'bar']], 'subscriptionType%5B0%5D=foo&subscriptionType%5B1%5D=bar' ],
-            'subscriptionSubType 2' => [ ['subscriptionSubType' => ['foo', 'bar']], 'subscriptionSubType%5B0%5D=foo&subscriptionSubType%5B1%5D=bar' ],
-            'all' => [ [
+            'subscriptionIdentifier' => [['subscriptionIdentifier' => 'foo'], 'subscriptionIdentifier=foo'],
+            'subscriptionStatus' => [['subscriptionStatus' => ['foo']], 'subscriptionStatus%5B0%5D=foo'],
+            'subscriptionType' => [['subscriptionType' => ['foo']], 'subscriptionType%5B0%5D=foo'],
+            'subscriptionSubType' => [['subscriptionSubType' => ['foo']], 'subscriptionSubType%5B0%5D=foo'],
+            'subscriptionStatus 2' => [['subscriptionStatus' => ['foo', 'bar']], 'subscriptionStatus%5B0%5D=foo&subscriptionStatus%5B1%5D=bar'],
+            'subscriptionType 2' => [['subscriptionType' => ['foo', 'bar']], 'subscriptionType%5B0%5D=foo&subscriptionType%5B1%5D=bar'],
+            'subscriptionSubType 2' => [['subscriptionSubType' => ['foo', 'bar']], 'subscriptionSubType%5B0%5D=foo&subscriptionSubType%5B1%5D=bar'],
+            'all' => [[
                 'subscriptionIdentifier' => 'foo1',
                 'subscriptionStatus' => ['foo2'],
                 'subscriptionType' => ['foo3'],
                 'subscriptionSubType' => ['foo4', 'foo5'],
-            ], 'subscriptionIdentifier=foo1&subscriptionStatus%5B0%5D=foo2&subscriptionType%5B0%5D=foo3&subscriptionSubType%5B0%5D=foo4&subscriptionSubType%5B1%5D=foo5' ],
+            ], 'subscriptionIdentifier=foo1&subscriptionStatus%5B0%5D=foo2&subscriptionType%5B0%5D=foo3&subscriptionSubType%5B0%5D=foo4&subscriptionSubType%5B1%5D=foo5'],
         ];
     }
 
     /**
      * @dataProvider getQueryAsStringDataProvider
+     *
      * @param array $data
      */
     public function testGetQueryAsString(array $inputValues, string $expectedOutput): void
@@ -44,6 +47,6 @@ class SubscriptionFilterQueryTest extends TestCase
             $subscriptionFilterQuery->{$setter}($data);
         }
         self::assertSame($expectedOutput, $subscriptionFilterQuery->getQueryAsString());
-        self::assertSame($expectedOutput, (string)$subscriptionFilterQuery);
+        self::assertSame($expectedOutput, (string) $subscriptionFilterQuery);
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -17,6 +19,7 @@ class EltsPlanExtendableFactory extends AbstractFactory
 {
     /**
      * @param array<string, mixed> $data
+     *
      * @return EltsPlanExtendable
      */
     public static function fromArray(array $data): EltsPlanExtendable

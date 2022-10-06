@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -12,6 +14,7 @@ class SecurityService
 {
     /**
      * @param array<string, mixed> $data
+     *
      * @return array<string, mixed>
      */
     public static function anonymizeSensitiveData(array $data): array
@@ -27,6 +30,7 @@ class SecurityService
                 $datum = '**********';
             }
         }
+
         return $data;
     }
 }

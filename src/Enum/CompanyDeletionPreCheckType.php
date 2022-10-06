@@ -17,7 +17,6 @@ final class CompanyDeletionPreCheckType extends AbstractEnum
 {
     public const INFO = 'info';
     public const BLOCKING = 'blocking';
-
     protected static array $optionNames = [
         self::INFO => 'Info',
         self::BLOCKING => 'Blocking',

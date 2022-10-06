@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,22 +17,23 @@ class CertificationFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $entity = CertificationFactory::fromArray($data);
-        $this->assertEquals($data['type'], $entity->getType());
-        $this->assertEquals($data['status'], $entity->getStatus());
-        $this->assertEquals($data['examLocation'], $entity->getExamLocation());
-        $this->assertEquals($data['hubspotDealId'] ?? null, $entity->getHubspotDealId());
+        self::assertEquals($data['type'], $entity->getType());
+        self::assertEquals($data['status'], $entity->getStatus());
+        self::assertEquals($data['examLocation'], $entity->getExamLocation());
+        self::assertEquals($data['hubspotDealId'] ?? null, $entity->getHubspotDealId());
         if (null !== $data['examDate']) {
-            $this->assertEquals($data['examDate'], $entity->getExamDate()->format(\DateTimeInterface::ATOM));
+            self::assertEquals($data['examDate'], $entity->getExamDate()->format(\DateTimeInterface::ATOM));
         }
         if (null !== $data['proctoringLink']) {
-            $this->assertEquals($data['proctoringLink'], $entity->getProctoringLink());
+            self::assertEquals($data['proctoringLink'], $entity->getProctoringLink());
         }
-        $this->assertEquals($data['examUrl'], $entity->getExamUrl());
+        self::assertEquals($data['examUrl'], $entity->getExamUrl());
     }
 
     public function factoryDataProvider(): array
@@ -49,7 +52,7 @@ class CertificationFactoryTest extends TestCase
                     'rulesAccepted' => false,
                     'proctoringLink' => null,
                     'examUrl' => 'https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000',
-                ]
+                ],
             ],
             'allValuesSet' => [
                 'data' => [
@@ -65,8 +68,8 @@ class CertificationFactoryTest extends TestCase
                     'rulesAccepted' => true,
                     'proctoringLink' => 'https://example.com/00000000-0000-0000-0000-000000000000',
                     'examUrl' => 'https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000',
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }

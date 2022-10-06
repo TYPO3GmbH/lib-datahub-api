@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -24,7 +26,7 @@ class SecurityServiceTest extends TestCase
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'password' => '**********',
-                ]
+                ],
             ],
             'first level token' => [
                 [
@@ -34,7 +36,7 @@ class SecurityServiceTest extends TestCase
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'token' => '**********',
-                ]
+                ],
             ],
             'second level password' => [
                 [
@@ -44,7 +46,7 @@ class SecurityServiceTest extends TestCase
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'foo' => ['password' => '**********'],
-                ]
+                ],
             ],
             'second level token' => [
                 [
@@ -54,7 +56,7 @@ class SecurityServiceTest extends TestCase
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'foo' => ['token' => '**********'],
-                ]
+                ],
             ],
             'second level password has array value' => [
                 [
@@ -64,7 +66,7 @@ class SecurityServiceTest extends TestCase
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'password' => ['foo' => 'foo'],
-                ]
+                ],
             ],
             'second level token has array value' => [
                 [
@@ -74,46 +76,47 @@ class SecurityServiceTest extends TestCase
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'token' => ['foo' => 'foo'],
-                ]
+                ],
             ],
             'third level password' => [
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'foo' => [
-                        'bar' => ['password' => 'foo']
+                        'bar' => ['password' => 'foo'],
                     ],
                 ],
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'foo' => [
-                        'bar' => ['password' => '**********']
+                        'bar' => ['password' => '**********'],
                     ],
-                ]
+                ],
             ],
             'third level token' => [
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'foo' => [
-                        'bar' => ['token' => 'foo']
+                        'bar' => ['token' => 'foo'],
                     ],
                 ],
                 [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'foo' => [
-                        'bar' => ['token' => '**********']
+                        'bar' => ['token' => '**********'],
                     ],
-                ]
+                ],
             ],
         ];
     }
 
     /**
      * @dataProvider sensitiveDataDataProvider
+     *
      * @param array $input
      * @param array $expectedOutput
      */
     public function testAnonymizeSensitiveData(array $input, array $expectedOutput): void
     {
-        $this->assertSame($expectedOutput, SecurityService::anonymizeSensitiveData($input));
+        self::assertSame($expectedOutput, SecurityService::anonymizeSensitiveData($input));
     }
 }

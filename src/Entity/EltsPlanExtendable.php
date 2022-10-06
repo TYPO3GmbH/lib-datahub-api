@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -25,6 +27,7 @@ class EltsPlanExtendable
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -36,6 +39,7 @@ class EltsPlanExtendable
     public function setVersion(string $version): self
     {
         $this->version = $version;
+
         return $this;
     }
 
@@ -47,6 +51,7 @@ class EltsPlanExtendable
     public function setType(string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -58,6 +63,7 @@ class EltsPlanExtendable
     public function setRuntime(string $runtime): self
     {
         $this->runtime = $runtime;
+
         return $this;
     }
 
@@ -69,6 +75,7 @@ class EltsPlanExtendable
     public function setValidFrom(?\DateTimeInterface $validFrom): self
     {
         $this->validFrom = $validFrom;
+
         return $this;
     }
 
@@ -80,6 +87,7 @@ class EltsPlanExtendable
     public function setValidTo(?\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
+
         return $this;
     }
 }

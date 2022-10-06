@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,30 +17,31 @@ class EmployeeFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $entity = EmployeeFactory::fromArray($data);
-        $this->assertEquals($data['uuid'], $entity->getUuid());
-        $this->assertEquals($data['role'], $entity->getRole());
+        self::assertEquals($data['uuid'], $entity->getUuid());
+        self::assertEquals($data['role'], $entity->getRole());
         if (null !== $data['leftAt']) {
-            $this->assertEquals($data['leftAt'], $entity->getLeftAt()->format(\DateTimeInterface::ATOM));
+            self::assertEquals($data['leftAt'], $entity->getLeftAt()->format(\DateTimeInterface::ATOM));
         } else {
-            $this->assertNull($entity->getLeftAt());
+            self::assertNull($entity->getLeftAt());
         }
-        $this->assertEquals($data['joinedAt'], $entity->getJoinedAt()->format(\DateTimeInterface::ATOM));
+        self::assertEquals($data['joinedAt'], $entity->getJoinedAt()->format(\DateTimeInterface::ATOM));
 
         if (isset($data['user'])) {
-            $this->assertEquals($data['user']['username'], $entity->getUser()->getUsername());
-            $this->assertEquals($data['user']['firstName'], $entity->getUser()->getFirstName());
-            $this->assertEquals($data['user']['lastName'], $entity->getUser()->getLastName());
+            self::assertEquals($data['user']['username'], $entity->getUser()->getUsername());
+            self::assertEquals($data['user']['firstName'], $entity->getUser()->getFirstName());
+            self::assertEquals($data['user']['lastName'], $entity->getUser()->getLastName());
         }
         if (isset($data['company'])) {
-            $this->assertEquals($data['company']['uuid'], $entity->getCompany()->getUuid());
-            $this->assertEquals($data['company']['title'], $entity->getCompany()->getTitle());
-            $this->assertEquals($data['company']['email'], $entity->getCompany()->getEmail());
-            $this->assertEquals($data['company']['vatId'], $entity->getCompany()->getVatId());
+            self::assertEquals($data['company']['uuid'], $entity->getCompany()->getUuid());
+            self::assertEquals($data['company']['title'], $entity->getCompany()->getTitle());
+            self::assertEquals($data['company']['email'], $entity->getCompany()->getEmail());
+            self::assertEquals($data['company']['vatId'], $entity->getCompany()->getVatId());
         }
     }
 
@@ -55,8 +58,8 @@ class EmployeeFactoryTest extends TestCase
                         'username' => 'oelie-boelie',
                         'firstName' => 'Oelie',
                         'lastName' => 'Boelie',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'withCompany' => [
                 'data' => [
@@ -70,8 +73,8 @@ class EmployeeFactoryTest extends TestCase
                         'title' => 'Aldi',
                         'email' => 'aldi-nice-things@example.com',
                         'vatId' => 'DE 123 456 789',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'withLeftAt' => [
                 'data' => [
@@ -85,9 +88,9 @@ class EmployeeFactoryTest extends TestCase
                         'title' => 'Aldi',
                         'email' => 'aldi-nice-things@example.com',
                         'vatId' => 'DE 123 456 789',
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
     }
 }

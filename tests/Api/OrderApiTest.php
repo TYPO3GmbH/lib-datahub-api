@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -19,22 +21,23 @@ class OrderApiTest extends AbstractApiTest
     public function testGetOrder(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOrderResponse.php'
+            require __DIR__ . '/../Fixtures/GetOrderResponse.php',
         ]);
         $response = (new OrderApi($this->getClient($handler)))
             ->getOrder('00000000-0000-0000-0000-000000000000');
-        $this->assertEquals('A12345', $response->getOrderNumber());
-        $this->assertIsArray($response->getPayload());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
-        $this->assertCount(1, $response->getInvoices());
+        self::assertEquals('A12345', $response->getOrderNumber());
+        self::assertIsArray($response->getPayload());
+        self::assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
+        self::assertCount(1, $response->getInvoices());
         $firstInvoice = $response->getInvoices()[0];
-        $this->assertSame('https://dienmam.com/invoice', $firstInvoice->getLink());
-        $this->assertSame((new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))->getTimestamp(), $firstInvoice->getDate()->getTimestamp());
+        self::assertSame('https://dienmam.com/invoice', $firstInvoice->getLink());
+        self::assertSame((new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))->getTimestamp(), $firstInvoice->getDate()->getTimestamp());
     }
 
     /**
-     * @param string $fixtureFile
+     * @param string   $fixtureFile
      * @param int|null $limit
+     *
      * @throws \JsonException
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
@@ -43,12 +46,12 @@ class OrderApiTest extends AbstractApiTest
     public function testSearchOrders(string $fixtureFile, ?int $limit): void
     {
         $handler = new MockHandler([
-           require __DIR__ . '/../Fixtures/' . $fixtureFile
+           require __DIR__ . '/../Fixtures/' . $fixtureFile,
        ]);
         $orderList = (new OrderApi($this->getClient($handler)))
             ->searchOrders(new OrderSearchDemand(), $limit);
 
-        $this->assertCount($limit ?? 10, $orderList->getData());
+        self::assertCount($limit ?? 10, $orderList->getData());
     }
 
     public function searchOrdersDataProvider(): \Generator
@@ -61,43 +64,43 @@ class OrderApiTest extends AbstractApiTest
     public function testCreateOrderForUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOrderResponse.php'
+            require __DIR__ . '/../Fixtures/GetOrderResponse.php',
         ]);
         $response = (new OrderApi($this->getClient($handler)))
             ->createOrderForUser('oelie-boelie', $this->getTestOrder());
-        $this->assertEquals('A12345', $response->getOrderNumber());
-        $this->assertIsArray($response->getPayload());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
+        self::assertEquals('A12345', $response->getOrderNumber());
+        self::assertIsArray($response->getPayload());
+        self::assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
     }
 
     public function testCreateOrderForCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOrderResponse.php'
+            require __DIR__ . '/../Fixtures/GetOrderResponse.php',
         ]);
         $response = (new OrderApi($this->getClient($handler)))
             ->createOrderForCompany('00000000-0000-0000-0000-000000000000', $this->getTestOrder());
-        $this->assertEquals('A12345', $response->getOrderNumber());
-        $this->assertIsArray($response->getPayload());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
+        self::assertEquals('A12345', $response->getOrderNumber());
+        self::assertIsArray($response->getPayload());
+        self::assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
     }
 
     public function testUpdateOrder(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOrderResponse.php'
+            require __DIR__ . '/../Fixtures/GetOrderResponse.php',
         ]);
         $response = (new OrderApi($this->getClient($handler)))
             ->updateOrder('00000000-0000-0000-0000-000000000000', $this->getTestOrder());
-        $this->assertEquals('A12345', $response->getOrderNumber());
-        $this->assertIsArray($response->getPayload());
-        $this->assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
+        self::assertEquals('A12345', $response->getOrderNumber());
+        self::assertIsArray($response->getPayload());
+        self::assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
     }
 
     public function testAddInvoice(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOrderResponse.php'
+            require __DIR__ . '/../Fixtures/GetOrderResponse.php',
         ]);
         $response = (new OrderApi($this->getClient($handler)))
             ->addInvoice('00000000-0000-0000-0000-000000000000', $this->getTestInvoice());
@@ -109,7 +112,7 @@ class OrderApiTest extends AbstractApiTest
     public function testAddInvoiceWithoutType(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOrderResponseWithNullDocumentType.php'
+            require __DIR__ . '/../Fixtures/GetOrderResponseWithNullDocumentType.php',
         ]);
 
         $response = (new OrderApi($this->getClient($handler)))
@@ -122,7 +125,7 @@ class OrderApiTest extends AbstractApiTest
     public function testAddCreditNote(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOrderResponseWithCreditNote.php'
+            require __DIR__ . '/../Fixtures/GetOrderResponseWithCreditNote.php',
         ]);
 
         $response = (new OrderApi($this->getClient($handler)))
@@ -135,7 +138,7 @@ class OrderApiTest extends AbstractApiTest
     public function testAddEmptyDocumentType(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOrderResponseWithEmptyDocumentType.php'
+            require __DIR__ . '/../Fixtures/GetOrderResponseWithEmptyDocumentType.php',
         ]);
 
         $response = (new OrderApi($this->getClient($handler)))
@@ -148,7 +151,7 @@ class OrderApiTest extends AbstractApiTest
     public function testDeleteMailAddressFilter(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new OrderApi($this->getClient($handler));
         try {
@@ -157,7 +160,7 @@ class OrderApiTest extends AbstractApiTest
         } catch (\Exception $e) {
             $anExceptionWasThrown = true;
         }
-        $this->assertFalse($anExceptionWasThrown);
+        self::assertFalse($anExceptionWasThrown);
     }
 
     private function getTestOrder(): Order
@@ -166,8 +169,8 @@ class OrderApiTest extends AbstractApiTest
             ->setOrderNumber('A12345')
             ->setPayload([
                 'items' => [
-                    ['foo' => 'bar']
-                ]
+                    ['foo' => 'bar'],
+                ],
             ]);
     }
 
@@ -193,7 +196,7 @@ class OrderApiTest extends AbstractApiTest
             ->setIdentifier('in_1234')
             ->setLink('https://dienmam.com/invoice')
             ->setDate(new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))
-            ;
+        ;
     }
 
     private function getTestDocumentEmptyType(): Invoice
@@ -206,11 +209,12 @@ class OrderApiTest extends AbstractApiTest
             ->setLink('https://dienmam.com/invoice')
             ->setDate(new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))
             ->setDocumentType('')
-            ;
+        ;
     }
 
     /**
      * @param Order $response
+     *
      * @return void
      */
     public function assertResponse(Order $response): void
@@ -237,6 +241,6 @@ class OrderApiTest extends AbstractApiTest
             ->setLink('https://dienmam.com/invoice')
             ->setDate(new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))
             ->setDocumentType('credit_note')
-            ;
+        ;
     }
 }

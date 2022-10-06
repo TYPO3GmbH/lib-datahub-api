@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -10,13 +12,17 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 use JsonSerializable;
 
+/**
+ * @template T
+ */
 abstract class AbstractList implements JsonSerializable
 {
-    /** @var array<int, mixed> */
+    /** @var array<int, T> */
     protected array $data;
 
     /**
      * AbstractList constructor.
+     *
      * @param array<int, mixed> $data
      */
     public function __construct(array $data)

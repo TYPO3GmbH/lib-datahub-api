@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -25,6 +27,7 @@ use T3G\DatahubApiLibrary\Factory\PreCheckResultListFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 use T3G\DatahubApiLibrary\Factory\UserListFactory;
 use T3G\DatahubApiLibrary\Factory\VoucherCodeFactory;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class UserApi extends AbstractApi
 {
@@ -50,9 +53,10 @@ class UserApi extends AbstractApi
     }
 
     /**
+     * @return array<int, User>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @return array<int, User>
      */
     public function search(string $search): array
     {
@@ -67,13 +71,15 @@ class UserApi extends AbstractApi
 
     /**
      * @param string $username
-     * @param bool $withOrders
-     * @param bool $withSubscriptions
-     * @param bool $withVoucherCodes
-     * @param bool $withEltsPlans
-     * @param bool $withEltsAccessTokens
-     * @param bool $withEltsGitPublicTokens
+     * @param bool   $withOrders
+     * @param bool   $withSubscriptions
+     * @param bool   $withVoucherCodes
+     * @param bool   $withEltsPlans
+     * @param bool   $withEltsAccessTokens
+     * @param bool   $withEltsGitPublicTokens
+     *
      * @return User
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -83,12 +89,12 @@ class UserApi extends AbstractApi
             $this->client->request(
                 'GET',
                 self::uri('/users/' . mb_strtolower($username))->withQuery(http_build_query([
-                    'withOrders' => (int)$withOrders,
-                    'withSubscriptions' => (int)$withSubscriptions,
-                    'withVoucherCodes' => (int)$withVoucherCodes,
-                    'withEltsPlans' => (int)$withEltsPlans,
-                    'withEltsAccessTokens' => (int)$withEltsAccessTokens,
-                    'withEltsGitPublicTokens' => (int)$withEltsGitPublicTokens,
+                    'withOrders' => (int) $withOrders,
+                    'withSubscriptions' => (int) $withSubscriptions,
+                    'withVoucherCodes' => (int) $withVoucherCodes,
+                    'withEltsPlans' => (int) $withEltsPlans,
+                    'withEltsAccessTokens' => (int) $withEltsAccessTokens,
+                    'withEltsGitPublicTokens' => (int) $withEltsGitPublicTokens,
                 ])),
             )
         );
@@ -124,9 +130,10 @@ class UserApi extends AbstractApi
     }
 
     /**
+     * @return Employee[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @return Employee[]
      */
     public function getCompanyHistory(string $username): array
     {
@@ -134,7 +141,7 @@ class UserApi extends AbstractApi
             'GET',
             self::uri('/users/' . mb_strtolower($username) . '/companies')->withQuery(http_build_query(['history' => 1]))
         );
-        $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $data = JsonUtility::decode((string) $data->getBody());
 
         $history = [];
         foreach ($data as $employee) {
@@ -145,9 +152,10 @@ class UserApi extends AbstractApi
     }
 
     /**
+     * @return Employee[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @return Employee[]
      */
     public function getCompanies(string $username): array
     {
@@ -155,7 +163,7 @@ class UserApi extends AbstractApi
             'GET',
             self::uri('/users/' . mb_strtolower($username) . '/companies')
         );
-        $data = json_decode((string)$data->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $data = JsonUtility::decode((string) $data->getBody());
 
         $history = [];
         foreach ($data as $employee) {
@@ -188,9 +196,11 @@ class UserApi extends AbstractApi
     }
 
     /**
-     * @param string $username
+     * @param string   $username
      * @param string[] $status
+     *
      * @return Certification[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -228,7 +238,9 @@ class UserApi extends AbstractApi
 
     /**
      * @param string $username
+     *
      * @return array<int, MembershipType::*>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
@@ -240,12 +252,14 @@ class UserApi extends AbstractApi
             self::uri('/users/' . mb_strtolower($username) . '/allowed-memberships'),
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        return JsonUtility::decode((string) $response->getBody());
     }
 
     /**
      * @param string $username
+     *
      * @return PreCheckResult[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */

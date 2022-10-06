@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -18,11 +19,10 @@ class VoucherCodeStatus extends AbstractEnum
     public const CHARGED = 'CHARGED';
     public const USED = 'USED';
     public const EXPIRED = 'EXPIRED';
-
     protected static array $optionNames = [
         self::NEW => 'New',
         self::CHARGED => 'Charged',
         self::USED => 'Used',
-        self::EXPIRED => 'Expired'
+        self::EXPIRED => 'Expired',
     ];
 }

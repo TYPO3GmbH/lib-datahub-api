@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -14,15 +16,10 @@ use JsonSerializable;
 class Employee implements JsonSerializable
 {
     private string $uuid;
-
     private string $role;
-
     private DateTimeInterface $joinedAt;
-
     private ?DateTimeInterface $leftAt;
-
     private ?Company $company;
-
     private ?User $user;
 
     public function jsonSerialize()
@@ -40,6 +37,7 @@ class Employee implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -51,6 +49,7 @@ class Employee implements JsonSerializable
     public function setRole(string $role): self
     {
         $this->role = $role;
+
         return $this;
     }
 
@@ -62,6 +61,7 @@ class Employee implements JsonSerializable
     public function setJoinedAt(DateTimeInterface $joinedAt): self
     {
         $this->joinedAt = $joinedAt;
+
         return $this;
     }
 
@@ -73,6 +73,7 @@ class Employee implements JsonSerializable
     public function setLeftAt(?DateTimeInterface $leftAt): self
     {
         $this->leftAt = $leftAt;
+
         return $this;
     }
 
@@ -84,6 +85,7 @@ class Employee implements JsonSerializable
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
         return $this;
     }
 
@@ -95,6 +97,7 @@ class Employee implements JsonSerializable
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -23,6 +25,5 @@ class CreateCompanyDto extends AbstractDto
      * @Assert\Choice(callback={"T3G\DatahubApiLibrary\Enum\CompanyType", "getAvailableOptions"})
      */
     public string $companyType;
-
     public ?string $owner = null;
 }

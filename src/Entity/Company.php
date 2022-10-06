@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -53,7 +55,6 @@ class Company implements JsonSerializable
      * @var Subscription[]
      */
     private array $subscriptions = [];
-
     private ?Address $headquarter = null;
     private ?Subscription $membership = null;
     private ?string $domain = null;
@@ -118,6 +119,7 @@ class Company implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -129,6 +131,7 @@ class Company implements JsonSerializable
     public function setCompanyType(string $companyType): self
     {
         $this->companyType = $companyType;
+
         return $this;
     }
 
@@ -140,6 +143,7 @@ class Company implements JsonSerializable
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -151,6 +155,7 @@ class Company implements JsonSerializable
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -162,6 +167,7 @@ class Company implements JsonSerializable
     public function setOwner(?string $owner): self
     {
         $this->owner = $owner;
+
         return $this;
     }
 
@@ -192,12 +198,14 @@ class Company implements JsonSerializable
                 return $address->getEmail();
             }
         }
+
         return null;
     }
 
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -209,6 +217,7 @@ class Company implements JsonSerializable
     public function setVatId(?string $vatId): self
     {
         $this->vatId = $vatId;
+
         return $this;
     }
 
@@ -220,6 +229,7 @@ class Company implements JsonSerializable
     public function setHubspotId(?int $hubspotId): self
     {
         $this->hubspotId = $hubspotId;
+
         return $this;
     }
 
@@ -233,11 +243,13 @@ class Company implements JsonSerializable
 
     /**
      * @param Address[] $addresses
+     *
      * @return $this
      */
     public function setAddresses(array $addresses): self
     {
         $this->addresses = $addresses;
+
         return $this;
     }
 
@@ -258,11 +270,13 @@ class Company implements JsonSerializable
 
     /**
      * @param Employee[] $employees
+     *
      * @return $this
      */
     public function setEmployees(array $employees): self
     {
         $this->employees = $employees;
+
         return $this;
     }
 
@@ -305,6 +319,7 @@ class Company implements JsonSerializable
 
     /**
      * @param bool $ascending Set true for ascending order, false for descending order
+     *
      * @return Order[]
      */
     public function getOrdersSortedByTime(bool $ascending = true): array
@@ -323,17 +338,20 @@ class Company implements JsonSerializable
 
     /**
      * @param Order[] $orders
+     *
      * @return Company
      */
     public function setOrders(array $orders): self
     {
         $this->orders = $orders;
+
         return $this;
     }
 
     public function addOrder(Order $order): self
     {
         $this->orders[] = $order;
+
         return $this;
     }
 
@@ -358,17 +376,20 @@ class Company implements JsonSerializable
 
     /**
      * @param Subscription[] $subscriptions
+     *
      * @return Company
      */
     public function setSubscriptions(array $subscriptions): self
     {
         $this->subscriptions = $subscriptions;
+
         return $this;
     }
 
     public function addSubscription(Subscription $subscription): self
     {
         $this->subscriptions[] = $subscription;
+
         return $this;
     }
 
@@ -380,6 +401,7 @@ class Company implements JsonSerializable
     public function setMembership(?Subscription $membership): self
     {
         $this->membership = $membership;
+
         return $this;
     }
 
@@ -410,6 +432,7 @@ class Company implements JsonSerializable
                 return true;
             }
         }
+
         return false;
     }
 
@@ -461,6 +484,7 @@ class Company implements JsonSerializable
     public function setDomain(?string $domain): self
     {
         $this->domain = $domain;
+
         return $this;
     }
 
@@ -472,6 +496,7 @@ class Company implements JsonSerializable
     public function setCity(?string $city): self
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -483,6 +508,7 @@ class Company implements JsonSerializable
     public function setCountry(?string $country): self
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -494,6 +520,7 @@ class Company implements JsonSerializable
     public function setBacklink(?string $backlink): self
     {
         $this->backlink = $backlink;
+
         return $this;
     }
 
@@ -507,17 +534,20 @@ class Company implements JsonSerializable
 
     /**
      * @param Address[] $mapLocations
+     *
      * @return $this
      */
     public function setMapLocations(array $mapLocations): self
     {
         $this->mapLocations = $mapLocations;
+
         return $this;
     }
 
     public function addMapLocation(Address $mapLocation): self
     {
         $this->mapLocations[] = $mapLocation;
+
         return $this;
     }
 
@@ -529,6 +559,7 @@ class Company implements JsonSerializable
     public function setTeaserText(?string $teaserText): self
     {
         $this->teaserText = $teaserText;
+
         return $this;
     }
 
@@ -540,6 +571,7 @@ class Company implements JsonSerializable
     public function setProfilePageText(?string $profilePageText): self
     {
         $this->profilePageText = $profilePageText;
+
         return $this;
     }
 
@@ -551,6 +583,7 @@ class Company implements JsonSerializable
     public function setContactFormAddress(?string $contactFormAddress): self
     {
         $this->contactFormAddress = $contactFormAddress;
+
         return $this;
     }
 
@@ -562,6 +595,7 @@ class Company implements JsonSerializable
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
         return $this;
     }
 
@@ -573,6 +607,7 @@ class Company implements JsonSerializable
     public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
+
         return $this;
     }
 
@@ -584,6 +619,7 @@ class Company implements JsonSerializable
     public function setHeadquarter(?Address $headquarter): self
     {
         $this->headquarter = $headquarter;
+
         return $this;
     }
 
@@ -595,6 +631,7 @@ class Company implements JsonSerializable
     public function setFoundingPartner(bool $foundingPartner): self
     {
         $this->foundingPartner = $foundingPartner;
+
         return $this;
     }
 
@@ -606,6 +643,7 @@ class Company implements JsonSerializable
     public function setPsl(?bool $psl): self
     {
         $this->psl = $psl;
+
         return $this;
     }
 
@@ -619,17 +657,20 @@ class Company implements JsonSerializable
 
     /**
      * @param EmailAddress[] $emailAddresses
+     *
      * @return Company
      */
     public function setEmailAddresses(array $emailAddresses): self
     {
         $this->emailAddresses = $emailAddresses;
+
         return $this;
     }
 
     public function addEmailAddress(EmailAddress $emailAddress): self
     {
         $this->emailAddresses[] = $emailAddress;
+
         return $this;
     }
 
@@ -641,15 +682,20 @@ class Company implements JsonSerializable
         return $this->voucherCodes;
     }
 
+    /**
+     * @param VoucherCode[] $voucherCodes
+     */
     public function setVoucherCodes(array $voucherCodes): self
     {
         $this->voucherCodes = $voucherCodes;
+
         return $this;
     }
 
     public function addVoucherCode(VoucherCode $voucherCode): self
     {
         $this->voucherCodes[] = $voucherCode;
+
         return $this;
     }
 
@@ -663,17 +709,20 @@ class Company implements JsonSerializable
 
     /**
      * @param EltsPlan[] $eltsPlans
+     *
      * @return $this
      */
     public function setEltsPlans(array $eltsPlans): self
     {
         $this->eltsPlans = $eltsPlans;
+
         return $this;
     }
 
     public function addEltsPlan(EltsPlan $eltsPlan): self
     {
         $this->eltsPlans[] = $eltsPlan;
+
         return $this;
     }
 
@@ -691,12 +740,14 @@ class Company implements JsonSerializable
     public function setExamAccesses(array $examAccesses): self
     {
         $this->examAccesses = $examAccesses;
+
         return $this;
     }
 
     public function addExamAccess(ExamAccess $examAccess): self
     {
         $this->examAccesses[] = $examAccess;
+
         return $this;
     }
 }

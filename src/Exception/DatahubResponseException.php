@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -11,6 +13,7 @@ namespace T3G\DatahubApiLibrary\Exception;
 use Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use Throwable;
 
 class DatahubResponseException extends Exception
@@ -22,16 +25,14 @@ class DatahubResponseException extends Exception
     ];
 
     private const DEFAULT = 'Something went wrong, please try again in a few minutes';
-
     private RequestInterface $request;
-
     private ResponseInterface $response;
 
     public function __construct(RequestInterface $request, ResponseInterface $response, Throwable $previous = null)
     {
         $message = self::MESSAGES[$response->getStatusCode()] ?? self::DEFAULT;
         try {
-            $data = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+            $data = JsonUtility::decode((string) $response->getBody());
             if (isset($data['errors']) && 0 < count($data['errors'])) {
                 $errorString = $this->composeErrorList($data['errors']);
                 if (!empty($errorString)) {
@@ -65,6 +66,7 @@ class DatahubResponseException extends Exception
 
     /**
      * @param array<int, string|array<int, mixed>> $errors
+     *
      * @return string
      */
     private function composeErrorList(array $errors): string

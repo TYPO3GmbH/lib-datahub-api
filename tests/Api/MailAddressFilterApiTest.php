@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,52 +20,52 @@ class MailAddressFilterApiTest extends AbstractApiTest
     public function testListMailAddressFilters(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/ListMailAddressFiltersResponse.php'
+            require __DIR__ . '/../Fixtures/ListMailAddressFiltersResponse.php',
         ]);
         $api = new MailAddressFilterApi($this->getClient($handler));
         $response = $api->getAllMailAddressFilters();
-        $this->assertCount(3, $response);
-        $this->assertEquals('de', $response[0]->getPattern());
-        $this->assertEquals('ALLOWED_TLD', $response[0]->getType());
+        self::assertCount(3, $response);
+        self::assertEquals('de', $response[0]->getPattern());
+        self::assertEquals('ALLOWED_TLD', $response[0]->getType());
     }
 
     public function testGetMailAddressFilter(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetMailAddressFilterResponse.php'
+            require __DIR__ . '/../Fixtures/GetMailAddressFilterResponse.php',
         ]);
         $api = new MailAddressFilterApi($this->getClient($handler));
         $entity = $api->getMailAddressFilter('00000000-0000-0000-0000-000000000000');
-        $this->assertEquals('de', $entity->getPattern());
-        $this->assertEquals('ALLOWED_TLD', $entity->getType());
+        self::assertEquals('de', $entity->getPattern());
+        self::assertEquals('ALLOWED_TLD', $entity->getType());
     }
 
     public function testCreateMailAddressFilter(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetMailAddressFilterResponse.php'
+            require __DIR__ . '/../Fixtures/GetMailAddressFilterResponse.php',
         ]);
         $api = new MailAddressFilterApi($this->getClient($handler));
         $entity = $api->createMailAddressFilter($this->getTestMailAddressFilter());
-        $this->assertEquals('de', $entity->getPattern());
-        $this->assertEquals('ALLOWED_TLD', $entity->getType());
+        self::assertEquals('de', $entity->getPattern());
+        self::assertEquals('ALLOWED_TLD', $entity->getType());
     }
 
     public function testUpdateMailAddressFilter(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetMailAddressFilterResponse.php'
+            require __DIR__ . '/../Fixtures/GetMailAddressFilterResponse.php',
         ]);
         $api = new MailAddressFilterApi($this->getClient($handler));
         $entity = $api->updateMailAddressFilter('00000000-0000-0000-0000-000000000000', $this->getTestMailAddressFilter());
-        $this->assertEquals('de', $entity->getPattern());
-        $this->assertEquals('ALLOWED_TLD', $entity->getType());
+        self::assertEquals('de', $entity->getPattern());
+        self::assertEquals('ALLOWED_TLD', $entity->getType());
     }
 
     public function testDeleteMailAddressFilter(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new MailAddressFilterApi($this->getClient($handler));
         try {
@@ -72,7 +74,7 @@ class MailAddressFilterApiTest extends AbstractApiTest
         } catch (\Exception $e) {
             $anExceptionWasThrown = true;
         }
-        $this->assertFalse($anExceptionWasThrown);
+        self::assertFalse($anExceptionWasThrown);
     }
 
     private function getTestMailAddressFilter(): MailAddressFilter

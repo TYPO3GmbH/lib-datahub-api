@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -18,7 +19,7 @@ class EltsAccessTokenApiTest extends AbstractApiTest
     public function testCreateEltsAccessToken(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsAccessTokenResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsAccessTokenResponse.php',
         ]);
         $eltsToken = new EltsAccessToken();
         $eltsToken->setName('Test');
@@ -35,7 +36,7 @@ class EltsAccessTokenApiTest extends AbstractApiTest
     public function testGetEltsAccessToken(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEltsAccessTokenResponse.php'
+            require __DIR__ . '/../Fixtures/GetEltsAccessTokenResponse.php',
         ]);
         $response = (new EltsAccessTokenApi($this->getClient($handler)))->getEltsAccessToken('00000000-0000-0000-0000-000000000000');
 

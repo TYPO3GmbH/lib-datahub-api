@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -22,6 +24,7 @@ class EltsProductRuntime
     public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
+
         return $this;
     }
 
@@ -33,6 +36,7 @@ class EltsProductRuntime
     public function setValidFrom(\DateTimeInterface $validFrom): self
     {
         $this->validFrom = $validFrom;
+
         return $this;
     }
 
@@ -44,6 +48,7 @@ class EltsProductRuntime
     public function setValidTo(\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
+
         return $this;
     }
 }

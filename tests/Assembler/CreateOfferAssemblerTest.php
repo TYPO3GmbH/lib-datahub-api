@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -24,8 +26,8 @@ class CreateOfferAssemblerTest extends TestCase
         $assembler = new CreateOfferAssembler();
         $dto = $assembler->create($data)->getDto();
 
-        static::assertSame($data['payload'], $dto->payload);
-        static::assertSame($data['offerNumber'], $dto->offerNumber);
-        static::assertSame($data['cartIdentifier'], $dto->cartIdentifier);
+        self::assertSame($data['payload'], $dto->payload);
+        self::assertSame($data['offerNumber'], $dto->offerNumber);
+        self::assertSame($data['cartIdentifier'], $dto->cartIdentifier);
     }
 }

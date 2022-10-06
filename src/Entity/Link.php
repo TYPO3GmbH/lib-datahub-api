@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -13,9 +15,7 @@ use JsonSerializable;
 class Link implements JsonSerializable
 {
     private string $uuid;
-
     private string $url;
-
     private string $icon;
 
     public function jsonSerialize()
@@ -34,6 +34,7 @@ class Link implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -45,6 +46,7 @@ class Link implements JsonSerializable
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
         return $this;
     }
 
@@ -56,6 +58,7 @@ class Link implements JsonSerializable
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
+
         return $this;
     }
 }

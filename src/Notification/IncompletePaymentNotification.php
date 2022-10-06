@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -47,7 +49,7 @@ class IncompletePaymentNotification extends AbstractNotification
             'company' => $this->getCompany(),
             'companyTitle' => $this->getCompanyTitle(),
             'subscription' => $this->getSubscription(),
-            'stripeLink' => $this->getStripeLink()
+            'stripeLink' => $this->getStripeLink(),
         ]);
     }
 

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -20,6 +22,7 @@ class EltsPlanFactory extends AbstractFactory
 {
     /**
      * @param ResponseInterface $response
+     *
      * @return EltsPlanList
      */
     public static function fromResponseDataCollection(ResponseInterface $response): EltsPlanList
@@ -29,11 +32,13 @@ class EltsPlanFactory extends AbstractFactory
             static fn (array $eltsPlanData) => self::fromArray($eltsPlanData),
             $arrayResponse['entities']
         );
+
         return new EltsPlanList($data);
     }
 
     /**
      * @param array<string, mixed> $data
+     *
      * @return EltsPlan
      */
     public static function fromArray(array $data): EltsPlan

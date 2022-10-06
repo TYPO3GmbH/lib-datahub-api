@@ -18,7 +18,6 @@ final class CertificationTestResult extends AbstractEnum
     public const NO_RESULT = 'NO_RESULT';
     public const FAILED = 'FAILED';
     public const PASSED = 'PASSED';
-
     protected static array $optionNames = [
         self::NO_RESULT => 'No results yet',
         self::FAILED => 'Failed',

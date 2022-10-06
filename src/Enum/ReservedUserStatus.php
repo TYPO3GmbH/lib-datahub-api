@@ -17,7 +17,6 @@ final class ReservedUserStatus extends AbstractEnum
 {
     public const DELETION_IN_PROGRESS = 'DELETION_IN_PROGRESS';
     public const DELETED = 'DELETED';
-
     protected static array $optionNames = [
         self::DELETION_IN_PROGRESS => 'Deletion in progress',
         self::DELETED => 'Deleted',

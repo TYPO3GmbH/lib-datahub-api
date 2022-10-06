@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -14,19 +16,12 @@ use JsonSerializable;
 class Registration implements JsonSerializable
 {
     private string $username;
-
     private string $email;
-
     private string $firstName;
-
     private string $lastName;
-
     private ?string $password = null;
-
     private ?string $location = null;
-
     private ?string $registrationCode = null;
-
     private ?DateTimeInterface $validUntil = null;
 
     /**
@@ -55,6 +50,7 @@ class Registration implements JsonSerializable
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -66,6 +62,7 @@ class Registration implements JsonSerializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -77,6 +74,7 @@ class Registration implements JsonSerializable
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -88,12 +86,14 @@ class Registration implements JsonSerializable
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -105,6 +105,7 @@ class Registration implements JsonSerializable
     public function setRegistrationCode(?string $registrationCode): self
     {
         $this->registrationCode = $registrationCode;
+
         return $this;
     }
 
@@ -116,6 +117,7 @@ class Registration implements JsonSerializable
     public function setValidUntil(?DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
+
         return $this;
     }
 
@@ -127,12 +129,14 @@ class Registration implements JsonSerializable
     public function setLocation(?string $location): self
     {
         $this->location = $location;
+
         return $this;
     }
 
     public function addApprovedDocument(string $identifier, string $version): self
     {
         $this->approvedDocuments[$identifier] = $version;
+
         return $this;
     }
 

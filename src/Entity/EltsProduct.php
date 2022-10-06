@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -28,6 +30,7 @@ class EltsProduct
     public function setVersion(string $version): self
     {
         $this->version = $version;
+
         return $this;
     }
 
@@ -39,6 +42,7 @@ class EltsProduct
     public function setVendor(string $vendor): self
     {
         $this->vendor = $vendor;
+
         return $this;
     }
 
@@ -50,6 +54,7 @@ class EltsProduct
     public function setRepository(string $repository): self
     {
         $this->repository = $repository;
+
         return $this;
     }
 
@@ -61,6 +66,7 @@ class EltsProduct
     public function setServiceDesk(string $serviceDesk): self
     {
         $this->serviceDesk = $serviceDesk;
+
         return $this;
     }
 
@@ -74,21 +80,25 @@ class EltsProduct
 
     /**
      * @param EltsProductRuntime[] $runtimes
+     *
      * @return EltsProduct
      */
     public function setRuntimes(array $runtimes): self
     {
         $this->runtimes = $runtimes;
+
         return $this;
     }
 
     /**
      * @param EltsProductRuntime $runtime
+     *
      * @return EltsProduct
      */
     public function addRuntime(EltsProductRuntime $runtime): self
     {
         $this->runtimes[] = $runtime;
+
         return $this;
     }
 }

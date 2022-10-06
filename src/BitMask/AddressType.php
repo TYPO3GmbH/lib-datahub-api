@@ -16,7 +16,6 @@ class AddressType extends AbstractBitMask
     public const TYPE_POSTAL = 0x0010;   // 16
     public const TYPE_DELIVERY = 0x0100; // 256
     public const TYPE_LOCATION = 0x1000; // 4096
-
     protected static array $bits = [
         self::TYPE_INVOICE => 'Invoice',
         self::TYPE_DELIVERY => 'Delivery',

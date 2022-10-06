@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -38,6 +40,7 @@ class Invoice implements \JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -49,6 +52,7 @@ class Invoice implements \JsonSerializable
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -60,6 +64,7 @@ class Invoice implements \JsonSerializable
     public function setLink(string $link): self
     {
         $this->link = $link;
+
         return $this;
     }
 
@@ -71,6 +76,7 @@ class Invoice implements \JsonSerializable
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -82,6 +88,7 @@ class Invoice implements \JsonSerializable
     public function setNumber(string $number): self
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -93,6 +100,7 @@ class Invoice implements \JsonSerializable
     public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
+
         return $this;
     }
 
@@ -104,6 +112,7 @@ class Invoice implements \JsonSerializable
     public function setDocumentType(string $documentType): self
     {
         $this->documentType = $documentType;
+
         return $this;
     }
 }

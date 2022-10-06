@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,38 +18,38 @@ class PendingRegistrationApiTest extends AbstractApiTest
     public function testGetPendingRegistration(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetPendingRegistrationResponse.php'
+            require __DIR__ . '/../Fixtures/GetPendingRegistrationResponse.php',
         ]);
         $api = new PendingRegistrationApi($this->getClient($handler));
         $response = $api->getPendingRegistration('00000000-0000-0000-0000-000000000000');
-        $this->assertEquals('oelie-boelie', $response->getUsername());
+        self::assertEquals('oelie-boelie', $response->getUsername());
     }
 
     public function testGetPendingRegistrations(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetPendingRegistrationsResponse.php'
+            require __DIR__ . '/../Fixtures/GetPendingRegistrationsResponse.php',
         ]);
         $api = new PendingRegistrationApi($this->getClient($handler));
         $response = $api->getPendingRegistrations();
-        $this->assertCount(1, $response);
-        $this->assertEquals('oelie-boelie', $response[0]['username']);
+        self::assertCount(1, $response);
+        self::assertEquals('oelie-boelie', $response[0]['username']);
     }
 
     public function testApproveRegistration(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserResponse.php',
         ]);
         $api = new PendingRegistrationApi($this->getClient($handler));
         $response = $api->approveRegistration('00000000-0000-0000-0000-000000000000');
-        $this->assertEquals('oelie-boelie', $response->getUsername());
+        self::assertEquals('oelie-boelie', $response->getUsername());
     }
 
     public function testDeclineRegistration(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new PendingRegistrationApi($this->getClient($handler));
         try {
@@ -56,6 +58,6 @@ class PendingRegistrationApiTest extends AbstractApiTest
         } catch (\Exception $e) {
             $anExceptionWasThrown = true;
         }
-        $this->assertFalse($anExceptionWasThrown);
+        self::assertFalse($anExceptionWasThrown);
     }
 }

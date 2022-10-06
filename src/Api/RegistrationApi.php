@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -19,7 +21,9 @@ class RegistrationApi extends AbstractApi
 {
     /**
      * @param Registration $registration
+     *
      * @return Registration
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -36,7 +40,9 @@ class RegistrationApi extends AbstractApi
 
     /**
      * @param string $registrationToken
+     *
      * @return User|Registration
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */

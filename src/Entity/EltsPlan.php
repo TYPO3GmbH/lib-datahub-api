@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -73,6 +75,7 @@ class EltsPlan implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -84,6 +87,7 @@ class EltsPlan implements JsonSerializable
     public function setVersion(string $version): self
     {
         $this->version = $version;
+
         return $this;
     }
 
@@ -95,6 +99,7 @@ class EltsPlan implements JsonSerializable
     public function setOwner(string $owner): self
     {
         $this->owner = $owner;
+
         return $this;
     }
 
@@ -108,11 +113,13 @@ class EltsPlan implements JsonSerializable
 
     /**
      * @param array<string, string> $ownerData
+     *
      * @return $this
      */
     public function setOwnerData(array $ownerData): self
     {
         $this->ownerData = $ownerData;
+
         return $this;
     }
 
@@ -124,6 +131,7 @@ class EltsPlan implements JsonSerializable
     public function setType(string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -135,6 +143,7 @@ class EltsPlan implements JsonSerializable
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -148,11 +157,13 @@ class EltsPlan implements JsonSerializable
 
     /**
      * @param EltsPlanExtendable[] $extendables
+     *
      * @return self
      */
     public function setExtendables(array $extendables): self
     {
         $this->extendables = $extendables;
+
         return $this;
     }
 
@@ -201,17 +212,20 @@ class EltsPlan implements JsonSerializable
 
     /**
      * @param EltsRuntime[] $runtimes
+     *
      * @return self
      */
     public function setRuntimes(array $runtimes): self
     {
         $this->runtimes = $runtimes;
+
         return $this;
     }
 
     public function addRuntime(EltsRuntime $runtime): self
     {
         $this->runtimes[] = $runtime;
+
         return $this;
     }
 
@@ -249,17 +263,20 @@ class EltsPlan implements JsonSerializable
 
     /**
      * @param EltsInstance[] $instances
+     *
      * @return EltsPlan
      */
     public function setInstances(array $instances): self
     {
         $this->instances = $instances;
+
         return $this;
     }
 
     public function addInstance(EltsInstance $instance): self
     {
         $this->instances[] = $instance;
+
         return $this;
     }
 
@@ -271,6 +288,7 @@ class EltsPlan implements JsonSerializable
     public function setOrder(?Order $order = null): self
     {
         $this->order = $order;
+
         return $this;
     }
 
@@ -296,17 +314,20 @@ class EltsPlan implements JsonSerializable
 
     /**
      * @param TechnicalContact[] $technicalContacts
+     *
      * @return self
      */
     public function setTechnicalContacts(array $technicalContacts): self
     {
         $this->technicalContacts = $technicalContacts;
+
         return $this;
     }
 
     public function addTechnicalContact(TechnicalContact $technicalContacts): self
     {
         $this->technicalContacts[] = $technicalContacts;
+
         return $this;
     }
 
@@ -320,17 +341,20 @@ class EltsPlan implements JsonSerializable
 
     /**
      * @param ReleaseNotification[] $releaseNotifications
+     *
      * @return self
      */
     public function setReleaseNotifications(array $releaseNotifications): self
     {
         $this->releaseNotifications = $releaseNotifications;
+
         return $this;
     }
 
     public function addReleaseNotification(ReleaseNotification $releaseNotification): self
     {
         $this->releaseNotifications[] = $releaseNotification;
+
         return $this;
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -8,6 +10,9 @@
 
 namespace T3G\DatahubApiLibrary\Entity;
 
+/**
+ * @extends AbstractList<Offer>
+ */
 class OfferList extends AbstractList
 {
     /**

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -35,6 +36,7 @@ class EltsGitPublicKey implements \JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -46,6 +48,7 @@ class EltsGitPublicKey implements \JsonSerializable
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -57,6 +60,7 @@ class EltsGitPublicKey implements \JsonSerializable
     public function setPublicKey(string $publicKey): self
     {
         $this->publicKey = $publicKey;
+
         return $this;
     }
 
@@ -68,6 +72,7 @@ class EltsGitPublicKey implements \JsonSerializable
     public function setEltsVersion(string $eltsVersion): self
     {
         $this->eltsVersion = $eltsVersion;
+
         return $this;
     }
 
@@ -81,12 +86,15 @@ class EltsGitPublicKey implements \JsonSerializable
 
     /**
      * @param int $githubId
+     *
      * @return EltsGitPublicKey
+     *
      * @internal
      */
     public function setGithubId(int $githubId): self
     {
         $this->githubId = $githubId;
+
         return $this;
     }
 }

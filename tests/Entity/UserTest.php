@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -36,12 +37,12 @@ class UserTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::PRIMARY,
                             'optIn' => '2020-01-01 00:00:00',
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::PRIMARY,
                 true,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
             'primary email unconfirmed' => [
                 UserFactory::fromArray([
@@ -51,12 +52,12 @@ class UserTest extends TestCase
                             'uuid' => '12345678-1234-1234-1234-123456789012',
                             'email' => 'foo@bar.com',
                             'type' => EmailType::PRIMARY,
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::PRIMARY,
                 true,
-                null
+                null,
             ],
             'billing email confirmed' => [
                 UserFactory::fromArray([
@@ -67,12 +68,12 @@ class UserTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::BILLING,
                             'optIn' => '2020-01-01 00:00:00',
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::BILLING,
                 true,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
             'billing email unconfirmed' => [
                 UserFactory::fromArray([
@@ -82,12 +83,12 @@ class UserTest extends TestCase
                             'uuid' => '12345678-1234-1234-1234-123456789012',
                             'email' => 'foo@bar.com',
                             'type' => EmailType::BILLING,
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::BILLING,
                 true,
-                null
+                null,
             ],
             'voting email confirmed' => [
                 UserFactory::fromArray([
@@ -98,12 +99,12 @@ class UserTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::VOTING,
                             'optIn' => '2020-01-01 00:00:00',
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::VOTING,
                 true,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
             'voting email unconfirmed' => [
                 UserFactory::fromArray([
@@ -113,12 +114,12 @@ class UserTest extends TestCase
                             'uuid' => '12345678-1234-1234-1234-123456789012',
                             'email' => 'foo@bar.com',
                             'type' => EmailType::VOTING,
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::VOTING,
                 true,
-                null
+                null,
             ],
             'primary email confirmed but ignore optIn' => [
                 UserFactory::fromArray([
@@ -129,12 +130,12 @@ class UserTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::PRIMARY,
                             'optIn' => '2020-01-01 00:00:00',
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::PRIMARY,
                 false,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
             'primary email unconfirmed but ignore optIn' => [
                 UserFactory::fromArray([
@@ -144,12 +145,12 @@ class UserTest extends TestCase
                             'uuid' => '12345678-1234-1234-1234-123456789012',
                             'email' => 'foo@bar.com',
                             'type' => EmailType::PRIMARY,
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::PRIMARY,
                 false,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
             'billing email confirmed but ignore optIn' => [
                 UserFactory::fromArray([
@@ -160,12 +161,12 @@ class UserTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::BILLING,
                             'optIn' => '2020-01-01 00:00:00',
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::BILLING,
                 false,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
             'billing email unconfirmed but ignore optIn' => [
                 UserFactory::fromArray([
@@ -175,12 +176,12 @@ class UserTest extends TestCase
                             'uuid' => '12345678-1234-1234-1234-123456789012',
                             'email' => 'foo@bar.com',
                             'type' => EmailType::BILLING,
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::BILLING,
                 false,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
             'voting email confirmed but ignore optIn' => [
                 UserFactory::fromArray([
@@ -191,12 +192,12 @@ class UserTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::VOTING,
                             'optIn' => '2020-01-01 00:00:00',
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::VOTING,
                 false,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
             'voting email unconfirmed but ignore optIn' => [
                 UserFactory::fromArray([
@@ -206,12 +207,12 @@ class UserTest extends TestCase
                             'uuid' => '12345678-1234-1234-1234-123456789012',
                             'email' => 'foo@bar.com',
                             'type' => EmailType::VOTING,
-                        ]
+                        ],
                     ],
                 ]),
                 EmailType::VOTING,
                 false,
-                'foo@bar.com'
+                'foo@bar.com',
             ],
         ];
     }

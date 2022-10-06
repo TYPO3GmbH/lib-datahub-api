@@ -27,6 +27,7 @@ abstract class AbstractEnum
 
     /**
      * @param bool $withDescription
+     *
      * @return array<int|string, string>
      */
     public static function getAvailableOptions(bool $withDescription = false): array

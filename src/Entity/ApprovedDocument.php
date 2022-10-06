@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -14,11 +16,8 @@ use JsonSerializable;
 class ApprovedDocument implements JsonSerializable
 {
     private string $documentIdentifier;
-
     private string $documentVersion;
-
     private ?DateTimeInterface $approveDate = null;
-
     private ?User $user = null;
 
     public function jsonSerialize()
@@ -33,6 +32,7 @@ class ApprovedDocument implements JsonSerializable
         if (null !== $this->user) {
             $data['user'] = $this->user;
         }
+
         return $data;
     }
 
@@ -46,11 +46,13 @@ class ApprovedDocument implements JsonSerializable
 
     /**
      * @param string $documentIdentifier
+     *
      * @return ApprovedDocument
      */
     public function setDocumentIdentifier(string $documentIdentifier): self
     {
         $this->documentIdentifier = $documentIdentifier;
+
         return $this;
     }
 
@@ -64,11 +66,13 @@ class ApprovedDocument implements JsonSerializable
 
     /**
      * @param string $documentVersion
+     *
      * @return ApprovedDocument
      */
     public function setDocumentVersion(string $documentVersion): self
     {
         $this->documentVersion = $documentVersion;
+
         return $this;
     }
 
@@ -82,11 +86,13 @@ class ApprovedDocument implements JsonSerializable
 
     /**
      * @param DateTimeInterface $approveDate
+     *
      * @return ApprovedDocument
      */
     public function setApproveDate(?DateTimeInterface $approveDate): self
     {
         $this->approveDate = $approveDate;
+
         return $this;
     }
 
@@ -100,11 +106,13 @@ class ApprovedDocument implements JsonSerializable
 
     /**
      * @param User $user
+     *
      * @return ApprovedDocument
      */
     public function setUser(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 }

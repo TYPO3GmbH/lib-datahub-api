@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -33,7 +35,7 @@ class ExamAccess implements JsonSerializable
             'voucher' => $this->getVoucher(),
             'createdAt' => $this->formatDateIfGiven($this->getCreatedAt()),
             'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
-            'used' => $this->getUsed()
+            'used' => $this->getUsed(),
         ];
     }
 
@@ -45,6 +47,7 @@ class ExamAccess implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -56,6 +59,7 @@ class ExamAccess implements JsonSerializable
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -67,6 +71,7 @@ class ExamAccess implements JsonSerializable
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
         return $this;
     }
 
@@ -78,6 +83,7 @@ class ExamAccess implements JsonSerializable
     public function setCertificationType(string $certificationType): self
     {
         $this->certificationType = $certificationType;
+
         return $this;
     }
 
@@ -101,6 +107,7 @@ class ExamAccess implements JsonSerializable
     public function setVoucher(string $voucher): self
     {
         $this->voucher = $voucher;
+
         return $this;
     }
 
@@ -112,6 +119,7 @@ class ExamAccess implements JsonSerializable
     public function setStatus(?string $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -123,6 +131,7 @@ class ExamAccess implements JsonSerializable
     public function setHistory(?string $history): self
     {
         $this->history = $history;
+
         return $this;
     }
 
@@ -134,6 +143,7 @@ class ExamAccess implements JsonSerializable
     public function setCreatedAt(?DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -145,6 +155,7 @@ class ExamAccess implements JsonSerializable
     public function setValidUntil(?DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
+
         return $this;
     }
 
@@ -165,9 +176,9 @@ class ExamAccess implements JsonSerializable
         return $this->getCertificationType() . ' v' . $this->getCertificationVersion();
     }
 
-    private function formatDateIfGiven(?\DateTimeInterface $dateTime): ?string
+    private function formatDateIfGiven(?DateTimeInterface $dateTime): ?string
     {
-        return null !== $dateTime ? $dateTime->format(\DateTimeInterface::ATOM) :  null;
+        return null !== $dateTime ? $dateTime->format(\DateTimeInterface::ATOM) : null;
     }
 
     public function __toString(): string

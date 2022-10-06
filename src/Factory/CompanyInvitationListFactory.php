@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -19,6 +21,7 @@ class CompanyInvitationListFactory extends AbstractFactory
 {
     /**
      * @param array{entities: array<string, mixed>} $list
+     *
      * @return CompanyInvitation[]
      */
     public static function fromArray(array $list): array

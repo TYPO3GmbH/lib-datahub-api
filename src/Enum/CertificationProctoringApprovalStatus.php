@@ -18,7 +18,6 @@ final class CertificationProctoringApprovalStatus extends AbstractEnum
     public const UNKNOWN = 'UNKNOWN';
     public const APPROVED = 'APPROVED';
     public const DECLINED = 'DECLINED';
-
     protected static array $optionNames = [
         self::UNKNOWN => 'Undefined',
         self::APPROVED => 'Approved',

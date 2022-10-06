@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,25 +17,26 @@ class AddressFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $entity = AddressFactory::fromArray($data);
-        $this->assertEquals($data['uuid'], $entity->getUuid());
-        $this->assertEquals($data['title'], $entity->getTitle());
-        $this->assertEquals($data['firstName'], $entity->getFirstName());
-        $this->assertEquals($data['lastName'], $entity->getLastName());
-        $this->assertEquals($data['additionalAddressLine1'], $entity->getAdditionalAddressLine1());
-        $this->assertEquals($data['additionalAddressLine2'], $entity->getAdditionalAddressLine2());
-        $this->assertEquals($data['street'], $entity->getStreet());
-        $this->assertEquals($data['city'], $entity->getCity());
-        $this->assertEquals($data['country']['label'], $entity->getCountryLabel());
-        $this->assertEquals($data['zip'], $entity->getZip());
-        $this->assertEquals($data['type'], $entity->getType());
-        $this->assertEquals($data['latitude'], $entity->getLatitude());
-        $this->assertEquals($data['longitude'], $entity->getLongitude());
-        $this->assertEquals($data['checksum'], $entity->getChecksum());
+        self::assertEquals($data['uuid'], $entity->getUuid());
+        self::assertEquals($data['title'], $entity->getTitle());
+        self::assertEquals($data['firstName'], $entity->getFirstName());
+        self::assertEquals($data['lastName'], $entity->getLastName());
+        self::assertEquals($data['additionalAddressLine1'], $entity->getAdditionalAddressLine1());
+        self::assertEquals($data['additionalAddressLine2'], $entity->getAdditionalAddressLine2());
+        self::assertEquals($data['street'], $entity->getStreet());
+        self::assertEquals($data['city'], $entity->getCity());
+        self::assertEquals($data['country']['label'], $entity->getCountryLabel());
+        self::assertEquals($data['zip'], $entity->getZip());
+        self::assertEquals($data['type'], $entity->getType());
+        self::assertEquals($data['latitude'], $entity->getLatitude());
+        self::assertEquals($data['longitude'], $entity->getLongitude());
+        self::assertEquals($data['checksum'], $entity->getChecksum());
     }
 
     public function factoryDataProvider(): array
@@ -52,15 +55,15 @@ class AddressFactoryTest extends TestCase
                     'country' => [
                         'iso' => 'RU',
                         'iso3' => 'RUS',
-                        'label' => 'Russia'
+                        'label' => 'Russia',
                     ],
                     'zip' => '1234 QZ',
                     'type' => 16,
                     'latitude' => 12.94856534257,
                     'longitude' => 8.765486753485,
                     'checksum' => '30489455e915553ca09f9430fb95d6ab055c64326fd9ec17d7a4655f2a4d4fe5',
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }

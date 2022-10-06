@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,6 +20,7 @@ use Psr\Log\LoggerInterface;
 use Sunrise\Stream\StreamFactory;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Service\SecurityService;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class DataHubClient
 {
@@ -91,9 +94,10 @@ class DataHubClient
     }
 
     /**
-     * @param string $needle
+     * @param string   $needle
      * @param string[] $haystack
-     * @param bool $caseInsensitive
+     * @param bool     $caseInsensitive
+     *
      * @return string[]
      */
     private function substrArray(string $needle, array $haystack, bool $caseInsensitive = false): array
@@ -104,18 +108,21 @@ class DataHubClient
     }
 
     /**
-     * @param RequestInterface $request
+     * @param RequestInterface  $request
      * @param ResponseInterface $response
+     *
      * @return array<string, array<string, array<array<string>>|int|UriInterface|string>>
+     *
      * @throws \JsonException
      */
     private function getLogContext(RequestInterface $request, ResponseInterface $response): array
     {
-        $body = (string)$request->getBody();
+        $body = (string) $request->getBody();
         $bodyAsArray = [];
         if (!empty($body)) {
-            $bodyAsArray = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+            $bodyAsArray = JsonUtility::decode($body);
         }
+
         return [
             'request' => [
                 'method' => $request->getMethod(),
@@ -127,8 +134,8 @@ class DataHubClient
             'response' => [
                 'status_code' => $response->getStatusCode(),
                 'headers' => $response->getHeaders(),
-                'content' => (string)$response->getBody(),
-            ]
+                'content' => (string) $response->getBody(),
+            ],
         ];
     }
 }

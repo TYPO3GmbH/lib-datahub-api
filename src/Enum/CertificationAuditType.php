@@ -18,7 +18,6 @@ final class CertificationAuditType extends AbstractEnum
     public const PROCTORU = 'PROCTORU';
     public const PRESENCE = 'PRESENCE';
     public const UNKNOWN = 'UNKNOWN';
-
     protected static array $optionNames = [
         self::PROCTORU => 'ProctorU',
         self::PRESENCE => 'Presence',

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -57,6 +58,7 @@ class VoucherCode implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -68,6 +70,7 @@ class VoucherCode implements JsonSerializable
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -79,6 +82,7 @@ class VoucherCode implements JsonSerializable
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
         return $this;
     }
 
@@ -90,6 +94,7 @@ class VoucherCode implements JsonSerializable
     public function setVoucherCode(string $voucherCode): self
     {
         $this->voucherCode = $voucherCode;
+
         return $this;
     }
 
@@ -101,6 +106,7 @@ class VoucherCode implements JsonSerializable
     public function setType(string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -112,6 +118,7 @@ class VoucherCode implements JsonSerializable
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -123,6 +130,7 @@ class VoucherCode implements JsonSerializable
     public function setExpiresAt(\DateTimeInterface $expiresAt): self
     {
         $this->expiresAt = $expiresAt;
+
         return $this;
     }
 
@@ -134,6 +142,7 @@ class VoucherCode implements JsonSerializable
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -145,6 +154,7 @@ class VoucherCode implements JsonSerializable
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -156,6 +166,7 @@ class VoucherCode implements JsonSerializable
     public function setOrderNumber(?string $orderNumber): self
     {
         $this->orderNumber = $orderNumber;
+
         return $this;
     }
 
@@ -167,6 +178,7 @@ class VoucherCode implements JsonSerializable
     public function setProduct(?string $product): self
     {
         $this->product = $product;
+
         return $this;
     }
 
@@ -178,6 +190,7 @@ class VoucherCode implements JsonSerializable
     public function setUsername(?string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -189,6 +202,7 @@ class VoucherCode implements JsonSerializable
     public function setUsages(?int $usages): self
     {
         $this->usages = $usages;
+
         return $this;
     }
 
@@ -200,6 +214,7 @@ class VoucherCode implements JsonSerializable
     public function setRedemptions(int $redemptions): self
     {
         $this->redemptions = $redemptions;
+
         return $this;
     }
 
@@ -211,6 +226,7 @@ class VoucherCode implements JsonSerializable
     public function setIsExpired(bool $isExpired): self
     {
         $this->isExpired = $isExpired;
+
         return $this;
     }
 
@@ -222,6 +238,7 @@ class VoucherCode implements JsonSerializable
     public function setIsUsed(bool $isUsed): self
     {
         $this->isUsed = $isUsed;
+
         return $this;
     }
 
@@ -233,6 +250,7 @@ class VoucherCode implements JsonSerializable
     public function setIsRedeemable(bool $isRedeemable): self
     {
         $this->isRedeemable = $isRedeemable;
+
         return $this;
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,6 +17,7 @@ use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\RegistrationFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class PendingRegistrationApi extends AbstractApi
 {
@@ -34,6 +37,7 @@ class PendingRegistrationApi extends AbstractApi
 
     /**
      * @return PendingRegistration[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
@@ -41,10 +45,10 @@ class PendingRegistrationApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            self::uri('/registration/pending')->withQuery(http_build_query(['extended' => (int)$onlyWhereAdminApprovalRequired]))
+            self::uri('/registration/pending')->withQuery(http_build_query(['extended' => (int) $onlyWhereAdminApprovalRequired]))
         );
 
-        return json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR)['entities'];
+        return JsonUtility::decode((string) $response->getBody())['entities'] ?? [];
     }
 
     /**

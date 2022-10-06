@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -28,7 +30,9 @@ class CertificationApi extends AbstractApi
 
     /**
      * @param array<string, string> $filterAttributes
+     *
      * @return Certification[]
+     *
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      */
@@ -44,7 +48,9 @@ class CertificationApi extends AbstractApi
 
     /**
      * @param CertificationSearchDemand $searchDemand
+     *
      * @return Certification[]
+     *
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      */
@@ -64,7 +70,7 @@ class CertificationApi extends AbstractApi
         return CertificationFactory::fromResponse(
             $this->client->request(
                 'GET',
-                self::uri('/certifications/' . $uuid)->withQuery('withHistory=' . (int)$withHistory)
+                self::uri('/certifications/' . $uuid)->withQuery('withHistory=' . (int) $withHistory)
             )
         );
     }
@@ -89,7 +95,7 @@ class CertificationApi extends AbstractApi
                 'PUT',
                 self::uri('/certifications/' . $uuid . '/start'),
                 json_encode([
-                    'examDate' => (new \DateTimeImmutable())->format(\DateTimeInterface::ATOM)
+                    'examDate' => (new \DateTimeImmutable())->format(\DateTimeInterface::ATOM),
                 ], JSON_THROW_ON_ERROR)
             )
         );
@@ -97,6 +103,7 @@ class CertificationApi extends AbstractApi
 
     /**
      * @return Certification[]
+     *
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      */
@@ -112,6 +119,7 @@ class CertificationApi extends AbstractApi
 
     /**
      * @return Certification[]
+     *
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      */
@@ -130,6 +138,7 @@ class CertificationApi extends AbstractApi
 
     /**
      * @param string[] $uuids
+     *
      * @throws \JsonException
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
@@ -140,7 +149,7 @@ class CertificationApi extends AbstractApi
             'PUT',
             self::uri('/certifications/send-to-print'),
             json_encode([
-                'certifications' => $uuids
+                'certifications' => $uuids,
             ], JSON_THROW_ON_ERROR)
         );
     }

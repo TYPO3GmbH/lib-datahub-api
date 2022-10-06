@@ -18,7 +18,6 @@ final class EmployeeRole extends AbstractEnum
     public const OWNER = 'OWNER';
     public const MANAGER = 'MANAGER';
     public const EMPLOYEE = 'EMPLOYEE';
-
     protected static array $optionNames = [
         self::OWNER => 'Owner',
         self::MANAGER => 'Manager',

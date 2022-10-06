@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,113 +18,113 @@ class EnumApiTest extends AbstractApiTest
     public function testGetCertificationStatusses(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCertificationStatussesEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetCertificationStatussesEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getCertificationStatusses();
-        $this->assertContains('Passed', $response);
-        $this->assertArrayHasKey('PASSED', $response);
+        self::assertContains('Passed', $response);
+        self::assertArrayHasKey('PASSED', $response);
     }
 
     public function testGetCertificationTypes(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCertificationTypesEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetCertificationTypesEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getCertificationTypes();
-        $this->assertIsArray($response);
-        $this->assertContains('TCCI', $response);
-        $this->assertArrayHasKey('TCCI', $response);
+        self::assertIsArray($response);
+        self::assertContains('TCCI', $response);
+        self::assertArrayHasKey('TCCI', $response);
     }
 
     public function testGetEmployeeRoles(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetEmployeeRolesEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetEmployeeRolesEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getEmployeeRoles();
-        $this->assertIsArray($response);
-        $this->assertContains('Employee', $response);
-        $this->assertArrayHasKey('EMPLOYEE', $response);
+        self::assertIsArray($response);
+        self::assertContains('Employee', $response);
+        self::assertArrayHasKey('EMPLOYEE', $response);
     }
 
     public function testGetMembershipTypes(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetMembershipTypesEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetMembershipTypesEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getMembershipTypes();
-        $this->assertIsArray($response);
-        $this->assertContains('Community', $response);
-        $this->assertArrayHasKey('COMMUNITY', $response);
+        self::assertIsArray($response);
+        self::assertContains('Community', $response);
+        self::assertArrayHasKey('COMMUNITY', $response);
     }
 
     public function testGetLinkTypes(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetLinkTypesEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetLinkTypesEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getLinkTypes();
-        $this->assertIsArray($response);
-        $this->assertContains('Github', $response);
-        $this->assertArrayHasKey('github', $response);
+        self::assertIsArray($response);
+        self::assertContains('Github', $response);
+        self::assertArrayHasKey('github', $response);
     }
 
     public function testGetSubscriptionTypes(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetSubscriptionTypesEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetSubscriptionTypesEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getSubscriptionTypes();
-        $this->assertIsArray($response);
-        $this->assertContains('Membership', $response);
-        $this->assertArrayHasKey('membership', $response);
-        $this->assertContains('Professional Service Listing', $response);
-        $this->assertArrayHasKey('psl', $response);
+        self::assertIsArray($response);
+        self::assertContains('Membership', $response);
+        self::assertArrayHasKey('membership', $response);
+        self::assertContains('Professional Service Listing', $response);
+        self::assertArrayHasKey('psl', $response);
     }
 
     public function testGetSubscriptionStatus(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetSubscriptionStatusEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetSubscriptionStatusEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getSubscriptionTypes();
-        $this->assertIsArray($response);
-        $this->assertContains('Active subscription', $response);
-        $this->assertArrayHasKey('active', $response);
-        $this->assertContains('Past due payment', $response);
-        $this->assertArrayHasKey('past_due', $response);
+        self::assertIsArray($response);
+        self::assertContains('Active subscription', $response);
+        self::assertArrayHasKey('active', $response);
+        self::assertContains('Past due payment', $response);
+        self::assertArrayHasKey('past_due', $response);
     }
 
     public function testGetCompanyDeletionPreCheckTypesEnumResponse(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCompanyDeletionPreCheckTypesEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetCompanyDeletionPreCheckTypesEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getCompanyDeletionPreCheckTypes();
-        $this->assertIsArray($response);
-        $this->assertContains('Info', $response);
-        $this->assertArrayHasKey('info', $response);
-        $this->assertContains('Blocking', $response);
-        $this->assertArrayHasKey('blocking', $response);
+        self::assertIsArray($response);
+        self::assertContains('Info', $response);
+        self::assertArrayHasKey('info', $response);
+        self::assertContains('Blocking', $response);
+        self::assertArrayHasKey('blocking', $response);
     }
 
     public function testGetTransferableTypesEnumResponse(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetTransferableTypesEnumResponse.php'
+            require __DIR__ . '/../Fixtures/GetTransferableTypesEnumResponse.php',
         ]);
         $api = new EnumApi($this->getClient($handler));
         $response = $api->getTransferableTypes();
-        $this->assertIsArray($response);
-        $this->assertContains('elts', $response);
-        $this->assertArrayHasKey('elts', $response);
+        self::assertIsArray($response);
+        self::assertContains('elts', $response);
+        self::assertArrayHasKey('elts', $response);
     }
 }

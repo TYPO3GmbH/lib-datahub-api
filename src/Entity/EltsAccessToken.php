@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -23,7 +24,7 @@ class EltsAccessToken implements \JsonSerializable
         return [
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'token' => $this->getToken() ?: null
+            'token' => $this->getToken() ?: null,
         ];
     }
 
@@ -35,6 +36,7 @@ class EltsAccessToken implements \JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -46,6 +48,7 @@ class EltsAccessToken implements \JsonSerializable
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -57,6 +60,7 @@ class EltsAccessToken implements \JsonSerializable
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -68,6 +72,7 @@ class EltsAccessToken implements \JsonSerializable
     public function setToken(string $token): self
     {
         $this->token = $token;
+
         return $this;
     }
 
@@ -79,6 +84,7 @@ class EltsAccessToken implements \JsonSerializable
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -90,6 +96,7 @@ class EltsAccessToken implements \JsonSerializable
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -20,6 +22,7 @@ trait ChecksumTrait
     public function setChecksum(string $checksum): self
     {
         $this->checksum = $checksum;
+
         return $this;
     }
 }

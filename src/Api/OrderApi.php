@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -33,9 +35,11 @@ class OrderApi extends AbstractApi
 
     /**
      * @param OrderSearchDemand $orderSearchDemand
-     * @param int|null $limit
-     * @param int|null $offset
+     * @param int|null          $limit
+     * @param int|null          $offset
+     *
      * @return OrderList
+     *
      * @throws \Psr\Http\Client\ClientExceptionInterface
      * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
      * @throws \JsonException
@@ -49,6 +53,7 @@ class OrderApi extends AbstractApi
         if (null !== $offset) {
             $query['page']['offset'] = $offset;
         }
+
         return OrderFactory::fromResponseDataCollection(
             $this->client->request(
                 'POST',

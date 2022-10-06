@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,76 +18,76 @@ class ResourceApiTest extends AbstractApiTest
     public function testGetUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserResponse.php',
         ]);
         $api = new ResourceApi($this->getClient($handler));
         $response = $api->getUser('oelie-boelie');
-        $this->assertEquals('oelie-boelie', $response->getUsername());
-        $this->assertCount(2, $response->getAddresses());
-        $this->assertCount(2, $response->getPostalAddresses());
-        $this->assertCount(2, $response->getLinks());
-        $this->assertCount(1, $response->getCertifications());
-        $this->assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('oelie-boelie', $response->getUsername());
+        self::assertCount(2, $response->getAddresses());
+        self::assertCount(2, $response->getPostalAddresses());
+        self::assertCount(2, $response->getLinks());
+        self::assertCount(1, $response->getCertifications());
+        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetUserList(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserListResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserListResponse.php',
         ]);
         $api = new ResourceApi($this->getClient($handler));
         $response = $api->getUserList(['max.muster', 'fritz.fuscher'], ['user.base']);
-        $this->assertCount(2, $response);
-        $this->assertEquals('max.muster', $response[0]->getUsername());
-        $this->assertEquals('fritz.fuscher', $response[1]->getUsername());
-        $this->assertEquals(null, $response[0]->getFirstName());
-        $this->assertEquals(null, $response[1]->getFirstName());
+        self::assertCount(2, $response);
+        self::assertEquals('max.muster', $response[0]->getUsername());
+        self::assertEquals('fritz.fuscher', $response[1]->getUsername());
+        self::assertNull($response[0]->getFirstName());
+        self::assertNull($response[1]->getFirstName());
     }
 
     public function testGetUserListWithNames(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetUserListWithNamesResponse.php'
+            require __DIR__ . '/../Fixtures/GetUserListWithNamesResponse.php',
         ]);
         $api = new ResourceApi($this->getClient($handler));
         $response = $api->getUserList(['max.muster', 'fritz.fuscher'], ['user.base', 'user.name']);
-        $this->assertCount(2, $response);
-        $this->assertEquals('max.muster', $response[0]->getUsername());
-        $this->assertEquals('fritz.fuscher', $response[1]->getUsername());
-        $this->assertEquals('Max', $response[0]->getFirstName());
-        $this->assertEquals('Fritz', $response[1]->getFirstName());
+        self::assertCount(2, $response);
+        self::assertEquals('max.muster', $response[0]->getUsername());
+        self::assertEquals('fritz.fuscher', $response[1]->getUsername());
+        self::assertEquals('Max', $response[0]->getFirstName());
+        self::assertEquals('Fritz', $response[1]->getFirstName());
     }
 
     public function testGetCertification(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetResourceCertificationResponse.php'
+            require __DIR__ . '/../Fixtures/GetResourceCertificationResponse.php',
         ]);
         $api = new ResourceApi($this->getClient($handler));
         $response = $api->getCertification('00000000-0000-0000-0000-000000000000');
-        $this->assertEquals('00000000-0000-0000-0000-000000000000', $response->getUuid());
-        $this->assertEquals('TCCC', $response->getType());
-        $this->assertEquals('10.4', $response->getVersion());
-        $this->assertEquals('Certifuncation', $response->getExamLocation());
-        $this->assertEquals('PASSED', $response->getExamTestResult());
-        $this->assertEquals('PRESENCE', $response->getAuditType());
-        $this->assertEquals('PREPARATION_REQUIRED', $response->getStatus());
+        self::assertEquals('00000000-0000-0000-0000-000000000000', $response->getUuid());
+        self::assertEquals('TCCC', $response->getType());
+        self::assertEquals('10.4', $response->getVersion());
+        self::assertEquals('Certifuncation', $response->getExamLocation());
+        self::assertEquals('PASSED', $response->getExamTestResult());
+        self::assertEquals('PRESENCE', $response->getAuditType());
+        self::assertEquals('PREPARATION_REQUIRED', $response->getStatus());
     }
 
     public function testGetCertificationList(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetResourceCertificationListResponse.php'
+            require __DIR__ . '/../Fixtures/GetResourceCertificationListResponse.php',
         ]);
         $api = new ResourceApi($this->getClient($handler));
         $response = $api->getCertificationList(['00000000-0000-0000-0000-000000000000']);
-        $this->assertCount(1, $response);
-        $this->assertEquals('00000000-0000-0000-0000-000000000000', $response[0]->getUuid());
-        $this->assertEquals('TCCC', $response[0]->getType());
-        $this->assertEquals('10.4', $response[0]->getVersion());
-        $this->assertEquals('Certifuncation', $response[0]->getExamLocation());
-        $this->assertEquals('PASSED', $response[0]->getExamTestResult());
-        $this->assertEquals('PRESENCE', $response[0]->getAuditType());
-        $this->assertEquals('PREPARATION_REQUIRED', $response[0]->getStatus());
+        self::assertCount(1, $response);
+        self::assertEquals('00000000-0000-0000-0000-000000000000', $response[0]->getUuid());
+        self::assertEquals('TCCC', $response[0]->getType());
+        self::assertEquals('10.4', $response[0]->getVersion());
+        self::assertEquals('Certifuncation', $response[0]->getExamLocation());
+        self::assertEquals('PASSED', $response[0]->getExamTestResult());
+        self::assertEquals('PRESENCE', $response[0]->getAuditType());
+        self::assertEquals('PREPARATION_REQUIRED', $response[0]->getStatus());
     }
 }

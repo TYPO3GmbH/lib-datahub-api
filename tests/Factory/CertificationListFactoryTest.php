@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -16,13 +18,14 @@ class CertificationListFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
     {
         $list = CertificationListFactory::fromArray($data);
         foreach ($list as $entity) {
-            $this->assertInstanceOf(Certification::class, $entity);
+            self::assertInstanceOf(Certification::class, $entity);
         }
     }
 
@@ -60,7 +63,7 @@ class CertificationListFactoryTest extends TestCase
                         ],
                     ],
                     'length' => 2,
-                    'type' => 'App\\Entity\\CertificationList'
+                    'type' => 'App\\Entity\\CertificationList',
                 ],
             ],
         ];

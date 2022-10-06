@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -15,6 +17,7 @@ class EltsInstanceFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
@@ -49,7 +52,7 @@ class EltsInstanceFactoryTest extends TestCase
                     'owner' => 'user:max.muster',
                     'ownerData' => [
                         'title' => 'Max Muster',
-                        'email' => 'max@example.com'
+                        'email' => 'max@example.com',
                     ],
                     'eltsPlan' => [
                         'uuid' => '11111111-1111-1111-1111-111111111111',
@@ -108,8 +111,8 @@ class EltsInstanceFactoryTest extends TestCase
                             'email' => 'from-plan1@typo3.com',
                             'inherited' => true,
                             'owner' => 'organization:00000000-0000-0000-0000-000000000000',
-                            'accepted' => false
-                        ]
+                            'accepted' => false,
+                        ],
                     ],
                     'technicalContacts' => [
                         [
@@ -120,8 +123,8 @@ class EltsInstanceFactoryTest extends TestCase
                             'email' => 'foo@bar.baz',
                             'accepted' => false,
                             'inherited' => false,
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
             ],
         ];

@@ -8,12 +8,14 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace T3G\DatahubApiLibrary\Notification;
+namespace T3G\DatahubApiLibrary\Utility;
 
-class UnknownNotification extends AbstractNotification
+class JsonUtility
 {
-    public function __construct(string $type)
+    public static function decode(string $json): array
     {
-        parent::__construct(sprintf('Unknown notification of type %s', $type));
+        $content = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+
+        return is_array($content) ? $content : [];
     }
 }

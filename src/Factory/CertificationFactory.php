@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -73,6 +75,7 @@ class CertificationFactory extends AbstractFactory
         if (isset($data['finished'])) {
             $certification->setFinished($data['finished']);
         }
+
         return $certification;
     }
 }

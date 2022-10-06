@@ -26,7 +26,7 @@ final class SubscriptionStatus extends AbstractEnum
     public const INCOMPLETE_EXPIRED = 'incomplete_expired';
     public const TRIALING = 'trialing';
 
-    /** @phpstan-var array<string,string>  */
+    /** @var array<string,string> */
     protected static array $optionNames = [
         self::ACTIVE => 'Active subscription',
         self::EXPIRED => 'Expired subscription',

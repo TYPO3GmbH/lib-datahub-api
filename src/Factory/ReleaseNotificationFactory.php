@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -17,6 +19,7 @@ class ReleaseNotificationFactory extends AbstractFactory
 {
     /**
      * @param array<string, mixed> $data
+     *
      * @return ReleaseNotification
      */
     public static function fromArray(array $data): ReleaseNotification
@@ -36,6 +39,7 @@ class ReleaseNotificationFactory extends AbstractFactory
         if (isset($data['eltsInstance']) && null !== $data['eltsInstance'] && is_array($data['eltsInstance'])) {
             $releaseNotification->setEltsInstance(EltsInstanceFactory::fromArray($data['eltsInstance']));
         }
+
         return $releaseNotification;
     }
 }

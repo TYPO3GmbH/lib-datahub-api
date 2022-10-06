@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -17,7 +18,7 @@ class SubscriptionApiTest extends AbstractApiTest
     public function testGetSubscription(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetSubscriptionResponse.php'
+            require __DIR__ . '/../Fixtures/GetSubscriptionResponse.php',
         ]);
         $api = new SubscriptionApi($this->getClient($handler));
         $response = $api->getSubscription('11111111-1111-1111-1111-111111111111');
@@ -29,7 +30,7 @@ class SubscriptionApiTest extends AbstractApiTest
     public function testTransferSubscriptionToOrganization(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetSubscriptionResponse.php'
+            require __DIR__ . '/../Fixtures/GetSubscriptionResponse.php',
         ]);
         $api = new SubscriptionApi($this->getClient($handler));
         $response = $api->transferSubscriptionToOrganization('11111111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111');

@@ -22,7 +22,6 @@ final class CertificationProctoringStatus extends AbstractEnum
     public const VOIDED = 'voided';
     public const STALE = 'stale';
     public const RESCHEDULED = 'rescheduled';
-
     protected static array $optionNames = [
         self::PENDING => 'Pending',
         self::FULFILLED => 'Fulfilled',

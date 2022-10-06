@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -13,6 +15,7 @@ use T3G\DatahubApiLibrary\Dto\Admin\MergeCompanyDto;
 
 /**
  * @property MergeCompanyDto $dto
+ *
  * @method MergeCompanyDto getDto()
  */
 class MergeCompanyAssembler extends AbstractAssembler

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -18,7 +19,7 @@ class EltsGitPublicKeyApiTest extends AbstractApiTest
     public function testCreateGitPublicKeyToken(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetGitPublicKeyTokenResponse.php'
+            require __DIR__ . '/../Fixtures/GetGitPublicKeyTokenResponse.php',
         ]);
         $eltsGitPublicKey = new EltsGitPublicKey();
         $eltsGitPublicKey->setName('Test Key');
@@ -35,7 +36,7 @@ class EltsGitPublicKeyApiTest extends AbstractApiTest
     public function testGetGitPublicKeyToken(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetGitPublicKeyTokenResponse.php'
+            require __DIR__ . '/../Fixtures/GetGitPublicKeyTokenResponse.php',
         ]);
         $response = (new EltsGitPublicTokenApi($this->getClient($handler)))->getEltsGitPublicKey('00000000-0000-0000-0000-000000000000');
 

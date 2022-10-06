@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -16,8 +17,9 @@ class AddressTest extends TestCase
 {
     /**
      * @dataProvider deutschePostDataProvider
+     *
      * @param Address $address
-     * @param array $expected
+     * @param array   $expected
      */
     public function testDeutschePostAddressConversion(Address $address, array $expected): void
     {
@@ -47,7 +49,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'company address' => [
                 'address' => (new Address())
@@ -68,7 +70,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'complete address' => [
                 'address' => (new Address())
@@ -91,7 +93,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with special characters' => [
                 'address' => (new Address())
@@ -113,7 +115,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with foreign charsets (russian)' => [
                 'address' => (new Address())
@@ -135,7 +137,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with foreign charsets (chinese)' => [
                 'address' => (new Address())
@@ -157,7 +159,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with foreign charsets (greek)' => [
                 'address' => (new Address())
@@ -179,7 +181,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with foreign charsets (hindi)' => [
                 'address' => (new Address())
@@ -201,7 +203,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with number suffix' => [
                 'address' => (new Address())
@@ -223,7 +225,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with number before street' => [
                 'address' => (new Address())
@@ -245,7 +247,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with number range' => [
                 'address' => (new Address())
@@ -267,7 +269,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with capslock street' => [
                 'address' => (new Address())
@@ -289,7 +291,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
             'address with all small' => [
                 'address' => (new Address())
@@ -311,7 +313,7 @@ class AddressTest extends TestCase
                     'LAND' => 'DEU',
                     'ADRESS_TYP' => 'HOUSE',
                     'REFERENZ' => null,
-                ]
+                ],
             ],
         ];
     }

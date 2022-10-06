@@ -19,6 +19,7 @@ abstract class AbstractBitMask
 
     /**
      * @param int $types
+     *
      * @return array<int, string>
      */
     public static function getLabelsFor(int $types): array
@@ -45,6 +46,7 @@ abstract class AbstractBitMask
 
     /**
      * @param bool $withDescription
+     *
      * @return array<int, string|int>
      */
     public static function getAvailableBits(bool $withDescription = false): array

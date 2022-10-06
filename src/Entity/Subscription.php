@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -40,7 +42,7 @@ class Subscription implements JsonSerializable
             'stripeLink' => $this->getStripeLink(),
             'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
             'payload' => $this->getPayload(),
-            'paymentStatus' => $this->getPaymentStatus()
+            'paymentStatus' => $this->getPaymentStatus(),
         ];
     }
 
@@ -52,6 +54,7 @@ class Subscription implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -63,6 +66,7 @@ class Subscription implements JsonSerializable
     public function setSubscriptionIdentifier(string $subscriptionIdentifier): self
     {
         $this->subscriptionIdentifier = $subscriptionIdentifier;
+
         return $this;
     }
 
@@ -77,6 +81,7 @@ class Subscription implements JsonSerializable
             throw new \InvalidArgumentException('Invalid subscription type');
         }
         $this->subscriptionStatus = $subscriptionStatus;
+
         return $this;
     }
 
@@ -91,6 +96,7 @@ class Subscription implements JsonSerializable
             throw new \InvalidArgumentException('Invalid subscription type');
         }
         $this->subscriptionType = $subscriptionType;
+
         return $this;
     }
 
@@ -102,6 +108,7 @@ class Subscription implements JsonSerializable
     public function setStripeLink(string $stripeLink): self
     {
         $this->stripeLink = $stripeLink;
+
         return $this;
     }
 
@@ -117,6 +124,7 @@ class Subscription implements JsonSerializable
             throw new \InvalidArgumentException('Invalid subscription sub type');
         }
         $this->subscriptionSubType = $subscriptionSubType;
+
         return $this;
     }
 
@@ -128,6 +136,7 @@ class Subscription implements JsonSerializable
     public function setValidUntil(?DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
+
         return $this;
     }
 
@@ -139,6 +148,7 @@ class Subscription implements JsonSerializable
     public function setPayload(?array $payload): self
     {
         $this->payload = $payload;
+
         return $this;
     }
 
@@ -150,6 +160,7 @@ class Subscription implements JsonSerializable
     public function setHistory(?string $history): self
     {
         $this->history = $history;
+
         return $this;
     }
 
@@ -161,6 +172,7 @@ class Subscription implements JsonSerializable
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -172,6 +184,7 @@ class Subscription implements JsonSerializable
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
         return $this;
     }
 
@@ -203,11 +216,12 @@ class Subscription implements JsonSerializable
     public function setPaymentStatus(?string $paymentStatus): self
     {
         $this->paymentStatus = $paymentStatus;
+
         return $this;
     }
 
-    private function formatDateIfGiven(?\DateTimeInterface $dateTime): ?string
+    private function formatDateIfGiven(?DateTimeInterface $dateTime): ?string
     {
-        return null !== $dateTime ? $dateTime->format(\DateTimeInterface::ATOM) :  null;
+        return null !== $dateTime ? $dateTime->format(\DateTimeInterface::ATOM) : null;
     }
 }

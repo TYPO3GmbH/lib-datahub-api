@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -44,6 +46,7 @@ class OfferApi extends AbstractApi
 
     /**
      * @param string $username
+     *
      * @return Offer[]
      */
     public function getOffersForUser(string $username): array
@@ -58,6 +61,7 @@ class OfferApi extends AbstractApi
 
     /**
      * @param string $uuid
+     *
      * @return Offer[]
      */
     public function getOffersForCompany(string $uuid): array

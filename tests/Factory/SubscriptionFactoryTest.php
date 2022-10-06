@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,6 +20,7 @@ class SubscriptionFactoryTest extends TestCase
 {
     /**
      * @dataProvider factoryDataProvider
+     *
      * @param array $data
      */
     public function testFactory(array $data): void
@@ -62,8 +65,8 @@ class SubscriptionFactoryTest extends TestCase
                         'username' => 'oelie-boelie',
                         'firstName' => 'Oelie',
                         'lastName' => 'Boelie',
-                    ]
-                ]
+                    ],
+                ],
             ],
             'withCompany' => [
                 'data' => [
@@ -81,8 +84,8 @@ class SubscriptionFactoryTest extends TestCase
                         'title' => 'Aldi',
                         'email' => 'aldi-nice-things@example.com',
                         'vatId' => 'DE 123 456 789',
-                    ]
-                ]
+                    ],
+                ],
             ],
         ];
     }

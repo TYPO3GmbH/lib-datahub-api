@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -19,6 +21,7 @@ class OrderFactory extends AbstractFactory
 {
     /**
      * @param ResponseInterface $response
+     *
      * @return OrderList
      */
     public static function fromResponseDataCollection(ResponseInterface $response): OrderList
@@ -28,6 +31,7 @@ class OrderFactory extends AbstractFactory
             static fn (array $orderData) => self::fromArray($orderData),
             $arrayResponse['data']
         );
+
         return new OrderList($arrayResponse['meta'], $arrayResponse['links'], $data);
     }
 

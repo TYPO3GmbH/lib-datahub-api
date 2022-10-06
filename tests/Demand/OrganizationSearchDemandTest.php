@@ -17,7 +17,7 @@ use T3G\DatahubApiLibrary\Demand\OrganizationSearchDemand;
 class OrganizationSearchDemandTest extends TestCase
 {
     /**
-     * This map represents the available with* attributes in OrganizationSearchDemand
+     * This map represents the available with* attributes in OrganizationSearchDemand.
      *
      * @var string[]
      */
@@ -39,9 +39,10 @@ class OrganizationSearchDemandTest extends TestCase
     }
 
     /**
-     * The order of the attributes *must* be the same as in static::$argumentWithMap
+     * The order of the attributes *must* be the same as in static::$argumentWithMap.
      *
      * @dataProvider withAttributesDataProvider
+     *
      * @param bool $withOrders
      * @param bool $withSubscriptions
      * @param bool $withVoucherCodes
@@ -83,6 +84,7 @@ class OrganizationSearchDemandTest extends TestCase
         $dataset = array_fill(0, $withAttributeCount, [true, false]);
 
         $product = (new Product($dataset))->setLength(2 ** $withAttributeCount);
+
         return $product->toArray();
     }
 }

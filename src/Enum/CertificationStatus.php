@@ -25,7 +25,6 @@ final class CertificationStatus extends AbstractEnum
     public const FAILED = 'FAILED';
     public const PASSED = 'PASSED';
     public const IN_PRINT = 'IN_PRINT';
-
     protected static array $optionNames = [
         self::UNKNOWN => 'Unknown',
         self::PREPARATION_REQUIRED => 'Preparation required',

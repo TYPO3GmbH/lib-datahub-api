@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -19,6 +21,7 @@ use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\EltsPlanFactory;
 use T3G\DatahubApiLibrary\Factory\EltsProductListFactory;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class EltsPlanApi extends AbstractApi
@@ -78,7 +81,9 @@ class EltsPlanApi extends AbstractApi
 
     /**
      * @param string|null $companyUuid
+     *
      * @return EltsPlanList
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException
@@ -90,6 +95,7 @@ class EltsPlanApi extends AbstractApi
             $this->isValidUuidOrThrow($companyUuid);
             $uri .= '/' . $companyUuid;
         }
+
         return EltsPlanFactory::fromResponseDataCollection(
             $this->client->request(
                 'GET',
@@ -100,12 +106,14 @@ class EltsPlanApi extends AbstractApi
 
     /**
      * @return EltsPlanList
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
     public function getPlansExport(): EltsPlanList
     {
         $uri = '/elts/plans/export';
+
         return EltsPlanFactory::fromResponseDataCollection(
             $this->client->request(
                 'GET',
@@ -116,7 +124,9 @@ class EltsPlanApi extends AbstractApi
 
     /**
      * @param string $username
+     *
      * @return array<int, string>
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
@@ -127,11 +137,13 @@ class EltsPlanApi extends AbstractApi
             'GET',
             self::uri('/elts/version-access/' . mb_strtolower($username))
         )->getBody()->getContents();
-        return json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+
+        return JsonUtility::decode((string) $content);
     }
 
     /**
      * @return EltsProduct[]
+     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -26,6 +28,7 @@ class ReservedUser
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -37,6 +40,7 @@ class ReservedUser
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -48,6 +52,7 @@ class ReservedUser
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -59,6 +64,7 @@ class ReservedUser
     public function setDeleteDate(\DateTimeInterface $deleteDate): self
     {
         $this->deleteDate = $deleteDate;
+
         return $this;
     }
 
@@ -70,6 +76,7 @@ class ReservedUser
     public function setOtrsIssue(string $otrsIssue): self
     {
         $this->otrsIssue = $otrsIssue;
+
         return $this;
     }
 
@@ -81,6 +88,7 @@ class ReservedUser
     public function setComment(string $comment): self
     {
         $this->comment = $comment;
+
         return $this;
     }
 
@@ -92,6 +100,7 @@ class ReservedUser
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 }

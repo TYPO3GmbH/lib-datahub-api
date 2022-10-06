@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -13,11 +15,8 @@ use JsonSerializable;
 class EmailAddress implements JsonSerializable
 {
     private string $uuid;
-
     private string $email;
-
     private int $type;
-
     private ?\DateTimeInterface $optIn = null;
 
     public function jsonSerialize()
@@ -29,6 +28,7 @@ class EmailAddress implements JsonSerializable
         if (null !== $this->optIn) {
             $data['optIn'] = $this->optIn->format(\DateTimeInterface::ATOM);
         }
+
         return $data;
     }
 
@@ -40,6 +40,7 @@ class EmailAddress implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -51,6 +52,7 @@ class EmailAddress implements JsonSerializable
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -62,6 +64,7 @@ class EmailAddress implements JsonSerializable
     public function setType(int $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -73,6 +76,7 @@ class EmailAddress implements JsonSerializable
     public function setOptIn(?\DateTimeInterface $optIn): self
     {
         $this->optIn = $optIn;
+
         return $this;
     }
 }

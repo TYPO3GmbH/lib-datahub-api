@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -14,9 +16,7 @@ use T3G\DatahubApiLibrary\Enum\MailAddressFilterType;
 class MailAddressFilter implements JsonSerializable
 {
     private string $uuid;
-
     private string $pattern;
-
     private string $type;
 
     public function jsonSerialize()
@@ -35,6 +35,7 @@ class MailAddressFilter implements JsonSerializable
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
+
         return $this;
     }
 
@@ -46,6 +47,7 @@ class MailAddressFilter implements JsonSerializable
     public function setPattern(string $pattern): self
     {
         $this->pattern = $pattern;
+
         return $this;
     }
 
@@ -57,6 +59,7 @@ class MailAddressFilter implements JsonSerializable
     public function setType(string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 

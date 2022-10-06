@@ -50,7 +50,6 @@ final class WebHookType extends AbstractEnum
     public const VOUCHER_CODE_CREATED = 'voucher_code_created';
     public const VOUCHER_CODE_UPDATED = 'voucher_code_updated';
     public const VOUCHER_CODE_DELETED = 'voucher_code_deleted';
-
     protected static array $optionNames = [
         self::ADDRESS_CHANGED => 'Address record has been changed',
         self::COMPANY_CHANGED => 'Company record has been changed',

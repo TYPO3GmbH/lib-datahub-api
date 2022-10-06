@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * This file is part of the package t3g/datahub-api-library.
@@ -18,7 +20,7 @@ class OfferApiTest extends AbstractApiTest
     public function testCreateOfferForUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PostOfferResponse.php'
+            require __DIR__ . '/../Fixtures/PostOfferResponse.php',
         ]);
         $offerDto = $this->getOfferDto();
         $response = (new OfferApi($this->getClient($handler)))
@@ -32,7 +34,7 @@ class OfferApiTest extends AbstractApiTest
     public function testCreateOfferForCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/PostOfferResponse.php'
+            require __DIR__ . '/../Fixtures/PostOfferResponse.php',
         ]);
         $offerDto = $this->getOfferDto();
         $response = (new OfferApi($this->getClient($handler)))
@@ -46,7 +48,7 @@ class OfferApiTest extends AbstractApiTest
     public function testGetOffersForUser(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOffersResponse.php'
+            require __DIR__ . '/../Fixtures/GetOffersResponse.php',
         ]);
         $response = (new OfferApi($this->getClient($handler)))->getOffersForUser('oelie-boelie');
         self::assertCount(1, $response);
@@ -63,7 +65,7 @@ class OfferApiTest extends AbstractApiTest
     public function testGetOffersForCompany(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOffersResponse.php'
+            require __DIR__ . '/../Fixtures/GetOffersResponse.php',
         ]);
         $response = (new OfferApi($this->getClient($handler)))->getOffersForCompany('1174279d-9995-448a-bf79-ba77c797b9a0');
         self::assertCount(1, $response);
@@ -80,7 +82,7 @@ class OfferApiTest extends AbstractApiTest
     public function testGetOffer(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetOfferResponse.php'
+            require __DIR__ . '/../Fixtures/GetOfferResponse.php',
         ]);
         $response = (new OfferApi($this->getClient($handler)))->getOffer('dd1183cd-b4d1-402e-a50b-17cc0c72acd9');
         self::assertSame('dd1183cd-b4d1-402e-a50b-17cc0c72acd9', $response->getUuid());

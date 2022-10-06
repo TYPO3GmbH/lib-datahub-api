@@ -22,7 +22,6 @@ final class CertificationVersion extends AbstractEnum
     public const SEVEN = '7.6';
     public const SIX = '6.2';
     public const FOUR = '4.5';
-
     protected static array $optionNames = [
         self::ELEVEN => 'v11.5 LTS',
         self::TEN => 'v10.4 LTS',

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -21,7 +22,7 @@ class VoucherCodeApiTest extends AbstractApiTest
     public function testGetVoucherCode(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetVoucherCodeResponse.php'
+            require __DIR__ . '/../Fixtures/GetVoucherCodeResponse.php',
         ]);
         $api = new VoucherCodeApi($this->getClient($handler));
         $response = $api->getVoucherCode('00000000-0000-0000-0000-000000000000');
@@ -33,15 +34,15 @@ class VoucherCodeApiTest extends AbstractApiTest
         self::assertEquals(VoucherCodeStatus::NEW, $response->getStatus());
         self::assertEquals(1, $response->getUsages());
         self::assertEquals(0, $response->getRedemptions());
-        self::assertEquals(false, $response->getIsExpired());
-        self::assertEquals(false, $response->getIsUsed());
-        self::assertEquals(true, $response->getIsRedeemable());
+        self::assertFalse($response->getIsExpired());
+        self::assertFalse($response->getIsUsed());
+        self::assertTrue($response->getIsRedeemable());
     }
 
     public function testUpdateVoucherCode(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetVoucherCodeUpdatedResponse.php'
+            require __DIR__ . '/../Fixtures/GetVoucherCodeUpdatedResponse.php',
         ]);
         $api = new VoucherCodeApi($this->getClient($handler));
         $response = $api->updateVoucherCode('00000000-0000-0000-0000-000000000000', $this->getTestVoucherCode());
@@ -53,15 +54,15 @@ class VoucherCodeApiTest extends AbstractApiTest
         self::assertEquals(VoucherCodeStatus::NEW, $response->getStatus());
         self::assertEquals(1, $response->getUsages());
         self::assertEquals(0, $response->getRedemptions());
-        self::assertEquals(false, $response->getIsExpired());
-        self::assertEquals(false, $response->getIsUsed());
-        self::assertEquals(true, $response->getIsRedeemable());
+        self::assertFalse($response->getIsExpired());
+        self::assertFalse($response->getIsUsed());
+        self::assertTrue($response->getIsRedeemable());
     }
 
     public function testRedeemVoucherCode(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetVoucherCodeUsedResponse.php'
+            require __DIR__ . '/../Fixtures/GetVoucherCodeUsedResponse.php',
         ]);
         $api = new VoucherCodeApi($this->getClient($handler));
         $response = $api->redeemVoucherCode('00000000-0000-0000-0000-000000000000');
@@ -71,15 +72,15 @@ class VoucherCodeApiTest extends AbstractApiTest
         self::assertEquals(VoucherCodeStatus::USED, $response->getStatus());
         self::assertEquals(1, $response->getUsages());
         self::assertEquals(1, $response->getRedemptions());
-        self::assertEquals(false, $response->getIsExpired());
-        self::assertEquals(true, $response->getIsUsed());
-        self::assertEquals(false, $response->getIsRedeemable());
+        self::assertFalse($response->getIsExpired());
+        self::assertTrue($response->getIsUsed());
+        self::assertFalse($response->getIsRedeemable());
     }
 
     public function testDeleteVoucherCode(): void
     {
         $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/NoContentResponse.php'
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
         ]);
         $api = new VoucherCodeApi($this->getClient($handler));
         $api->deleteVoucherCode('00000000-0000-0000-0000-000000000000');

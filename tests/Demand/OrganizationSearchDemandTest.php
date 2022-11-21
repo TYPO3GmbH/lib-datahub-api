@@ -10,81 +10,99 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Demand;
 
-use drupol\phpermutations\Iterators\Product;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Demand\OrganizationSearchDemand;
+use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
 class OrganizationSearchDemandTest extends TestCase
 {
-    /**
-     * This map represents the available with* attributes in OrganizationSearchDemand.
-     *
-     * @var string[]
-     */
-    private static array $argumentWithMap = [
-        'withOrders',
-        'withSubscriptions',
-        'withVoucherCodes',
-        'withElts',
-    ];
-
-    public function testWithTerm(): void
+    public function testWithLiteral(): void
     {
-        $subject = new OrganizationSearchDemand('Hello');
+        $subject = new OrganizationSearchDemand();
+        $subject->setTerm('Hello')->setSubscriptionTypes([SubscriptionType::MEMBERSHIP]);
         self::assertArrayHasKey('term', $subject->toArray());
         self::assertSame('Hello', $subject->toArray()['term']);
 
-        $expectedJson = json_encode(['term' => 'Hello', 'withOrders' => false, 'withSubscriptions' => false, 'withVoucherCodes' => false, 'withElts' => false], JSON_THROW_ON_ERROR);
+        $expectedJson = json_encode([
+            'term' => 'Hello',
+            'withOrders' => false,
+            'subscriptionTypes' => [SubscriptionType::MEMBERSHIP],
+            'withVoucherCodes' => false,
+            'withElts' => false,
+        ], JSON_THROW_ON_ERROR);
         self::assertSame($expectedJson, json_encode($subject, JSON_THROW_ON_ERROR));
     }
 
-    /**
-     * The order of the attributes *must* be the same as in static::$argumentWithMap.
-     *
-     * @dataProvider withAttributesDataProvider
-     *
-     * @param bool $withOrders
-     * @param bool $withSubscriptions
-     * @param bool $withVoucherCodes
-     * @param bool $withElts
-     */
-    public function testWithAttributes(bool $withOrders, bool $withSubscriptions, bool $withVoucherCodes, bool $withElts): void
+    public function testNullValuesAreIgnoredFromSerialization(): void
     {
-        $subject = (new OrganizationSearchDemand('Hello'))
-            ->setWithOrders($withOrders)
-            ->setWithSubscriptions($withSubscriptions)
-            ->setWithVoucherCodes($withVoucherCodes)
-            ->setWithElts($withElts);
+        $subject = new OrganizationSearchDemand();
+        $subject->setTerm('Hello');
+        $subject->setWithVoucherCodes(true);
+        self::assertArrayHasKey('term', $subject->toArray());
+        self::assertSame('Hello', $subject->toArray()['term']);
 
-        self::assertSame($withOrders, $subject->isWithOrders());
-        self::assertSame($withSubscriptions, $subject->isWithSubscriptions());
-        self::assertSame($withVoucherCodes, $subject->isWithVoucherCodes());
-        self::assertSame($withElts, $subject->isWithElts());
-
-        $actualArray = $subject->toArray();
-        $expectedKeyCount = count(static::$argumentWithMap) + 1; // We have a "term" attribute, hence the +1
-        self::assertCount($expectedKeyCount, $actualArray);
-        foreach (static::$argumentWithMap as $argumentName) {
-            self::assertArrayHasKey($argumentName, $actualArray);
-        }
-
-        $argumentCount = func_num_args();
-        $arguments = func_get_args();
-        self::assertCount(count(static::$argumentWithMap), $arguments);
-
-        for ($i = 0; $i < $argumentCount; ++$i) {
-            self::assertArrayHasKey(static::$argumentWithMap[$i], $actualArray);
-            self::assertSame($arguments[$i], $actualArray[static::$argumentWithMap[$i]]);
-        }
+        $expectedJson = json_encode([
+            'term' => 'Hello',
+            'withOrders' => false,
+            'withVoucherCodes' => true,
+            'withElts' => false,
+        ], JSON_THROW_ON_ERROR);
+        self::assertSame($expectedJson, json_encode($subject, JSON_THROW_ON_ERROR));
     }
 
-    public function withAttributesDataProvider(): array
+    public function testWithSubscriptionsSetsValueAsExpected(): void
     {
-        $withAttributeCount = count(static::$argumentWithMap);
-        $dataset = array_fill(0, $withAttributeCount, [true, false]);
+        $demand = new OrganizationSearchDemand();
+        $demand->setWithSubscriptions(true);
 
-        $product = (new Product($dataset))->setLength(2 ** $withAttributeCount);
+        self::assertTrue($demand->isWithSubscriptions());
+        self::assertSame([SubscriptionType::MEMBERSHIP, SubscriptionType::PSL], $demand->getSubscriptionTypes());
+    }
 
-        return $product->toArray();
+    /**
+     * @dataProvider setMembersRangeAsExpectedDataProvider
+     */
+    public function testSetMembersRangeAsExpected(array $input, ?array $expectation): void
+    {
+        $demand = new OrganizationSearchDemand();
+        $demand->setMembersRange($input);
+
+        self::assertSame($expectation, $demand->getMembersRange());
+    }
+
+    public function setMembersRangeAsExpectedDataProvider(): array
+    {
+        return [
+            'given min value' => [[2, null], [2, null]],
+            'given max value' => [[null, 10], [null, 10]],
+            'given min and max value' => [[10, 20], [10, 20]],
+        ];
+    }
+
+    /**
+     * @dataProvider setMembersRangeThrowsExceptionDataProvider
+     */
+    public function testSetMembersRangeThrowsException(array $input, string $expectedExceptionClass, int $expectedExceptionCode): void
+    {
+        $this->expectException($expectedExceptionClass);
+        $this->expectExceptionCode($expectedExceptionCode);
+
+        $demand = new OrganizationSearchDemand();
+        $demand->setMembersRange($input);
+    }
+
+    public function setMembersRangeThrowsExceptionDataProvider(): array
+    {
+        return [
+            'missing range values' => [[], \InvalidArgumentException::class, 1668413261],
+            'missing second range value' => [[0], \InvalidArgumentException::class, 1668413261],
+            'negative min value' => [[-100, 100], \InvalidArgumentException::class, 1668411601],
+            'negative max value' => [[0, -42], \InvalidArgumentException::class, 1668411604],
+            'min higher than max' => [[40, 12], \LogicException::class, 1668411780],
+            'invalid data type string' => [[''], \TypeError::class, 1668413253],
+            'invalid data type object' => [[new \stdClass()], \TypeError::class, 1668413253],
+            'invalid data type array' => [[[]], \TypeError::class, 1668413253],
+            'invalid data type callable' => [[static function () {}], \TypeError::class, 1668413253],
+        ];
     }
 }

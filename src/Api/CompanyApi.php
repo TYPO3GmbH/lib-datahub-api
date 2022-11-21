@@ -38,28 +38,14 @@ class CompanyApi extends AbstractApi
     use HandlesUuids;
 
     /**
-     * @param string|OrganizationSearchDemand $search
-     *
      * @return Company[]
      *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
      */
-    public function search($search): array
+    public function search(OrganizationSearchDemand $search): array
     {
-        if (is_string($search)) {
-            $search = new OrganizationSearchDemand($search);
-            trigger_error(
-                sprintf('Calling %s with $search being a string is deprecated. Pass a %s instead which will become mandatory at 2021-08-22', __METHOD__, OrganizationSearchDemand::class),
-                E_USER_DEPRECATED
-            );
-        }
-
-        if (!$search instanceof OrganizationSearchDemand) {
-            throw new \TypeError(sprintf('Argument $search of %s must be of type %s', __METHOD__, OrganizationSearchDemand::class));
-        }
-
         return CompanyListFactory::fromResponse(
             $this->client->request(
                 'POST',

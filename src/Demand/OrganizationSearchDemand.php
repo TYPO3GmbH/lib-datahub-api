@@ -10,25 +10,49 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Demand;
 
+use T3G\DatahubApiLibrary\Enum\SubscriptionType;
+
 class OrganizationSearchDemand implements \JsonSerializable
 {
-    private string $term;
+    private string $term = '';
     private bool $withOrders = false;
-    private bool $withSubscriptions = false;
+
+    /**
+     * @var array<int, \T3G\DatahubApiLibrary\Enum\SubscriptionType::*>|null
+     */
+    private ?array $subscriptionTypes = null;
     private bool $withVoucherCodes = false;
     private bool $withElts = false;
 
-    public function __construct(string $term)
+    /**
+     * @var array<int, int|null>|null
+     */
+    private ?array $membersRange = null;
+
+    /**
+     * @param string|null $term
+     *
+     * @deprecated Setting term via constructor is deprecated, use ->setTerm() instead
+     */
+    public function __construct(string $term = null)
     {
-        $this->term = $term;
+        if (null !== $term) {
+            $this->setTerm($term);
+            trigger_error(
+                sprintf('Calling %s with $term is deprecated, call setTerm() instead.', __METHOD__),
+                E_USER_DEPRECATED
+            );
+        }
     }
 
     /**
-     * @return array<string, bool>
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {
-        return $this->toArray();
+        return array_filter($this->toArray(), static function (mixed $value): bool {
+            return null !== $value;
+        });
     }
 
     /**
@@ -37,6 +61,13 @@ class OrganizationSearchDemand implements \JsonSerializable
     public function toArray(): array
     {
         return get_object_vars($this);
+    }
+
+    public function setTerm(string $term): self
+    {
+        $this->term = $term;
+
+        return $this;
     }
 
     public function getTerm(): string
@@ -48,7 +79,7 @@ class OrganizationSearchDemand implements \JsonSerializable
     {
         $this->withOrders = $withOrders;
 
-        return clone $this;
+        return $this;
     }
 
     public function isWithOrders(): bool
@@ -56,23 +87,65 @@ class OrganizationSearchDemand implements \JsonSerializable
         return $this->withOrders;
     }
 
+    /**
+     * @param bool $withSubscriptions
+     *
+     * @return $this
+     *
+     * @deprecated use setSubscriptionTypes()
+     */
     public function setWithSubscriptions(bool $withSubscriptions = true): self
     {
-        $this->withSubscriptions = $withSubscriptions;
+        trigger_error(
+            sprintf('Calling %s is deprecated, call setSubscriptionTypes() instead.', __METHOD__),
+            E_USER_DEPRECATED
+        );
 
-        return clone $this;
+        if ($withSubscriptions) {
+            $this->setSubscriptionTypes([SubscriptionType::MEMBERSHIP, SubscriptionType::PSL]);
+        }
+
+        return $this;
     }
 
+    /**
+     * @return bool
+     *
+     * @deprecated use getSubscriptionTypes()
+     */
     public function isWithSubscriptions(): bool
     {
-        return $this->withSubscriptions;
+        trigger_error(
+            sprintf('Calling %s is deprecated, call getSubscriptionTypes() instead.', __METHOD__),
+            E_USER_DEPRECATED
+        );
+
+        return null !== $this->getSubscriptionTypes();
+    }
+
+    /**
+     * @param array<int, \T3G\DatahubApiLibrary\Enum\SubscriptionType::*> $subscriptionTypes
+     */
+    public function setSubscriptionTypes($subscriptionTypes): self
+    {
+        $this->subscriptionTypes = $subscriptionTypes;
+
+        return $this;
+    }
+
+    /**
+     * @return array<int, \T3G\DatahubApiLibrary\Enum\SubscriptionType::*>|null
+     */
+    public function getSubscriptionTypes(): ?array
+    {
+        return $this->subscriptionTypes;
     }
 
     public function setWithVoucherCodes(bool $withVoucherCodes = true): self
     {
         $this->withVoucherCodes = $withVoucherCodes;
 
-        return clone $this;
+        return $this;
     }
 
     public function isWithVoucherCodes(): bool
@@ -84,11 +157,52 @@ class OrganizationSearchDemand implements \JsonSerializable
     {
         $this->withElts = $withElts;
 
-        return clone $this;
+        return $this;
     }
 
     public function isWithElts(): bool
     {
         return $this->withElts;
+    }
+
+    /**
+     * @return array<int, int|null>|null
+     */
+    public function getMembersRange(): ?array
+    {
+        return $this->membersRange;
+    }
+
+    /**
+     * Sets the bounds for a range.
+     *
+     * @param array<int, int|null> $membersRange
+     */
+    public function setMembersRange(array $membersRange): OrganizationSearchDemand
+    {
+        array_walk($membersRange, static function (mixed $value) {
+            if (!is_int($value) && null !== $value) { // @phpstan-ignore-line This is public API, we cannot rely on phpstan
+                throw new \TypeError(sprintf('Invalid argument type %s supplied, expected int or null', get_debug_type($value)), 1668413253);
+            }
+        });
+
+        if (2 !== count($membersRange)) {
+            throw new \InvalidArgumentException('The member range must contain a lower and an upper bound. For an undefined bound, pass "null".', 1668413261);
+        }
+        if (is_int($membersRange[0]) && $membersRange[0] < 0) {
+            throw new \InvalidArgumentException('The min part cannot be a negative value', 1668411601);
+        }
+        if (is_int($membersRange[1]) && $membersRange[1] < 0) {
+            throw new \InvalidArgumentException('The max part cannot be a negative value', 1668411604);
+        }
+        if (is_int($membersRange[0]) && is_int($membersRange[1]) && $membersRange[0] > $membersRange[1]) {
+            throw new \LogicException('$min cannot be larger than $max', 1668411780);
+        }
+
+        if (null !== $membersRange[0] || null !== $membersRange[1]) {
+            $this->membersRange = $membersRange;
+        }
+
+        return $this;
     }
 }

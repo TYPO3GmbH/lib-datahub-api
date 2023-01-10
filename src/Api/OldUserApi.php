@@ -61,6 +61,27 @@ class OldUserApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
+     * @throws \JsonException
+     * @throws \T3G\DatahubApiLibrary\Exception\InvalidUuidException
+     *
+     * @internal
+     */
+    public function checkEmailAddress(string $uuid): bool
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        $response = $this->client->request(
+            'GET',
+            self::uri('/reserved-users/' . $uuid . '/email-check')
+        );
+        $responseContent = JsonUtility::decode((string) $response->getBody());
+
+        return true === $responseContent['is_usable'];
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function reEnable(string $username, ?string $emailAddress = null): User
     {

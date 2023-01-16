@@ -47,7 +47,7 @@ abstract class AbstractBitMask
     /**
      * @param bool $withDescription
      *
-     * @return array<int, string|int>
+     * @return ($withDescription is true ? array<int, string> : array<int, int>)
      */
     public static function getAvailableBits(bool $withDescription = false): array
     {

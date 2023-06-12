@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
 use T3G\DatahubApiLibrary\Enum\VoucherCodeStatus;
 use T3G\DatahubApiLibrary\Enum\VoucherCodeType;
 
-class VoucherCode implements JsonSerializable
+class VoucherCode implements \JsonSerializable
 {
     private string $uuid;
     private ?User $user = null;
@@ -34,7 +33,10 @@ class VoucherCode implements JsonSerializable
     private bool $isUsed = false;
     private bool $isRedeemable = false;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'title' => $this->getTitle(),

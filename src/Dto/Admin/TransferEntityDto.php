@@ -27,6 +27,7 @@ class TransferEntityDto extends AbstractDto
 
     /**
      * @Assert\NotBlank
+     *
      * @Assert\Choice(callback={"T3G\DatahubApiLibrary\Enum\TransferableType", "getAvailableOptions"})
      */
     public string $type = '';

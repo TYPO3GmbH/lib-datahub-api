@@ -14,7 +14,7 @@ use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\RegistrationApi;
 use T3G\DatahubApiLibrary\Entity\Registration;
 
-class RegistrationApiTest extends AbstractApiTest
+class RegistrationApiTest extends AbstractApiTestCase
 {
     public function testRegistration(): void
     {

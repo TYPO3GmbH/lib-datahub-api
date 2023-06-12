@@ -13,7 +13,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\GDPRApi;
 
-class GdprApiTest extends AbstractApiTest
+class GdprApiTest extends AbstractApiTestCase
 {
     public function testRequestUserDeletion(): void
     {
@@ -24,7 +24,7 @@ class GdprApiTest extends AbstractApiTest
         try {
             $api->requestUserDeletion('oelie-boelie', 'BLA-123', 'Comment');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

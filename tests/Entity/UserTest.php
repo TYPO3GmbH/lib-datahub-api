@@ -25,7 +25,7 @@ class UserTest extends TestCase
         self::assertEquals($expected, $user->getEmailByType($type, $onlyOptIn));
     }
 
-    public function emailDataProvider(): array
+    public static function emailDataProvider(): array
     {
         return [
             'primary email confirmed' => [

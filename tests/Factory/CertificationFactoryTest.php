@@ -36,7 +36,7 @@ class CertificationFactoryTest extends TestCase
         self::assertEquals($data['examUrl'], $entity->getExamUrl());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'minimalValuesSet' => [

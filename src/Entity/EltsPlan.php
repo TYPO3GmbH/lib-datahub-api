@@ -10,10 +10,9 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
 use T3G\DatahubApiLibrary\Enum\PaymentStatus;
 
-class EltsPlan implements JsonSerializable
+class EltsPlan implements \JsonSerializable
 {
     private string $uuid;
     private string $version;

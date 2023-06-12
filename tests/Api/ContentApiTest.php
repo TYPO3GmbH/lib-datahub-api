@@ -14,7 +14,7 @@ use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\ContentApi;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
-class ContentApiTest extends AbstractApiTest
+class ContentApiTest extends AbstractApiTestCase
 {
     public function testGetContent(): void
     {

@@ -10,25 +10,23 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Exception;
 
-use Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
-use Throwable;
 
-class DatahubResponseException extends Exception
+class DatahubResponseException extends \Exception
 {
     private const MESSAGES = [
-        404 => 'The resource you are trying to access does not exist.',
-        403 => 'You do not have permissions to perform this action.',
         401 => 'Authorization is required to perform this action.',
+        403 => 'You do not have permissions to perform this action.',
+        404 => 'The resource you are trying to access does not exist.',
     ];
 
     private const DEFAULT = 'Something went wrong, please try again in a few minutes';
     private RequestInterface $request;
     private ResponseInterface $response;
 
-    public function __construct(RequestInterface $request, ResponseInterface $response, Throwable $previous = null)
+    public function __construct(RequestInterface $request, ResponseInterface $response, \Throwable $previous = null)
     {
         $message = self::MESSAGES[$response->getStatusCode()] ?? self::DEFAULT;
         try {
@@ -39,7 +37,7 @@ class DatahubResponseException extends Exception
                     $message = $errorString;
                 }
             }
-        } catch (\JsonException $e) {
+        } catch (\JsonException) {
             $message = 'Response contained invalid JSON';
         }
 
@@ -65,7 +63,7 @@ class DatahubResponseException extends Exception
     }
 
     /**
-     * @param array<int, string|array<int, mixed>> $errors
+     * @param array<int, mixed> $errors
      *
      * @return string
      */

@@ -13,7 +13,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\BitMaskApi;
 
-class BitMaskApiTest extends AbstractApiTest
+class BitMaskApiTest extends AbstractApiTestCase
 {
     public function testGetAddressTypes(): void
     {

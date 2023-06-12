@@ -39,8 +39,8 @@ class SubscriptionApi extends AbstractApi
      * @return array<int,mixed>
      *
      * @throws \JsonException
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function getSubscriptionProducts(): array
     {
@@ -67,8 +67,8 @@ class SubscriptionApi extends AbstractApi
      *
      * @return array<int, Subscription>
      *
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function getSubscriptionFiltered(SubscriptionFilterQuery $subscriptionFilterQuery): array
     {
@@ -86,7 +86,7 @@ class SubscriptionApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/subscriptions'),
-                json_encode($subscription, JSON_THROW_ON_ERROR, 512)
+                json_encode($subscription, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -97,7 +97,7 @@ class SubscriptionApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/companies/' . $uuid . '/subscriptions'),
-                json_encode($subscription, JSON_THROW_ON_ERROR, 512)
+                json_encode($subscription, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -110,7 +110,7 @@ class SubscriptionApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/subscription/' . $uuid),
-                json_encode($subscription, JSON_THROW_ON_ERROR, 512)
+                json_encode($subscription, JSON_THROW_ON_ERROR)
             )
         );
     }

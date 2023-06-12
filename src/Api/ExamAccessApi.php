@@ -27,8 +27,8 @@ class ExamAccessApi extends AbstractApi
      *
      * @return ExamAccess[]
      *
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function getExamAccesses(array $filterAttributes = []): array
     {
@@ -84,7 +84,7 @@ class ExamAccessApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/exam-access'),
-                json_encode($examAccess, JSON_THROW_ON_ERROR, 512)
+                json_encode($examAccess, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -102,7 +102,7 @@ class ExamAccessApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/companies/' . $companyUuid . '/exam-access'),
-                json_encode($examAccess, JSON_THROW_ON_ERROR, 512)
+                json_encode($examAccess, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -120,7 +120,7 @@ class ExamAccessApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/exam-access/' . $uuid),
-                json_encode($examAccess, JSON_THROW_ON_ERROR, 512)
+                json_encode($examAccess, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -138,7 +138,7 @@ class ExamAccessApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/exam-access/' . $uuid . '/transfer'),
-                json_encode(['user' => $username], JSON_THROW_ON_ERROR, 512)
+                json_encode(['user' => $username], JSON_THROW_ON_ERROR)
             )
         );
     }

@@ -19,7 +19,10 @@ class EltsAccessToken implements \JsonSerializable
     private \DateTimeInterface $createdAt;
     private ?User $user;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->getName(),

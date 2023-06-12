@@ -10,10 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use DateTimeInterface;
-use JsonSerializable;
-
-class Registration implements JsonSerializable
+class Registration implements \JsonSerializable
 {
     private string $username;
     private string $email;
@@ -22,14 +19,17 @@ class Registration implements JsonSerializable
     private ?string $password = null;
     private ?string $location = null;
     private ?string $registrationCode = null;
-    private ?DateTimeInterface $validUntil = null;
+    private ?\DateTimeInterface $validUntil = null;
 
     /**
      * @var array<string, string>
      */
     private array $approvedDocuments = [];
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'username' => $this->username,
@@ -109,12 +109,12 @@ class Registration implements JsonSerializable
         return $this;
     }
 
-    public function getValidUntil(): ?DateTimeInterface
+    public function getValidUntil(): ?\DateTimeInterface
     {
         return $this->validUntil;
     }
 
-    public function setValidUntil(?DateTimeInterface $validUntil): self
+    public function setValidUntil(?\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 

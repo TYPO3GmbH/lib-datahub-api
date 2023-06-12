@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Api\CertificationApi;
 use T3G\DatahubApiLibrary\Entity\Address;
 use T3G\DatahubApiLibrary\Entity\Certification;
 
-class CertificationApiTest extends AbstractApiTest
+class CertificationApiTest extends AbstractApiTestCase
 {
     public function testGetCertification(): void
     {
@@ -115,7 +115,7 @@ class CertificationApiTest extends AbstractApiTest
         try {
             (new CertificationApi($this->getClient($handler)))->setCertificationsPrintDate(['00000000-0000-0000-0000-000000000000']);
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);
@@ -212,7 +212,7 @@ class CertificationApiTest extends AbstractApiTest
         try {
             $api->deleteCertification('00000000-0000-0000-0000-000000000000');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

@@ -13,7 +13,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\EnumApi;
 
-class EnumApiTest extends AbstractApiTest
+class EnumApiTest extends AbstractApiTestCase
 {
     public function testGetCertificationStatusses(): void
     {

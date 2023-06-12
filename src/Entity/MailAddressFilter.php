@@ -10,16 +10,18 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
 use T3G\DatahubApiLibrary\Enum\MailAddressFilterType;
 
-class MailAddressFilter implements JsonSerializable
+class MailAddressFilter implements \JsonSerializable
 {
     private string $uuid;
     private string $pattern;
     private string $type;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, string>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'pattern' => $this->getPattern(),

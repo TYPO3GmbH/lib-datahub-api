@@ -10,11 +10,15 @@ For the full copyright and license information, please read the
 LICENSE file that was distributed with this source code.
 EOF;
 
+$finder = PhpCsFixer\Finder::create()
+    ->in(['src', 'tests']);
+
 return (new PhpCsFixer\Config())
     ->setCacheFile(__DIR__ . '/.php-cs-fixer.cache')
     ->setRiskyAllowed(true)
     ->setRules([
         '@Symfony' => true,
+        '@PHP82Migration' => true,
         'declare_strict_types' => true,
         'array_syntax' => ['syntax' => 'short'],
         'concat_space' => ['spacing' => 'one'],
@@ -35,7 +39,4 @@ return (new PhpCsFixer\Config())
         'php_unit_mock_short_will_return' => true,
         'php_unit_test_case_static_method_calls' => ['call_type' => 'self'],
     ])
-    ->setFinder(
-        PhpCsFixer\Finder::create()
-            ->in(['src', 'tests'])
-    );
+    ->setFinder($finder);

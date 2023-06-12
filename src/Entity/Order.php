@@ -10,9 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
-
-class Order implements JsonSerializable
+class Order implements \JsonSerializable
 {
     private string $uuid;
     private string $orderNumber;
@@ -24,7 +22,10 @@ class Order implements JsonSerializable
      */
     private array $invoices = [];
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'orderNumber' => $this->getOrderNumber(),

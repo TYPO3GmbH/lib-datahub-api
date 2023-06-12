@@ -26,7 +26,7 @@ class AddressTest extends TestCase
         self::assertEquals($expected, $address->toDeutschePostArray());
     }
 
-    public function deutschePostDataProvider(): array
+    public static function deutschePostDataProvider(): array
     {
         return [
             'basic address' => [

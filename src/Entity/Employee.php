@@ -10,19 +10,19 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use DateTimeInterface;
-use JsonSerializable;
-
-class Employee implements JsonSerializable
+class Employee implements \JsonSerializable
 {
     private string $uuid;
     private string $role;
-    private DateTimeInterface $joinedAt;
-    private ?DateTimeInterface $leftAt;
+    private \DateTimeInterface $joinedAt;
+    private ?\DateTimeInterface $leftAt;
     private ?Company $company;
     private ?User $user;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, string>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'role' => $this->getRole(),
@@ -53,24 +53,24 @@ class Employee implements JsonSerializable
         return $this;
     }
 
-    public function getJoinedAt(): DateTimeInterface
+    public function getJoinedAt(): \DateTimeInterface
     {
         return $this->joinedAt;
     }
 
-    public function setJoinedAt(DateTimeInterface $joinedAt): self
+    public function setJoinedAt(\DateTimeInterface $joinedAt): self
     {
         $this->joinedAt = $joinedAt;
 
         return $this;
     }
 
-    public function getLeftAt(): ?DateTimeInterface
+    public function getLeftAt(): ?\DateTimeInterface
     {
         return $this->leftAt;
     }
 
-    public function setLeftAt(?DateTimeInterface $leftAt): self
+    public function setLeftAt(?\DateTimeInterface $leftAt): self
     {
         $this->leftAt = $leftAt;
 

@@ -69,7 +69,7 @@ class OrderApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/orders'),
-                json_encode($order, JSON_THROW_ON_ERROR, 512)
+                json_encode($order, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -82,7 +82,7 @@ class OrderApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/companies/' . $uuid . '/orders'),
-                json_encode($order, JSON_THROW_ON_ERROR, 512)
+                json_encode($order, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -95,7 +95,7 @@ class OrderApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/order/' . $uuid),
-                json_encode($order, JSON_THROW_ON_ERROR, 512)
+                json_encode($order, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -108,7 +108,7 @@ class OrderApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri(sprintf('/order/%s/invoice', $orderUuid)),
-                json_encode($invoice, JSON_THROW_ON_ERROR, 512)
+                json_encode($invoice, JSON_THROW_ON_ERROR)
             )
         );
     }

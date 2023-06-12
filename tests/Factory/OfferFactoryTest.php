@@ -32,7 +32,7 @@ class OfferFactoryTest extends TestCase
         self::assertSame($data['total'], $entity->getTotal());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

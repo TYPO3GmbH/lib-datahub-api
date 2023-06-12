@@ -82,7 +82,7 @@ class CompanyFactoryTest extends TestCase
         }
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

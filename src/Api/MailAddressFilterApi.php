@@ -50,7 +50,7 @@ class MailAddressFilterApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/mail-address-filter'),
-                json_encode($filter, JSON_THROW_ON_ERROR, 512)
+                json_encode($filter, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -63,7 +63,7 @@ class MailAddressFilterApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/mail-address-filter/' . $uuid),
-                json_encode($filter, JSON_THROW_ON_ERROR, 512)
+                json_encode($filter, JSON_THROW_ON_ERROR)
             )
         );
     }

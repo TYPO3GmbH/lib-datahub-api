@@ -15,9 +15,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Api\PendingRegistrationApi;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
-use T3G\DatahubApiLibrary\Tests\Api\AbstractApiTest;
+use T3G\DatahubApiLibrary\Tests\Api\AbstractApiTestCase;
 
-class DatahubResponseExceptionTest extends AbstractApiTest
+class DatahubResponseExceptionTestCase extends AbstractApiTestCase
 {
     public function testException(): void
     {

@@ -21,10 +21,6 @@ class OrderSearchDemand implements \JsonSerializable
     private ?string $searchTerm = null;
     private string $dateField = self::DATE_FIELD_CREATED_AT;
 
-    public function __construct()
-    {
-    }
-
     public function withCompanyUuid(string $companyUuid): self
     {
         $clone = clone $this;
@@ -93,7 +89,10 @@ class OrderSearchDemand implements \JsonSerializable
         return $this->dateField;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         $data = [];
 
@@ -102,11 +101,11 @@ class OrderSearchDemand implements \JsonSerializable
         }
 
         if (null !== $this->dateFrom) {
-            $data['dateFrom'] = $this->dateFrom->format(\DateTime::RFC3339_EXTENDED);
+            $data['dateFrom'] = $this->dateFrom->format(\DateTimeInterface::RFC3339_EXTENDED);
         }
 
         if (null !== $this->dateUntil) {
-            $data['dateUntil'] = $this->dateUntil->format(\DateTime::RFC3339_EXTENDED);
+            $data['dateUntil'] = $this->dateUntil->format(\DateTimeInterface::RFC3339_EXTENDED);
         }
 
         if (null !== $this->searchTerm) {

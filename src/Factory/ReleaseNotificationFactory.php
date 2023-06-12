@@ -33,10 +33,10 @@ class ReleaseNotificationFactory extends AbstractFactory
         if (isset($data['inherited'])) {
             $releaseNotification->setInherited($data['inherited']);
         }
-        if (isset($data['eltsPlan']) && null !== $data['eltsPlan'] && is_array($data['eltsPlan'])) {
+        if (isset($data['eltsPlan']) && is_array($data['eltsPlan'])) {
             $releaseNotification->setEltsPlan(EltsPlanFactory::fromArray($data['eltsPlan']));
         }
-        if (isset($data['eltsInstance']) && null !== $data['eltsInstance'] && is_array($data['eltsInstance'])) {
+        if (isset($data['eltsInstance']) && is_array($data['eltsInstance'])) {
             $releaseNotification->setEltsInstance(EltsInstanceFactory::fromArray($data['eltsInstance']));
         }
 

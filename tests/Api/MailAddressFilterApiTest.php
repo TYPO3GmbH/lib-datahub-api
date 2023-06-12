@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Api\MailAddressFilterApi;
 use T3G\DatahubApiLibrary\Entity\MailAddressFilter;
 use T3G\DatahubApiLibrary\Enum\MailAddressFilterType;
 
-class MailAddressFilterApiTest extends AbstractApiTest
+class MailAddressFilterApiTest extends AbstractApiTestCase
 {
     public function testListMailAddressFilters(): void
     {
@@ -71,7 +71,7 @@ class MailAddressFilterApiTest extends AbstractApiTest
         try {
             $api->deleteMailAddressFilter('00000000-0000-0000-0000-000000000000');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

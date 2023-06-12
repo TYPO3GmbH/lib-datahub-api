@@ -17,7 +17,7 @@ use T3G\DatahubApiLibrary\Enum\VoucherCodeStatus;
 use T3G\DatahubApiLibrary\Enum\VoucherCodeType;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 
-class VoucherCodeApiTest extends AbstractApiTest
+class VoucherCodeApiTest extends AbstractApiTestCase
 {
     public function testGetVoucherCode(): void
     {

@@ -10,8 +10,10 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Demand\CertificationSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Certification;
+use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
 
@@ -23,7 +25,7 @@ class CertificationApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/certifications/import/' . mb_strtolower($username)),
-                json_encode($certification, JSON_THROW_ON_ERROR, 512)
+                json_encode($certification, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -33,8 +35,8 @@ class CertificationApi extends AbstractApi
      *
      * @return Certification[]
      *
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function getCertifications(array $filterAttributes = []): array
     {
@@ -51,8 +53,8 @@ class CertificationApi extends AbstractApi
      *
      * @return Certification[]
      *
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function getCertificationsFiltered(CertificationSearchDemand $searchDemand): array
     {
@@ -104,8 +106,8 @@ class CertificationApi extends AbstractApi
     /**
      * @return Certification[]
      *
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function getCertificationsForPrint(): array
     {
@@ -120,8 +122,8 @@ class CertificationApi extends AbstractApi
     /**
      * @return Certification[]
      *
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function getCertificationsForListing(?string $certificationType = null): array
     {
@@ -140,8 +142,8 @@ class CertificationApi extends AbstractApi
      * @param string[] $uuids
      *
      * @throws \JsonException
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
      */
     public function setCertificationsPrintDate(array $uuids): void
     {
@@ -177,7 +179,7 @@ class CertificationApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/certifications/' . $uuid),
-                json_encode($certification, JSON_THROW_ON_ERROR, 512)
+                json_encode($certification, JSON_THROW_ON_ERROR)
             )
         );
     }

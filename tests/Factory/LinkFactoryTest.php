@@ -28,7 +28,7 @@ class LinkFactoryTest extends TestCase
         self::assertEquals($data['url'], $entity->getUrl());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

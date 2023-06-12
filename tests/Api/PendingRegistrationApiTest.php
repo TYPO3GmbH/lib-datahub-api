@@ -13,7 +13,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\PendingRegistrationApi;
 
-class PendingRegistrationApiTest extends AbstractApiTest
+class PendingRegistrationApiTest extends AbstractApiTestCase
 {
     public function testGetPendingRegistration(): void
     {
@@ -55,7 +55,7 @@ class PendingRegistrationApiTest extends AbstractApiTest
         try {
             $api->declineRegistration('00000000-0000-0000-0000-000000000000');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

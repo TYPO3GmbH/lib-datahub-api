@@ -10,10 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use DateTimeInterface;
-use JsonSerializable;
-
-class ExamAccess implements JsonSerializable
+class ExamAccess implements \JsonSerializable
 {
     private string $uuid;
     private ?User $user = null;
@@ -23,18 +20,21 @@ class ExamAccess implements JsonSerializable
     private ?string $voucher = null;
     private ?string $status = null;
     private ?string $history = null;
-    private ?DateTimeInterface $createdAt = null;
-    private ?DateTimeInterface $validUntil = null;
+    private ?\DateTimeInterface $createdAt = null;
+    private ?\DateTimeInterface $validUntil = null;
     private ?bool $used = null;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'certificationType' => $this->getCertificationType(),
             'certificationVersion' => $this->getCertificationVersion(),
             'voucher' => $this->getVoucher(),
-            'createdAt' => $this->formatDateIfGiven($this->getCreatedAt()),
-            'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
+            'createdAt' => $this->getCreatedAt()?->format(\DateTimeInterface::ATOM),
+            'validUntil' => $this->getValidUntil()?->format(\DateTimeInterface::ATOM),
             'used' => $this->getUsed(),
         ];
     }
@@ -135,24 +135,24 @@ class ExamAccess implements JsonSerializable
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?DateTimeInterface $createdAt): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getValidUntil(): ?DateTimeInterface
+    public function getValidUntil(): ?\DateTimeInterface
     {
         return $this->validUntil;
     }
 
-    public function setValidUntil(?DateTimeInterface $validUntil): self
+    public function setValidUntil(?\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 
@@ -174,11 +174,6 @@ class ExamAccess implements JsonSerializable
     public function getName(): string
     {
         return $this->getCertificationType() . ' v' . $this->getCertificationVersion();
-    }
-
-    private function formatDateIfGiven(?DateTimeInterface $dateTime): ?string
-    {
-        return null !== $dateTime ? $dateTime->format(\DateTimeInterface::ATOM) : null;
     }
 
     public function __toString(): string

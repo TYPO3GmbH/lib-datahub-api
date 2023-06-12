@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Api\OfferApi;
 use T3G\DatahubApiLibrary\Assembler\CreateOfferAssembler;
 use T3G\DatahubApiLibrary\Dto\CreateOfferDto;
 
-class OfferApiTest extends AbstractApiTest
+class OfferApiTest extends AbstractApiTestCase
 {
     public function testCreateOfferForUser(): void
     {

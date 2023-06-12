@@ -10,11 +10,11 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use Psr\Http\Message\ResponseInterface;
 use T3G\DatahubApiLibrary\Entity\Company;
 
 /**
  * @method static array{entities: array<string, mixed>} responseToArray(ResponseInterface $response)
+ *
  * @extends AbstractFactory<Company[]>
  */
 class CompanyListFactory extends AbstractFactory

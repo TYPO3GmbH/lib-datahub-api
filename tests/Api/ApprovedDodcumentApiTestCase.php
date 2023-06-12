@@ -14,7 +14,7 @@ use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\ApprovedDocumentApi;
 use T3G\DatahubApiLibrary\Entity\ApprovedDocument;
 
-class ApprovedDodcumentApiTest extends AbstractApiTest
+class ApprovedDodcumentApiTestCase extends AbstractApiTestCase
 {
     public function testApproveDocument(): void
     {

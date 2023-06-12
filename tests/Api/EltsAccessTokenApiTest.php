@@ -14,7 +14,7 @@ use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\EltsAccessTokenApi;
 use T3G\DatahubApiLibrary\Entity\EltsAccessToken;
 
-class EltsAccessTokenApiTest extends AbstractApiTest
+class EltsAccessTokenApiTest extends AbstractApiTestCase
 {
     public function testCreateEltsAccessToken(): void
     {

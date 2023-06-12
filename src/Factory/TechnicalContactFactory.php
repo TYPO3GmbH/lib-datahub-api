@@ -35,10 +35,10 @@ class TechnicalContactFactory extends AbstractFactory
         if (isset($data['inherited'])) {
             $technicalContact->setInherited($data['inherited']);
         }
-        if (isset($data['eltsPlan']) && null !== $data['eltsPlan'] && is_array($data['eltsPlan'])) {
+        if (isset($data['eltsPlan']) && is_array($data['eltsPlan'])) {
             $technicalContact->setEltsPlan(EltsPlanFactory::fromArray($data['eltsPlan']));
         }
-        if (isset($data['eltsInstance']) && null !== $data['eltsInstance'] && is_array($data['eltsInstance'])) {
+        if (isset($data['eltsInstance']) && is_array($data['eltsInstance'])) {
             $technicalContact->setEltsInstance(EltsInstanceFactory::fromArray($data['eltsInstance']));
         }
 

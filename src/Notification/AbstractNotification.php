@@ -30,7 +30,7 @@ abstract class AbstractNotification implements NotificationInterface
         $this->type = get_class($this);
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->getType(),

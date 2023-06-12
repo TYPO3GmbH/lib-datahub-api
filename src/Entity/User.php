@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
 use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Enum\CertificationStatus;
 use T3G\DatahubApiLibrary\Notification\NotificationInterface;
 
-class User implements JsonSerializable
+class User implements \JsonSerializable
 {
     private string $username;
     private ?string $password = null;
@@ -97,7 +96,10 @@ class User implements JsonSerializable
      */
     private array $eltsGitPublicKeys = [];
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'username' => $this->getUserName(),

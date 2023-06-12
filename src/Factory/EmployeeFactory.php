@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use DateTime;
 use T3G\DatahubApiLibrary\Entity\Employee;
 
 /**
@@ -22,8 +21,8 @@ class EmployeeFactory extends AbstractFactory
     {
         $employee = (new Employee())
             ->setRole($data['role'])
-            ->setJoinedAt(new DateTime($data['joinedAt']))
-            ->setLeftAt(null !== $data['leftAt'] ? new DateTime($data['leftAt']) : null)
+            ->setJoinedAt(new \DateTime($data['joinedAt']))
+            ->setLeftAt(null !== $data['leftAt'] ? new \DateTime($data['leftAt']) : null)
             ->setUuid($data['uuid']);
         if (isset($data['company'])) {
             $employee->setCompany(CompanyFactory::fromArray($data['company']));

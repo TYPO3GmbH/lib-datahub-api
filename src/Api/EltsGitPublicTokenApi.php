@@ -24,7 +24,7 @@ class EltsGitPublicTokenApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/elts-git-public-key'),
-                json_encode($eltsGitPublicKey, JSON_THROW_ON_ERROR, 512)
+                json_encode($eltsGitPublicKey, JSON_THROW_ON_ERROR)
             )
         );
     }

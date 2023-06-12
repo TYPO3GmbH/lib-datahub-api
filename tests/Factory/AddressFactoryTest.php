@@ -39,7 +39,7 @@ class AddressFactoryTest extends TestCase
         self::assertEquals($data['checksum'], $entity->getChecksum());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

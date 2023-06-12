@@ -20,7 +20,7 @@ use T3G\DatahubApiLibrary\Enum\PSLType;
 use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
-class CompanyApiTest extends AbstractApiTest
+class CompanyApiTest extends AbstractApiTestCase
 {
     public function testGetCompany(): void
     {
@@ -194,7 +194,7 @@ class CompanyApiTest extends AbstractApiTest
         try {
             $api->deleteCompany('00000000-0000-0000-0000-000000000000');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);
@@ -209,7 +209,7 @@ class CompanyApiTest extends AbstractApiTest
         try {
             $api->revokeEmployeeInvitation('00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

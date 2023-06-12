@@ -20,7 +20,10 @@ class Invoice implements \JsonSerializable
     private string $identifier = '';
     private string $documentType = '';
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'date' => $this->getDate()->format(\DateTimeInterface::ATOM),

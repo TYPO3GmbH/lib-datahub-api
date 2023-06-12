@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use DateTime;
 use T3G\DatahubApiLibrary\Entity\ApprovedDocument;
 
 /**
@@ -23,7 +22,7 @@ class ApprovedDocumentFactory extends AbstractFactory
         $approvedDocument = (new ApprovedDocument())
             ->setDocumentIdentifier($data['documentIdentifier'])
             ->setDocumentVersion($data['documentVersion'])
-            ->setApproveDate(new DateTime($data['approveDate']));
+            ->setApproveDate(new \DateTime($data['approveDate']));
         if (!empty($data['user'])) {
             $approvedDocument
                 ->setUser(UserFactory::fromArray($data['user']));

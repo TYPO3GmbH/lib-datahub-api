@@ -65,7 +65,7 @@ class AddressApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . rawurlencode(mb_strtolower($username)) . '/addresses'),
-                json_encode($address, JSON_THROW_ON_ERROR, 512)
+                json_encode($address, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -83,7 +83,7 @@ class AddressApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/companies/' . $companyUuid . '/addresses'),
-                json_encode($address, JSON_THROW_ON_ERROR, 512)
+                json_encode($address, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -101,7 +101,7 @@ class AddressApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/user/addresses/' . $uuid),
-                json_encode($address, JSON_THROW_ON_ERROR, 512)
+                json_encode($address, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -134,7 +134,7 @@ class AddressApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/company/addresses/' . $uuid),
-                json_encode($address, JSON_THROW_ON_ERROR, 512)
+                json_encode($address, JSON_THROW_ON_ERROR)
             )
         );
     }

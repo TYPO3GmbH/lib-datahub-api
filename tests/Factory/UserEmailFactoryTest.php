@@ -27,7 +27,7 @@ class UserEmailFactoryTest extends TestCase
         self::assertEquals($data['email'], $entity->getEmail());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             [

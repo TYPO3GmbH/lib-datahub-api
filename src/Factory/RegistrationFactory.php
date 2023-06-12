@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use DateTime;
 use T3G\DatahubApiLibrary\Entity\Registration;
 
 /**
@@ -27,6 +26,6 @@ class RegistrationFactory extends AbstractFactory
             ->setUsername($data['username'])
             ->setRegistrationCode($data['registrationCode'])
             ->setLocation($data['location'] ?? null)
-            ->setValidUntil($data['validUntil'] ? new DateTime($data['validUntil']) : null);
+            ->setValidUntil($data['validUntil'] ? new \DateTime($data['validUntil']) : null);
     }
 }

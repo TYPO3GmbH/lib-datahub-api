@@ -101,7 +101,7 @@ class EmailAddressApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/emails/' . $uuid),
-                json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
+                json_encode($emailAddress, JSON_THROW_ON_ERROR)
             )
         );
     }

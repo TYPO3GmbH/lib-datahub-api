@@ -25,7 +25,7 @@ class GDPRApi extends AbstractApi
         $this->client->request(
             'POST',
             self::uri('/users/' . mb_strtolower($username) . '/delete'),
-            json_encode(['otrsIssue' => $otrsIssue, 'comment' => $comment], JSON_THROW_ON_ERROR, 512)
+            json_encode(['otrsIssue' => $otrsIssue, 'comment' => $comment], JSON_THROW_ON_ERROR)
         );
     }
 

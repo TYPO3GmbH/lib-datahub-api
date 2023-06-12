@@ -44,7 +44,7 @@ class UserFactoryTest extends TestCase
         self::assertEquals($data['emailAddresses'][0]['email'], $entity->getPrimaryEmail());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

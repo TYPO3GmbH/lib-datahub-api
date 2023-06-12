@@ -10,9 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
-
-class ReleaseNotification implements JsonSerializable
+class ReleaseNotification implements \JsonSerializable
 {
     private string $uuid;
     private string $name;

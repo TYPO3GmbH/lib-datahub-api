@@ -42,7 +42,7 @@ class EltsInstanceFactoryTest extends TestCase
         self::assertCount($technicalContactsCount, $entity->getTechnicalContacts());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

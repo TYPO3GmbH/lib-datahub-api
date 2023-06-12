@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Demand\SubscriptionFilterQuery;
 
 class SubscriptionFilterQueryTest extends TestCase
 {
-    public function getQueryAsStringDataProvider(): array
+    public static function getQueryAsStringDataProvider(): array
     {
         return [
             'subscriptionIdentifier' => [['subscriptionIdentifier' => 'foo'], 'subscriptionIdentifier=foo'],
@@ -36,8 +36,6 @@ class SubscriptionFilterQueryTest extends TestCase
 
     /**
      * @dataProvider getQueryAsStringDataProvider
-     *
-     * @param array $data
      */
     public function testGetQueryAsString(array $inputValues, string $expectedOutput): void
     {

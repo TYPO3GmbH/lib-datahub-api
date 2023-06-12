@@ -31,7 +31,6 @@ class EltsPlanApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @throws InvalidUuidException
      */
     public function createEltsPlanForUser(string $username, CreateEltsPlanDto $eltsPlan): EltsPlan
     {
@@ -138,7 +137,7 @@ class EltsPlanApi extends AbstractApi
             self::uri('/elts/version-access/' . mb_strtolower($username))
         )->getBody()->getContents();
 
-        return JsonUtility::decode((string) $content);
+        return JsonUtility::decode($content);
     }
 
     /**

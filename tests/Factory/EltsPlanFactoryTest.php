@@ -32,9 +32,9 @@ class EltsPlanFactoryTest extends TestCase
         self::assertEquals($data['runtimes'][0]['runtime'], $entity->getRuntimes()[0]->getRuntime());
         self::assertEquals($data['owner'], $entity->getOwner());
         self::assertEquals($data['ownerData'], $entity->getOwnerData());
-        $data['validFrom'] = $data['validFrom'] ?? null;
+        $data['validFrom'] ??= null;
         self::assertEquals($data['validFrom'] ? new \DateTime($data['validFrom']) : null, $entity->getValidFrom());
-        $data['validTo'] = $data['validTo'] ?? null;
+        $data['validTo'] ??= null;
         self::assertEquals($data['validTo'] ? new \DateTime($data['validTo']) : null, $entity->getValidTo());
         $instanceCount = 0;
         if (isset($data['instances'])) {
@@ -54,10 +54,10 @@ class EltsPlanFactoryTest extends TestCase
             $technicalContactsCount = count($data['technicalContacts']);
         }
         self::assertCount($technicalContactsCount, $entity->getTechnicalContacts());
-        self::assertEquals(isset($data['licenses']) ? $data['licenses'] : 0, $entity->getLicenses());
+        self::assertEquals($data['licenses'] ?? 0, $entity->getLicenses());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

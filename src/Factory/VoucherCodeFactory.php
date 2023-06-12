@@ -37,10 +37,10 @@ class VoucherCodeFactory extends AbstractFactory
             ->setIsRedeemable($data['isRedeemable'] ?? false)
         ;
 
-        if (isset($data['user']) && null !== $data['user']) {
+        if (isset($data['user'])) {
             $code->setUser(UserFactory::fromArray($data['user']));
         }
-        if (isset($data['company']) && null !== $data['company']) {
+        if (isset($data['company'])) {
             $code->setCompany(CompanyFactory::fromArray($data['company']));
         }
 

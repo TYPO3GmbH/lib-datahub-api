@@ -27,7 +27,7 @@ class ApprovedDocumentApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/approve-document'),
-                json_encode($approvedDocument, JSON_THROW_ON_ERROR, 512)
+                json_encode($approvedDocument, JSON_THROW_ON_ERROR)
             )
         );
     }

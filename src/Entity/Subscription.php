@@ -10,14 +10,12 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use DateTimeInterface;
-use JsonSerializable;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
-class Subscription implements JsonSerializable
+class Subscription implements \JsonSerializable
 {
     private string $uuid = '';
     private string $subscriptionIdentifier = '';
@@ -25,14 +23,17 @@ class Subscription implements JsonSerializable
     private string $subscriptionType = '';
     private string $subscriptionSubType = '';
     private string $stripeLink = '';
-    private ?DateTimeInterface $validUntil = null;
+    private ?\DateTimeInterface $validUntil = null;
     private ?array $payload = null;
     private ?string $history = null;
     private ?User $user = null;
     private ?Company $company = null;
     private ?string $paymentStatus = null;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'subscriptionIdentifier' => $this->getSubscriptionIdentifier(),
@@ -40,7 +41,7 @@ class Subscription implements JsonSerializable
             'subscriptionType' => $this->getSubscriptionType(),
             'subscriptionSubType' => $this->getSubscriptionSubType(),
             'stripeLink' => $this->getStripeLink(),
-            'validUntil' => $this->formatDateIfGiven($this->getValidUntil()),
+            'validUntil' => $this->getValidUntil()?->format(\DateTimeInterface::ATOM),
             'payload' => $this->getPayload(),
             'paymentStatus' => $this->getPaymentStatus(),
         ];
@@ -128,12 +129,12 @@ class Subscription implements JsonSerializable
         return $this;
     }
 
-    public function getValidUntil(): ?DateTimeInterface
+    public function getValidUntil(): ?\DateTimeInterface
     {
         return $this->validUntil;
     }
 
-    public function setValidUntil(?DateTimeInterface $validUntil): self
+    public function setValidUntil(?\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 
@@ -218,10 +219,5 @@ class Subscription implements JsonSerializable
         $this->paymentStatus = $paymentStatus;
 
         return $this;
-    }
-
-    private function formatDateIfGiven(?DateTimeInterface $dateTime): ?string
-    {
-        return null !== $dateTime ? $dateTime->format(\DateTimeInterface::ATOM) : null;
     }
 }

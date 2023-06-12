@@ -58,7 +58,7 @@ class ContentApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            self::uri(sprintf('/content/directory'))->withQuery(http_build_query([
+            self::uri('/content/directory')->withQuery(http_build_query([
                 'd' => $directory,
                 'ref' => $ref,
             ]))

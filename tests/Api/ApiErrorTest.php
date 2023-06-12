@@ -16,7 +16,7 @@ use T3G\DatahubApiLibrary\Api\UserApi;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 
-class ApiErrorTest extends AbstractApiTest
+class ApiErrorTest extends AbstractApiTestCase
 {
     public function testErrorWithNoBody(): void
     {

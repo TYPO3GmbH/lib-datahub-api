@@ -33,7 +33,7 @@ class RegistrationApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/registration/register'),
-                json_encode($registration, JSON_THROW_ON_ERROR, 512)
+                json_encode($registration, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -41,12 +41,10 @@ class RegistrationApi extends AbstractApi
     /**
      * @param string $registrationToken
      *
-     * @return User|Registration
-     *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
-    public function confirmRegistration(string $registrationToken)
+    public function confirmRegistration(string $registrationToken): User|Registration
     {
         $response = $this->client->request(
             'GET',

@@ -19,16 +19,12 @@ use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Client\DataHubClient;
 
-abstract class AbstractApiTest extends TestCase
+abstract class AbstractApiTestCase extends TestCase
 {
     /**
-     * @param MockHandler|HandlerStack $handler
-     *
-     * @return DataHubClient
-     *
      * @throws \Exception
      */
-    protected function getClient($handler): DataHubClient
+    protected function getClient(MockHandler|HandlerStack $handler): DataHubClient
     {
         $client = new Client(['handler' => $handler]);
         $logger = new Logger('testing-channel');

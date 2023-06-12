@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
-
 /**
  * @template D
  */
-abstract class AbstractPaginatedList implements JsonSerializable
+abstract class AbstractPaginatedList implements \JsonSerializable
 {
     /** @var array<string, mixed> */
     protected array $meta;
@@ -40,7 +38,10 @@ abstract class AbstractPaginatedList implements JsonSerializable
         $this->data = $data;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'meta' => $this->getMeta(),

@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Api\TechnicalContactApi;
 use T3G\DatahubApiLibrary\Dto\CreateTechnicalContactDto;
 use T3G\DatahubApiLibrary\Entity\TechnicalContact;
 
-class TechnicalContactApiTest extends AbstractApiTest
+class TechnicalContactApiTest extends AbstractApiTestCase
 {
     public function testCreateTechnicalContactForInstance(): void
     {
@@ -79,7 +79,7 @@ class TechnicalContactApiTest extends AbstractApiTest
         try {
             $api->deleteTechnicalContact('d209090d-be9e-4034-82e8-7a7ebb5b776c');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
 

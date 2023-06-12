@@ -10,10 +10,9 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
 use T3G\DatahubApiLibrary\BitMask\AddressType;
 
-class Address implements JsonSerializable
+class Address implements \JsonSerializable
 {
     use ChecksumTrait;
     private string $uuid = '';
@@ -35,7 +34,10 @@ class Address implements JsonSerializable
     private float $latitude = 0.0;
     private float $longitude = 0.0;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'title' => $this->getTitle(),

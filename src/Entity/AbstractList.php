@@ -10,12 +10,10 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
-
 /**
  * @template T
  */
-abstract class AbstractList implements JsonSerializable
+abstract class AbstractList implements \JsonSerializable
 {
     /** @var array<int, T> */
     protected array $data;
@@ -30,7 +28,10 @@ abstract class AbstractList implements JsonSerializable
         $this->data = $data;
     }
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, array<int, mixed>>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'data' => $this->getData(),

@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Client;
 
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -17,7 +18,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 use Psr\Log\LoggerInterface;
-use Sunrise\Stream\StreamFactory;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Service\SecurityService;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
@@ -70,7 +70,7 @@ class DataHubClient
             $request = $request->withAddedHeader('Content-Type', 'application/json');
         }
         if (null !== $body) {
-            $stream = (new StreamFactory())->createStream($body);
+            $stream = Utils::streamFor($body);
             $request = $request->withBody($stream);
         }
 

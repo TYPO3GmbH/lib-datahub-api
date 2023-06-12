@@ -10,11 +10,9 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Exception;
 
-use Exception;
-
 /**
  * @codeCoverageIgnore No need to test this ...
  */
-class InvalidUuidException extends Exception
+class InvalidUuidException extends \Exception
 {
 }

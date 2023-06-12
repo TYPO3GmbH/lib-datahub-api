@@ -10,13 +10,12 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
 use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\EmployeeRole;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
-class Company implements JsonSerializable
+class Company implements \JsonSerializable
 {
     private string $uuid;
     private string $companyType = CompanyType::AGENCY;
@@ -85,7 +84,10 @@ class Company implements JsonSerializable
      */
     private array $examAccesses = [];
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'companyType' => $this->getCompanyType(),
@@ -370,7 +372,7 @@ class Company implements JsonSerializable
     {
         return new \ArrayIterator(array_filter(
             $this->subscriptions,
-            fn (Subscription $subscription) => SubscriptionType::PSL === $subscription->getSubscriptionType()
+            static fn (Subscription $subscription) => SubscriptionType::PSL === $subscription->getSubscriptionType()
         ));
     }
 

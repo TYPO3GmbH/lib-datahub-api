@@ -17,7 +17,7 @@ use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\CertificationVersion;
 use T3G\DatahubApiLibrary\Enum\ExamAccessStatus;
 
-class ExamAccessApiTest extends AbstractApiTest
+class ExamAccessApiTest extends AbstractApiTestCase
 {
     public function testGetExamAccess(): void
     {
@@ -119,7 +119,7 @@ class ExamAccessApiTest extends AbstractApiTest
         try {
             $api->deleteExamAccess('00000000-0000-0000-0000-000000000000');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

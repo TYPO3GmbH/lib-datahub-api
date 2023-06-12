@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Api\ReleaseNotificationApi;
 use T3G\DatahubApiLibrary\Dto\CreateReleaseNotificationDto;
 use T3G\DatahubApiLibrary\Entity\ReleaseNotification;
 
-class ReleaseNotificationApiTest extends AbstractApiTest
+class ReleaseNotificationApiTest extends AbstractApiTestCase
 {
     public function testCreateReleaseNotificationForInstance(): void
     {
@@ -77,7 +77,7 @@ class ReleaseNotificationApiTest extends AbstractApiTest
         try {
             $api->deleteReleaseNotification('d209090d-be9e-4034-82e8-7a7ebb5b776c');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
 

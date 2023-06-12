@@ -13,7 +13,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\PasswordResetApi;
 
-class ResetPasswordApiTest extends AbstractApiTest
+class ResetPasswordApiTest extends AbstractApiTestCase
 {
     public function testResetPassword(): void
     {
@@ -24,7 +24,7 @@ class ResetPasswordApiTest extends AbstractApiTest
         try {
             $api->requestPasswordReset('oelie-boelie');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

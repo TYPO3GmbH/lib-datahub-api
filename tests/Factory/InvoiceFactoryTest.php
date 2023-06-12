@@ -64,7 +64,7 @@ class InvoiceFactoryTest extends TestCase
         self::assertEquals('invoice', $entity->getDocumentType());
     }
 
-    public function emptyDocumentTypeDataProvider(): array
+    public static function emptyDocumentTypeDataProvider(): array
     {
         return [
             'allValuesSet' => [
@@ -88,7 +88,7 @@ class InvoiceFactoryTest extends TestCase
         ];
     }
 
-    public function documentTypeMissingDataProvider(): array
+    public static function documentTypeMissingDataProvider(): array
     {
         return [
             'allValuesSet' => [
@@ -110,7 +110,7 @@ class InvoiceFactoryTest extends TestCase
         ];
     }
 
-    public function invoiceFactoryDataProvider(): array
+    public static function invoiceFactoryDataProvider(): array
     {
         return [
             'allValuesSet' => [
@@ -134,7 +134,7 @@ class InvoiceFactoryTest extends TestCase
         ];
     }
 
-    public function creditNoteDataProvider(): array
+    public static function creditNoteDataProvider(): array
     {
         return [
             'allValuesSet' => [
@@ -158,11 +158,6 @@ class InvoiceFactoryTest extends TestCase
         ];
     }
 
-    /**
-     * @param array $data
-     *
-     * @return void
-     */
     public function internalTestFactory(array $data, Invoice $entity): void
     {
         self::assertEquals($data['link'], $entity->getLink());

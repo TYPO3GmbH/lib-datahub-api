@@ -47,7 +47,7 @@ class UserApi extends AbstractApi
                     'firstName' => $user->getFirstName(),
                     'lastName' => $user->getLastName(),
                     'email' => $user->getPrimaryEmail(false),
-                ], JSON_THROW_ON_ERROR, 512)
+                ], JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -64,7 +64,7 @@ class UserApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/search'),
-                json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
+                json_encode(['term' => $search], JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -124,7 +124,7 @@ class UserApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/users/' . mb_strtolower($username)),
-                json_encode($user, JSON_THROW_ON_ERROR, 512)
+                json_encode($user, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -179,7 +179,7 @@ class UserApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/certifications'),
-                json_encode($certification, JSON_THROW_ON_ERROR, 512)
+                json_encode($certification, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -190,7 +190,7 @@ class UserApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/users/' . mb_strtolower($username) . '/certifications/' . $uuid),
-                json_encode($certification, JSON_THROW_ON_ERROR, 512)
+                json_encode($certification, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -220,7 +220,7 @@ class UserApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/emails'),
-                json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
+                json_encode($emailAddress, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -231,7 +231,7 @@ class UserApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/voucher-codes'),
-                json_encode($voucherCode, JSON_THROW_ON_ERROR, 512)
+                json_encode($voucherCode, JSON_THROW_ON_ERROR)
             )
         );
     }

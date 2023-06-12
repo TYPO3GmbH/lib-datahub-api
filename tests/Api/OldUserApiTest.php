@@ -13,7 +13,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\OldUserApi;
 
-class OldUserApiTest extends AbstractApiTest
+class OldUserApiTest extends AbstractApiTestCase
 {
     public function testSearch(): void
     {

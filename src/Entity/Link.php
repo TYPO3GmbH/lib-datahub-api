@@ -10,15 +10,16 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
-
-class Link implements JsonSerializable
+class Link implements \JsonSerializable
 {
     private string $uuid;
     private string $url;
     private string $icon;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, string>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'url' => $this->getUrl(),

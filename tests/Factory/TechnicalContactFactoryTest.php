@@ -31,7 +31,7 @@ class TechnicalContactFactoryTest extends TestCase
         self::assertEquals($data['inherited'], $entity->getInherited());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

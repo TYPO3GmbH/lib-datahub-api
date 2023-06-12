@@ -29,7 +29,7 @@ class ApprovedDocumentFactoryTest extends TestCase
         self::assertEquals($data['user']['username'], $entity->getUser()->getUsername());
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             'allValuesSet' => [

@@ -25,7 +25,7 @@ class EltsAccessTokenApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/elts-access-token'),
-                json_encode($eltsAccessToken, JSON_THROW_ON_ERROR, 512)
+                json_encode($eltsAccessToken, JSON_THROW_ON_ERROR)
             )
         );
     }

@@ -14,7 +14,7 @@ use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\EltsGitPublicTokenApi;
 use T3G\DatahubApiLibrary\Entity\EltsGitPublicKey;
 
-class EltsGitPublicKeyApiTest extends AbstractApiTest
+class EltsGitPublicKeyApiTest extends AbstractApiTestCase
 {
     public function testCreateGitPublicKeyToken(): void
     {

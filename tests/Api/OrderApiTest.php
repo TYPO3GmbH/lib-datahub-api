@@ -11,12 +11,14 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
+use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Api\OrderApi;
 use T3G\DatahubApiLibrary\Demand\OrderSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Invoice;
 use T3G\DatahubApiLibrary\Entity\Order;
+use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 
-class OrderApiTest extends AbstractApiTest
+class OrderApiTest extends AbstractApiTestCase
 {
     public function testGetOrder(): void
     {
@@ -39,8 +41,9 @@ class OrderApiTest extends AbstractApiTest
      * @param int|null $limit
      *
      * @throws \JsonException
-     * @throws \Psr\Http\Client\ClientExceptionInterface
-     * @throws \T3G\DatahubApiLibrary\Exception\DatahubResponseException
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     *
      * @dataProvider searchOrdersDataProvider
      */
     public function testSearchOrders(string $fixtureFile, ?int $limit): void
@@ -54,7 +57,7 @@ class OrderApiTest extends AbstractApiTest
         self::assertCount($limit ?? 10, $orderList->getData());
     }
 
-    public function searchOrdersDataProvider(): \Generator
+    public static function searchOrdersDataProvider(): \Generator
     {
         yield ['SearchOrdersResponseLimitNull.php', null];
         yield ['SearchOrdersResponseLimit1.php', 1];

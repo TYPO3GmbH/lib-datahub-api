@@ -10,15 +10,13 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use DateTimeInterface;
-use JsonSerializable;
 use T3G\DatahubApiLibrary\Enum\CertificationAuditType;
 use T3G\DatahubApiLibrary\Enum\CertificationProctoringApprovalStatus;
 use T3G\DatahubApiLibrary\Enum\CertificationTestResult;
 use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\CertificationVersion;
 
-class Certification implements JsonSerializable
+class Certification implements \JsonSerializable
 {
     private string $uuid = '';
     private string $type = '';
@@ -31,7 +29,7 @@ class Certification implements JsonSerializable
     private string $auditType = '';
     private string $status = '';
     private string $examLocation = '';
-    private ?DateTimeInterface $examDate = null;
+    private ?\DateTimeInterface $examDate = null;
     private bool $ndaSigned = false;
     private bool $rulesAccepted = false;
     private ?string $proctoringLink = null;
@@ -39,13 +37,13 @@ class Certification implements JsonSerializable
     private ?string $examUrl = null;
     private ?string $examAccessCode = null;
     private ?string $examProctoringInstructions = null;
-    private ?DateTimeInterface $examStartDate = null;
-    private ?DateTimeInterface $examEndDate = null;
+    private ?\DateTimeInterface $examStartDate = null;
+    private ?\DateTimeInterface $examEndDate = null;
     private ?int $examDuration = null;
     private ?string $history = null;
     private string $examTestResult = CertificationTestResult::NO_RESULT;
     private ?string $proctoringStatus = null;
-    private ?DateTimeInterface $certificatePrintDate = null;
+    private ?\DateTimeInterface $certificatePrintDate = null;
     private ?int $incidents = 0;
     private string $proctoringApproval = CertificationProctoringApprovalStatus::UNKNOWN;
     private ?string $hubspotDealId = null;
@@ -59,7 +57,10 @@ class Certification implements JsonSerializable
      */
     private array $postFormattedAddress = [];
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'type' => $this->getType(),
@@ -206,12 +207,12 @@ class Certification implements JsonSerializable
         return $this;
     }
 
-    public function getExamDate(): ?DateTimeInterface
+    public function getExamDate(): ?\DateTimeInterface
     {
         return $this->examDate;
     }
 
-    public function setExamDate(?DateTimeInterface $examDate): self
+    public function setExamDate(?\DateTimeInterface $examDate): self
     {
         $this->examDate = $examDate;
 
@@ -311,24 +312,24 @@ class Certification implements JsonSerializable
         return $this;
     }
 
-    public function getExamStartDate(): ?DateTimeInterface
+    public function getExamStartDate(): ?\DateTimeInterface
     {
         return $this->examStartDate;
     }
 
-    public function setExamStartDate(?DateTimeInterface $examStartDate): self
+    public function setExamStartDate(?\DateTimeInterface $examStartDate): self
     {
         $this->examStartDate = $examStartDate;
 
         return $this;
     }
 
-    public function getExamEndDate(): ?DateTimeInterface
+    public function getExamEndDate(): ?\DateTimeInterface
     {
         return $this->examEndDate;
     }
 
-    public function setExamEndDate(?DateTimeInterface $examEndDate): self
+    public function setExamEndDate(?\DateTimeInterface $examEndDate): self
     {
         $this->examEndDate = $examEndDate;
 
@@ -383,12 +384,12 @@ class Certification implements JsonSerializable
         return $this;
     }
 
-    public function getCertificatePrintDate(): ?DateTimeInterface
+    public function getCertificatePrintDate(): ?\DateTimeInterface
     {
         return $this->certificatePrintDate;
     }
 
-    public function setCertificatePrintDate(?DateTimeInterface $certificatePrintDate): self
+    public function setCertificatePrintDate(?\DateTimeInterface $certificatePrintDate): self
     {
         $this->certificatePrintDate = $certificatePrintDate;
 
@@ -419,7 +420,7 @@ class Certification implements JsonSerializable
         return $this;
     }
 
-    private function formatDateIfGiven(?DateTimeInterface $dateTime): ?string
+    private function formatDateIfGiven(?\DateTimeInterface $dateTime): ?string
     {
         if (!$dateTime instanceof \DateTimeInterface) {
             return null;
@@ -440,12 +441,12 @@ class Certification implements JsonSerializable
         return $this;
     }
 
-    public function getValidUntil(): ?DateTimeInterface
+    public function getValidUntil(): ?\DateTimeInterface
     {
         return $this->validUntil;
     }
 
-    public function setValidUntil(?DateTimeInterface $validUntil): self
+    public function setValidUntil(?\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 

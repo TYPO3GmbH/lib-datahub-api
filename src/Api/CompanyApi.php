@@ -136,7 +136,7 @@ class CompanyApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/companies'),
-                json_encode($company, JSON_THROW_ON_ERROR, 512)
+                json_encode($company, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -154,7 +154,7 @@ class CompanyApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/companies/' . $uuid),
-                json_encode($company, JSON_THROW_ON_ERROR, 512)
+                json_encode($company, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -247,7 +247,7 @@ class CompanyApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/employees/' . $employeeUuid . '/roles'),
-                json_encode(['role' => $role], JSON_THROW_ON_ERROR, 512)
+                json_encode(['role' => $role], JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -296,7 +296,7 @@ class CompanyApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/companies/' . $uuid . '/emails'),
-                json_encode($emailAddress, JSON_THROW_ON_ERROR, 512)
+                json_encode($emailAddress, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -309,7 +309,7 @@ class CompanyApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/companies/' . $uuid . '/voucher-codes'),
-                json_encode($voucherCode, JSON_THROW_ON_ERROR, 512)
+                json_encode($voucherCode, JSON_THROW_ON_ERROR)
             )
         );
     }

@@ -36,7 +36,7 @@ class NotificationFactoryTest extends TestCase
         }
     }
 
-    public function factoryDataProvider(): array
+    public static function factoryDataProvider(): array
     {
         return [
             IncompletePaymentNotification::class => [

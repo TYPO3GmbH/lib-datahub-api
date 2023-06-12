@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Api\AddressApi;
 use T3G\DatahubApiLibrary\Entity\Address;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 
-class AddressApiTest extends AbstractApiTest
+class AddressApiTest extends AbstractApiTestCase
 {
     public function testGetUserAddress(): void
     {

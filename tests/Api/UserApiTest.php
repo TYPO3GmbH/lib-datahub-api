@@ -20,7 +20,7 @@ use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
-class UserApiTest extends AbstractApiTest
+class UserApiTest extends AbstractApiTestCase
 {
     public function testGetUser(): void
     {
@@ -79,7 +79,7 @@ class UserApiTest extends AbstractApiTest
         ]);
         $response = (new UserApi($this->getClient($handler)))
             ->search('oelie-boelie');
-        self::assertEquals(2, count($response));
+        self::assertCount(2, $response);
     }
 
     public function testGetProfile(): void

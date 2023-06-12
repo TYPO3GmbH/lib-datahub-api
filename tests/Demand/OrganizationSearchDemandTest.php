@@ -37,7 +37,7 @@ class OrganizationSearchDemandTest extends TestCase
     {
         $subject = new OrganizationSearchDemand();
         $subject->setTerm('Hello');
-        $subject->setWithVoucherCodes(true);
+        $subject->setWithVoucherCodes();
         self::assertArrayHasKey('term', $subject->toArray());
         self::assertSame('Hello', $subject->toArray()['term']);
 
@@ -53,7 +53,7 @@ class OrganizationSearchDemandTest extends TestCase
     public function testWithSubscriptionsSetsValueAsExpected(): void
     {
         $demand = new OrganizationSearchDemand();
-        $demand->setWithSubscriptions(true);
+        $demand->setWithSubscriptions();
 
         self::assertTrue($demand->isWithSubscriptions());
         self::assertSame([SubscriptionType::MEMBERSHIP, SubscriptionType::PSL], $demand->getSubscriptionTypes());
@@ -70,7 +70,7 @@ class OrganizationSearchDemandTest extends TestCase
         self::assertSame($expectation, $demand->getMembersRange());
     }
 
-    public function setMembersRangeAsExpectedDataProvider(): array
+    public static function setMembersRangeAsExpectedDataProvider(): array
     {
         return [
             'given min value' => [[2, null], [2, null]],
@@ -91,7 +91,7 @@ class OrganizationSearchDemandTest extends TestCase
         $demand->setMembersRange($input);
     }
 
-    public function setMembersRangeThrowsExceptionDataProvider(): array
+    public static function setMembersRangeThrowsExceptionDataProvider(): array
     {
         return [
             'missing range values' => [[], \InvalidArgumentException::class, 1668413261],

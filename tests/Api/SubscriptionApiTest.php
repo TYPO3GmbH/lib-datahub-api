@@ -13,7 +13,7 @@ namespace T3G\DatahubApiLibrary\Tests\Api;
 use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\SubscriptionApi;
 
-class SubscriptionApiTest extends AbstractApiTest
+class SubscriptionApiTest extends AbstractApiTestCase
 {
     public function testGetSubscription(): void
     {

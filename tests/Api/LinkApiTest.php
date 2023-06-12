@@ -14,7 +14,7 @@ use GuzzleHttp\Handler\MockHandler;
 use T3G\DatahubApiLibrary\Api\LinkApi;
 use T3G\DatahubApiLibrary\Entity\Link;
 
-class LinkApiTest extends AbstractApiTest
+class LinkApiTest extends AbstractApiTestCase
 {
     public function testGetLink(): void
     {
@@ -58,7 +58,7 @@ class LinkApiTest extends AbstractApiTest
         try {
             $api->deleteLink('00000000-0000-0000-0000-000000000000');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

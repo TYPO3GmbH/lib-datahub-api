@@ -48,7 +48,7 @@ class LinkApi extends AbstractApi
             $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/links'),
-                json_encode($link, JSON_THROW_ON_ERROR, 512)
+                json_encode($link, JSON_THROW_ON_ERROR)
             )
         );
     }
@@ -66,7 +66,7 @@ class LinkApi extends AbstractApi
             $this->client->request(
                 'PUT',
                 self::uri('/links/' . $uuid),
-                json_encode($link, JSON_THROW_ON_ERROR, 512)
+                json_encode($link, JSON_THROW_ON_ERROR)
             )
         );
     }

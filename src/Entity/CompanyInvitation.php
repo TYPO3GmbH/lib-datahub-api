@@ -10,14 +10,12 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use DateTimeInterface;
-
 class CompanyInvitation
 {
     private string $username;
     private string $email;
     private string $inviteCode;
-    private DateTimeInterface $validUntil;
+    private \DateTimeInterface $validUntil;
     private string $role;
 
     public function getUsername(): string
@@ -56,12 +54,12 @@ class CompanyInvitation
         return $this;
     }
 
-    public function getValidUntil(): DateTimeInterface
+    public function getValidUntil(): \DateTimeInterface
     {
         return $this->validUntil;
     }
 
-    public function setValidUntil(DateTimeInterface $validUntil): self
+    public function setValidUntil(\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 

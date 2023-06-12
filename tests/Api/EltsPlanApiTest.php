@@ -22,7 +22,7 @@ use T3G\DatahubApiLibrary\Enum\EltsPlanType;
 use T3G\DatahubApiLibrary\Enum\PaymentStatus;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
-class EltsPlanApiTest extends AbstractApiTest
+class EltsPlanApiTest extends AbstractApiTestCase
 {
     public function testCreateEltsPlanForUser(): void
     {
@@ -180,7 +180,7 @@ class EltsPlanApiTest extends AbstractApiTest
         try {
             $api->deletePlan('c5c729b5-e5c3-42f3-89ce-caa07e670fc2');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
 

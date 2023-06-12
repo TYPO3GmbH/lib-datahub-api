@@ -16,7 +16,7 @@ use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Entity\EmailAddress;
 use T3G\DatahubApiLibrary\Entity\UserEmail;
 
-class EmailAddressApiTest extends AbstractApiTest
+class EmailAddressApiTest extends AbstractApiTestCase
 {
     public function testGetAllUserEmailAddresses(): void
     {
@@ -82,7 +82,7 @@ class EmailAddressApiTest extends AbstractApiTest
         try {
             $api->deleteEmailAddress('00000000-0000-0000-0000-000000000000');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
         self::assertFalse($anExceptionWasThrown);

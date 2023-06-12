@@ -18,7 +18,10 @@ class EltsGitPublicKey implements \JsonSerializable
     private string $eltsVersion;
     private int $githubId = 0;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'name' => $this->getName(),
@@ -85,10 +88,6 @@ class EltsGitPublicKey implements \JsonSerializable
     }
 
     /**
-     * @param int $githubId
-     *
-     * @return EltsGitPublicKey
-     *
      * @internal
      */
     public function setGithubId(int $githubId): self

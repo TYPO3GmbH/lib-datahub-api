@@ -16,7 +16,7 @@ use T3G\DatahubApiLibrary\Dto\Admin\CreateCompanyDto;
 use T3G\DatahubApiLibrary\Dto\Admin\UpdateCompanyDto;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 
-class AdminCompanyApiTest extends AbstractApiTest
+class AdminCompanyApiTest extends AbstractApiTestCase
 {
     public function testCreateCompany(): void
     {

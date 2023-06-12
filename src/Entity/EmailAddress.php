@@ -10,16 +10,17 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
-
-class EmailAddress implements JsonSerializable
+class EmailAddress implements \JsonSerializable
 {
     private string $uuid;
     private string $email;
     private int $type;
     private ?\DateTimeInterface $optIn = null;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         $data = [
             'email' => $this->getEmail(),

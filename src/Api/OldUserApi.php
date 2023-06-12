@@ -14,6 +14,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Entity\ReservedUser;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
+use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\ReservedUserFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
@@ -34,7 +35,7 @@ class OldUserApi extends AbstractApi
         $response = $this->client->request(
             'POST',
             self::uri('/reserved-users/search'),
-            json_encode(['term' => $search], JSON_THROW_ON_ERROR, 512)
+            json_encode(['term' => $search], JSON_THROW_ON_ERROR)
         );
 
         return JsonUtility::decode((string) $response->getBody())['entities'] ?? [];
@@ -43,8 +44,7 @@ class OldUserApi extends AbstractApi
     /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     * @throws \JsonException
-     * @throws \T3G\DatahubApiLibrary\Exception\InvalidUuidException
+     * @throws InvalidUuidException
      */
     public function getReservedUser(string $uuid): ReservedUser
     {
@@ -62,7 +62,7 @@ class OldUserApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
-     * @throws \T3G\DatahubApiLibrary\Exception\InvalidUuidException
+     * @throws InvalidUuidException
      *
      * @internal
      */
@@ -90,7 +90,7 @@ class OldUserApi extends AbstractApi
         ]);
 
         return UserFactory::fromResponse(
-            $response = $this->client->request(
+            $this->client->request(
                 'POST',
                 self::uri('/users/' . mb_strtolower($username) . '/reenable')->withQuery($query),
             )

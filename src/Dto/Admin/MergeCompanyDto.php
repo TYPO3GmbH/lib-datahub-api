@@ -20,6 +20,7 @@ class MergeCompanyDto extends AbstractDto
      * that value should be used.
      *
      * @Assert\NotBlank
+     *
      * @Assert\Uuid
      */
     public string $title = '';
@@ -29,6 +30,7 @@ class MergeCompanyDto extends AbstractDto
      * that value should be used.
      *
      * @Assert\NotBlank
+     *
      * @Assert\Uuid
      */
     public string $slug = '';
@@ -38,6 +40,7 @@ class MergeCompanyDto extends AbstractDto
      * that value should be used.
      *
      * @Assert\NotBlank
+     *
      * @Assert\Uuid
      */
     public string $companyType = '';
@@ -47,6 +50,7 @@ class MergeCompanyDto extends AbstractDto
      * that value should be used.
      *
      * @Assert\NotBlank
+     *
      * @Assert\Uuid
      */
     public string $vatId = '';
@@ -56,6 +60,7 @@ class MergeCompanyDto extends AbstractDto
      * that value should be used.
      *
      * @Assert\NotBlank
+     *
      * @Assert\Uuid
      */
     public string $hubspotId = '';
@@ -65,6 +70,7 @@ class MergeCompanyDto extends AbstractDto
      * that value should be used.
      *
      * @Assert\NotBlank
+     *
      * @Assert\Uuid
      */
     public string $domain = '';

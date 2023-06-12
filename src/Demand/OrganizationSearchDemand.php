@@ -18,7 +18,7 @@ class OrganizationSearchDemand implements \JsonSerializable
     private bool $withOrders = false;
 
     /**
-     * @var array<int, \T3G\DatahubApiLibrary\Enum\SubscriptionType::*>|null
+     * @var array<int, SubscriptionType::*>|null
      */
     private ?array $subscriptionTypes = null;
     private bool $withVoucherCodes = false;
@@ -56,7 +56,7 @@ class OrganizationSearchDemand implements \JsonSerializable
     }
 
     /**
-     * @return array<string, bool>
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
@@ -124,7 +124,7 @@ class OrganizationSearchDemand implements \JsonSerializable
     }
 
     /**
-     * @param array<int, \T3G\DatahubApiLibrary\Enum\SubscriptionType::*> $subscriptionTypes
+     * @param array<int, SubscriptionType::*> $subscriptionTypes
      */
     public function setSubscriptionTypes($subscriptionTypes): self
     {
@@ -134,7 +134,7 @@ class OrganizationSearchDemand implements \JsonSerializable
     }
 
     /**
-     * @return array<int, \T3G\DatahubApiLibrary\Enum\SubscriptionType::*>|null
+     * @return array<int, SubscriptionType::*>|null
      */
     public function getSubscriptionTypes(): ?array
     {

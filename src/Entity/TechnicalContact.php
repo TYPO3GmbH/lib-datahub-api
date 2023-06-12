@@ -10,9 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
-
-class TechnicalContact implements JsonSerializable
+class TechnicalContact implements \JsonSerializable
 {
     private string $uuid;
     private string $firstName;

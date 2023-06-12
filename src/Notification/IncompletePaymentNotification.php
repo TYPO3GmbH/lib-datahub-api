@@ -43,7 +43,7 @@ class IncompletePaymentNotification extends AbstractNotification
         $this->stripeLink = $stripeLink;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return array_merge(parent::jsonSerialize(), [
             'company' => $this->getCompany(),

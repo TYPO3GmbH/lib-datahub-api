@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Factory;
 
-use DateTime;
 use T3G\DatahubApiLibrary\Entity\CompanyInvitation;
 
 /**
@@ -23,7 +22,7 @@ class CompanyInvitationFactory extends AbstractFactory
         return (new CompanyInvitation())
             ->setUsername($data['username'])
             ->setEmail($data['email'])
-            ->setValidUntil(new DateTime($data['validUntil']))
+            ->setValidUntil(new \DateTime($data['validUntil']))
             ->setInviteCode($data['inviteCode'])
             ->setRole($data['role']);
     }

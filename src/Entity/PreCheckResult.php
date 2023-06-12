@@ -10,16 +10,17 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use JsonSerializable;
-
-class PreCheckResult implements JsonSerializable
+class PreCheckResult implements \JsonSerializable
 {
     private string $source;
     private string $type;
     private bool $result;
     private array $additionalData;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         return [
             'source' => $this->getSource(),

@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Api\EltsInstanceApi;
 use T3G\DatahubApiLibrary\Entity\EltsInstance;
 use T3G\DatahubApiLibrary\Entity\TechnicalContact;
 
-class EltsInstanceApiTest extends AbstractApiTest
+class EltsInstanceApiTest extends AbstractApiTestCase
 {
     public function testCreateInstanceForPlan(): void
     {
@@ -86,7 +86,7 @@ class EltsInstanceApiTest extends AbstractApiTest
         try {
             $api->deleteInstance('c5c729b5-e5c3-42f3-89ce-caa07e670fc2');
             $anExceptionWasThrown = false;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $anExceptionWasThrown = true;
         }
 

@@ -26,21 +26,14 @@ class NotificationFactory extends AbstractFactory
      */
     public static function fromArray(array $data): NotificationInterface
     {
-        switch ($data['type'] ?? '') {
-            case IncompletePaymentNotification::class:
-                $notification = new IncompletePaymentNotification(
-                    $data['company'],
-                    $data['companyTitle'],
-                    $data['subscription'],
-                    $data['stripeLink']
-                );
-                break;
-            default:
-                // unknown notification type
-                $notification = new UnknownNotification($data['type']);
-                break;
-        }
-
-        return $notification;
+        return match ($data['type'] ?? '') {
+            IncompletePaymentNotification::class => new IncompletePaymentNotification(
+                $data['company'],
+                $data['companyTitle'],
+                $data['subscription'],
+                $data['stripeLink']
+            ),
+            default => new UnknownNotification($data['type']),
+        };
     }
 }

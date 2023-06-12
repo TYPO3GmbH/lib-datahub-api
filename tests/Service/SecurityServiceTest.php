@@ -15,7 +15,7 @@ use T3G\DatahubApiLibrary\Service\SecurityService;
 
 class SecurityServiceTest extends TestCase
 {
-    public function sensitiveDataDataProvider(): array
+    public static function sensitiveDataDataProvider(): array
     {
         return [
             'first level password' => [

@@ -10,17 +10,17 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
-use DateTimeInterface;
-use JsonSerializable;
-
-class ApprovedDocument implements JsonSerializable
+class ApprovedDocument implements \JsonSerializable
 {
     private string $documentIdentifier;
     private string $documentVersion;
-    private ?DateTimeInterface $approveDate = null;
+    private ?\DateTimeInterface $approveDate = null;
     private ?User $user = null;
 
-    public function jsonSerialize()
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array
     {
         $data = [
             'documentIdentifier' => $this->documentIdentifier,
@@ -36,19 +36,11 @@ class ApprovedDocument implements JsonSerializable
         return $data;
     }
 
-    /**
-     * @return string
-     */
     public function getDocumentIdentifier(): string
     {
         return $this->documentIdentifier;
     }
 
-    /**
-     * @param string $documentIdentifier
-     *
-     * @return ApprovedDocument
-     */
     public function setDocumentIdentifier(string $documentIdentifier): self
     {
         $this->documentIdentifier = $documentIdentifier;
@@ -56,19 +48,11 @@ class ApprovedDocument implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDocumentVersion(): string
     {
         return $this->documentVersion;
     }
 
-    /**
-     * @param string $documentVersion
-     *
-     * @return ApprovedDocument
-     */
     public function setDocumentVersion(string $documentVersion): self
     {
         $this->documentVersion = $documentVersion;
@@ -76,39 +60,23 @@ class ApprovedDocument implements JsonSerializable
         return $this;
     }
 
-    /**
-     * @return DateTimeInterface
-     */
-    public function getApproveDate(): ?DateTimeInterface
+    public function getApproveDate(): ?\DateTimeInterface
     {
         return $this->approveDate;
     }
 
-    /**
-     * @param DateTimeInterface $approveDate
-     *
-     * @return ApprovedDocument
-     */
-    public function setApproveDate(?DateTimeInterface $approveDate): self
+    public function setApproveDate(?\DateTimeInterface $approveDate): self
     {
         $this->approveDate = $approveDate;
 
         return $this;
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     *
-     * @return ApprovedDocument
-     */
     public function setUser(User $user): self
     {
         $this->user = $user;

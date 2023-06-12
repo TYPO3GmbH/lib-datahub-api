@@ -25,7 +25,7 @@ class CompanyTest extends TestCase
         self::assertEquals($expected, $company->getEmailByType($type, $onlyOptIn));
     }
 
-    public function emailDataProvider(): array
+    public static function emailDataProvider(): array
     {
         return [
             'primary email confirmed' => [

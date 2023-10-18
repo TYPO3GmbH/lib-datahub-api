@@ -16,7 +16,7 @@ return new Response(200, ['content-type' => 'application/json'], '
     "version": "8.7",
     "vendor": "TYPO3GmbH",
     "repository": "elts-8.7-release",
-    "serviceDesk": "https:\/\/jira.typo3.com\/servicedesk\/customer\/portal\/12",
+    "serviceDesk": "https:\/\/support.typo3.com",
     "runtimes": {
       "1-1": {
         "identifier": "1-1",

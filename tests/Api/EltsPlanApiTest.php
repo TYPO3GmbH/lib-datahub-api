@@ -156,7 +156,7 @@ class EltsPlanApiTest extends AbstractApiTestCase
         self::assertSame('8.7', $firstPlan->getVersion());
         self::assertSame('TYPO3GmbH', $firstPlan->getVendor());
         self::assertSame('elts-8.7-release', $firstPlan->getRepository());
-        self::assertSame('https://jira.typo3.com/servicedesk/customer/portal/12', $firstPlan->getServiceDesk());
+        self::assertSame('https://support.typo3.com', $firstPlan->getServiceDesk());
         self::assertCount(6, $firstPlan->getRuntimes());
     }
 

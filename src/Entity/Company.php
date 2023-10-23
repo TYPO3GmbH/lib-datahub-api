@@ -365,6 +365,20 @@ class Company implements \JsonSerializable
         return $this->subscriptions;
     }
 
+    public function getPartnerProgramSubscription(): ?Subscription
+    {
+        $x = array_filter(
+            $this->subscriptions,
+            static fn (Subscription $subscription) => SubscriptionType::PARTNER_PROGRAM === $subscription->getSubscriptionType()
+        );
+
+        if ([] !== $x) {
+            return current($x);
+        }
+
+        return null;
+    }
+
     /**
      * @return Subscription[]
      */

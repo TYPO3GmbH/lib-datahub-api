@@ -50,5 +50,5 @@ abstract class AbstractFactory
     /**
      * @param array<string, mixed> $data
      */
-    abstract public static function fromArray(array $data): mixed;
+    abstract public static function fromArray(array $data);
 }

@@ -41,7 +41,7 @@ class Subscription implements \JsonSerializable
             'subscriptionType' => $this->getSubscriptionType(),
             'subscriptionSubType' => $this->getSubscriptionSubType(),
             'stripeLink' => $this->getStripeLink(),
-            'validUntil' => $this->getValidUntil()?->format(\DateTimeInterface::ATOM),
+            'validUntil' => null !== $this->getValidUntil() ? $this->getValidUntil()->format(\DateTimeInterface::ATOM) : null,
             'payload' => $this->getPayload(),
             'paymentStatus' => $this->getPaymentStatus(),
         ];

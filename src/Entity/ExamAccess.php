@@ -33,8 +33,8 @@ class ExamAccess implements \JsonSerializable
             'certificationType' => $this->getCertificationType(),
             'certificationVersion' => $this->getCertificationVersion(),
             'voucher' => $this->getVoucher(),
-            'createdAt' => $this->getCreatedAt()?->format(\DateTimeInterface::ATOM),
-            'validUntil' => $this->getValidUntil()?->format(\DateTimeInterface::ATOM),
+            'createdAt' => null !== $this->getCreatedAt() ? $this->getCreatedAt()->format(\DateTimeInterface::ATOM) : null,
+            'validUntil' => null !== $this->getValidUntil() ? $this->getValidUntil()->format(\DateTimeInterface::ATOM) : null,
             'used' => $this->getUsed(),
         ];
     }

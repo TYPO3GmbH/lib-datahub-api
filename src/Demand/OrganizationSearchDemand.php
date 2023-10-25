@@ -50,7 +50,7 @@ class OrganizationSearchDemand implements \JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        return array_filter($this->toArray(), static function (mixed $value): bool {
+        return array_filter($this->toArray(), static function ($value): bool {
             return null !== $value;
         });
     }
@@ -180,7 +180,7 @@ class OrganizationSearchDemand implements \JsonSerializable
      */
     public function setMembersRange(array $membersRange): OrganizationSearchDemand
     {
-        array_walk($membersRange, static function (mixed $value) {
+        array_walk($membersRange, static function ($value) {
             if (!is_int($value) && null !== $value) { // @phpstan-ignore-line This is public API, we cannot rely on phpstan
                 throw new \TypeError(sprintf('Invalid argument type %s supplied, expected int or null', get_debug_type($value)), 1668413253);
             }

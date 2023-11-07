@@ -40,7 +40,10 @@ class Invoice implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -52,7 +55,10 @@ class Invoice implements \JsonSerializable
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    /**
+     * @return $this
+     */
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 
@@ -64,7 +70,10 @@ class Invoice implements \JsonSerializable
         return $this->link;
     }
 
-    public function setLink(string $link): static
+    /**
+     * @return $this
+     */
+    public function setLink(string $link): self
     {
         $this->link = $link;
 
@@ -76,7 +85,10 @@ class Invoice implements \JsonSerializable
         return $this->title;
     }
 
-    public function setTitle(?string $title): static
+    /**
+     * @return $this
+     */
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -88,7 +100,10 @@ class Invoice implements \JsonSerializable
         return $this->number;
     }
 
-    public function setNumber(string $number): static
+    /**
+     * @return $this
+     */
+    public function setNumber(string $number): self
     {
         $this->number = $number;
 
@@ -100,7 +115,10 @@ class Invoice implements \JsonSerializable
         return $this->identifier;
     }
 
-    public function setIdentifier(string $identifier): static
+    /**
+     * @return $this
+     */
+    public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
 
@@ -112,7 +130,10 @@ class Invoice implements \JsonSerializable
         return $this->documentType;
     }
 
-    public function setDocumentType(string $documentType): static
+    /**
+     * @return $this
+     */
+    public function setDocumentType(string $documentType): self
     {
         $this->documentType = $documentType;
 

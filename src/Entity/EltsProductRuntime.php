@@ -21,7 +21,10 @@ class EltsProductRuntime
         return $this->identifier;
     }
 
-    public function setIdentifier(string $identifier): static
+    /**
+     * @return $this
+     */
+    public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
 
@@ -33,7 +36,10 @@ class EltsProductRuntime
         return $this->validFrom;
     }
 
-    public function setValidFrom(\DateTimeInterface $validFrom): static
+    /**
+     * @return $this
+     */
+    public function setValidFrom(\DateTimeInterface $validFrom): self
     {
         $this->validFrom = $validFrom;
 
@@ -45,7 +51,10 @@ class EltsProductRuntime
         return $this->validTo;
     }
 
-    public function setValidTo(\DateTimeInterface $validTo): static
+    /**
+     * @return $this
+     */
+    public function setValidTo(\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
 

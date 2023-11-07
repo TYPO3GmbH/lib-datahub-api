@@ -33,7 +33,10 @@ class SubscriptionFilterQuery
         return $this->subscriptionIdentifier;
     }
 
-    public function setSubscriptionIdentifier(string $subscriptionIdentifier): static
+    /**
+     * @return $this
+     */
+    public function setSubscriptionIdentifier(string $subscriptionIdentifier): self
     {
         $this->subscriptionIdentifier = $subscriptionIdentifier;
 
@@ -48,15 +51,20 @@ class SubscriptionFilterQuery
 
     /**
      * @param array<int, string> $subscriptionStatus
+     *
+     * @return $this
      */
-    public function setSubscriptionStatus(array $subscriptionStatus): static
+    public function setSubscriptionStatus(array $subscriptionStatus): self
     {
         $this->subscriptionStatus = $subscriptionStatus;
 
         return $this;
     }
 
-    public function addSubscriptionStatus(string $subscriptionStatus): static
+    /**
+     * @return $this
+     */
+    public function addSubscriptionStatus(string $subscriptionStatus): self
     {
         $this->subscriptionStatus[] = $subscriptionStatus;
 
@@ -71,15 +79,20 @@ class SubscriptionFilterQuery
 
     /**
      * @param array<int, string> $subscriptionType
+     *
+     * @return $this
      */
-    public function setSubscriptionType(array $subscriptionType): static
+    public function setSubscriptionType(array $subscriptionType): self
     {
         $this->subscriptionType = $subscriptionType;
 
         return $this;
     }
 
-    public function addSubscriptionType(string $subscriptionType): static
+    /**
+     * @return $this
+     */
+    public function addSubscriptionType(string $subscriptionType): self
     {
         $this->subscriptionType[] = $subscriptionType;
 
@@ -94,15 +107,20 @@ class SubscriptionFilterQuery
 
     /**
      * @param array<int, string> $subscriptionSubType
+     *
+     * @return $this
      */
-    public function setSubscriptionSubType(array $subscriptionSubType): static
+    public function setSubscriptionSubType(array $subscriptionSubType): self
     {
         $this->subscriptionSubType = $subscriptionSubType;
 
         return $this;
     }
 
-    public function addSubscriptionSubType(string $subscriptionSubType): static
+    /**
+     * @return $this
+     */
+    public function addSubscriptionSubType(string $subscriptionSubType): self
     {
         $this->subscriptionSubType[] = $subscriptionSubType;
 

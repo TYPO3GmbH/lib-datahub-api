@@ -19,7 +19,10 @@ trait ChecksumTrait
         return $this->checksum;
     }
 
-    public function setChecksum(string $checksum): static
+    /**
+     * @return $this
+     */
+    public function setChecksum(string $checksum): self
     {
         $this->checksum = $checksum;
 

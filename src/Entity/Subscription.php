@@ -52,7 +52,10 @@ class Subscription implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -64,7 +67,10 @@ class Subscription implements \JsonSerializable
         return $this->subscriptionIdentifier;
     }
 
-    public function setSubscriptionIdentifier(string $subscriptionIdentifier): static
+    /**
+     * @return $this
+     */
+    public function setSubscriptionIdentifier(string $subscriptionIdentifier): self
     {
         $this->subscriptionIdentifier = $subscriptionIdentifier;
 
@@ -76,7 +82,10 @@ class Subscription implements \JsonSerializable
         return $this->subscriptionStatus;
     }
 
-    public function setSubscriptionStatus(string $subscriptionStatus): static
+    /**
+     * @return $this
+     */
+    public function setSubscriptionStatus(string $subscriptionStatus): self
     {
         if (!in_array($subscriptionStatus, SubscriptionStatus::getAvailableOptions(), true)) {
             throw new \InvalidArgumentException('Invalid subscription type');
@@ -91,7 +100,10 @@ class Subscription implements \JsonSerializable
         return $this->subscriptionType;
     }
 
-    public function setSubscriptionType(string $subscriptionType): static
+    /**
+     * @return $this
+     */
+    public function setSubscriptionType(string $subscriptionType): self
     {
         if (!in_array($subscriptionType, SubscriptionType::getAvailableOptions(), true)) {
             throw new \InvalidArgumentException('Invalid subscription type');
@@ -106,7 +118,10 @@ class Subscription implements \JsonSerializable
         return $this->stripeLink;
     }
 
-    public function setStripeLink(string $stripeLink): static
+    /**
+     * @return $this
+     */
+    public function setStripeLink(string $stripeLink): self
     {
         $this->stripeLink = $stripeLink;
 
@@ -118,7 +133,10 @@ class Subscription implements \JsonSerializable
         return $this->subscriptionSubType;
     }
 
-    public function setSubscriptionSubType(string $subscriptionSubType): static
+    /**
+     * @return $this
+     */
+    public function setSubscriptionSubType(string $subscriptionSubType): self
     {
         $allowedSubTypes = SubscriptionType::getAllowedSubTypes($this->getSubscriptionType());
         if (null === $allowedSubTypes || !in_array($subscriptionSubType, $allowedSubTypes, true)) {
@@ -134,7 +152,10 @@ class Subscription implements \JsonSerializable
         return $this->validUntil;
     }
 
-    public function setValidUntil(?\DateTimeInterface $validUntil): static
+    /**
+     * @return $this
+     */
+    public function setValidUntil(?\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 
@@ -146,7 +167,10 @@ class Subscription implements \JsonSerializable
         return $this->payload;
     }
 
-    public function setPayload(?array $payload): static
+    /**
+     * @return $this
+     */
+    public function setPayload(?array $payload): self
     {
         $this->payload = $payload;
 
@@ -158,7 +182,10 @@ class Subscription implements \JsonSerializable
         return $this->history;
     }
 
-    public function setHistory(?string $history): static
+    /**
+     * @return $this
+     */
+    public function setHistory(?string $history): self
     {
         $this->history = $history;
 
@@ -170,7 +197,10 @@ class Subscription implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(?User $user): static
+    /**
+     * @return $this
+     */
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
@@ -182,7 +212,10 @@ class Subscription implements \JsonSerializable
         return $this->company;
     }
 
-    public function setCompany(?Company $company): static
+    /**
+     * @return $this
+     */
+    public function setCompany(?Company $company): self
     {
         $this->company = $company;
 
@@ -214,7 +247,10 @@ class Subscription implements \JsonSerializable
         return $this->paymentStatus;
     }
 
-    public function setPaymentStatus(?string $paymentStatus): static
+    /**
+     * @return $this
+     */
+    public function setPaymentStatus(?string $paymentStatus): self
     {
         $this->paymentStatus = $paymentStatus;
 

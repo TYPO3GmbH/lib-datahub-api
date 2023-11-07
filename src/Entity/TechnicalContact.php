@@ -39,7 +39,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -51,7 +54,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): static
+    /**
+     * @return $this
+     */
+    public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -63,7 +69,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): static
+    /**
+     * @return $this
+     */
+    public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
 
@@ -75,7 +84,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    /**
+     * @return $this
+     */
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -87,7 +99,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(?string $user): static
+    /**
+     * @return $this
+     */
+    public function setUser(?string $user): self
     {
         $this->user = $user;
 
@@ -99,7 +114,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->accepted;
     }
 
-    public function setAccepted(bool $accepted): static
+    /**
+     * @return $this
+     */
+    public function setAccepted(bool $accepted): self
     {
         $this->accepted = $accepted;
 
@@ -111,7 +129,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->inherited;
     }
 
-    public function setInherited(bool $inherited): static
+    /**
+     * @return $this
+     */
+    public function setInherited(bool $inherited): self
     {
         $this->inherited = $inherited;
 
@@ -123,7 +144,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->eltsPlan;
     }
 
-    public function setEltsPlan(?EltsPlan $eltsPlan): static
+    /**
+     * @return $this
+     */
+    public function setEltsPlan(?EltsPlan $eltsPlan): self
     {
         $this->eltsPlan = $eltsPlan;
 
@@ -135,7 +159,10 @@ class TechnicalContact implements \JsonSerializable
         return $this->eltsInstance;
     }
 
-    public function setEltsInstance(?EltsInstance $eltsInstance): static
+    /**
+     * @return $this
+     */
+    public function setEltsInstance(?EltsInstance $eltsInstance): self
     {
         $this->eltsInstance = $eltsInstance;
 

@@ -24,7 +24,10 @@ class EltsPlanExtendable
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    /**
+     * @return $this
+     */
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -36,7 +39,10 @@ class EltsPlanExtendable
         return $this->version;
     }
 
-    public function setVersion(string $version): static
+    /**
+     * @return $this
+     */
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 
@@ -48,7 +54,10 @@ class EltsPlanExtendable
         return $this->type;
     }
 
-    public function setType(string $type): static
+    /**
+     * @return $this
+     */
+    public function setType(string $type): self
     {
         $this->type = $type;
 
@@ -60,7 +69,10 @@ class EltsPlanExtendable
         return $this->runtime;
     }
 
-    public function setRuntime(string $runtime): static
+    /**
+     * @return $this
+     */
+    public function setRuntime(string $runtime): self
     {
         $this->runtime = $runtime;
 
@@ -72,7 +84,10 @@ class EltsPlanExtendable
         return $this->validFrom;
     }
 
-    public function setValidFrom(?\DateTimeInterface $validFrom): static
+    /**
+     * @return $this
+     */
+    public function setValidFrom(?\DateTimeInterface $validFrom): self
     {
         $this->validFrom = $validFrom;
 
@@ -84,7 +99,10 @@ class EltsPlanExtendable
         return $this->validTo;
     }
 
-    public function setValidTo(?\DateTimeInterface $validTo): static
+    /**
+     * @return $this
+     */
+    public function setValidTo(?\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
 

@@ -60,7 +60,10 @@ class Address implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -72,7 +75,10 @@ class Address implements \JsonSerializable
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    /**
+     * @return $this
+     */
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -84,7 +90,10 @@ class Address implements \JsonSerializable
         return $this->companyName;
     }
 
-    public function setCompanyName(?string $companyName): static
+    /**
+     * @return $this
+     */
+    public function setCompanyName(?string $companyName): self
     {
         $this->companyName = $companyName;
 
@@ -96,7 +105,10 @@ class Address implements \JsonSerializable
         return $this->firstName;
     }
 
-    public function setFirstName(?string $firstName): static
+    /**
+     * @return $this
+     */
+    public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -108,7 +120,10 @@ class Address implements \JsonSerializable
         return $this->lastName;
     }
 
-    public function setLastName(?string $lastName): static
+    /**
+     * @return $this
+     */
+    public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
 
@@ -120,7 +135,10 @@ class Address implements \JsonSerializable
         return $this->additionalAddressLine1;
     }
 
-    public function setAdditionalAddressLine1(?string $additionalAddressLine1): static
+    /**
+     * @return $this
+     */
+    public function setAdditionalAddressLine1(?string $additionalAddressLine1): self
     {
         $this->additionalAddressLine1 = $additionalAddressLine1;
 
@@ -132,7 +150,10 @@ class Address implements \JsonSerializable
         return $this->additionalAddressLine2;
     }
 
-    public function setAdditionalAddressLine2(?string $additionalAddressLine2): static
+    /**
+     * @return $this
+     */
+    public function setAdditionalAddressLine2(?string $additionalAddressLine2): self
     {
         $this->additionalAddressLine2 = $additionalAddressLine2;
 
@@ -144,7 +165,10 @@ class Address implements \JsonSerializable
         return $this->street;
     }
 
-    public function setStreet(string $street): static
+    /**
+     * @return $this
+     */
+    public function setStreet(string $street): self
     {
         $this->street = $street;
 
@@ -156,7 +180,10 @@ class Address implements \JsonSerializable
         return $this->city;
     }
 
-    public function setCity(string $city): static
+    /**
+     * @return $this
+     */
+    public function setCity(string $city): self
     {
         $this->city = $city;
 
@@ -168,7 +195,10 @@ class Address implements \JsonSerializable
         return $this->zip;
     }
 
-    public function setZip(string $zip): static
+    /**
+     * @return $this
+     */
+    public function setZip(string $zip): self
     {
         $this->zip = $zip;
 
@@ -180,7 +210,10 @@ class Address implements \JsonSerializable
         return $this->country;
     }
 
-    public function setCountry(string $country): static
+    /**
+     * @return $this
+     */
+    public function setCountry(string $country): self
     {
         $this->country = $country;
 
@@ -192,7 +225,10 @@ class Address implements \JsonSerializable
         return $this->countryLabel;
     }
 
-    public function setCountryLabel(string $countryLabel): static
+    /**
+     * @return $this
+     */
+    public function setCountryLabel(string $countryLabel): self
     {
         $this->countryLabel = $countryLabel;
 
@@ -204,7 +240,10 @@ class Address implements \JsonSerializable
         return $this->countryIso3;
     }
 
-    public function setCountryIso3(string $countryIso3): static
+    /**
+     * @return $this
+     */
+    public function setCountryIso3(string $countryIso3): self
     {
         $this->countryIso3 = $countryIso3;
 
@@ -216,7 +255,10 @@ class Address implements \JsonSerializable
         return $this->state;
     }
 
-    public function setState(?string $state): static
+    /**
+     * @return $this
+     */
+    public function setState(?string $state): self
     {
         $this->state = $state;
 
@@ -228,7 +270,10 @@ class Address implements \JsonSerializable
         return $this->stateLabel;
     }
 
-    public function setStateLabel(?string $stateLabel): static
+    /**
+     * @return $this
+     */
+    public function setStateLabel(?string $stateLabel): self
     {
         $this->stateLabel = $stateLabel;
 
@@ -240,35 +285,50 @@ class Address implements \JsonSerializable
         return $this->type;
     }
 
-    public function setType(int $type): static
+    /**
+     * @return $this
+     */
+    public function setType(int $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function setInvoiceAddress(bool $value): static
+    /**
+     * @return $this
+     */
+    public function setInvoiceAddress(bool $value): self
     {
         $value ? $this->type |= AddressType::TYPE_INVOICE : $this->type &= 0x0110;
 
         return $this;
     }
 
-    public function setDeliveryAddress(bool $value): static
+    /**
+     * @return $this
+     */
+    public function setDeliveryAddress(bool $value): self
     {
         $value ? $this->type |= AddressType::TYPE_DELIVERY : $this->type &= 0x0011;
 
         return $this;
     }
 
-    public function setPostalAddress(bool $value): static
+    /**
+     * @return $this
+     */
+    public function setPostalAddress(bool $value): self
     {
         $value ? $this->type |= AddressType::TYPE_POSTAL : $this->type &= 0x0101;
 
         return $this;
     }
 
-    public function setLocationAddress(bool $value): static
+    /**
+     * @return $this
+     */
+    public function setLocationAddress(bool $value): self
     {
         $value ? $this->type |= AddressType::TYPE_LOCATION : $this->type &= 0x0111;
 
@@ -300,7 +360,10 @@ class Address implements \JsonSerializable
         return $this->latitude;
     }
 
-    public function setLatitude(float $latitude): static
+    /**
+     * @return $this
+     */
+    public function setLatitude(float $latitude): self
     {
         $this->latitude = $latitude;
 
@@ -312,7 +375,10 @@ class Address implements \JsonSerializable
         return $this->longitude;
     }
 
-    public function setLongitude(float $longitude): static
+    /**
+     * @return $this
+     */
+    public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
 

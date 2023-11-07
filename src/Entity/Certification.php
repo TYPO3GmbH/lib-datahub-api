@@ -96,7 +96,10 @@ class Certification implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -108,7 +111,10 @@ class Certification implements \JsonSerializable
         return $this->type;
     }
 
-    public function setType(string $type): static
+    /**
+     * @return $this
+     */
+    public function setType(string $type): self
     {
         $this->type = $type;
 
@@ -120,7 +126,10 @@ class Certification implements \JsonSerializable
         return $this->version;
     }
 
-    public function setVersion(string $version): static
+    /**
+     * @return $this
+     */
+    public function setVersion(string $version): self
     {
         if (!in_array($version, CertificationVersion::getAvailableOptions(), true)) {
             throw new \InvalidArgumentException('Invalid certification version');
@@ -135,7 +144,10 @@ class Certification implements \JsonSerializable
         return $this->auditType;
     }
 
-    public function setAuditType(string $auditType): static
+    /**
+     * @return $this
+     */
+    public function setAuditType(string $auditType): self
     {
         if (!in_array($auditType, CertificationAuditType::getAvailableOptions(), true)) {
             throw new \InvalidArgumentException('Invalid audit type');
@@ -160,8 +172,10 @@ class Certification implements \JsonSerializable
 
     /**
      * @param array<string, mixed> $user
+     *
+     * @return $this
      */
-    public function setUser(array $user): static
+    public function setUser(array $user): self
     {
         $this->user = $user;
 
@@ -186,7 +200,10 @@ class Certification implements \JsonSerializable
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    /**
+     * @return $this
+     */
+    public function setStatus(string $status): self
     {
         $this->status = $status;
 
@@ -198,7 +215,10 @@ class Certification implements \JsonSerializable
         return $this->examLocation;
     }
 
-    public function setExamLocation(string $examLocation): static
+    /**
+     * @return $this
+     */
+    public function setExamLocation(string $examLocation): self
     {
         $this->examLocation = $examLocation;
 
@@ -210,7 +230,10 @@ class Certification implements \JsonSerializable
         return $this->examDate;
     }
 
-    public function setExamDate(?\DateTimeInterface $examDate): static
+    /**
+     * @return $this
+     */
+    public function setExamDate(?\DateTimeInterface $examDate): self
     {
         $this->examDate = $examDate;
 
@@ -222,7 +245,10 @@ class Certification implements \JsonSerializable
         return $this->ndaSigned;
     }
 
-    public function setNdaSigned(bool $ndaSigned): static
+    /**
+     * @return $this
+     */
+    public function setNdaSigned(bool $ndaSigned): self
     {
         $this->ndaSigned = $ndaSigned;
 
@@ -234,7 +260,10 @@ class Certification implements \JsonSerializable
         return $this->rulesAccepted;
     }
 
-    public function setRulesAccepted(bool $rulesAccepted): static
+    /**
+     * @return $this
+     */
+    public function setRulesAccepted(bool $rulesAccepted): self
     {
         $this->rulesAccepted = $rulesAccepted;
 
@@ -246,7 +275,10 @@ class Certification implements \JsonSerializable
         return $this->proctoringLink;
     }
 
-    public function setProctoringLink(?string $proctoringLink): static
+    /**
+     * @return $this
+     */
+    public function setProctoringLink(?string $proctoringLink): self
     {
         $this->proctoringLink = $proctoringLink;
 
@@ -267,7 +299,10 @@ class Certification implements \JsonSerializable
         return $this->address;
     }
 
-    public function setAddress(string $address): static
+    /**
+     * @return $this
+     */
+    public function setAddress(string $address): self
     {
         $this->address = $address;
 
@@ -279,7 +314,10 @@ class Certification implements \JsonSerializable
         return $this->examUrl;
     }
 
-    public function setExamUrl(?string $examUrl): static
+    /**
+     * @return $this
+     */
+    public function setExamUrl(?string $examUrl): self
     {
         $this->examUrl = $examUrl;
 
@@ -291,7 +329,10 @@ class Certification implements \JsonSerializable
         return $this->examAccessCode;
     }
 
-    public function setExamAccessCode(?string $examAccessCode): static
+    /**
+     * @return $this
+     */
+    public function setExamAccessCode(?string $examAccessCode): self
     {
         $this->examAccessCode = $examAccessCode;
 
@@ -303,7 +344,10 @@ class Certification implements \JsonSerializable
         return $this->examProctoringInstructions;
     }
 
-    public function setExamProctoringInstructions(?string $examProctoringInstructions): static
+    /**
+     * @return $this
+     */
+    public function setExamProctoringInstructions(?string $examProctoringInstructions): self
     {
         $this->examProctoringInstructions = $examProctoringInstructions;
 
@@ -315,7 +359,10 @@ class Certification implements \JsonSerializable
         return $this->examStartDate;
     }
 
-    public function setExamStartDate(?\DateTimeInterface $examStartDate): static
+    /**
+     * @return $this
+     */
+    public function setExamStartDate(?\DateTimeInterface $examStartDate): self
     {
         $this->examStartDate = $examStartDate;
 
@@ -327,7 +374,10 @@ class Certification implements \JsonSerializable
         return $this->examEndDate;
     }
 
-    public function setExamEndDate(?\DateTimeInterface $examEndDate): static
+    /**
+     * @return $this
+     */
+    public function setExamEndDate(?\DateTimeInterface $examEndDate): self
     {
         $this->examEndDate = $examEndDate;
 
@@ -339,7 +389,10 @@ class Certification implements \JsonSerializable
         return $this->examDuration;
     }
 
-    public function setExamDuration(?int $examDuration): static
+    /**
+     * @return $this
+     */
+    public function setExamDuration(?int $examDuration): self
     {
         $this->examDuration = $examDuration;
 
@@ -351,7 +404,10 @@ class Certification implements \JsonSerializable
         return $this->history;
     }
 
-    public function setHistory(?string $history): static
+    /**
+     * @return $this
+     */
+    public function setHistory(?string $history): self
     {
         $this->history = $history;
 
@@ -363,7 +419,10 @@ class Certification implements \JsonSerializable
         return $this->examTestResult;
     }
 
-    public function setExamTestResult(string $examTestResult): static
+    /**
+     * @return $this
+     */
+    public function setExamTestResult(string $examTestResult): self
     {
         $this->examTestResult = $examTestResult;
 
@@ -375,7 +434,10 @@ class Certification implements \JsonSerializable
         return $this->proctoringStatus;
     }
 
-    public function setProctoringStatus(?string $proctoringStatus): static
+    /**
+     * @return $this
+     */
+    public function setProctoringStatus(?string $proctoringStatus): self
     {
         $this->proctoringStatus = $proctoringStatus;
 
@@ -387,7 +449,10 @@ class Certification implements \JsonSerializable
         return $this->certificatePrintDate;
     }
 
-    public function setCertificatePrintDate(?\DateTimeInterface $certificatePrintDate): static
+    /**
+     * @return $this
+     */
+    public function setCertificatePrintDate(?\DateTimeInterface $certificatePrintDate): self
     {
         $this->certificatePrintDate = $certificatePrintDate;
 
@@ -399,7 +464,10 @@ class Certification implements \JsonSerializable
         return $this->incidents;
     }
 
-    public function setIncidents(?int $incidents): static
+    /**
+     * @return $this
+     */
+    public function setIncidents(?int $incidents): self
     {
         $this->incidents = $incidents;
 
@@ -411,7 +479,10 @@ class Certification implements \JsonSerializable
         return $this->proctoringApproval;
     }
 
-    public function setProctoringApproval(string $proctoringApproval): static
+    /**
+     * @return $this
+     */
+    public function setProctoringApproval(string $proctoringApproval): self
     {
         $this->proctoringApproval = $proctoringApproval;
 
@@ -432,7 +503,10 @@ class Certification implements \JsonSerializable
         return $this->hubspotDealId;
     }
 
-    public function setHubspotDealId(?string $hubspotDealId): static
+    /**
+     * @return $this
+     */
+    public function setHubspotDealId(?string $hubspotDealId): self
     {
         $this->hubspotDealId = $hubspotDealId;
 
@@ -444,7 +518,10 @@ class Certification implements \JsonSerializable
         return $this->validUntil;
     }
 
-    public function setValidUntil(?\DateTimeInterface $validUntil): static
+    /**
+     * @return $this
+     */
+    public function setValidUntil(?\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 
@@ -461,8 +538,10 @@ class Certification implements \JsonSerializable
 
     /**
      * @param array<string, string|null> $postFormattedAddress
+     *
+     * @return $this
      */
-    public function setPostFormattedAddress(array $postFormattedAddress): static
+    public function setPostFormattedAddress(array $postFormattedAddress): self
     {
         $this->postFormattedAddress = $postFormattedAddress;
 
@@ -474,7 +553,10 @@ class Certification implements \JsonSerializable
         return $this->appendToHistory;
     }
 
-    public function setAppendToHistory(?string $appendToHistory): static
+    /**
+     * @return $this
+     */
+    public function setAppendToHistory(?string $appendToHistory): self
     {
         $this->appendToHistory = $appendToHistory;
 
@@ -486,7 +568,10 @@ class Certification implements \JsonSerializable
         return $this->userExamUuid;
     }
 
-    public function setUserExamUuid(?string $userExamUuid): static
+    /**
+     * @return $this
+     */
+    public function setUserExamUuid(?string $userExamUuid): self
     {
         $this->userExamUuid = $userExamUuid;
 
@@ -498,7 +583,10 @@ class Certification implements \JsonSerializable
         return $this->finished;
     }
 
-    public function setFinished(bool $finished): static
+    /**
+     * @return $this
+     */
+    public function setFinished(bool $finished): self
     {
         $this->finished = $finished;
 

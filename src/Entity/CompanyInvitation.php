@@ -23,7 +23,10 @@ class CompanyInvitation
         return $this->username;
     }
 
-    public function setUsername(string $username): static
+    /**
+     * @return $this
+     */
+    public function setUsername(string $username): self
     {
         $this->username = $username;
 
@@ -35,7 +38,10 @@ class CompanyInvitation
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    /**
+     * @return $this
+     */
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -47,7 +53,10 @@ class CompanyInvitation
         return $this->inviteCode;
     }
 
-    public function setInviteCode(string $inviteCode): static
+    /**
+     * @return $this
+     */
+    public function setInviteCode(string $inviteCode): self
     {
         $this->inviteCode = $inviteCode;
 
@@ -59,7 +68,10 @@ class CompanyInvitation
         return $this->validUntil;
     }
 
-    public function setValidUntil(\DateTimeInterface $validUntil): static
+    /**
+     * @return $this
+     */
+    public function setValidUntil(\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 
@@ -71,7 +83,10 @@ class CompanyInvitation
         return $this->role;
     }
 
-    public function setRole(string $role): static
+    /**
+     * @return $this
+     */
+    public function setRole(string $role): self
     {
         $this->role = $role;
 

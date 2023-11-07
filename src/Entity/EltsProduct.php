@@ -27,7 +27,10 @@ class EltsProduct
         return $this->version;
     }
 
-    public function setVersion(string $version): static
+    /**
+     * @return $this
+     */
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 
@@ -39,7 +42,10 @@ class EltsProduct
         return $this->vendor;
     }
 
-    public function setVendor(string $vendor): static
+    /**
+     * @return $this
+     */
+    public function setVendor(string $vendor): self
     {
         $this->vendor = $vendor;
 
@@ -51,7 +57,10 @@ class EltsProduct
         return $this->repository;
     }
 
-    public function setRepository(string $repository): static
+    /**
+     * @return $this
+     */
+    public function setRepository(string $repository): self
     {
         $this->repository = $repository;
 
@@ -63,7 +72,10 @@ class EltsProduct
         return $this->serviceDesk;
     }
 
-    public function setServiceDesk(string $serviceDesk): static
+    /**
+     * @return $this
+     */
+    public function setServiceDesk(string $serviceDesk): self
     {
         $this->serviceDesk = $serviceDesk;
 
@@ -80,8 +92,10 @@ class EltsProduct
 
     /**
      * @param EltsProductRuntime[] $runtimes
+     *
+     * @return $this
      */
-    public function setRuntimes(array $runtimes): static
+    public function setRuntimes(array $runtimes): self
     {
         $this->runtimes = $runtimes;
 
@@ -90,8 +104,10 @@ class EltsProduct
 
     /**
      * @param EltsProductRuntime $runtime
+     *
+     * @return $this
      */
-    public function addRuntime(EltsProductRuntime $runtime): static
+    public function addRuntime(EltsProductRuntime $runtime): self
     {
         $this->runtimes[] = $runtime;
 

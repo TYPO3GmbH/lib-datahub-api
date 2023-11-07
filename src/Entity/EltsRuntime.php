@@ -24,7 +24,10 @@ class EltsRuntime
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -36,7 +39,10 @@ class EltsRuntime
         return $this->runtime;
     }
 
-    public function setRuntime(string $runtime): static
+    /**
+     * @return $this
+     */
+    public function setRuntime(string $runtime): self
     {
         $this->runtime = $runtime;
 
@@ -48,7 +54,10 @@ class EltsRuntime
         return $this->order;
     }
 
-    public function setOrder(?Order $order): static
+    /**
+     * @return $this
+     */
+    public function setOrder(?Order $order): self
     {
         $this->order = $order;
 
@@ -60,7 +69,10 @@ class EltsRuntime
         return $this->paymentStatus;
     }
 
-    public function setPaymentStatus(string $paymentStatus): static
+    /**
+     * @return $this
+     */
+    public function setPaymentStatus(string $paymentStatus): self
     {
         $this->paymentStatus = $paymentStatus;
 
@@ -72,7 +84,10 @@ class EltsRuntime
         return $this->validFrom;
     }
 
-    public function setValidFrom(?\DateTimeInterface $validFrom): static
+    /**
+     * @return $this
+     */
+    public function setValidFrom(?\DateTimeInterface $validFrom): self
     {
         $this->validFrom = $validFrom;
 
@@ -84,7 +99,10 @@ class EltsRuntime
         return $this->validTo;
     }
 
-    public function setValidTo(?\DateTimeInterface $validTo): static
+    /**
+     * @return $this
+     */
+    public function setValidTo(?\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
 

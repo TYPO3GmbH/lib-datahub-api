@@ -14,9 +14,15 @@ interface NotificationInterface extends \JsonSerializable
 {
     public function getMessage(): string;
 
-    public function setMessage(string $message): static;
+    /**
+     * @return $this
+     */
+    public function setMessage(string $message): self;
 
     public function getType(): string;
 
-    public function setType(string $type): static;
+    /**
+     * @return $this
+     */
+    public function setType(string $type): self;
 }

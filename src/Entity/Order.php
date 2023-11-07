@@ -38,7 +38,10 @@ class Order implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -50,7 +53,10 @@ class Order implements \JsonSerializable
         return $this->orderNumber;
     }
 
-    public function setOrderNumber(string $orderNumber): static
+    /**
+     * @return $this
+     */
+    public function setOrderNumber(string $orderNumber): self
     {
         $this->orderNumber = $orderNumber;
 
@@ -62,7 +68,10 @@ class Order implements \JsonSerializable
         return $this->payload;
     }
 
-    public function setPayload(array $payload): static
+    /**
+     * @return $this
+     */
+    public function setPayload(array $payload): self
     {
         $this->payload = $payload;
 
@@ -74,7 +83,10 @@ class Order implements \JsonSerializable
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    /**
+     * @return $this
+     */
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -96,14 +108,20 @@ class Order implements \JsonSerializable
         return $sorted;
     }
 
-    public function addInvoice(Invoice $invoice): static
+    /**
+     * @return $this
+     */
+    public function addInvoice(Invoice $invoice): self
     {
         $this->invoices[] = $invoice;
 
         return $this;
     }
 
-    public function removeInvoice(Invoice $invoice): static
+    /**
+     * @return $this
+     */
+    public function removeInvoice(Invoice $invoice): self
     {
         $this->invoices = array_filter($this->invoices, static function (Invoice $i) use ($invoice) {
             return $i->getLink() !== $invoice->getLink();

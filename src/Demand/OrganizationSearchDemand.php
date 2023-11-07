@@ -63,7 +63,10 @@ class OrganizationSearchDemand implements \JsonSerializable
         return get_object_vars($this);
     }
 
-    public function setTerm(string $term): static
+    /**
+     * @return $this
+     */
+    public function setTerm(string $term): self
     {
         $this->term = $term;
 
@@ -75,7 +78,10 @@ class OrganizationSearchDemand implements \JsonSerializable
         return $this->term;
     }
 
-    public function setWithOrders(bool $withOrders = true): static
+    /**
+     * @return $this
+     */
+    public function setWithOrders(bool $withOrders = true): self
     {
         $this->withOrders = $withOrders;
 
@@ -90,9 +96,11 @@ class OrganizationSearchDemand implements \JsonSerializable
     /**
      * @param bool $withSubscriptions
      *
+     * @return $this
+     *
      * @deprecated use setSubscriptionTypes()
      */
-    public function setWithSubscriptions(bool $withSubscriptions = true): static
+    public function setWithSubscriptions(bool $withSubscriptions = true): self
     {
         trigger_error(
             sprintf('Calling %s is deprecated, call setSubscriptionTypes() instead.', __METHOD__),
@@ -123,8 +131,10 @@ class OrganizationSearchDemand implements \JsonSerializable
 
     /**
      * @param array<int, SubscriptionType::*> $subscriptionTypes
+     *
+     * @return $this
      */
-    public function setSubscriptionTypes($subscriptionTypes): static
+    public function setSubscriptionTypes($subscriptionTypes): self
     {
         $this->subscriptionTypes = $subscriptionTypes;
 
@@ -139,7 +149,10 @@ class OrganizationSearchDemand implements \JsonSerializable
         return $this->subscriptionTypes;
     }
 
-    public function setWithVoucherCodes(bool $withVoucherCodes = true): static
+    /**
+     * @return $this
+     */
+    public function setWithVoucherCodes(bool $withVoucherCodes = true): self
     {
         $this->withVoucherCodes = $withVoucherCodes;
 
@@ -151,7 +164,10 @@ class OrganizationSearchDemand implements \JsonSerializable
         return $this->withVoucherCodes;
     }
 
-    public function setWithElts(bool $withElts = true): static
+    /**
+     * @return $this
+     */
+    public function setWithElts(bool $withElts = true): self
     {
         $this->withElts = $withElts;
 

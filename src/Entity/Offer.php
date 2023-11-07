@@ -29,7 +29,10 @@ class Offer
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -41,7 +44,10 @@ class Offer
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    /**
+     * @return $this
+     */
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -53,7 +59,10 @@ class Offer
         return $this->validUntil;
     }
 
-    public function setValidUntil(\DateTimeInterface $validUntil): static
+    /**
+     * @return $this
+     */
+    public function setValidUntil(\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 
@@ -70,8 +79,10 @@ class Offer
 
     /**
      * @param array<string, mixed> $payload
+     *
+     * @return $this
      */
-    public function setPayload(array $payload): static
+    public function setPayload(array $payload): self
     {
         $this->payload = $payload;
 
@@ -83,7 +94,10 @@ class Offer
         return $this->offerNumber;
     }
 
-    public function setOfferNumber(string $offerNumber): static
+    /**
+     * @return $this
+     */
+    public function setOfferNumber(string $offerNumber): self
     {
         $this->offerNumber = $offerNumber;
 
@@ -95,7 +109,10 @@ class Offer
         return $this->cartIdentifier;
     }
 
-    public function setCartIdentifier(string $cartIdentifier): static
+    /**
+     * @return $this
+     */
+    public function setCartIdentifier(string $cartIdentifier): self
     {
         $this->cartIdentifier = $cartIdentifier;
 
@@ -107,7 +124,7 @@ class Offer
         return $this->total;
     }
 
-    public function setTotal(float $total): static
+    public function setTotal(float $total): self
     {
         $this->total = $total;
 

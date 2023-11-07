@@ -31,7 +31,10 @@ class UserEmail implements \JsonSerializable
         return $this->username;
     }
 
-    public function setUsername(string $username): static
+    /**
+     * @return $this
+     */
+    public function setUsername(string $username): self
     {
         $this->username = $username;
 
@@ -43,7 +46,10 @@ class UserEmail implements \JsonSerializable
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    /**
+     * @return $this
+     */
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 

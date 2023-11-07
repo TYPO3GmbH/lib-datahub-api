@@ -36,7 +36,10 @@ class EltsGitPublicKey implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -48,7 +51,10 @@ class EltsGitPublicKey implements \JsonSerializable
         return $this->name;
     }
 
-    public function setName(string $name): static
+    /**
+     * @return $this
+     */
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -60,7 +66,10 @@ class EltsGitPublicKey implements \JsonSerializable
         return $this->publicKey;
     }
 
-    public function setPublicKey(string $publicKey): static
+    /**
+     * @return $this
+     */
+    public function setPublicKey(string $publicKey): self
     {
         $this->publicKey = $publicKey;
 
@@ -72,7 +81,10 @@ class EltsGitPublicKey implements \JsonSerializable
         return $this->eltsVersion;
     }
 
-    public function setEltsVersion(string $eltsVersion): static
+    /**
+     * @return $this
+     */
+    public function setEltsVersion(string $eltsVersion): self
     {
         $this->eltsVersion = $eltsVersion;
 
@@ -88,9 +100,11 @@ class EltsGitPublicKey implements \JsonSerializable
     }
 
     /**
+     * @return $this
+     *
      * @internal
      */
-    public function setGithubId(int $githubId): static
+    public function setGithubId(int $githubId): self
     {
         $this->githubId = $githubId;
 

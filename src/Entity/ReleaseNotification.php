@@ -36,7 +36,10 @@ class ReleaseNotification implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -48,7 +51,10 @@ class ReleaseNotification implements \JsonSerializable
         return $this->name;
     }
 
-    public function setName(string $name): static
+    /**
+     * @return $this
+     */
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -60,7 +66,10 @@ class ReleaseNotification implements \JsonSerializable
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    /**
+     * @return $this
+     */
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -72,7 +81,10 @@ class ReleaseNotification implements \JsonSerializable
         return $this->accepted;
     }
 
-    public function setAccepted(bool $accepted): static
+    /**
+     * @return $this
+     */
+    public function setAccepted(bool $accepted): self
     {
         $this->accepted = $accepted;
 
@@ -84,7 +96,10 @@ class ReleaseNotification implements \JsonSerializable
         return $this->inherited;
     }
 
-    public function setInherited(bool $inherited): static
+    /**
+     * @return $this
+     */
+    public function setInherited(bool $inherited): self
     {
         $this->inherited = $inherited;
 
@@ -96,7 +111,10 @@ class ReleaseNotification implements \JsonSerializable
         return $this->eltsPlan;
     }
 
-    public function setEltsPlan(?EltsPlan $eltsPlan): static
+    /**
+     * @return $this
+     */
+    public function setEltsPlan(?EltsPlan $eltsPlan): self
     {
         $this->eltsPlan = $eltsPlan;
 
@@ -108,7 +126,10 @@ class ReleaseNotification implements \JsonSerializable
         return $this->eltsInstance;
     }
 
-    public function setEltsInstance(?EltsInstance $eltsInstance): static
+    /**
+     * @return $this
+     */
+    public function setEltsInstance(?EltsInstance $eltsInstance): self
     {
         $this->eltsInstance = $eltsInstance;
 

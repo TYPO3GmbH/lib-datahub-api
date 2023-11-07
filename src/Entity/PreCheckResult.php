@@ -35,7 +35,10 @@ class PreCheckResult implements \JsonSerializable
         return $this->source;
     }
 
-    public function setSource(string $source): static
+    /**
+     * @return $this
+     */
+    public function setSource(string $source): self
     {
         $this->source = $source;
 
@@ -47,7 +50,10 @@ class PreCheckResult implements \JsonSerializable
         return $this->type;
     }
 
-    public function setType(string $type): static
+    /**
+     * @return $this
+     */
+    public function setType(string $type): self
     {
         $this->type = $type;
 
@@ -59,7 +65,10 @@ class PreCheckResult implements \JsonSerializable
         return $this->result;
     }
 
-    public function setResult(bool $result): static
+    /**
+     * @return $this
+     */
+    public function setResult(bool $result): self
     {
         $this->result = $result;
 
@@ -76,8 +85,10 @@ class PreCheckResult implements \JsonSerializable
 
     /**
      * @param array<string, mixed> $additionalData
+     *
+     * @return $this
      */
-    public function setAdditionalData(array $additionalData): static
+    public function setAdditionalData(array $additionalData): self
     {
         $this->additionalData = $additionalData;
 

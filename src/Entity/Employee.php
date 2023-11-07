@@ -34,7 +34,10 @@ class Employee implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -46,7 +49,10 @@ class Employee implements \JsonSerializable
         return $this->role;
     }
 
-    public function setRole(string $role): static
+    /**
+     * @return $this
+     */
+    public function setRole(string $role): self
     {
         $this->role = $role;
 
@@ -58,7 +64,10 @@ class Employee implements \JsonSerializable
         return $this->joinedAt;
     }
 
-    public function setJoinedAt(\DateTimeInterface $joinedAt): static
+    /**
+     * @return $this
+     */
+    public function setJoinedAt(\DateTimeInterface $joinedAt): self
     {
         $this->joinedAt = $joinedAt;
 
@@ -70,7 +79,10 @@ class Employee implements \JsonSerializable
         return $this->leftAt;
     }
 
-    public function setLeftAt(?\DateTimeInterface $leftAt): static
+    /**
+     * @return $this
+     */
+    public function setLeftAt(?\DateTimeInterface $leftAt): self
     {
         $this->leftAt = $leftAt;
 
@@ -82,7 +94,10 @@ class Employee implements \JsonSerializable
         return $this->company;
     }
 
-    public function setCompany(?Company $company): static
+    /**
+     * @return $this
+     */
+    public function setCompany(?Company $company): self
     {
         $this->company = $company;
 
@@ -94,7 +109,10 @@ class Employee implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(?User $user): static
+    /**
+     * @return $this
+     */
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 

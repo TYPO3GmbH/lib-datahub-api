@@ -22,8 +22,10 @@ abstract class AbstractAssembler
 
     /**
      * @param array<string, mixed> $data
+     *
+     * @return $this
      */
-    public function create(array $data): static
+    public function create(array $data): self
     {
         $instance = $this->createNewStub();
         $publicProperties = get_object_vars($instance);

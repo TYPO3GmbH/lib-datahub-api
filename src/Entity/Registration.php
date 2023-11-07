@@ -47,7 +47,10 @@ class Registration implements \JsonSerializable
         return $this->username;
     }
 
-    public function setUsername(string $username): static
+    /**
+     * @return $this
+     */
+    public function setUsername(string $username): self
     {
         $this->username = $username;
 
@@ -59,7 +62,10 @@ class Registration implements \JsonSerializable
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    /**
+     * @return $this
+     */
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -71,7 +77,10 @@ class Registration implements \JsonSerializable
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): static
+    /**
+     * @return $this
+     */
+    public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -83,14 +92,20 @@ class Registration implements \JsonSerializable
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): static
+    /**
+     * @return $this
+     */
+    public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function setPassword(string $password): static
+    /**
+     * @return $this
+     */
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
@@ -102,7 +117,10 @@ class Registration implements \JsonSerializable
         return $this->registrationCode;
     }
 
-    public function setRegistrationCode(?string $registrationCode): static
+    /**
+     * @return $this
+     */
+    public function setRegistrationCode(?string $registrationCode): self
     {
         $this->registrationCode = $registrationCode;
 
@@ -114,7 +132,10 @@ class Registration implements \JsonSerializable
         return $this->validUntil;
     }
 
-    public function setValidUntil(?\DateTimeInterface $validUntil): static
+    /**
+     * @return $this
+     */
+    public function setValidUntil(?\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
 
@@ -126,14 +147,20 @@ class Registration implements \JsonSerializable
         return $this->location;
     }
 
-    public function setLocation(?string $location): static
+    /**
+     * @return $this
+     */
+    public function setLocation(?string $location): self
     {
         $this->location = $location;
 
         return $this;
     }
 
-    public function addApprovedDocument(string $identifier, string $version): static
+    /**
+     * @return $this
+     */
+    public function addApprovedDocument(string $identifier, string $version): self
     {
         $this->approvedDocuments[$identifier] = $version;
 

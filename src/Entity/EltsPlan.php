@@ -71,7 +71,10 @@ class EltsPlan implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): static
+    /**
+     * @return $this
+     */
+    public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -83,7 +86,10 @@ class EltsPlan implements \JsonSerializable
         return $this->version;
     }
 
-    public function setVersion(string $version): static
+    /**
+     * @return $this
+     */
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 
@@ -95,7 +101,10 @@ class EltsPlan implements \JsonSerializable
         return $this->owner;
     }
 
-    public function setOwner(string $owner): static
+    /**
+     * @return $this
+     */
+    public function setOwner(string $owner): self
     {
         $this->owner = $owner;
 
@@ -112,8 +121,10 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param array<string, string> $ownerData
+     *
+     * @return $this
      */
-    public function setOwnerData(array $ownerData): static
+    public function setOwnerData(array $ownerData): self
     {
         $this->ownerData = $ownerData;
 
@@ -125,7 +136,10 @@ class EltsPlan implements \JsonSerializable
         return $this->type;
     }
 
-    public function setType(string $type): static
+    /**
+     * @return $this
+     */
+    public function setType(string $type): self
     {
         $this->type = $type;
 
@@ -137,7 +151,10 @@ class EltsPlan implements \JsonSerializable
         return $this->title;
     }
 
-    public function setTitle(?string $title): static
+    /**
+     * @return $this
+     */
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -154,15 +171,20 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param EltsPlanExtendable[] $extendables
+     *
+     * @return $this
      */
-    public function setExtendables(array $extendables): static
+    public function setExtendables(array $extendables): self
     {
         $this->extendables = $extendables;
 
         return $this;
     }
 
-    public function addExtendable(EltsPlanExtendable $extendable): static
+    /**
+     * @return $this
+     */
+    public function addExtendable(EltsPlanExtendable $extendable): self
     {
         $this->extendables[$extendable->getRuntime()] = $extendable;
 
@@ -207,15 +229,20 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param EltsRuntime[] $runtimes
+     *
+     * @return $this
      */
-    public function setRuntimes(array $runtimes): static
+    public function setRuntimes(array $runtimes): self
     {
         $this->runtimes = $runtimes;
 
         return $this;
     }
 
-    public function addRuntime(EltsRuntime $runtime): static
+    /**
+     * @return $this
+     */
+    public function addRuntime(EltsRuntime $runtime): self
     {
         $this->runtimes[] = $runtime;
 
@@ -227,7 +254,10 @@ class EltsPlan implements \JsonSerializable
         return $this->validFrom;
     }
 
-    public function setValidFrom(?\DateTimeInterface $validFrom): static
+    /**
+     * @return $this
+     */
+    public function setValidFrom(?\DateTimeInterface $validFrom): self
     {
         $this->validFrom = $validFrom;
 
@@ -239,7 +269,10 @@ class EltsPlan implements \JsonSerializable
         return $this->validTo;
     }
 
-    public function setValidTo(?\DateTimeInterface $validTo): static
+    /**
+     * @return $this
+     */
+    public function setValidTo(?\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
 
@@ -256,15 +289,20 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param EltsInstance[] $instances
+     *
+     * @return $this
      */
-    public function setInstances(array $instances): static
+    public function setInstances(array $instances): self
     {
         $this->instances = $instances;
 
         return $this;
     }
 
-    public function addInstance(EltsInstance $instance): static
+    /**
+     * @return $this
+     */
+    public function addInstance(EltsInstance $instance): self
     {
         $this->instances[] = $instance;
 
@@ -276,7 +314,10 @@ class EltsPlan implements \JsonSerializable
         return $this->order;
     }
 
-    public function setOrder(?Order $order = null): static
+    /**
+     * @return $this
+     */
+    public function setOrder(?Order $order = null): self
     {
         $this->order = $order;
 
@@ -288,7 +329,10 @@ class EltsPlan implements \JsonSerializable
         return $this->licenses;
     }
 
-    public function setLicenses(?int $licenses): static
+    /**
+     * @return $this
+     */
+    public function setLicenses(?int $licenses): self
     {
         $this->licenses = $licenses;
 
@@ -305,15 +349,20 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param TechnicalContact[] $technicalContacts
+     *
+     * @return $this
      */
-    public function setTechnicalContacts(array $technicalContacts): static
+    public function setTechnicalContacts(array $technicalContacts): self
     {
         $this->technicalContacts = $technicalContacts;
 
         return $this;
     }
 
-    public function addTechnicalContact(TechnicalContact $technicalContacts): static
+    /**
+     * @return $this
+     */
+    public function addTechnicalContact(TechnicalContact $technicalContacts): self
     {
         $this->technicalContacts[] = $technicalContacts;
 
@@ -330,15 +379,20 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param ReleaseNotification[] $releaseNotifications
+     *
+     * @return $this
      */
-    public function setReleaseNotifications(array $releaseNotifications): static
+    public function setReleaseNotifications(array $releaseNotifications): self
     {
         $this->releaseNotifications = $releaseNotifications;
 
         return $this;
     }
 
-    public function addReleaseNotification(ReleaseNotification $releaseNotification): static
+    /**
+     * @return $this
+     */
+    public function addReleaseNotification(ReleaseNotification $releaseNotification): self
     {
         $this->releaseNotifications[] = $releaseNotification;
 

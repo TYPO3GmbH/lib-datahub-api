@@ -22,7 +22,10 @@ class Content
         return $this->identifier;
     }
 
-    public function setIdentifier(string $identifier): static
+    /**
+     * @return $this
+     */
+    public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
 
@@ -34,7 +37,10 @@ class Content
         return $this->format;
     }
 
-    public function setFormat(string $format): static
+    /**
+     * @return $this
+     */
+    public function setFormat(string $format): self
     {
         $this->format = $format;
 
@@ -46,7 +52,10 @@ class Content
         return $this->content;
     }
 
-    public function setContent(string $content): static
+    /**
+     * @return $this
+     */
+    public function setContent(string $content): self
     {
         $this->content = $content;
 
@@ -58,7 +67,10 @@ class Content
         return $this->version;
     }
 
-    public function setVersion(string $version): static
+    /**
+     * @return $this
+     */
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 

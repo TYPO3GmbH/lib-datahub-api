@@ -89,6 +89,7 @@ class OrganizationSearchDemand implements \JsonSerializable
 
     /**
      * @param bool $withSubscriptions
+     *
      * @deprecated use setSubscriptionTypes()
      */
     public function setWithSubscriptions(bool $withSubscriptions = true): static

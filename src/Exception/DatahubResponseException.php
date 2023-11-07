@@ -37,7 +37,7 @@ class DatahubResponseException extends \Exception
                     $message = $errorString;
                 }
             }
-        } catch (\JsonException) {
+        } catch (\JsonException $e) {
             $message = 'Response contained invalid JSON';
         }
 

@@ -63,7 +63,7 @@ class OrganizationSearchDemand implements \JsonSerializable
         return get_object_vars($this);
     }
 
-    public function setTerm(string $term): self
+    public function setTerm(string $term): static
     {
         $this->term = $term;
 
@@ -75,7 +75,7 @@ class OrganizationSearchDemand implements \JsonSerializable
         return $this->term;
     }
 
-    public function setWithOrders(bool $withOrders = true): self
+    public function setWithOrders(bool $withOrders = true): static
     {
         $this->withOrders = $withOrders;
 
@@ -89,12 +89,9 @@ class OrganizationSearchDemand implements \JsonSerializable
 
     /**
      * @param bool $withSubscriptions
-     *
-     * @return $this
-     *
      * @deprecated use setSubscriptionTypes()
      */
-    public function setWithSubscriptions(bool $withSubscriptions = true): self
+    public function setWithSubscriptions(bool $withSubscriptions = true): static
     {
         trigger_error(
             sprintf('Calling %s is deprecated, call setSubscriptionTypes() instead.', __METHOD__),
@@ -126,7 +123,7 @@ class OrganizationSearchDemand implements \JsonSerializable
     /**
      * @param array<int, SubscriptionType::*> $subscriptionTypes
      */
-    public function setSubscriptionTypes($subscriptionTypes): self
+    public function setSubscriptionTypes($subscriptionTypes): static
     {
         $this->subscriptionTypes = $subscriptionTypes;
 
@@ -141,7 +138,7 @@ class OrganizationSearchDemand implements \JsonSerializable
         return $this->subscriptionTypes;
     }
 
-    public function setWithVoucherCodes(bool $withVoucherCodes = true): self
+    public function setWithVoucherCodes(bool $withVoucherCodes = true): static
     {
         $this->withVoucherCodes = $withVoucherCodes;
 
@@ -153,7 +150,7 @@ class OrganizationSearchDemand implements \JsonSerializable
         return $this->withVoucherCodes;
     }
 
-    public function setWithElts(bool $withElts = true): self
+    public function setWithElts(bool $withElts = true): static
     {
         $this->withElts = $withElts;
 

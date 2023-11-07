@@ -38,7 +38,7 @@ class EmailAddress implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -50,7 +50,7 @@ class EmailAddress implements \JsonSerializable
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -62,7 +62,7 @@ class EmailAddress implements \JsonSerializable
         return $this->type;
     }
 
-    public function setType(int $type): self
+    public function setType(int $type): static
     {
         $this->type = $type;
 
@@ -74,7 +74,7 @@ class EmailAddress implements \JsonSerializable
         return $this->optIn;
     }
 
-    public function setOptIn(?\DateTimeInterface $optIn): self
+    public function setOptIn(?\DateTimeInterface $optIn): static
     {
         $this->optIn = $optIn;
 

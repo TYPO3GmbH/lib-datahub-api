@@ -119,7 +119,7 @@ class Company implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -131,7 +131,7 @@ class Company implements \JsonSerializable
         return $this->companyType;
     }
 
-    public function setCompanyType(string $companyType): self
+    public function setCompanyType(string $companyType): static
     {
         $this->companyType = $companyType;
 
@@ -143,7 +143,7 @@ class Company implements \JsonSerializable
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title): static
     {
         $this->title = $title;
 
@@ -155,7 +155,7 @@ class Company implements \JsonSerializable
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(string $slug): static
     {
         $this->slug = $slug;
 
@@ -167,7 +167,7 @@ class Company implements \JsonSerializable
         return $this->owner;
     }
 
-    public function setOwner(?string $owner): self
+    public function setOwner(?string $owner): static
     {
         $this->owner = $owner;
 
@@ -205,7 +205,7 @@ class Company implements \JsonSerializable
         return null;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -217,7 +217,7 @@ class Company implements \JsonSerializable
         return $this->vatId;
     }
 
-    public function setVatId(?string $vatId): self
+    public function setVatId(?string $vatId): static
     {
         $this->vatId = $vatId;
 
@@ -229,7 +229,7 @@ class Company implements \JsonSerializable
         return $this->hubspotId;
     }
 
-    public function setHubspotId(?int $hubspotId): self
+    public function setHubspotId(?int $hubspotId): static
     {
         $this->hubspotId = $hubspotId;
 
@@ -246,17 +246,15 @@ class Company implements \JsonSerializable
 
     /**
      * @param Address[] $addresses
-     *
-     * @return $this
      */
-    public function setAddresses(array $addresses): self
+    public function setAddresses(array $addresses): static
     {
         $this->addresses = $addresses;
 
         return $this;
     }
 
-    public function addAddress(Address $address): self
+    public function addAddress(Address $address): static
     {
         $this->addresses[] = $address;
 
@@ -273,10 +271,8 @@ class Company implements \JsonSerializable
 
     /**
      * @param Employee[] $employees
-     *
-     * @return $this
      */
-    public function setEmployees(array $employees): self
+    public function setEmployees(array $employees): static
     {
         $this->employees = $employees;
 
@@ -305,7 +301,7 @@ class Company implements \JsonSerializable
         return null;
     }
 
-    public function addEmployee(Employee $employee): self
+    public function addEmployee(Employee $employee): static
     {
         $this->employees[] = $employee;
 
@@ -341,17 +337,15 @@ class Company implements \JsonSerializable
 
     /**
      * @param Order[] $orders
-     *
-     * @return Company
      */
-    public function setOrders(array $orders): self
+    public function setOrders(array $orders): static
     {
         $this->orders = $orders;
 
         return $this;
     }
 
-    public function addOrder(Order $order): self
+    public function addOrder(Order $order): static
     {
         $this->orders[] = $order;
 
@@ -379,17 +373,15 @@ class Company implements \JsonSerializable
 
     /**
      * @param Subscription[] $subscriptions
-     *
-     * @return Company
      */
-    public function setSubscriptions(array $subscriptions): self
+    public function setSubscriptions(array $subscriptions): static
     {
         $this->subscriptions = $subscriptions;
 
         return $this;
     }
 
-    public function addSubscription(Subscription $subscription): self
+    public function addSubscription(Subscription $subscription): static
     {
         $this->subscriptions[] = $subscription;
 
@@ -401,7 +393,7 @@ class Company implements \JsonSerializable
         return $this->partnerProgram;
     }
 
-    public function setPartnerProgram(?Subscription $partnerProgram): self
+    public function setPartnerProgram(?Subscription $partnerProgram): static
     {
         $this->partnerProgram = $partnerProgram;
 
@@ -413,7 +405,7 @@ class Company implements \JsonSerializable
         return $this->membership;
     }
 
-    public function setMembership(?Subscription $membership): self
+    public function setMembership(?Subscription $membership): static
     {
         $this->membership = $membership;
 
@@ -496,7 +488,7 @@ class Company implements \JsonSerializable
         return $this->domain;
     }
 
-    public function setDomain(?string $domain): self
+    public function setDomain(?string $domain): static
     {
         $this->domain = $domain;
 
@@ -508,7 +500,7 @@ class Company implements \JsonSerializable
         return $this->city;
     }
 
-    public function setCity(?string $city): self
+    public function setCity(?string $city): static
     {
         $this->city = $city;
 
@@ -520,7 +512,7 @@ class Company implements \JsonSerializable
         return $this->country;
     }
 
-    public function setCountry(?string $country): self
+    public function setCountry(?string $country): static
     {
         $this->country = $country;
 
@@ -532,7 +524,7 @@ class Company implements \JsonSerializable
         return $this->backlink;
     }
 
-    public function setBacklink(?string $backlink): self
+    public function setBacklink(?string $backlink): static
     {
         $this->backlink = $backlink;
 
@@ -549,17 +541,15 @@ class Company implements \JsonSerializable
 
     /**
      * @param Address[] $mapLocations
-     *
-     * @return $this
      */
-    public function setMapLocations(array $mapLocations): self
+    public function setMapLocations(array $mapLocations): static
     {
         $this->mapLocations = $mapLocations;
 
         return $this;
     }
 
-    public function addMapLocation(Address $mapLocation): self
+    public function addMapLocation(Address $mapLocation): static
     {
         $this->mapLocations[] = $mapLocation;
 
@@ -571,7 +561,7 @@ class Company implements \JsonSerializable
         return $this->teaserText;
     }
 
-    public function setTeaserText(?string $teaserText): self
+    public function setTeaserText(?string $teaserText): static
     {
         $this->teaserText = $teaserText;
 
@@ -583,7 +573,7 @@ class Company implements \JsonSerializable
         return $this->profilePageText;
     }
 
-    public function setProfilePageText(?string $profilePageText): self
+    public function setProfilePageText(?string $profilePageText): static
     {
         $this->profilePageText = $profilePageText;
 
@@ -595,7 +585,7 @@ class Company implements \JsonSerializable
         return $this->contactFormAddress;
     }
 
-    public function setContactFormAddress(?string $contactFormAddress): self
+    public function setContactFormAddress(?string $contactFormAddress): static
     {
         $this->contactFormAddress = $contactFormAddress;
 
@@ -607,7 +597,7 @@ class Company implements \JsonSerializable
         return $this->photo;
     }
 
-    public function setPhoto(?string $photo): self
+    public function setPhoto(?string $photo): static
     {
         $this->photo = $photo;
 
@@ -619,7 +609,7 @@ class Company implements \JsonSerializable
         return $this->logo;
     }
 
-    public function setLogo(?string $logo): self
+    public function setLogo(?string $logo): static
     {
         $this->logo = $logo;
 
@@ -631,7 +621,7 @@ class Company implements \JsonSerializable
         return $this->headquarter;
     }
 
-    public function setHeadquarter(?Address $headquarter): self
+    public function setHeadquarter(?Address $headquarter): static
     {
         $this->headquarter = $headquarter;
 
@@ -643,7 +633,7 @@ class Company implements \JsonSerializable
         return $this->foundingPartner;
     }
 
-    public function setFoundingPartner(bool $foundingPartner): self
+    public function setFoundingPartner(bool $foundingPartner): static
     {
         $this->foundingPartner = $foundingPartner;
 
@@ -655,7 +645,7 @@ class Company implements \JsonSerializable
         return $this->psl;
     }
 
-    public function setPsl(?bool $psl): self
+    public function setPsl(?bool $psl): static
     {
         $this->psl = $psl;
 
@@ -672,17 +662,15 @@ class Company implements \JsonSerializable
 
     /**
      * @param EmailAddress[] $emailAddresses
-     *
-     * @return Company
      */
-    public function setEmailAddresses(array $emailAddresses): self
+    public function setEmailAddresses(array $emailAddresses): static
     {
         $this->emailAddresses = $emailAddresses;
 
         return $this;
     }
 
-    public function addEmailAddress(EmailAddress $emailAddress): self
+    public function addEmailAddress(EmailAddress $emailAddress): static
     {
         $this->emailAddresses[] = $emailAddress;
 
@@ -700,14 +688,14 @@ class Company implements \JsonSerializable
     /**
      * @param VoucherCode[] $voucherCodes
      */
-    public function setVoucherCodes(array $voucherCodes): self
+    public function setVoucherCodes(array $voucherCodes): static
     {
         $this->voucherCodes = $voucherCodes;
 
         return $this;
     }
 
-    public function addVoucherCode(VoucherCode $voucherCode): self
+    public function addVoucherCode(VoucherCode $voucherCode): static
     {
         $this->voucherCodes[] = $voucherCode;
 
@@ -724,17 +712,15 @@ class Company implements \JsonSerializable
 
     /**
      * @param EltsPlan[] $eltsPlans
-     *
-     * @return $this
      */
-    public function setEltsPlans(array $eltsPlans): self
+    public function setEltsPlans(array $eltsPlans): static
     {
         $this->eltsPlans = $eltsPlans;
 
         return $this;
     }
 
-    public function addEltsPlan(EltsPlan $eltsPlan): self
+    public function addEltsPlan(EltsPlan $eltsPlan): static
     {
         $this->eltsPlans[] = $eltsPlan;
 
@@ -752,14 +738,14 @@ class Company implements \JsonSerializable
     /**
      * @param ExamAccess[] $examAccesses
      */
-    public function setExamAccesses(array $examAccesses): self
+    public function setExamAccesses(array $examAccesses): static
     {
         $this->examAccesses = $examAccesses;
 
         return $this;
     }
 
-    public function addExamAccess(ExamAccess $examAccess): self
+    public function addExamAccess(ExamAccess $examAccess): static
     {
         $this->examAccesses[] = $examAccess;
 

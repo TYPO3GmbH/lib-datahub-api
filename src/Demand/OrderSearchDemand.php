@@ -21,7 +21,7 @@ class OrderSearchDemand implements \JsonSerializable
     private ?string $searchTerm = null;
     private string $dateField = self::DATE_FIELD_CREATED_AT;
 
-    public function withCompanyUuid(string $companyUuid): self
+    public function withCompanyUuid(string $companyUuid): static
     {
         $clone = clone $this;
         $clone->companyUuid = $companyUuid;
@@ -29,7 +29,7 @@ class OrderSearchDemand implements \JsonSerializable
         return $clone;
     }
 
-    public function withDateFrom(\DateTime $dateFrom): self
+    public function withDateFrom(\DateTime $dateFrom): static
     {
         $clone = clone $this;
         $clone->dateFrom = $dateFrom;
@@ -37,7 +37,7 @@ class OrderSearchDemand implements \JsonSerializable
         return $clone;
     }
 
-    public function withDateUntil(\DateTime $dateUntil): self
+    public function withDateUntil(\DateTime $dateUntil): static
     {
         $clone = clone $this;
         $clone->dateUntil = $dateUntil;
@@ -45,7 +45,7 @@ class OrderSearchDemand implements \JsonSerializable
         return $clone;
     }
 
-    public function withSearchTerm(string $searchTerm): self
+    public function withSearchTerm(string $searchTerm): static
     {
         $clone = clone $this;
         $clone->searchTerm = $searchTerm;
@@ -53,7 +53,7 @@ class OrderSearchDemand implements \JsonSerializable
         return $clone;
     }
 
-    public function withDateField(string $dateField): self
+    public function withDateField(string $dateField): static
     {
         if (!in_array($dateField, self::DATE_FIELDS, true)) {
             throw new \InvalidArgumentException(sprintf('Date field must be one of %s. Was %s.', implode(', ', self::DATE_FIELDS), $dateField), 1612176566);

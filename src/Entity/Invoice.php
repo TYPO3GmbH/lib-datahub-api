@@ -40,7 +40,7 @@ class Invoice implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -52,7 +52,7 @@ class Invoice implements \JsonSerializable
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
 
@@ -64,7 +64,7 @@ class Invoice implements \JsonSerializable
         return $this->link;
     }
 
-    public function setLink(string $link): self
+    public function setLink(string $link): static
     {
         $this->link = $link;
 
@@ -76,7 +76,7 @@ class Invoice implements \JsonSerializable
         return $this->title;
     }
 
-    public function setTitle(?string $title): self
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
 
@@ -88,7 +88,7 @@ class Invoice implements \JsonSerializable
         return $this->number;
     }
 
-    public function setNumber(string $number): self
+    public function setNumber(string $number): static
     {
         $this->number = $number;
 
@@ -100,7 +100,7 @@ class Invoice implements \JsonSerializable
         return $this->identifier;
     }
 
-    public function setIdentifier(string $identifier): self
+    public function setIdentifier(string $identifier): static
     {
         $this->identifier = $identifier;
 
@@ -112,7 +112,7 @@ class Invoice implements \JsonSerializable
         return $this->documentType;
     }
 
-    public function setDocumentType(string $documentType): self
+    public function setDocumentType(string $documentType): static
     {
         $this->documentType = $documentType;
 

@@ -36,7 +36,7 @@ class EltsAccessToken implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -48,7 +48,7 @@ class EltsAccessToken implements \JsonSerializable
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): static
     {
         $this->name = $name;
 
@@ -60,7 +60,7 @@ class EltsAccessToken implements \JsonSerializable
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(?string $description): static
     {
         $this->description = $description;
 
@@ -72,7 +72,7 @@ class EltsAccessToken implements \JsonSerializable
         return $this->token;
     }
 
-    public function setToken(string $token): self
+    public function setToken(string $token): static
     {
         $this->token = $token;
 
@@ -84,7 +84,7 @@ class EltsAccessToken implements \JsonSerializable
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -96,7 +96,7 @@ class EltsAccessToken implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 

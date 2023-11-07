@@ -34,7 +34,7 @@ class MailAddressFilter implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -46,7 +46,7 @@ class MailAddressFilter implements \JsonSerializable
         return $this->pattern;
     }
 
-    public function setPattern(string $pattern): self
+    public function setPattern(string $pattern): static
     {
         $this->pattern = $pattern;
 
@@ -58,7 +58,7 @@ class MailAddressFilter implements \JsonSerializable
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(string $type): static
     {
         $this->type = $type;
 

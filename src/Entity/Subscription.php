@@ -52,7 +52,7 @@ class Subscription implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -64,7 +64,7 @@ class Subscription implements \JsonSerializable
         return $this->subscriptionIdentifier;
     }
 
-    public function setSubscriptionIdentifier(string $subscriptionIdentifier): self
+    public function setSubscriptionIdentifier(string $subscriptionIdentifier): static
     {
         $this->subscriptionIdentifier = $subscriptionIdentifier;
 
@@ -76,7 +76,7 @@ class Subscription implements \JsonSerializable
         return $this->subscriptionStatus;
     }
 
-    public function setSubscriptionStatus(string $subscriptionStatus): self
+    public function setSubscriptionStatus(string $subscriptionStatus): static
     {
         if (!in_array($subscriptionStatus, SubscriptionStatus::getAvailableOptions(), true)) {
             throw new \InvalidArgumentException('Invalid subscription type');
@@ -91,7 +91,7 @@ class Subscription implements \JsonSerializable
         return $this->subscriptionType;
     }
 
-    public function setSubscriptionType(string $subscriptionType): self
+    public function setSubscriptionType(string $subscriptionType): static
     {
         if (!in_array($subscriptionType, SubscriptionType::getAvailableOptions(), true)) {
             throw new \InvalidArgumentException('Invalid subscription type');
@@ -106,7 +106,7 @@ class Subscription implements \JsonSerializable
         return $this->stripeLink;
     }
 
-    public function setStripeLink(string $stripeLink): self
+    public function setStripeLink(string $stripeLink): static
     {
         $this->stripeLink = $stripeLink;
 
@@ -118,7 +118,7 @@ class Subscription implements \JsonSerializable
         return $this->subscriptionSubType;
     }
 
-    public function setSubscriptionSubType(string $subscriptionSubType): self
+    public function setSubscriptionSubType(string $subscriptionSubType): static
     {
         $allowedSubTypes = SubscriptionType::getAllowedSubTypes($this->getSubscriptionType());
         if (null === $allowedSubTypes || !in_array($subscriptionSubType, $allowedSubTypes, true)) {
@@ -134,7 +134,7 @@ class Subscription implements \JsonSerializable
         return $this->validUntil;
     }
 
-    public function setValidUntil(?\DateTimeInterface $validUntil): self
+    public function setValidUntil(?\DateTimeInterface $validUntil): static
     {
         $this->validUntil = $validUntil;
 
@@ -146,7 +146,7 @@ class Subscription implements \JsonSerializable
         return $this->payload;
     }
 
-    public function setPayload(?array $payload): self
+    public function setPayload(?array $payload): static
     {
         $this->payload = $payload;
 
@@ -158,7 +158,7 @@ class Subscription implements \JsonSerializable
         return $this->history;
     }
 
-    public function setHistory(?string $history): self
+    public function setHistory(?string $history): static
     {
         $this->history = $history;
 
@@ -170,7 +170,7 @@ class Subscription implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 
@@ -182,7 +182,7 @@ class Subscription implements \JsonSerializable
         return $this->company;
     }
 
-    public function setCompany(?Company $company): self
+    public function setCompany(?Company $company): static
     {
         $this->company = $company;
 
@@ -214,7 +214,7 @@ class Subscription implements \JsonSerializable
         return $this->paymentStatus;
     }
 
-    public function setPaymentStatus(?string $paymentStatus): self
+    public function setPaymentStatus(?string $paymentStatus): static
     {
         $this->paymentStatus = $paymentStatus;
 

@@ -47,7 +47,7 @@ class Registration implements \JsonSerializable
         return $this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername(string $username): static
     {
         $this->username = $username;
 
@@ -59,7 +59,7 @@ class Registration implements \JsonSerializable
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -71,7 +71,7 @@ class Registration implements \JsonSerializable
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFirstName(string $firstName): static
     {
         $this->firstName = $firstName;
 
@@ -83,14 +83,14 @@ class Registration implements \JsonSerializable
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function setLastName(string $lastName): static
     {
         $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(string $password): static
     {
         $this->password = $password;
 
@@ -102,7 +102,7 @@ class Registration implements \JsonSerializable
         return $this->registrationCode;
     }
 
-    public function setRegistrationCode(?string $registrationCode): self
+    public function setRegistrationCode(?string $registrationCode): static
     {
         $this->registrationCode = $registrationCode;
 
@@ -114,7 +114,7 @@ class Registration implements \JsonSerializable
         return $this->validUntil;
     }
 
-    public function setValidUntil(?\DateTimeInterface $validUntil): self
+    public function setValidUntil(?\DateTimeInterface $validUntil): static
     {
         $this->validUntil = $validUntil;
 
@@ -126,14 +126,14 @@ class Registration implements \JsonSerializable
         return $this->location;
     }
 
-    public function setLocation(?string $location): self
+    public function setLocation(?string $location): static
     {
         $this->location = $location;
 
         return $this;
     }
 
-    public function addApprovedDocument(string $identifier, string $version): self
+    public function addApprovedDocument(string $identifier, string $version): static
     {
         $this->approvedDocuments[$identifier] = $version;
 

@@ -118,7 +118,7 @@ class User implements \JsonSerializable
         return $this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername(string $username): static
     {
         $this->username = $username;
 
@@ -130,7 +130,7 @@ class User implements \JsonSerializable
         return $this->password;
     }
 
-    public function setPassword(?string $password): self
+    public function setPassword(?string $password): static
     {
         $this->password = $password;
 
@@ -168,7 +168,7 @@ class User implements \JsonSerializable
         return $this->firstName;
     }
 
-    public function setFirstName(?string $firstName): self
+    public function setFirstName(?string $firstName): static
     {
         $this->firstName = $firstName;
 
@@ -180,7 +180,7 @@ class User implements \JsonSerializable
         return $this->lastName;
     }
 
-    public function setLastName(?string $lastName): self
+    public function setLastName(?string $lastName): static
     {
         $this->lastName = $lastName;
 
@@ -192,7 +192,7 @@ class User implements \JsonSerializable
         return $this->phone;
     }
 
-    public function setPhone(?string $phone): self
+    public function setPhone(?string $phone): static
     {
         $this->phone = $phone;
 
@@ -204,7 +204,7 @@ class User implements \JsonSerializable
         return $this->slackId;
     }
 
-    public function setSlackId(?string $slackId): self
+    public function setSlackId(?string $slackId): static
     {
         $this->slackId = $slackId;
 
@@ -216,7 +216,7 @@ class User implements \JsonSerializable
         return $this->discordId;
     }
 
-    public function setDiscordId(?string $discordId): self
+    public function setDiscordId(?string $discordId): static
     {
         $this->discordId = $discordId;
 
@@ -268,17 +268,15 @@ class User implements \JsonSerializable
 
     /**
      * @param Address[] $addresses
-     *
-     * @return User
      */
-    public function setAddresses(array $addresses): self
+    public function setAddresses(array $addresses): static
     {
         $this->addresses = $addresses;
 
         return $this;
     }
 
-    public function addAddress(Address $address): self
+    public function addAddress(Address $address): static
     {
         $this->addresses[] = $address;
 
@@ -295,17 +293,15 @@ class User implements \JsonSerializable
 
     /**
      * @param Link[] $links
-     *
-     * @return User
      */
-    public function setLinks(array $links): self
+    public function setLinks(array $links): static
     {
         $this->links = $links;
 
         return $this;
     }
 
-    public function addLink(Link $link): self
+    public function addLink(Link $link): static
     {
         $this->links[] = $link;
 
@@ -322,24 +318,22 @@ class User implements \JsonSerializable
 
     /**
      * @param EmailAddress[] $emailAddresses
-     *
-     * @return User
      */
-    public function setEmailAddresses(array $emailAddresses): self
+    public function setEmailAddresses(array $emailAddresses): static
     {
         $this->emailAddresses = $emailAddresses;
 
         return $this;
     }
 
-    public function addEmailAddress(EmailAddress $emailAddress): self
+    public function addEmailAddress(EmailAddress $emailAddress): static
     {
         $this->emailAddresses[] = $emailAddress;
 
         return $this;
     }
 
-    public function addOrder(Order $order): self
+    public function addOrder(Order $order): static
     {
         $this->orders[] = $order;
 
@@ -356,17 +350,15 @@ class User implements \JsonSerializable
 
     /**
      * @param NotificationInterface[] $notifications
-     *
-     * @return $this
      */
-    public function setNotifications(array $notifications): self
+    public function setNotifications(array $notifications): static
     {
         $this->notifications = $notifications;
 
         return $this;
     }
 
-    public function addNotification(NotificationInterface $notification): self
+    public function addNotification(NotificationInterface $notification): static
     {
         $this->notifications[] = $notification;
 
@@ -382,17 +374,15 @@ class User implements \JsonSerializable
 
     /**
      * @param Subscription[] $subscriptions
-     *
-     * @return User
      */
-    public function setSubscriptions(array $subscriptions): self
+    public function setSubscriptions(array $subscriptions): static
     {
         $this->subscriptions = $subscriptions;
 
         return $this;
     }
 
-    public function addSubscription(Subscription $subscription): self
+    public function addSubscription(Subscription $subscription): static
     {
         $this->subscriptions[] = $subscription;
 
@@ -409,17 +399,15 @@ class User implements \JsonSerializable
 
     /**
      * @param array<int, Company> $companies
-     *
-     * @return User
      */
-    public function setCompanies(array $companies): self
+    public function setCompanies(array $companies): static
     {
         $this->companies = $companies;
 
         return $this;
     }
 
-    public function addCompany(Company $company): self
+    public function addCompany(Company $company): static
     {
         $this->companies[] = $company;
 
@@ -476,17 +464,15 @@ class User implements \JsonSerializable
 
     /**
      * @param Certification[] $certifications
-     *
-     * @return User
      */
-    public function setCertifications(array $certifications): self
+    public function setCertifications(array $certifications): static
     {
         $this->certifications = $certifications;
 
         return $this;
     }
 
-    public function addCertification(Certification $certification): self
+    public function addCertification(Certification $certification): static
     {
         $this->certifications[] = $certification;
 
@@ -503,24 +489,22 @@ class User implements \JsonSerializable
 
     /**
      * @param ExamAccess[] $examAccesses
-     *
-     * @return User
      */
-    public function setExamAccesses(array $examAccesses): self
+    public function setExamAccesses(array $examAccesses): static
     {
         $this->examAccesses = $examAccesses;
 
         return $this;
     }
 
-    public function addExamAccess(ExamAccess $examAccess): self
+    public function addExamAccess(ExamAccess $examAccess): static
     {
         $this->examAccesses[] = $examAccess;
 
         return $this;
     }
 
-    public function addApprovedDocument(ApprovedDocument $approvedDocument): self
+    public function addApprovedDocument(ApprovedDocument $approvedDocument): static
     {
         $this->approvedDocuments[] = $approvedDocument;
 
@@ -537,10 +521,8 @@ class User implements \JsonSerializable
 
     /**
      * @param Subscription|null $membership
-     *
-     * @return User
      */
-    public function setMembership(?Subscription $membership): self
+    public function setMembership(?Subscription $membership): static
     {
         $this->membership = $membership;
 
@@ -549,10 +531,8 @@ class User implements \JsonSerializable
 
     /**
      * @param ApprovedDocument[] $approvedDocuments
-     *
-     * @return User
      */
-    public function setApprovedDocuments(array $approvedDocuments): self
+    public function setApprovedDocuments(array $approvedDocuments): static
     {
         $this->approvedDocuments = $approvedDocuments;
 
@@ -561,10 +541,8 @@ class User implements \JsonSerializable
 
     /**
      * @param Order[] $orders
-     *
-     * @return User
      */
-    public function setOrders(array $orders): self
+    public function setOrders(array $orders): static
     {
         $this->orders = $orders;
 
@@ -611,7 +589,7 @@ class User implements \JsonSerializable
         }));
     }
 
-    public function setGravatarString(?string $gravatarString): self
+    public function setGravatarString(?string $gravatarString): static
     {
         $this->gravatarString = $gravatarString;
 
@@ -633,17 +611,15 @@ class User implements \JsonSerializable
 
     /**
      * @param VoucherCode[] $voucherCodes
-     *
-     * @return $this
      */
-    public function setVoucherCodes(array $voucherCodes): self
+    public function setVoucherCodes(array $voucherCodes): static
     {
         $this->voucherCodes = $voucherCodes;
 
         return $this;
     }
 
-    public function addVoucherCode(VoucherCode $voucherCode): self
+    public function addVoucherCode(VoucherCode $voucherCode): static
     {
         $this->voucherCodes[] = $voucherCode;
 
@@ -660,17 +636,15 @@ class User implements \JsonSerializable
 
     /**
      * @param EltsPlan[] $eltsPlans
-     *
-     * @return $this
      */
-    public function setEltsPlans(array $eltsPlans): self
+    public function setEltsPlans(array $eltsPlans): static
     {
         $this->eltsPlans = $eltsPlans;
 
         return $this;
     }
 
-    public function addEltsPlan(EltsPlan $eltsPlan): self
+    public function addEltsPlan(EltsPlan $eltsPlan): static
     {
         $this->eltsPlans[] = $eltsPlan;
 
@@ -687,17 +661,15 @@ class User implements \JsonSerializable
 
     /**
      * @param EltsAccessToken[] $eltsAccessTokens
-     *
-     * @return $this
      */
-    public function setEltsAccessTokens(array $eltsAccessTokens): self
+    public function setEltsAccessTokens(array $eltsAccessTokens): static
     {
         $this->eltsAccessTokens = $eltsAccessTokens;
 
         return $this;
     }
 
-    public function addEltsAccessToken(EltsAccessToken $eltsAccessToken): self
+    public function addEltsAccessToken(EltsAccessToken $eltsAccessToken): static
     {
         $this->eltsAccessTokens[] = $eltsAccessToken;
 
@@ -714,17 +686,15 @@ class User implements \JsonSerializable
 
     /**
      * @param EltsGitPublicKey[] $eltsGitPublicKeys
-     *
-     * @return $this
      */
-    public function setEltsGitPublicKeys(array $eltsGitPublicKeys): self
+    public function setEltsGitPublicKeys(array $eltsGitPublicKeys): static
     {
         $this->eltsGitPublicKeys = $eltsGitPublicKeys;
 
         return $this;
     }
 
-    public function addEltsGitPublicKey(EltsGitPublicKey $eltsGitPublicKey): self
+    public function addEltsGitPublicKey(EltsGitPublicKey $eltsGitPublicKey): static
     {
         $this->eltsGitPublicKeys[] = $eltsGitPublicKey;
 

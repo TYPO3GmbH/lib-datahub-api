@@ -36,7 +36,7 @@ class ReleaseNotification implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -48,7 +48,7 @@ class ReleaseNotification implements \JsonSerializable
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): static
     {
         $this->name = $name;
 
@@ -60,7 +60,7 @@ class ReleaseNotification implements \JsonSerializable
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -72,7 +72,7 @@ class ReleaseNotification implements \JsonSerializable
         return $this->accepted;
     }
 
-    public function setAccepted(bool $accepted): self
+    public function setAccepted(bool $accepted): static
     {
         $this->accepted = $accepted;
 
@@ -84,7 +84,7 @@ class ReleaseNotification implements \JsonSerializable
         return $this->inherited;
     }
 
-    public function setInherited(bool $inherited): self
+    public function setInherited(bool $inherited): static
     {
         $this->inherited = $inherited;
 
@@ -96,7 +96,7 @@ class ReleaseNotification implements \JsonSerializable
         return $this->eltsPlan;
     }
 
-    public function setEltsPlan(?EltsPlan $eltsPlan): self
+    public function setEltsPlan(?EltsPlan $eltsPlan): static
     {
         $this->eltsPlan = $eltsPlan;
 
@@ -108,7 +108,7 @@ class ReleaseNotification implements \JsonSerializable
         return $this->eltsInstance;
     }
 
-    public function setEltsInstance(?EltsInstance $eltsInstance): self
+    public function setEltsInstance(?EltsInstance $eltsInstance): static
     {
         $this->eltsInstance = $eltsInstance;
 

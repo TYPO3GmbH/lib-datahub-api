@@ -39,7 +39,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -51,7 +51,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFirstName(string $firstName): static
     {
         $this->firstName = $firstName;
 
@@ -63,7 +63,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function setLastName(string $lastName): static
     {
         $this->lastName = $lastName;
 
@@ -75,7 +75,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -87,7 +87,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(?string $user): self
+    public function setUser(?string $user): static
     {
         $this->user = $user;
 
@@ -99,7 +99,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->accepted;
     }
 
-    public function setAccepted(bool $accepted): self
+    public function setAccepted(bool $accepted): static
     {
         $this->accepted = $accepted;
 
@@ -111,7 +111,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->inherited;
     }
 
-    public function setInherited(bool $inherited): self
+    public function setInherited(bool $inherited): static
     {
         $this->inherited = $inherited;
 
@@ -123,7 +123,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->eltsPlan;
     }
 
-    public function setEltsPlan(?EltsPlan $eltsPlan): self
+    public function setEltsPlan(?EltsPlan $eltsPlan): static
     {
         $this->eltsPlan = $eltsPlan;
 
@@ -135,7 +135,7 @@ class TechnicalContact implements \JsonSerializable
         return $this->eltsInstance;
     }
 
-    public function setEltsInstance(?EltsInstance $eltsInstance): self
+    public function setEltsInstance(?EltsInstance $eltsInstance): static
     {
         $this->eltsInstance = $eltsInstance;
 

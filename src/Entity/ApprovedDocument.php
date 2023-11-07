@@ -41,7 +41,7 @@ class ApprovedDocument implements \JsonSerializable
         return $this->documentIdentifier;
     }
 
-    public function setDocumentIdentifier(string $documentIdentifier): self
+    public function setDocumentIdentifier(string $documentIdentifier): static
     {
         $this->documentIdentifier = $documentIdentifier;
 
@@ -53,7 +53,7 @@ class ApprovedDocument implements \JsonSerializable
         return $this->documentVersion;
     }
 
-    public function setDocumentVersion(string $documentVersion): self
+    public function setDocumentVersion(string $documentVersion): static
     {
         $this->documentVersion = $documentVersion;
 
@@ -65,7 +65,7 @@ class ApprovedDocument implements \JsonSerializable
         return $this->approveDate;
     }
 
-    public function setApproveDate(?\DateTimeInterface $approveDate): self
+    public function setApproveDate(?\DateTimeInterface $approveDate): static
     {
         $this->approveDate = $approveDate;
 
@@ -77,7 +77,7 @@ class ApprovedDocument implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user): static
     {
         $this->user = $user;
 

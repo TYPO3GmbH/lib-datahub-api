@@ -71,7 +71,7 @@ class EltsPlan implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -83,7 +83,7 @@ class EltsPlan implements \JsonSerializable
         return $this->version;
     }
 
-    public function setVersion(string $version): self
+    public function setVersion(string $version): static
     {
         $this->version = $version;
 
@@ -95,7 +95,7 @@ class EltsPlan implements \JsonSerializable
         return $this->owner;
     }
 
-    public function setOwner(string $owner): self
+    public function setOwner(string $owner): static
     {
         $this->owner = $owner;
 
@@ -112,10 +112,8 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param array<string, string> $ownerData
-     *
-     * @return $this
      */
-    public function setOwnerData(array $ownerData): self
+    public function setOwnerData(array $ownerData): static
     {
         $this->ownerData = $ownerData;
 
@@ -127,7 +125,7 @@ class EltsPlan implements \JsonSerializable
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(string $type): static
     {
         $this->type = $type;
 
@@ -139,7 +137,7 @@ class EltsPlan implements \JsonSerializable
         return $this->title;
     }
 
-    public function setTitle(?string $title): self
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
 
@@ -156,17 +154,15 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param EltsPlanExtendable[] $extendables
-     *
-     * @return self
      */
-    public function setExtendables(array $extendables): self
+    public function setExtendables(array $extendables): static
     {
         $this->extendables = $extendables;
 
         return $this;
     }
 
-    public function addExtendable(EltsPlanExtendable $extendable): self
+    public function addExtendable(EltsPlanExtendable $extendable): static
     {
         $this->extendables[$extendable->getRuntime()] = $extendable;
 
@@ -211,17 +207,15 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param EltsRuntime[] $runtimes
-     *
-     * @return self
      */
-    public function setRuntimes(array $runtimes): self
+    public function setRuntimes(array $runtimes): static
     {
         $this->runtimes = $runtimes;
 
         return $this;
     }
 
-    public function addRuntime(EltsRuntime $runtime): self
+    public function addRuntime(EltsRuntime $runtime): static
     {
         $this->runtimes[] = $runtime;
 
@@ -233,7 +227,7 @@ class EltsPlan implements \JsonSerializable
         return $this->validFrom;
     }
 
-    public function setValidFrom(?\DateTimeInterface $validFrom): self
+    public function setValidFrom(?\DateTimeInterface $validFrom): static
     {
         $this->validFrom = $validFrom;
 
@@ -245,7 +239,7 @@ class EltsPlan implements \JsonSerializable
         return $this->validTo;
     }
 
-    public function setValidTo(?\DateTimeInterface $validTo): self
+    public function setValidTo(?\DateTimeInterface $validTo): static
     {
         $this->validTo = $validTo;
 
@@ -262,17 +256,15 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param EltsInstance[] $instances
-     *
-     * @return EltsPlan
      */
-    public function setInstances(array $instances): self
+    public function setInstances(array $instances): static
     {
         $this->instances = $instances;
 
         return $this;
     }
 
-    public function addInstance(EltsInstance $instance): self
+    public function addInstance(EltsInstance $instance): static
     {
         $this->instances[] = $instance;
 
@@ -284,7 +276,7 @@ class EltsPlan implements \JsonSerializable
         return $this->order;
     }
 
-    public function setOrder(?Order $order = null): self
+    public function setOrder(?Order $order = null): static
     {
         $this->order = $order;
 
@@ -296,7 +288,7 @@ class EltsPlan implements \JsonSerializable
         return $this->licenses;
     }
 
-    public function setLicenses(?int $licenses): self
+    public function setLicenses(?int $licenses): static
     {
         $this->licenses = $licenses;
 
@@ -313,17 +305,15 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param TechnicalContact[] $technicalContacts
-     *
-     * @return self
      */
-    public function setTechnicalContacts(array $technicalContacts): self
+    public function setTechnicalContacts(array $technicalContacts): static
     {
         $this->technicalContacts = $technicalContacts;
 
         return $this;
     }
 
-    public function addTechnicalContact(TechnicalContact $technicalContacts): self
+    public function addTechnicalContact(TechnicalContact $technicalContacts): static
     {
         $this->technicalContacts[] = $technicalContacts;
 
@@ -340,17 +330,15 @@ class EltsPlan implements \JsonSerializable
 
     /**
      * @param ReleaseNotification[] $releaseNotifications
-     *
-     * @return self
      */
-    public function setReleaseNotifications(array $releaseNotifications): self
+    public function setReleaseNotifications(array $releaseNotifications): static
     {
         $this->releaseNotifications = $releaseNotifications;
 
         return $this;
     }
 
-    public function addReleaseNotification(ReleaseNotification $releaseNotification): self
+    public function addReleaseNotification(ReleaseNotification $releaseNotification): static
     {
         $this->releaseNotifications[] = $releaseNotification;
 

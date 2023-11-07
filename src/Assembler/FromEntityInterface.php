@@ -12,5 +12,5 @@ namespace T3G\DatahubApiLibrary\Assembler;
 
 interface FromEntityInterface
 {
-    public static function createFromEntity(\stdClass $entity): self;
+    public static function createFromEntity(\stdClass $entity): static;
 }

@@ -25,7 +25,7 @@ class ReservedUser
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -37,7 +37,7 @@ class ReservedUser
         return $this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername(string $username): static
     {
         $this->username = $username;
 
@@ -49,7 +49,7 @@ class ReservedUser
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -61,7 +61,7 @@ class ReservedUser
         return $this->deleteDate;
     }
 
-    public function setDeleteDate(\DateTimeInterface $deleteDate): self
+    public function setDeleteDate(\DateTimeInterface $deleteDate): static
     {
         $this->deleteDate = $deleteDate;
 
@@ -73,7 +73,7 @@ class ReservedUser
         return $this->otrsIssue;
     }
 
-    public function setOtrsIssue(string $otrsIssue): self
+    public function setOtrsIssue(string $otrsIssue): static
     {
         $this->otrsIssue = $otrsIssue;
 
@@ -85,7 +85,7 @@ class ReservedUser
         return $this->comment;
     }
 
-    public function setComment(string $comment): self
+    public function setComment(string $comment): static
     {
         $this->comment = $comment;
 
@@ -97,7 +97,7 @@ class ReservedUser
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(string $status): static
     {
         $this->status = $status;
 

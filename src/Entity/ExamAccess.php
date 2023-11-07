@@ -44,7 +44,7 @@ class ExamAccess implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -56,7 +56,7 @@ class ExamAccess implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 
@@ -68,7 +68,7 @@ class ExamAccess implements \JsonSerializable
         return $this->company;
     }
 
-    public function setCompany(?Company $company): self
+    public function setCompany(?Company $company): static
     {
         $this->company = $company;
 
@@ -80,7 +80,7 @@ class ExamAccess implements \JsonSerializable
         return $this->certificationType;
     }
 
-    public function setCertificationType(string $certificationType): self
+    public function setCertificationType(string $certificationType): static
     {
         $this->certificationType = $certificationType;
 
@@ -92,7 +92,7 @@ class ExamAccess implements \JsonSerializable
         return $this->certificationVersion;
     }
 
-    public function setCertificationVersion(string $certificationVersion): self
+    public function setCertificationVersion(string $certificationVersion): static
     {
         $this->certificationVersion = $certificationVersion;
 
@@ -104,7 +104,7 @@ class ExamAccess implements \JsonSerializable
         return $this->voucher;
     }
 
-    public function setVoucher(string $voucher): self
+    public function setVoucher(string $voucher): static
     {
         $this->voucher = $voucher;
 
@@ -116,7 +116,7 @@ class ExamAccess implements \JsonSerializable
         return $this->status;
     }
 
-    public function setStatus(?string $status): self
+    public function setStatus(?string $status): static
     {
         $this->status = $status;
 
@@ -128,7 +128,7 @@ class ExamAccess implements \JsonSerializable
         return $this->history;
     }
 
-    public function setHistory(?string $history): self
+    public function setHistory(?string $history): static
     {
         $this->history = $history;
 
@@ -140,7 +140,7 @@ class ExamAccess implements \JsonSerializable
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -152,7 +152,7 @@ class ExamAccess implements \JsonSerializable
         return $this->validUntil;
     }
 
-    public function setValidUntil(?\DateTimeInterface $validUntil): self
+    public function setValidUntil(?\DateTimeInterface $validUntil): static
     {
         $this->validUntil = $validUntil;
 
@@ -164,7 +164,7 @@ class ExamAccess implements \JsonSerializable
         return $this->used;
     }
 
-    public function setUsed(?bool $used): self
+    public function setUsed(?bool $used): static
     {
         $this->used = $used;
 

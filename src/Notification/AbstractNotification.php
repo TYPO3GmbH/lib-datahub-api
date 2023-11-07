@@ -43,7 +43,7 @@ abstract class AbstractNotification implements NotificationInterface
         return $this->message;
     }
 
-    public function setMessage(string $message): self
+    public function setMessage(string $message): static
     {
         $this->message = $message;
 
@@ -55,7 +55,7 @@ abstract class AbstractNotification implements NotificationInterface
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(string $type): static
     {
         $this->type = $type;
 

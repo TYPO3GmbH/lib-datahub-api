@@ -32,7 +32,7 @@ class Link implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -44,7 +44,7 @@ class Link implements \JsonSerializable
         return $this->url;
     }
 
-    public function setUrl(string $url): self
+    public function setUrl(string $url): static
     {
         $this->url = $url;
 
@@ -56,7 +56,7 @@ class Link implements \JsonSerializable
         return $this->icon;
     }
 
-    public function setIcon(string $icon): self
+    public function setIcon(string $icon): static
     {
         $this->icon = $icon;
 

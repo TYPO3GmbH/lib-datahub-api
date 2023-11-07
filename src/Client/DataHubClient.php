@@ -44,7 +44,7 @@ class DataHubClient
         $this->logger = $logger;
     }
 
-    public function setHttpClient(ClientInterface $httpClient): self
+    public function setHttpClient(ClientInterface $httpClient): static
     {
         $this->httpClient = $httpClient;
 

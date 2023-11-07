@@ -22,27 +22,27 @@ class TransferEntityAssembler extends AbstractAssembler
 {
     protected string $dtoClassName = TransferEntityDto::class;
 
-    public function setSourceOrganization(string $uuid): self
+    public function setSourceOrganization(string $uuid): static
     {
         $this->dto->source = sprintf('organization:%s', $uuid);
 
         return $this;
     }
 
-    public function setTargetOrganization(string $uuid): self
+    public function setTargetOrganization(string $uuid): static
     {
         $this->dto->target = sprintf('organization:%s', $uuid);
 
         return $this;
     }
-    public function setSourceUser(string $username): self
+    public function setSourceUser(string $username): static
     {
         $this->dto->source = sprintf('user:%s', $username);
 
         return $this;
     }
 
-    public function setTargetUser(string $username): self
+    public function setTargetUser(string $username): static
     {
         $this->dto->target = sprintf('user:%s', $username);
 

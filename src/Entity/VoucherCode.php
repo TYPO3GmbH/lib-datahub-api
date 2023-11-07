@@ -57,7 +57,7 @@ class VoucherCode implements \JsonSerializable
         return $this->uuid;
     }
 
-    public function setUuid(string $uuid): self
+    public function setUuid(string $uuid): static
     {
         $this->uuid = $uuid;
 
@@ -69,7 +69,7 @@ class VoucherCode implements \JsonSerializable
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 
@@ -81,7 +81,7 @@ class VoucherCode implements \JsonSerializable
         return $this->company;
     }
 
-    public function setCompany(?Company $company): self
+    public function setCompany(?Company $company): static
     {
         $this->company = $company;
 
@@ -93,7 +93,7 @@ class VoucherCode implements \JsonSerializable
         return $this->voucherCode;
     }
 
-    public function setVoucherCode(string $voucherCode): self
+    public function setVoucherCode(string $voucherCode): static
     {
         $this->voucherCode = $voucherCode;
 
@@ -105,7 +105,7 @@ class VoucherCode implements \JsonSerializable
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(string $type): static
     {
         $this->type = $type;
 
@@ -117,7 +117,7 @@ class VoucherCode implements \JsonSerializable
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(string $status): static
     {
         $this->status = $status;
 
@@ -129,7 +129,7 @@ class VoucherCode implements \JsonSerializable
         return $this->expiresAt;
     }
 
-    public function setExpiresAt(\DateTimeInterface $expiresAt): self
+    public function setExpiresAt(\DateTimeInterface $expiresAt): static
     {
         $this->expiresAt = $expiresAt;
 
@@ -141,7 +141,7 @@ class VoucherCode implements \JsonSerializable
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title): static
     {
         $this->title = $title;
 
@@ -153,7 +153,7 @@ class VoucherCode implements \JsonSerializable
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(string $description): static
     {
         $this->description = $description;
 
@@ -165,7 +165,7 @@ class VoucherCode implements \JsonSerializable
         return $this->orderNumber;
     }
 
-    public function setOrderNumber(?string $orderNumber): self
+    public function setOrderNumber(?string $orderNumber): static
     {
         $this->orderNumber = $orderNumber;
 
@@ -177,7 +177,7 @@ class VoucherCode implements \JsonSerializable
         return $this->product;
     }
 
-    public function setProduct(?string $product): self
+    public function setProduct(?string $product): static
     {
         $this->product = $product;
 
@@ -189,7 +189,7 @@ class VoucherCode implements \JsonSerializable
         return $this->username;
     }
 
-    public function setUsername(?string $username): self
+    public function setUsername(?string $username): static
     {
         $this->username = $username;
 
@@ -201,7 +201,7 @@ class VoucherCode implements \JsonSerializable
         return $this->usages;
     }
 
-    public function setUsages(?int $usages): self
+    public function setUsages(?int $usages): static
     {
         $this->usages = $usages;
 
@@ -213,7 +213,7 @@ class VoucherCode implements \JsonSerializable
         return $this->redemptions;
     }
 
-    public function setRedemptions(int $redemptions): self
+    public function setRedemptions(int $redemptions): static
     {
         $this->redemptions = $redemptions;
 
@@ -225,7 +225,7 @@ class VoucherCode implements \JsonSerializable
         return $this->isExpired;
     }
 
-    public function setIsExpired(bool $isExpired): self
+    public function setIsExpired(bool $isExpired): static
     {
         $this->isExpired = $isExpired;
 
@@ -237,7 +237,7 @@ class VoucherCode implements \JsonSerializable
         return $this->isUsed;
     }
 
-    public function setIsUsed(bool $isUsed): self
+    public function setIsUsed(bool $isUsed): static
     {
         $this->isUsed = $isUsed;
 
@@ -249,7 +249,7 @@ class VoucherCode implements \JsonSerializable
         return $this->isRedeemable;
     }
 
-    public function setIsRedeemable(bool $isRedeemable): self
+    public function setIsRedeemable(bool $isRedeemable): static
     {
         $this->isRedeemable = $isRedeemable;
 

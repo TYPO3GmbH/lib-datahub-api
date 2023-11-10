@@ -83,7 +83,10 @@ return new Response(200, ['content-type' => 'application/json'], '
         "username": "neoblack",
         "firstName": "Oelie",
         "lastName": "Boelie",
-        "gravatarString": "da262bfed6eb8967574348ebca9fd51c"
+        "gravatarString": "da262bfed6eb8967574348ebca9fd51c",
+        "status": {
+          "membership": "COMMUNITY"
+        }
       },
       "uuid": "aaa-bbb",
       "role": "OWNER",
@@ -95,7 +98,10 @@ return new Response(200, ['content-type' => 'application/json'], '
         "username": "Oelie Boelie",
         "firstName": "Oelie",
         "lastName": "Boelie",
-        "gravatarString": "da262bfed6eb8967574348ebca9fd51c"
+        "gravatarString": "da262bfed6eb8967574348ebca9fd51c",
+        "status": {
+          "membership": "COMMUNITY"
+        }
       },
       "uuid": "aaa-bbb2",
       "role": "MANAGER",
@@ -107,7 +113,10 @@ return new Response(200, ['content-type' => 'application/json'], '
         "username": "neoblack2",
         "firstName": "Oelie",
         "lastName": "Boelie",
-        "gravatarString": "da262bfed6eb8967574348ebca9fd51c"
+        "gravatarString": "da262bfed6eb8967574348ebca9fd51c",
+        "status": {
+          "membership": "COMMUNITY"
+        }
       },
       "uuid": "aaa-bbb3",
       "role": "EMPLOYEE",
@@ -119,7 +128,10 @@ return new Response(200, ['content-type' => 'application/json'], '
         "username": "neoblack3",
         "firstName": "Oelie",
         "lastName": "Boelie",
-        "gravatarString": "da262bfed6eb8967574348ebca9fd51c"
+        "gravatarString": "da262bfed6eb8967574348ebca9fd51c",
+        "status": {
+          "membership": "COMMUNITY"
+        }
       },
       "uuid": "aaa-bbb4",
       "role": "EMPLOYEE",
@@ -142,6 +154,11 @@ return new Response(200, ['content-type' => 'application/json'], '
       "certificationVersion": "9.5",
       "status": "READY"
     }
-  ]
+  ],
+  "status": {
+    "isFoundingPartner": true,
+    "membership": "GOLD",
+    "partnerType": "NONE"
+  }
 }
 ');

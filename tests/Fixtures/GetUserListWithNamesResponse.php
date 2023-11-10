@@ -16,12 +16,18 @@ return new Response(200, ['content-type' => 'application/json'], '
     {
       "username": "max.muster",
       "firstName": "Max",
-      "lastName": "Muster"
+      "lastName": "Muster",
+      "status": {
+        "membership": "COMMUNITY"
+      }
     },
     {
       "username": "fritz.fuscher",
       "firstName": "Fritz",
-      "lastName": "Fuscher"
+      "lastName": "Fuscher",
+      "status": {
+        "membership": "NONE"
+      }
     }
   ],
   "length": 2,

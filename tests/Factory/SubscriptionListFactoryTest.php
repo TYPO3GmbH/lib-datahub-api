@@ -12,7 +12,9 @@ namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Entity\Subscription;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\MembershipType;
+use T3G\DatahubApiLibrary\Enum\PartnerProgramType;
 use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 use T3G\DatahubApiLibrary\Factory\SubscriptionListFactory;
@@ -51,6 +53,10 @@ class SubscriptionListFactoryTest extends TestCase
                                 'username' => 'oelie-boelie',
                                 'firstName' => 'Oelie',
                                 'lastName' => 'Boelie',
+                                'status' => [
+                                    'membership' => MembershipType::COMMUNITY,
+                                    'certifications' => [CertificationType::TCCD],
+                                ],
                             ],
                         ],
                         [
@@ -68,6 +74,11 @@ class SubscriptionListFactoryTest extends TestCase
                                 'title' => 'Aldi',
                                 'email' => 'aldi-nice-things@example.com',
                                 'vatId' => 'DE 123 456 789',
+                                'status' => [
+                                    'isFoundingPartner' => false,
+                                    'membership' => MembershipType::GOLD,
+                                    'partnerType' => PartnerProgramType::NONE,
+                                ],
                             ],
                         ],
                     ],

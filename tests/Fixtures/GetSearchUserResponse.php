@@ -116,7 +116,10 @@ return new Response(200, ['content-type' => 'application/json'], '
           },
           "validUntil": "2021-09-03T10:00:00+00:00"
         }
-      ]
+      ],
+      "status": {
+        "membership": "COMMUNITY"
+      }
     },
     {
       "username": "oelie-boelie2",
@@ -221,7 +224,10 @@ return new Response(200, ['content-type' => 'application/json'], '
           },
           "validUntil": "2021-09-03T10:00:00+00:00"
         }
-      ]
+      ],
+      "status": {
+        "membership": "COMMUNITY"
+      }
     }
   ]
 }

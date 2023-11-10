@@ -14,10 +14,16 @@ return new Response(200, ['content-type' => 'application/json'], '
 {
   "entities": [
     {
-      "username": "max.muster"
+      "username": "max.muster",
+      "status": {
+        "membership": "COMMUNITY"
+      }
     },
     {
-      "username": "fritz.fuscher"
+      "username": "fritz.fuscher",
+      "status": {
+        "membership": "NONE"
+      }
     }
   ],
   "length": 2,

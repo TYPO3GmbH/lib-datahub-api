@@ -13,6 +13,7 @@ namespace T3G\DatahubApiLibrary\Tests\Entity;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Entity\Company;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
 
 class CompanyTest extends TestCase
@@ -40,6 +41,10 @@ class CompanyTest extends TestCase
                             'optIn' => '2020-01-01 00:00:00',
                         ],
                     ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
+                    ],
                 ]),
                 EmailType::PRIMARY,
                 true,
@@ -55,6 +60,10 @@ class CompanyTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::PRIMARY,
                         ],
+                    ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
                     ],
                 ]),
                 EmailType::PRIMARY,
@@ -73,6 +82,10 @@ class CompanyTest extends TestCase
                             'optIn' => '2020-01-01 00:00:00',
                         ],
                     ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
+                    ],
                 ]),
                 EmailType::BILLING,
                 true,
@@ -88,6 +101,10 @@ class CompanyTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::BILLING,
                         ],
+                    ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
                     ],
                 ]),
                 EmailType::BILLING,
@@ -106,6 +123,10 @@ class CompanyTest extends TestCase
                             'optIn' => '2020-01-01 00:00:00',
                         ],
                     ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
+                    ],
                 ]),
                 EmailType::VOTING,
                 true,
@@ -121,6 +142,10 @@ class CompanyTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::VOTING,
                         ],
+                    ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
                     ],
                 ]),
                 EmailType::VOTING,
@@ -139,6 +164,10 @@ class CompanyTest extends TestCase
                             'optIn' => '2020-01-01 00:00:00',
                         ],
                     ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
+                    ],
                 ]),
                 EmailType::PRIMARY,
                 false,
@@ -154,6 +183,10 @@ class CompanyTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::PRIMARY,
                         ],
+                    ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
                     ],
                 ]),
                 EmailType::PRIMARY,
@@ -172,6 +205,10 @@ class CompanyTest extends TestCase
                             'optIn' => '2020-01-01 00:00:00',
                         ],
                     ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
+                    ],
                 ]),
                 EmailType::BILLING,
                 false,
@@ -187,6 +224,10 @@ class CompanyTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::BILLING,
                         ],
+                    ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
                     ],
                 ]),
                 EmailType::BILLING,
@@ -205,6 +246,10 @@ class CompanyTest extends TestCase
                             'optIn' => '2020-01-01 00:00:00',
                         ],
                     ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
+                    ],
                 ]),
                 EmailType::VOTING,
                 false,
@@ -220,6 +265,10 @@ class CompanyTest extends TestCase
                             'email' => 'foo@bar.com',
                             'type' => EmailType::VOTING,
                         ],
+                    ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::BRONZE,
                     ],
                 ]),
                 EmailType::VOTING,

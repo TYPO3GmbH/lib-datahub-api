@@ -15,10 +15,12 @@ namespace T3G\DatahubApiLibrary\Enum;
  */
 final class PartnerProgramType extends AbstractEnum
 {
+    public const NONE = 'NONE';
     public const SOLUTION = 'SOLUTION';
     public const TECHNOLOGY = 'TECHNOLOGY';
     public const CONSULTANT = 'CONSULTANT';
     protected static array $optionNames = [
+        self::NONE => 'None',
         self::SOLUTION => 'Solution',
         self::TECHNOLOGY => 'Technology',
         self::CONSULTANT => 'Consultant',

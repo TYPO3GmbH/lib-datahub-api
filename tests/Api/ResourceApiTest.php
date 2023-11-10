@@ -27,7 +27,7 @@ class ResourceApiTest extends AbstractApiTestCase
         self::assertCount(2, $response->getPostalAddresses());
         self::assertCount(2, $response->getLinks());
         self::assertCount(1, $response->getCertifications());
-        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('COMMUNITY', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetUserList(): void

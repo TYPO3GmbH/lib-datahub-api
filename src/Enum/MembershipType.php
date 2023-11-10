@@ -15,6 +15,7 @@ namespace T3G\DatahubApiLibrary\Enum;
  */
 final class MembershipType extends AbstractEnum
 {
+    public const NONE = 'NONE';
     public const ACADEMIC_BRONZE = 'ACADEMIC_BRONZE';
     public const ACADEMIC_GOLD = 'ACADEMIC_GOLD';
     public const ACADEMIC_SILVER = 'ACADEMIC_SILVER';
@@ -24,6 +25,7 @@ final class MembershipType extends AbstractEnum
     public const PLATINUM = 'PLATINUM';
     public const SILVER = 'SILVER';
     protected static array $optionNames = [
+        self::NONE => 'None',
         self::ACADEMIC_BRONZE => 'Academic Bronze',
         self::ACADEMIC_GOLD => 'Academic Gold',
         self::ACADEMIC_SILVER => 'Academic Silver',

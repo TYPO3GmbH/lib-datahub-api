@@ -91,7 +91,7 @@ return new Response(200, ['content-type' => 'application/json'], '
     "uuid": "00000000-0000-0000-0000-000000000000",
     "subscriptionIdentifier": "sub_AAAAAAAAA",
     "subscriptionType": "membership",
-    "subscriptionSubType": "ACADEMIC_BRONZE",
+    "subscriptionSubType": "COMMUNITY",
     "subscriptionStatus": "active",
     "payload": {
       "items": [
@@ -105,7 +105,7 @@ return new Response(200, ['content-type' => 'application/json'], '
       "uuid": "00000000-0000-0000-0000-000000000000",
       "subscriptionIdentifier": "sub_AAAAAAAAA",
       "subscriptionType": "membership",
-      "subscriptionSubType": "ACADEMIC_BRONZE",
+      "subscriptionSubType": "COMMUNITY",
       "subscriptionStatus": "active",
       "payload": {
         "items": [
@@ -114,6 +114,9 @@ return new Response(200, ['content-type' => 'application/json'], '
       },
       "validUntil": "2021-09-03T10:00:00+00:00"
     }
-  ]
+  ],
+  "status": {
+    "membership": "COMMUNITY"
+  }
 }
 ');

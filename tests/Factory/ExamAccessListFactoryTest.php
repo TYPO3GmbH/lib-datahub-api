@@ -16,6 +16,8 @@ use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\CertificationVersion;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\ExamAccessStatus;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
+use T3G\DatahubApiLibrary\Enum\PartnerProgramType;
 use T3G\DatahubApiLibrary\Factory\ExamAccessListFactory;
 
 class ExamAccessListFactoryTest extends TestCase
@@ -46,6 +48,10 @@ class ExamAccessListFactoryTest extends TestCase
                                 'username' => 'max.muster',
                                 'firstName' => 'Max',
                                 'lastName' => 'Muster',
+                                'status' => [
+                                    'membership' => MembershipType::SILVER,
+                                    'certifications' => [CertificationType::TCCI],
+                                ],
                             ],
                             'company' => null,
                             'certificationType' => CertificationType::TCCC,
@@ -65,6 +71,11 @@ class ExamAccessListFactoryTest extends TestCase
                                 'companyType' => CompanyType::AGENCY,
                                 'title' => 'Company A',
                                 'slug' => 'company-a',
+                                'status' => [
+                                    'isFoundingPartner' => false,
+                                    'membership' => MembershipType::GOLD,
+                                    'partnerType' => PartnerProgramType::NONE,
+                                ],
                             ],
                             'certificationType' => CertificationType::TCCD,
                             'certificationVersion' => CertificationVersion::NINE,

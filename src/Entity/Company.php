@@ -31,6 +31,11 @@ class Company implements \JsonSerializable
     private ?bool $psl = null;
 
     /**
+     * @var array<string, mixed>
+     */
+    private array $status = [];
+
+    /**
      * @var EmailAddress[]
      */
     private array $emailAddresses = [];
@@ -856,6 +861,24 @@ class Company implements \JsonSerializable
     public function addExamAccess(ExamAccess $examAccess): self
     {
         $this->examAccesses[] = $examAccess;
+
+        return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getStatus(): array
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param array<string, mixed> $status
+     */
+    public function setStatus(array $status): Company
+    {
+        $this->status = $status;
 
         return $this;
     }

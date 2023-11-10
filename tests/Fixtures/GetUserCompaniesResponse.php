@@ -22,7 +22,12 @@ return new Response(200, ['content-type' => 'application/json'], '
             "companyType": "UNIVERSITY",
             "title": "Dien Mam International",
             "email": "rotop@dienmam.nl",
-            "vatId": "NL123456789B01"
+            "vatId": "NL123456789B01",
+            "status": {
+                "isFoundingPartner": false,
+                "membership": "ACADEMIC_BRONZE",
+                "partnerType": "NONE"
+            }
         }
     }
 ]

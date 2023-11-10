@@ -11,6 +11,9 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
+use T3G\DatahubApiLibrary\Enum\PartnerProgramType;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 
 class EmployeeFactoryTest extends TestCase
@@ -58,6 +61,10 @@ class EmployeeFactoryTest extends TestCase
                         'username' => 'oelie-boelie',
                         'firstName' => 'Oelie',
                         'lastName' => 'Boelie',
+                        'status' => [
+                            'membership' => MembershipType::COMMUNITY,
+                            'certifications' => [CertificationType::TCCD],
+                        ],
                     ],
                 ],
             ],
@@ -73,6 +80,11 @@ class EmployeeFactoryTest extends TestCase
                         'title' => 'Aldi',
                         'email' => 'aldi-nice-things@example.com',
                         'vatId' => 'DE 123 456 789',
+                        'status' => [
+                            'isFoundingPartner' => false,
+                            'membership' => MembershipType::PLATINUM,
+                            'partnerType' => PartnerProgramType::NONE,
+                        ],
                     ],
                 ],
             ],
@@ -88,6 +100,11 @@ class EmployeeFactoryTest extends TestCase
                         'title' => 'Aldi',
                         'email' => 'aldi-nice-things@example.com',
                         'vatId' => 'DE 123 456 789',
+                        'status' => [
+                            'isFoundingPartner' => false,
+                            'membership' => MembershipType::PLATINUM,
+                            'partnerType' => PartnerProgramType::NONE,
+                        ],
                     ],
                 ],
             ],

@@ -11,6 +11,9 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
+use T3G\DatahubApiLibrary\Enum\PartnerProgramType;
 use T3G\DatahubApiLibrary\Factory\ExamAccessFactory;
 
 class ExamAccessFactoryTest extends TestCase
@@ -81,6 +84,11 @@ class ExamAccessFactoryTest extends TestCase
                         'companyType' => 'AGENCY',
                         'title' => 'Company A',
                         'slug' => 'company-a',
+                        'status' => [
+                            'isFoundingPartner' => false,
+                            'membership' => MembershipType::GOLD,
+                            'partnerType' => PartnerProgramType::NONE,
+                        ],
                     ],
                     'certificationType' => 'TCCI',
                     'certificationVersion' => '9.5',
@@ -98,6 +106,10 @@ class ExamAccessFactoryTest extends TestCase
                         'username' => 'max.muster',
                         'firstName' => 'Max',
                         'lastName' => 'Muster',
+                        'status' => [
+                            'membership' => MembershipType::SILVER,
+                            'certifications' => [CertificationType::TCCI],
+                        ],
                     ],
                     'certificationType' => 'TCCI',
                     'certificationVersion' => '9.5',

@@ -16,6 +16,8 @@ use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\CertificationVersion;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\ExamAccessStatus;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
+use T3G\DatahubApiLibrary\Enum\PartnerProgramType;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
 
 class CompanyFactoryTest extends TestCase
@@ -80,6 +82,7 @@ class CompanyFactoryTest extends TestCase
                 self::assertEquals($examAccess['status'], $entity->getExamAccesses()[$examKey]->getStatus());
             }
         }
+        self::assertSame($data['status'], $entity->getStatus());
     }
 
     public static function factoryDataProvider(): array
@@ -106,7 +109,11 @@ class CompanyFactoryTest extends TestCase
                             'username' => 'oelie-boelie',
                             'firstName' => 'Oelie',
                             'lastName' => 'Boelie',
-                        ], ],
+                            'status' => [
+                                'membership' => MembershipType::COMMUNITY,
+                                'certifications' => [CertificationType::TCCD],
+                            ],
+                        ]],
                     ],
                     'headquarter' => [
                         'uuid' => '00000000-0000-0000-0000-000000000000',
@@ -174,6 +181,11 @@ class CompanyFactoryTest extends TestCase
                             'status' => ExamAccessStatus::READY,
                         ],
                     ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::PLATINUM,
+                        'partnerType' => PartnerProgramType::NONE,
+                    ],
                 ],
             ],
             'missing company type, expect AGENCY' => [
@@ -196,7 +208,16 @@ class CompanyFactoryTest extends TestCase
                             'username' => 'oelie-boelie',
                             'firstName' => 'Oelie',
                             'lastName' => 'Boelie',
-                        ], ],
+                            'status' => [
+                                'membership' => MembershipType::COMMUNITY,
+                                'certifications' => [CertificationType::TCCD],
+                            ],
+                        ]],
+                    ],
+                    'status' => [
+                        'isFoundingPartner' => false,
+                        'membership' => MembershipType::PLATINUM,
+                        'partnerType' => PartnerProgramType::NONE,
                     ],
                 ],
             ],

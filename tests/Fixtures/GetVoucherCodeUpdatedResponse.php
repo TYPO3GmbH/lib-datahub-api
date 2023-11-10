@@ -16,7 +16,10 @@ return new Response(200, ['content-type' => 'application/json'], '
     "user": {
         "username": "max.muster",
         "firstName": "Max",
-        "lastName": "Muster"
+        "lastName": "Muster",
+        "status": {
+            "membership": "ACADEMIC_BRONZE"
+        }
     },
     "company": null,
     "voucherCode": "00000000-0000-0000-0000-000000000000",

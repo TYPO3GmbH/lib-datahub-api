@@ -26,7 +26,8 @@ class UserFactory extends AbstractFactory
             ->setPhone($data['phone'] ?? null)
             ->setSlackId($data['slackId'] ?? null)
             ->setDiscordId($data['discordId'] ?? null)
-            ->setGravatarString($data['gravatarString'] ?? null);
+            ->setGravatarString($data['gravatarString'] ?? null)
+            ->setStatus($data['status']);
 
         foreach ($data['addresses'] ?? [] as $address) {
             $user->addAddress(AddressFactory::fromArray($address));

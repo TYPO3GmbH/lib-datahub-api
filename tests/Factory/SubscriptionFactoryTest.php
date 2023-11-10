@@ -11,7 +11,9 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\MembershipType;
+use T3G\DatahubApiLibrary\Enum\PartnerProgramType;
 use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 use T3G\DatahubApiLibrary\Factory\SubscriptionFactory;
@@ -39,12 +41,14 @@ class SubscriptionFactoryTest extends TestCase
             self::assertEquals($data['user']['username'], $entity->getUser()->getUsername());
             self::assertEquals($data['user']['firstName'], $entity->getUser()->getFirstName());
             self::assertEquals($data['user']['lastName'], $entity->getUser()->getLastName());
+            self::assertSame($data['user']['status'], $entity->getUser()->getStatus());
         }
         if (isset($data['company'])) {
             self::assertEquals($data['company']['uuid'], $entity->getCompany()->getUuid());
             self::assertEquals($data['company']['title'], $entity->getCompany()->getTitle());
             self::assertEquals($data['company']['email'], $entity->getCompany()->getEmail());
             self::assertEquals($data['company']['vatId'], $entity->getCompany()->getVatId());
+            self::assertSame($data['company']['status'], $entity->getCompany()->getStatus());
         }
     }
 
@@ -65,6 +69,10 @@ class SubscriptionFactoryTest extends TestCase
                         'username' => 'oelie-boelie',
                         'firstName' => 'Oelie',
                         'lastName' => 'Boelie',
+                        'status' => [
+                            'membership' => MembershipType::COMMUNITY,
+                            'certifications' => [CertificationType::TCCD],
+                        ],
                     ],
                 ],
             ],
@@ -84,6 +92,11 @@ class SubscriptionFactoryTest extends TestCase
                         'title' => 'Aldi',
                         'email' => 'aldi-nice-things@example.com',
                         'vatId' => 'DE 123 456 789',
+                        'status' => [
+                            'isFoundingPartner' => false,
+                            'membership' => MembershipType::GOLD,
+                            'partnerType' => PartnerProgramType::NONE,
+                        ],
                     ],
                 ],
             ],

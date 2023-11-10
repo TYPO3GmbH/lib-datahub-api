@@ -97,6 +97,11 @@ class User implements \JsonSerializable
     private array $eltsGitPublicKeys = [];
 
     /**
+     * @var array<string, mixed>
+     */
+    private array $status = [];
+
+    /**
      * @return array<string, mixed>
      */
     public function jsonSerialize(): array
@@ -793,6 +798,24 @@ class User implements \JsonSerializable
     public function addEltsGitPublicKey(EltsGitPublicKey $eltsGitPublicKey): self
     {
         $this->eltsGitPublicKeys[] = $eltsGitPublicKey;
+
+        return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getStatus(): array
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param array<string, mixed> $status
+     */
+    public function setStatus(array $status): User
+    {
+        $this->status = $status;
 
         return $this;
     }

@@ -11,6 +11,8 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 use T3G\DatahubApiLibrary\Notification\IncompletePaymentNotification;
 
@@ -42,6 +44,7 @@ class UserFactoryTest extends TestCase
             self::assertInstanceOf($data['notifications'][0]['type'], $entity->getNotifications()[0]);
         }
         self::assertEquals($data['emailAddresses'][0]['email'], $entity->getPrimaryEmail());
+        self::assertSame($data['status'], $entity->getStatus());
     }
 
     public static function factoryDataProvider(): array
@@ -61,6 +64,10 @@ class UserFactoryTest extends TestCase
                         ],
                     ],
                     'phone' => '+31612345678',
+                    'status' => [
+                        'membership' => MembershipType::COMMUNITY,
+                        'certifications' => [CertificationType::TCCD],
+                    ],
                 ],
             ],
             'allValuesSet and relations' => [
@@ -157,6 +164,10 @@ class UserFactoryTest extends TestCase
                                 'lastName' => 'Boelie',
                                 'email' => 'oelie@boelie.nl',
                                 'phone' => null,
+                                'status' => [
+                                    'membership' => MembershipType::SILVER,
+                                    'certifications' => [CertificationType::TCCI],
+                                ],
                             ],
                         ],
                     ],
@@ -169,6 +180,10 @@ class UserFactoryTest extends TestCase
                             'type' => IncompletePaymentNotification::class,
                             'message' => 'Incomplete payment for company d6abf140-c946-474f-8e3a-2a55ea7bdd71',
                         ],
+                    ],
+                    'status' => [
+                        'membership' => MembershipType::SILVER,
+                        'certifications' => [CertificationType::TCCI],
                     ],
                 ],
             ],
@@ -186,6 +201,10 @@ class UserFactoryTest extends TestCase
                         ],
                     ],
                     'phone' => null,
+                    'status' => [
+                        'membership' => MembershipType::COMMUNITY,
+                        'certifications' => [CertificationType::TCCD],
+                    ],
                 ],
             ],
             'user-resource-primary' => [
@@ -200,6 +219,10 @@ class UserFactoryTest extends TestCase
                             'type' => 273,
                             'optIn' => '2020-12-16T10:13:26+00:00',
                         ],
+                    ],
+                    'status' => [
+                        'membership' => MembershipType::COMMUNITY,
+                        'certifications' => [CertificationType::TCCD],
                     ],
                 ],
             ],

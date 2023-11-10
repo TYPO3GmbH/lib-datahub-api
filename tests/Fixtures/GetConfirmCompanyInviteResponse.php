@@ -31,7 +31,10 @@ return new Response(
                 "type": 273,
                 "optIn": "2020-02-26T00:00:00+00:00"
             }
-        ]
+        ],
+        "status": {
+            "membership": "COMMUNITY"
+        }
     }
 }
 '

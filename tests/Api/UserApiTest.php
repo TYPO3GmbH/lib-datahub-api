@@ -34,7 +34,10 @@ class UserApiTest extends AbstractApiTestCase
         self::assertCount(2, $response->getPostalAddresses());
         self::assertCount(2, $response->getLinks());
         self::assertCount(1, $response->getCertifications());
-        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('COMMUNITY', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals([
+            'membership' => 'COMMUNITY',
+        ], $response->getStatus());
     }
 
     public function testGetUserWithOrders(): void
@@ -49,7 +52,7 @@ class UserApiTest extends AbstractApiTestCase
         self::assertCount(1, $orders);
         self::assertSame('A12345', $orders[0]->getOrderNumber());
         self::assertSame(['items' => [['foo' => 'bar']]], $orders[0]->getPayload());
-        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('COMMUNITY', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetUserWithSubscriptions(): void
@@ -63,11 +66,11 @@ class UserApiTest extends AbstractApiTestCase
 
         $subscriptions = $response->getSubscriptions();
         self::assertCount(1, $subscriptions);
-        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('COMMUNITY', $response->getMembership()->getSubscriptionSubType());
         self::assertSame('00000000-0000-0000-0000-000000000000', $subscriptions[0]->getUuid());
         self::assertSame('sub_AAAAAAAAA', $subscriptions[0]->getSubscriptionIdentifier());
         self::assertSame(SubscriptionType::MEMBERSHIP, $subscriptions[0]->getSubscriptionType());
-        self::assertSame(MembershipType::ACADEMIC_BRONZE, $subscriptions[0]->getSubscriptionSubType());
+        self::assertSame(MembershipType::COMMUNITY, $subscriptions[0]->getSubscriptionSubType());
         self::assertSame(SubscriptionStatus::ACTIVE, $subscriptions[0]->getSubscriptionStatus());
         self::assertSame(['items' => [['foo' => 'bar']]], $subscriptions[0]->getPayload());
     }
@@ -107,7 +110,7 @@ class UserApiTest extends AbstractApiTestCase
         self::assertCount(2, $response->getAddresses());
         self::assertCount(2, $response->getLinks());
         self::assertCount(1, $response->getCertifications());
-        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('COMMUNITY', $response->getMembership()->getSubscriptionSubType());
     }
 
     public function testGetCompanyHistory(): void
@@ -216,6 +219,6 @@ class UserApiTest extends AbstractApiTestCase
         self::assertCount(2, $response->getPostalAddresses());
         self::assertCount(2, $response->getLinks());
         self::assertCount(1, $response->getCertifications());
-        self::assertEquals('ACADEMIC_BRONZE', $response->getMembership()->getSubscriptionSubType());
+        self::assertEquals('COMMUNITY', $response->getMembership()->getSubscriptionSubType());
     }
 }

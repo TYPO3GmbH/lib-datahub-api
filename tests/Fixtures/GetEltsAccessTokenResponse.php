@@ -20,7 +20,10 @@ return new Response(200, ['content-type' => 'application/json'], '
   "user": {
     "username": "oelie",
     "firstName": "Oelie",
-    "lastName": "Boelie"
+    "lastName": "Boelie",
+    "status": {
+      "membership": "COMMUNITY"
+    }
   }
 }
 ');

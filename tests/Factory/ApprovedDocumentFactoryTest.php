@@ -11,6 +11,8 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
+use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Factory\ApprovedDocumentFactory;
 
 class ApprovedDocumentFactoryTest extends TestCase
@@ -43,6 +45,10 @@ class ApprovedDocumentFactoryTest extends TestCase
                         'lastName' => 'Boelie',
                         'email' => 'oelie@boelie.nl',
                         'phone' => null,
+                        'status' => [
+                            'membership' => MembershipType::COMMUNITY,
+                            'certifications' => [CertificationType::TCCD],
+                        ],
                     ],
                 ],
             ],

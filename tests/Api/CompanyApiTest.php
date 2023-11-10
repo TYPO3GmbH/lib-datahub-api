@@ -39,6 +39,11 @@ class CompanyApiTest extends AbstractApiTestCase
         self::assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
         self::assertTrue($response->isFoundingPartner());
         self::assertTrue($response->isPsl());
+        self::assertEquals([
+            'isFoundingPartner' => true,
+            'membership' => 'GOLD',
+            'partnerType' => 'NONE',
+        ], $response->getStatus());
     }
 
     public function testDeletionPreCheck(): void

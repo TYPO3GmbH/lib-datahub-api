@@ -24,6 +24,9 @@ return new Response(200, ['content-type' => 'application/json'], '
       "type": 273,
       "optIn": "2020-12-16T10:13:26+00:00"
     }
-  ]
+  ],
+  "status": {
+    "membership": "COMMUNITY"
+  }
 }
 ');

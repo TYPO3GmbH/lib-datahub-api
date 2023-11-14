@@ -87,9 +87,6 @@ class Subscription implements \JsonSerializable
      */
     public function setSubscriptionStatus(string $subscriptionStatus): self
     {
-        if (!in_array($subscriptionStatus, SubscriptionStatus::getAvailableOptions(), true)) {
-            throw new \InvalidArgumentException('Invalid subscription type');
-        }
         $this->subscriptionStatus = $subscriptionStatus;
 
         return $this;
@@ -105,9 +102,6 @@ class Subscription implements \JsonSerializable
      */
     public function setSubscriptionType(string $subscriptionType): self
     {
-        if (!in_array($subscriptionType, SubscriptionType::getAvailableOptions(), true)) {
-            throw new \InvalidArgumentException('Invalid subscription type');
-        }
         $this->subscriptionType = $subscriptionType;
 
         return $this;

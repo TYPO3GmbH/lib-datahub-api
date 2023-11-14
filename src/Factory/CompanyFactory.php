@@ -41,6 +41,9 @@ class CompanyFactory extends AbstractFactory
             ->setPsl($data['psl'] ?? false)
             ->setStatus($data['status']);
 
+        if (isset($data['offeredServices'])) {
+            $company->setOfferedServices($data['offeredServices']);
+        }
         if (isset($data['slug'])) {
             $company->setSlug($data['slug']);
         }

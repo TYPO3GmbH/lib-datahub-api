@@ -35,6 +35,10 @@ return new Response(200, ['content-type' => 'application/json'], '
   "domain": "typo3.com",
   "foundingPartner": true,
   "psl": true,
+  "offeredServices": [
+      "DESIGN",
+      "DEVELOPMENT"
+  ],
   "addresses": [
     {
       "uuid": "00000000-0000-0000-0000-000000000000",

@@ -15,6 +15,7 @@ use T3G\DatahubApiLibrary\Api\CompanyApi;
 use T3G\DatahubApiLibrary\Assembler\Admin\MergeCompanyAssembler;
 use T3G\DatahubApiLibrary\Demand\OrganizationSearchDemand;
 use T3G\DatahubApiLibrary\Entity\Company;
+use T3G\DatahubApiLibrary\Enum\CompanyService;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\PSLType;
 use T3G\DatahubApiLibrary\Enum\SubscriptionStatus;
@@ -39,6 +40,10 @@ class CompanyApiTest extends AbstractApiTestCase
         self::assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
         self::assertTrue($response->isFoundingPartner());
         self::assertTrue($response->isPsl());
+        self::assertSame([
+            CompanyService::DESIGN,
+            CompanyService::DEVELOPMENT,
+        ], $response->getOfferedServices());
         self::assertEquals([
             'isFoundingPartner' => true,
             'membership' => 'GOLD',

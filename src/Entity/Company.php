@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Entity;
 
 use T3G\DatahubApiLibrary\BitMask\EmailType;
+use T3G\DatahubApiLibrary\Enum\CompanyService;
 use T3G\DatahubApiLibrary\Enum\CompanyType;
 use T3G\DatahubApiLibrary\Enum\EmployeeRole;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
@@ -29,6 +30,11 @@ class Company implements \JsonSerializable
     private ?string $country = null;
     private bool $foundingPartner = false;
     private ?bool $psl = null;
+
+    /**
+     * @var list<CompanyService::*>
+     */
+    private array $offeredServices = [];
 
     /**
      * @var array<string, mixed>
@@ -116,6 +122,7 @@ class Company implements \JsonSerializable
             'logo' => $this->getLogo(),
             'headquarter' => $this->getHeadquarter() instanceof Address ? $this->getHeadquarter()->getUuid() : null,
             'psl' => $this->isPsl(),
+            'offeredServices' => $this->getOfferedServices(),
         ];
     }
 
@@ -741,6 +748,26 @@ class Company implements \JsonSerializable
     public function setPsl(?bool $psl): self
     {
         $this->psl = $psl;
+
+        return $this;
+    }
+
+    /**
+     * @return list<CompanyService::*>
+     */
+    public function getOfferedServices(): array
+    {
+        return $this->offeredServices;
+    }
+
+    /**
+     * @param list<CompanyService::*> $offeredServices
+     *
+     * @return $this
+     */
+    public function setOfferedServices(array $offeredServices): self
+    {
+        $this->offeredServices = $offeredServices;
 
         return $this;
     }

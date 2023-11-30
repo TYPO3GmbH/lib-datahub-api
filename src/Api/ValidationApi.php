@@ -23,7 +23,7 @@ class ValidationApi extends AbstractApi
                 self::uri('/validation/address'),
                 json_encode($validateAddressDto, JSON_THROW_ON_ERROR)
             );
-        } catch (DatahubResponseException) {
+        } catch (DatahubResponseException $e) {
             return false;
         }
 
@@ -37,7 +37,7 @@ class ValidationApi extends AbstractApi
                 'GET',
                 self::uri('/validation/username/' . mb_strtolower($username))
             );
-        } catch (DatahubResponseException) {
+        } catch (DatahubResponseException $e) {
             return false;
         }
 
@@ -51,7 +51,7 @@ class ValidationApi extends AbstractApi
                 'GET',
                 self::uri('/validation/organization/domain/' . mb_strtolower($domain))
             );
-        } catch (DatahubResponseException) {
+        } catch (DatahubResponseException $e) {
             return false;
         }
 

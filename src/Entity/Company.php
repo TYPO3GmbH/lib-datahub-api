@@ -767,7 +767,7 @@ class Company implements \JsonSerializable
      */
     public function setOfferedServices(array $offeredServices): self
     {
-        $this->offeredServices = $offeredServices;
+        $this->offeredServices = array_values($offeredServices);
 
         return $this;
     }

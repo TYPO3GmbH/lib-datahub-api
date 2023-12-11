@@ -31,7 +31,6 @@ return new Response(200, ['content-type' => 'application/json'], '
     "proctoringStatus": "pending",
     "certificatePrintDate": null,
     "incidents": 0,
-    "hubspotDealId": "1234",
     "postFormattedAddress": {
         "NAME": "Max Mustermann",
         "ZUSATZ": "Musterabteilung",

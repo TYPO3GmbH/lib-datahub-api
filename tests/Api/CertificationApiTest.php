@@ -28,7 +28,6 @@ class CertificationApiTest extends AbstractApiTestCase
         self::assertSame('foo bar', $certification->getAddress());
         self::assertSame('UNKNOWN', $certification->getStatus());
         self::assertSame('online', $certification->getExamLocation());
-        self::assertSame('1234', $certification->getHubspotDealId());
         self::assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
         self::assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
         self::assertSame('a5a90afd-9495-4ce1-aaef-3f5ccb0e7ec6', $certification->getUserExamUuid());
@@ -47,7 +46,6 @@ class CertificationApiTest extends AbstractApiTestCase
         self::assertSame('foo bar', $certification->getAddress());
         self::assertSame('UNKNOWN', $certification->getStatus());
         self::assertSame('online', $certification->getExamLocation());
-        self::assertSame('1234', $certification->getHubspotDealId());
         self::assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
         self::assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
         self::assertNull($certification->getCertificatePrintDate());
@@ -65,7 +63,6 @@ class CertificationApiTest extends AbstractApiTestCase
         self::assertSame('foo bar', $certification->getAddress());
         self::assertSame('UNKNOWN', $certification->getStatus());
         self::assertSame('online', $certification->getExamLocation());
-        self::assertSame('1234', $certification->getHubspotDealId());
         self::assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
         self::assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
         self::assertNull($certification->getCertificatePrintDate());
@@ -83,7 +80,6 @@ class CertificationApiTest extends AbstractApiTestCase
         self::assertSame('foo bar', $certification->getAddress());
         self::assertSame('UNKNOWN', $certification->getStatus());
         self::assertSame('online', $certification->getExamLocation());
-        self::assertSame('1234', $certification->getHubspotDealId());
         self::assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
         self::assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
         self::assertNull($certification->getCertificatePrintDate());
@@ -101,7 +97,6 @@ class CertificationApiTest extends AbstractApiTestCase
         self::assertSame('foo bar', $certification->getAddress());
         self::assertSame('UNKNOWN', $certification->getStatus());
         self::assertSame('online', $certification->getExamLocation());
-        self::assertSame('1234', $certification->getHubspotDealId());
         self::assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
         self::assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
         self::assertNull($certification->getCertificatePrintDate());
@@ -127,22 +122,6 @@ class CertificationApiTest extends AbstractApiTestCase
             require __DIR__ . '/../Fixtures/GetCertificationResponse.php',
         ]);
         $certification = (new CertificationApi($this->getClient($handler)))->setResult('00000000-0000-0000-0000-000000000000', 'PASSED');
-        self::assertSame('00000000-0000-0000-0000-000000000000', $certification->getUuid());
-        self::assertSame('TCCE', $certification->getType());
-        self::assertSame('foo bar', $certification->getAddress());
-        self::assertSame('UNKNOWN', $certification->getStatus());
-        self::assertSame('online', $certification->getExamLocation());
-        self::assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
-        self::assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
-        self::assertNull($certification->getCertificatePrintDate());
-    }
-
-    public function testImportCertification(): void
-    {
-        $handler = new MockHandler([
-            require __DIR__ . '/../Fixtures/GetCertificationResponse.php',
-        ]);
-        $certification = (new CertificationApi($this->getClient($handler)))->importCertification('oelie-boelie', $this->getTestCertificate());
         self::assertSame('00000000-0000-0000-0000-000000000000', $certification->getUuid());
         self::assertSame('TCCE', $certification->getType());
         self::assertSame('foo bar', $certification->getAddress());
@@ -183,7 +162,6 @@ class CertificationApiTest extends AbstractApiTestCase
         self::assertSame('foo bar', $certification->getAddress());
         self::assertSame('UNKNOWN', $certification->getStatus());
         self::assertSame('online', $certification->getExamLocation());
-        self::assertSame('1234', $certification->getHubspotDealId());
         self::assertSame('2020-06-02T00:00:00+00:00', $certification->getExamDate()->format(\DateTimeInterface::ATOM));
         self::assertSame('https://exam.typo3.com/examination/00000000-0000-0000-0000-000000000000', $certification->getExamUrl());
         self::assertNull($certification->getCertificatePrintDate());

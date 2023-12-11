@@ -19,17 +19,6 @@ use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
 
 class CertificationApi extends AbstractApi
 {
-    public function importCertification(string $username, Certification $certification): Certification
-    {
-        return CertificationFactory::fromResponse(
-            $this->client->request(
-                'POST',
-                self::uri('/certifications/import/' . mb_strtolower($username)),
-                json_encode($certification, JSON_THROW_ON_ERROR)
-            )
-        );
-    }
-
     /**
      * @param array<string, string> $filterAttributes
      *

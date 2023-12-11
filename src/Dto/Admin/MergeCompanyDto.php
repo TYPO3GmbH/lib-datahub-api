@@ -63,15 +63,5 @@ class MergeCompanyDto extends AbstractDto
      *
      * @Assert\Uuid
      */
-    public string $hubspotId = '';
-
-    /**
-     * This property contains the UUID of the entity
-     * that value should be used.
-     *
-     * @Assert\NotBlank
-     *
-     * @Assert\Uuid
-     */
     public string $domain = '';
 }

@@ -27,7 +27,6 @@ class CertificationFactory extends AbstractFactory
             ->setStatus($data['status'])
             ->setExamLocation($data['examLocation'])
             ->setHistory($data['history'] ?? null)
-            ->setHubspotDealId($data['hubspotDealId'] ?? null)
             ->setPostFormattedAddress($data['postFormattedAddress'] ?? []);
 
         if (isset($data['user'])) {

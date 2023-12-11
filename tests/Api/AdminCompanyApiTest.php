@@ -46,14 +46,12 @@ class AdminCompanyApiTest extends AbstractApiTestCase
         $dto->title = 'Test Company';
         $dto->companyType = CompanyType::AGENCY;
         $dto->vatId = 'DE 123 456 789';
-        $dto->hubspotId = 4711;
         $dto->domain = 'typo3.com';
 
         $response = $api->updateCompany('00000000-0000-0000-0000-000000000000', $dto);
         self::assertEquals($dto->title, $response->getTitle());
         self::assertEquals($dto->companyType, $response->getCompanyType());
         self::assertEquals($dto->vatId, $response->getVatId());
-        self::assertEquals($dto->hubspotId, $response->getHubspotId());
         self::assertEquals($dto->domain, $response->getDomain());
     }
 }

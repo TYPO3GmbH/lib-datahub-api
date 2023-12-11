@@ -26,7 +26,6 @@ class CertificationFactoryTest extends TestCase
         self::assertEquals($data['type'], $entity->getType());
         self::assertEquals($data['status'], $entity->getStatus());
         self::assertEquals($data['examLocation'], $entity->getExamLocation());
-        self::assertEquals($data['hubspotDealId'] ?? null, $entity->getHubspotDealId());
         if (null !== $data['examDate']) {
             self::assertEquals($data['examDate'], $entity->getExamDate()->format(\DateTimeInterface::ATOM));
         }
@@ -62,7 +61,6 @@ class CertificationFactoryTest extends TestCase
                     'auditType' => 'PRESENCE',
                     'status' => 'PASSED',
                     'examLocation' => 'Aldi',
-                    'hubspotDealId' => '1234',
                     'examDate' => '2020-02-26T00:00:00+00:00',
                     'ndaSigned' => true,
                     'rulesAccepted' => true,

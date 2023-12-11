@@ -18,7 +18,6 @@ return new Response(200, ['content-type' => 'application/json'], '
   "slug": "test-company",
   "email": "oelie@boelie.com",
   "vatId": "DE 123 456 789",
-  "hubspotId": 4711,
   "membership": {
     "uuid": "22222222-2222-2222-2222-222222222222",
     "subscriptionIdentifier": "sub_CCCCCCCCC",

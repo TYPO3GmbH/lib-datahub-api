@@ -30,7 +30,6 @@ return new Response(200, ['content-type' => 'application/json'], '
   "examTestResult": "NO_RESULT",
   "proctoringStatus": "pending",
   "certificatePrintDate": null,
-  "incidents": 0,
-  "hubspotDealId": "1234"
+  "incidents": 0
 }]}
 ');

@@ -25,7 +25,6 @@ class Company implements \JsonSerializable
     private ?string $owner = null;
     private string $email;
     private ?string $vatId = null;
-    private ?int $hubspotId = null;
     private ?string $city = null;
     private ?string $country = null;
     private bool $foundingPartner = false;
@@ -253,21 +252,6 @@ class Company implements \JsonSerializable
     public function setVatId(?string $vatId): self
     {
         $this->vatId = $vatId;
-
-        return $this;
-    }
-
-    public function getHubspotId(): ?int
-    {
-        return $this->hubspotId;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setHubspotId(?int $hubspotId): self
-    {
-        $this->hubspotId = $hubspotId;
 
         return $this;
     }

@@ -71,6 +71,9 @@ class CertificationFactory extends AbstractFactory
         if (isset($data['userExamUuid'])) {
             $certification->setUserExamUuid($data['userExamUuid']);
         }
+        if (isset($data['eventUuid'])) {
+            $certification->setEventUuid($data['eventUuid']);
+        }
         if (isset($data['finished'])) {
             $certification->setFinished($data['finished']);
         }

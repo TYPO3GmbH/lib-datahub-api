@@ -19,6 +19,7 @@ class CertificationSearchDemand implements \JsonSerializable
 
     /** @var array<int, string> */
     private array $status = [];
+    private ?string $eventUuid = null;
     private ?int $limit = null;
     private ?int $offset = 0;
 
@@ -81,6 +82,16 @@ class CertificationSearchDemand implements \JsonSerializable
     public function setStatus(array $status): void
     {
         $this->status = $status;
+    }
+
+    public function getEventUuid(): ?string
+    {
+        return $this->eventUuid;
+    }
+
+    public function setEventUuid(?string $eventUuid): void
+    {
+        $this->eventUuid = $eventUuid;
     }
 
     /**

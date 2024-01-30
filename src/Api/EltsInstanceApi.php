@@ -45,6 +45,23 @@ class EltsInstanceApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
+    public function canCreateInstanceForPlan(string $uuid): bool
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        $this->client->request(
+            'GET',
+            self::uri('/elts/plan/' . $uuid . '/instance/can-create')
+        );
+
+        return true;
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
     public function getInstance(string $uuid): EltsInstance
     {
         $this->isValidUuidOrThrow($uuid);

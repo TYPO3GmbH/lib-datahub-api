@@ -23,13 +23,29 @@ class EltsInstanceApiTest extends AbstractApiTestCase
             require __DIR__ . '/../Fixtures/GetEltsInstanceResponse.php',
         ]);
 
-        $eltsIntance = $this->getTestEltsInstanceForGet();
+        $eltsInstance = $this->getTestEltsInstanceForGet();
         $response = (new EltsInstanceApi($this->getClient($handler)))
-            ->createInstanceForPlan('00000000-0000-0000-0000-000000000000', $eltsIntance);
+            ->createInstanceForPlan('00000000-0000-0000-0000-000000000000', $eltsInstance);
 
-        self::assertEquals($eltsIntance->getUuid(), $response->getUuid());
-        self::assertEquals($eltsIntance->getName(), $response->getName());
+        self::assertEquals($eltsInstance->getUuid(), $response->getUuid());
+        self::assertEquals($eltsInstance->getName(), $response->getName());
         self::assertCount(1, $response->getTechnicalContacts());
+    }
+
+    public function testCanCreateInstance(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/NoContentResponse.php',
+        ]);
+        $api = new EltsInstanceApi($this->getClient($handler));
+        try {
+            $api->canCreateInstanceForPlan('00000000-0000-0000-0000-000000000000');
+            $anExceptionWasThrown = false;
+        } catch (\Exception) {
+            $anExceptionWasThrown = true;
+        }
+
+        self::assertFalse($anExceptionWasThrown);
     }
 
     public function testGetInstance(): void

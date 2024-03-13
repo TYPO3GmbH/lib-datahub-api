@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Demand;
 
+use T3G\DatahubApiLibrary\Enum\MembershipType;
+use T3G\DatahubApiLibrary\Enum\PartnerProgramType;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
 
 class OrganizationSearchDemand implements \JsonSerializable
@@ -21,6 +23,16 @@ class OrganizationSearchDemand implements \JsonSerializable
      * @var array<int, SubscriptionType::*>|null
      */
     private ?array $subscriptionTypes = null;
+
+    /**
+     * @var array<int, MembershipType::*>|null
+     */
+    private ?array $memberships = null;
+
+    /**
+     * @var array<int, PartnerProgramType::*>|null
+     */
+    private ?array $partnerTypes = null;
     private bool $withVoucherCodes = false;
     private bool $withElts = false;
 
@@ -28,6 +40,11 @@ class OrganizationSearchDemand implements \JsonSerializable
      * @var array<int, int|null>|null
      */
     private ?array $membersRange = null;
+
+    /**
+     * @var string[]|null
+     */
+    private ?array $countries = null;
 
     /**
      * @param string|null $term
@@ -150,6 +167,62 @@ class OrganizationSearchDemand implements \JsonSerializable
     }
 
     /**
+     * @param SubscriptionType::* $subscriptionType
+     *
+     * @return $this
+     */
+    public function addSubscriptionType($subscriptionType): self
+    {
+        if (null === $this->subscriptionTypes) {
+            $this->subscriptionTypes = [$subscriptionType];
+        } else {
+            $this->subscriptionTypes[] = $subscriptionType;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return array<int, MembershipType::*>|null
+     */
+    public function getMemberships(): ?array
+    {
+        return $this->memberships;
+    }
+
+    /**
+     * @param array<int, MembershipType::*>|null $memberships
+     *
+     * @return $this
+     */
+    public function setMemberships(?array $memberships): OrganizationSearchDemand
+    {
+        $this->memberships = $memberships;
+
+        return $this;
+    }
+
+    /**
+     * @return array<int, PartnerProgramType::*>|null
+     */
+    public function getPartnerTypes(): ?array
+    {
+        return $this->partnerTypes;
+    }
+
+    /**
+     * @param array<int, PartnerProgramType::*>|null $partnerTypes
+     *
+     * @return $this
+     */
+    public function setPartnerTypes(?array $partnerTypes): OrganizationSearchDemand
+    {
+        $this->partnerTypes = $partnerTypes;
+
+        return $this;
+    }
+
+    /**
      * @return $this
      */
     public function setWithVoucherCodes(bool $withVoucherCodes = true): self
@@ -218,5 +291,21 @@ class OrganizationSearchDemand implements \JsonSerializable
         }
 
         return $this;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getCountries(): ?array
+    {
+        return $this->countries;
+    }
+
+    /**
+     * @param string[]|null $countries
+     */
+    public function setCountries(?array $countries): void
+    {
+        $this->countries = $countries;
     }
 }

@@ -16,6 +16,11 @@ class EltsProductRuntime
     private \DateTimeInterface $validFrom;
     private \DateTimeInterface $validTo;
 
+    /**
+     * @var string[]|null
+     */
+    private ?array $externalProductIds;
+
     public function getIdentifier(): string
     {
         return $this->identifier;
@@ -57,6 +62,24 @@ class EltsProductRuntime
     public function setValidTo(\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
+
+        return $this;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getExternalProductIds(): ?array
+    {
+        return $this->externalProductIds;
+    }
+
+    /**
+     * @param string[]|null $externalProductIds
+     */
+    public function setExternalProductIds(?array $externalProductIds): EltsProductRuntime
+    {
+        $this->externalProductIds = $externalProductIds;
 
         return $this;
     }

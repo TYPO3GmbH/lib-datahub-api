@@ -157,6 +157,21 @@ class EltsPlanApi extends AbstractApi
     }
 
     /**
+     * @return array<string, array{maxRuntimeInYears: int, variants: array<int, array{externalProductId: string, price: float, startYear: int, endYear: int, runtimeIdentifier: string, runtimeInYears: int, runtime: string, validFrom: string, validTo: string}>, version: string, ltsSupport: array{from: string, to: string}}>
+     *
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws \JsonException
+     */
+    public function getBuyableProducts(string $username, ?string $uuid = null): array
+    {
+        return JsonUtility::decode((string) $this->client->request(
+            'GET',
+            self::uri('/elts/buyable-products/' . mb_strtolower($username) . (null !== $uuid ? '/' . $uuid : ''))
+        )->getBody());
+    }
+
+    /**
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws InvalidUuidException

@@ -10,15 +10,15 @@ jobs:
     name: Create Library Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: master
       - name: Prepare Data
         id: data
         run: |
-          echo ::set-output name=type::$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f2)
-          echo ::set-output name=tag::$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f3)
+          echo "type=$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f2)" >> $GITHUB_OUTPUT
+          echo "tag=$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f3)" >> $GITHUB_OUTPUT
       - name: Tag latest commit
         id: tag_release
         if: steps.data.outputs.type == 'tags'

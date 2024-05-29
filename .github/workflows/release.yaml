@@ -14,11 +14,13 @@ jobs:
         with:
           fetch-depth: 0
           ref: master
+
       - name: Prepare Data
         id: data
         run: |
-          echo "type=$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f2)" >> $GITHUB_OUTPUT
-          echo "tag=$(echo ${{ github.event.client_payload.ref }} | cut -d"/" -f3)" >> $GITHUB_OUTPUT
+          echo "type=$(echo ${{ github.event.client_payload.ref }} | cut -d'/' -f2)" >> $GITHUB_OUTPUT
+          echo "tag=$(echo ${{ github.event.client_payload.ref }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT
+
       - name: Tag latest commit
         id: tag_release
         if: steps.data.outputs.type == 'tags'
@@ -29,6 +31,7 @@ jobs:
           git push --tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload release notes
         if: steps.data.outputs.type == 'tags'
         uses: Roang-zero1/github-create-release-action@master

@@ -15,6 +15,7 @@ class EltsAccessToken implements \JsonSerializable
     private string $uuid;
     private string $name;
     private ?string $description = null;
+    private ?\DateTimeInterface $validUntil = null;
     private string $token = '';
     private \DateTimeInterface $createdAt;
     private ?User $user;
@@ -27,6 +28,7 @@ class EltsAccessToken implements \JsonSerializable
         return [
             'name' => $this->getName(),
             'description' => $this->getDescription(),
+            'validUntil' => $this->getValidUntil()?->format(\DateTimeInterface::ATOM),
             'token' => $this->getToken() ?: null,
         ];
     }
@@ -72,6 +74,18 @@ class EltsAccessToken implements \JsonSerializable
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getValidUntil(): ?\DateTimeInterface
+    {
+        return $this->validUntil;
+    }
+
+    public function setValidUntil(?\DateTimeInterface $validUntil): self
+    {
+        $this->validUntil = $validUntil;
 
         return $this;
     }

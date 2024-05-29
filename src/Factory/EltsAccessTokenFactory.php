@@ -29,6 +29,9 @@ class EltsAccessTokenFactory extends AbstractFactory
         if (isset($data['user'])) {
             $token->setUser(UserFactory::fromArray($data['user']));
         }
+        if (isset($data['validUntil'])) {
+            $token->setValidUntil(new \DateTime($data['validUntil']));
+        }
 
         return $token;
     }

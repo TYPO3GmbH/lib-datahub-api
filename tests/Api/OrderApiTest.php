@@ -49,8 +49,8 @@ class OrderApiTest extends AbstractApiTestCase
     public function testSearchOrders(string $fixtureFile, ?int $limit): void
     {
         $handler = new MockHandler([
-           require __DIR__ . '/../Fixtures/' . $fixtureFile,
-       ]);
+            require __DIR__ . '/../Fixtures/' . $fixtureFile,
+        ]);
         $orderList = (new OrderApi($this->getClient($handler)))
             ->searchOrders(new OrderSearchDemand(), $limit);
 

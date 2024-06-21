@@ -14,6 +14,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in(['src', 'tests']);
 
 return (new PhpCsFixer\Config())
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setCacheFile(__DIR__ . '/.php-cs-fixer.cache')
     ->setRiskyAllowed(true)
     ->setRules([

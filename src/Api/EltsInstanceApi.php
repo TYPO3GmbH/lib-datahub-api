@@ -83,7 +83,7 @@ class EltsInstanceApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function getInstances(string $companyUuid = null): EltsInstanceList
+    public function getInstances(?string $companyUuid = null): EltsInstanceList
     {
         $uri = '/elts/instances';
         if (null !== $companyUuid) {

@@ -87,7 +87,7 @@ class EltsPlanApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws InvalidUuidException
      */
-    public function getPlans(string $companyUuid = null): EltsPlanList
+    public function getPlans(?string $companyUuid = null): EltsPlanList
     {
         $uri = '/elts/plans';
         if (null !== $companyUuid) {

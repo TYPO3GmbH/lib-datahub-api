@@ -51,7 +51,7 @@ class OrganizationSearchDemand implements \JsonSerializable
      *
      * @deprecated Setting term via constructor is deprecated, use ->setTerm() instead
      */
-    public function __construct(string $term = null)
+    public function __construct(?string $term = null)
     {
         if (null !== $term) {
             $this->setTerm($term);

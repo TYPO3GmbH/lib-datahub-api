@@ -26,7 +26,7 @@ class DatahubResponseException extends \Exception
     private RequestInterface $request;
     private ResponseInterface $response;
 
-    public function __construct(RequestInterface $request, ResponseInterface $response, \Throwable $previous = null)
+    public function __construct(RequestInterface $request, ResponseInterface $response, ?\Throwable $previous = null)
     {
         $message = self::MESSAGES[$response->getStatusCode()] ?? self::DEFAULT;
         try {

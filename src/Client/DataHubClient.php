@@ -35,7 +35,7 @@ class DataHubClient
         RequestFactoryInterface $requestFactory,
         ?string $token = null,
         string $baseUri = 'https://datahub.typo3.com/api',
-        LoggerInterface $logger = null
+        ?LoggerInterface $logger = null
     ) {
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
@@ -63,7 +63,7 @@ class DataHubClient
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      */
-    public function request(string $method, UriInterface $endpoint, string $body = null): ResponseInterface
+    public function request(string $method, UriInterface $endpoint, ?string $body = null): ResponseInterface
     {
         $request = $this->requestFactory->createRequest($method, rtrim($this->baseUri, '/') . '/' . ltrim($endpoint->__toString(), '/'));
         if (null !== $this->token && !$request->hasHeader('Authorization')) {

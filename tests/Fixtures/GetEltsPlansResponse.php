@@ -50,7 +50,8 @@ return new Response(200, ['content-type' => 'application/json'], '
                     "version": "8.7",
                     "runtime": "3-3",
                     "validFrom": "2022-04-01T00:00:00+00:00",
-                    "validTo": "2023-03-31T00:00:00+00:00"
+                    "validTo": "2023-03-31T00:00:00+00:00",
+                    "isPartnerExclusive": false
                 }
             },
             "instances": [

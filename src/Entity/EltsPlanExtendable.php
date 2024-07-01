@@ -18,6 +18,7 @@ class EltsPlanExtendable
     private string $runtime;
     private ?\DateTimeInterface $validFrom = null;
     private ?\DateTimeInterface $validTo = null;
+    private bool $isPartnerExclusive = false;
 
     public function getTitle(): string
     {
@@ -105,6 +106,18 @@ class EltsPlanExtendable
     public function setValidTo(?\DateTimeInterface $validTo): self
     {
         $this->validTo = $validTo;
+
+        return $this;
+    }
+
+    public function isPartnerExclusive(): bool
+    {
+        return $this->isPartnerExclusive;
+    }
+
+    public function setIsPartnerExclusive(bool $isPartnerExclusive): EltsPlanExtendable
+    {
+        $this->isPartnerExclusive = $isPartnerExclusive;
 
         return $this;
     }

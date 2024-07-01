@@ -24,6 +24,7 @@ class EltsPlanExtendableFactoryTest extends TestCase
             'runtime' => '2-3',
             'validFrom' => '2021-04-01T00:00:00+00:00',
             'validTo' => '2023-03-31T00:00:00+00:00',
+            'isPartnerExclusive' => true,
         ]);
 
         self::assertSame('Single Plan ELTS 8.7', $entity->getTitle());
@@ -32,5 +33,6 @@ class EltsPlanExtendableFactoryTest extends TestCase
         self::assertSame('2-3', $entity->getRuntime());
         self::assertEquals(new \DateTimeImmutable('2021-04-01T00:00:00+00:00'), $entity->getValidFrom());
         self::assertEquals(new \DateTimeImmutable('2023-03-31T00:00:00+00:00'), $entity->getValidTo());
+        self::assertTrue($entity->isPartnerExclusive());
     }
 }

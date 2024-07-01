@@ -18,7 +18,7 @@ use T3G\DatahubApiLibrary\Entity\EltsPlanExtendable;
 class EltsPlanExtendableFactory extends AbstractFactory
 {
     /**
-     * @param array<string, mixed> $data
+     * @param array{title: string, version: string, type: string, runtime: string, validFrom: \DateTimeImmutable, validTo: \DateTimeImmutable, isPartnerExclusive: bool} $data
      *
      * @return EltsPlanExtendable
      */
@@ -30,6 +30,7 @@ class EltsPlanExtendableFactory extends AbstractFactory
             ->setType($data['type'])
             ->setRuntime($data['runtime'])
             ->setValidFrom(new \DateTimeImmutable($data['validFrom']))
-            ->setValidTo(new \DateTimeImmutable($data['validTo']));
+            ->setValidTo(new \DateTimeImmutable($data['validTo']))
+            ->setIsPartnerExclusive($data['isPartnerExclusive']);
     }
 }

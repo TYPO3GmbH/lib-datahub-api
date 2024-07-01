@@ -16,6 +16,7 @@ namespace T3G\DatahubApiLibrary\Enum;
 class VoucherCodeType extends AbstractEnum
 {
     public const EVENTS = 'EVENTS';
+    /** @deprecated not in use anymore */
     public const CERTIFICATIONS = 'CERTIFICATIONS';
     protected static array $optionNames = [
         self::EVENTS => 'Events',

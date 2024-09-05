@@ -22,6 +22,7 @@ class SubscriptionFilterQuery
 
     /** @var array<int, string> */
     private array $subscriptionSubType = [];
+    private bool $onlyActive = false;
 
     public function __toString()
     {
@@ -127,6 +128,18 @@ class SubscriptionFilterQuery
         return $this;
     }
 
+    public function isOnlyActive(): bool
+    {
+        return $this->onlyActive;
+    }
+
+    public function setOnlyActive(bool $onlyActive): SubscriptionFilterQuery
+    {
+        $this->onlyActive = $onlyActive;
+
+        return $this;
+    }
+
     public function getQueryAsString(): string
     {
         $params = [];
@@ -141,6 +154,9 @@ class SubscriptionFilterQuery
         }
         if ([] !== $this->subscriptionSubType) {
             $params['subscriptionSubType'] = $this->subscriptionSubType;
+        }
+        if (false !== $this->onlyActive) {
+            $params['onlyActive'] = true;
         }
 
         return http_build_query($params);

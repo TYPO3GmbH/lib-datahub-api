@@ -20,20 +20,28 @@ use Psr\Http\Message\UriInterface;
 use Psr\Log\LoggerInterface;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Service\SecurityService;
+use T3G\DatahubApiLibrary\Service\TokenServiceInterface;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class DataHubClient
 {
     private ClientInterface $httpClient;
     private RequestFactoryInterface $requestFactory;
-    private ?string $token;
+
+    /**
+     * @var TokenServiceInterface|string|null
+     */
+    private $token;
     private string $baseUri;
     private ?LoggerInterface $logger;
 
+    /**
+     * @param TokenServiceInterface|string $token
+     */
     public function __construct(
         ClientInterface $httpClient,
         RequestFactoryInterface $requestFactory,
-        ?string $token = null,
+        $token = null,
         string $baseUri = 'https://datahub.typo3.com/api',
         ?LoggerInterface $logger = null
     ) {
@@ -66,8 +74,19 @@ class DataHubClient
     public function request(string $method, UriInterface $endpoint, ?string $body = null): ResponseInterface
     {
         $request = $this->requestFactory->createRequest($method, rtrim($this->baseUri, '/') . '/' . ltrim($endpoint->__toString(), '/'));
-        if (null !== $this->token && !$request->hasHeader('Authorization')) {
-            $request = $request->withAddedHeader('Authorization', 'Bearer ' . $this->token);
+        if ($this->token instanceof TokenServiceInterface) {
+            $token = $this->token->getToken();
+        } else {
+            $token = $this->token;
+            if ($this->logger && null !== $token) {
+                $this->logger->debug('[Datahub API Client] Request token provided was passed as string, which is deprecated. Please, either upgrade your implementation to consume an instance of {interface} or update t3g/symfony-datahub-bundle.', [
+                    'interface' => TokenServiceInterface::class,
+                ]);
+            }
+        }
+
+        if (null !== $token && !$request->hasHeader('Authorization')) {
+            $request = $request->withAddedHeader('Authorization', 'Bearer ' . $token);
         }
         if (!$request->hasHeader('Content-Type')) {
             $request = $request->withAddedHeader('Content-Type', 'application/json');

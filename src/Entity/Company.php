@@ -491,9 +491,9 @@ class Company implements \JsonSerializable
      */
     public function getInvoiceAddresses(): iterable
     {
-        return new \ArrayIterator(array_filter($this->addresses, static function (Address $address) {
+        return new \ArrayIterator(array_values(array_filter($this->addresses, static function (Address $address) {
             return $address->isInvoiceAddress();
-        }));
+        })));
     }
 
     /**
@@ -501,9 +501,9 @@ class Company implements \JsonSerializable
      */
     public function getPostalAddresses(): iterable
     {
-        return new \ArrayIterator(array_filter($this->addresses, static function (Address $address) {
+        return new \ArrayIterator(array_values(array_filter($this->addresses, static function (Address $address) {
             return $address->isPostalAddress();
-        }));
+        })));
     }
 
     /**
@@ -511,9 +511,9 @@ class Company implements \JsonSerializable
      */
     public function getDeliveryAddresses(): iterable
     {
-        return new \ArrayIterator(array_filter($this->addresses, static function (Address $address) {
+        return new \ArrayIterator(array_values(array_filter($this->addresses, static function (Address $address) {
             return $address->isDeliveryAddress();
-        }));
+        })));
     }
 
     /**
@@ -521,9 +521,9 @@ class Company implements \JsonSerializable
      */
     public function getLocationAddresses(): iterable
     {
-        return new \ArrayIterator(array_filter($this->addresses, static function (Address $address) {
+        return new \ArrayIterator(array_values(array_filter($this->addresses, static function (Address $address) {
             return $address->isLocationAddress();
-        }));
+        })));
     }
 
     public function getDomain(): ?string

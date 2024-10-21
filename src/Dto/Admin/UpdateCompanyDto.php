@@ -28,4 +28,5 @@ class UpdateCompanyDto extends AbstractDto
     public string $companyType;
     public ?string $vatId = null;
     public ?string $domain = null;
+    public bool $invoiceAllowed = false;
 }

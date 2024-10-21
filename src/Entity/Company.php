@@ -29,6 +29,7 @@ class Company implements \JsonSerializable
     private ?string $country = null;
     private bool $foundingPartner = false;
     private ?bool $psl = null;
+    private bool $invoiceAllowed = false;
 
     /**
      * @var list<CompanyService::*>
@@ -122,6 +123,7 @@ class Company implements \JsonSerializable
             'headquarter' => $this->getHeadquarter() instanceof Address ? $this->getHeadquarter()->getUuid() : null,
             'psl' => $this->isPsl(),
             'offeredServices' => $this->getOfferedServices(),
+            'invoiceAllowed' => $this->isInvoiceAllowed(),
         ];
     }
 
@@ -732,6 +734,18 @@ class Company implements \JsonSerializable
     public function setPsl(?bool $psl): self
     {
         $this->psl = $psl;
+
+        return $this;
+    }
+
+    public function isInvoiceAllowed(): bool
+    {
+        return $this->invoiceAllowed;
+    }
+
+    public function setInvoiceAllowed(bool $invoiceAllowed): Company
+    {
+        $this->invoiceAllowed = $invoiceAllowed;
 
         return $this;
     }

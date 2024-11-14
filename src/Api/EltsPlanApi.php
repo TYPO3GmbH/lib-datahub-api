@@ -14,11 +14,13 @@ use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Dto\CreateEltsPlanDto;
 use T3G\DatahubApiLibrary\Dto\ProlongEltsPlanDto;
 use T3G\DatahubApiLibrary\Dto\UpdatePaymentStatusDto;
+use T3G\DatahubApiLibrary\Entity\EltsMaintainedVersionList;
 use T3G\DatahubApiLibrary\Entity\EltsPlan;
 use T3G\DatahubApiLibrary\Entity\EltsPlanList;
 use T3G\DatahubApiLibrary\Entity\EltsProduct;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
+use T3G\DatahubApiLibrary\Factory\EltsMaintainedVersionFactory;
 use T3G\DatahubApiLibrary\Factory\EltsPlanFactory;
 use T3G\DatahubApiLibrary\Factory\EltsProductListFactory;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
@@ -207,6 +209,13 @@ class EltsPlanApi extends AbstractApi
             'POST',
             self::uri('/elts/update-runtime-payment-status'),
             json_encode($dto, JSON_THROW_ON_ERROR)
+        );
+    }
+
+    public function getMaintainedVersions(): EltsMaintainedVersionList
+    {
+        return EltsMaintainedVersionFactory::fromResponseDataCollection(
+            $this->client->request('GET', self::uri('/elts/maintained-versions'))
         );
     }
 }

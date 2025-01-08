@@ -23,8 +23,6 @@ class SubscriptionFilterQuery
     /** @var array<int, string> */
     private array $subscriptionSubType = [];
     private bool $onlyActive = false;
-    private ?string $company = null;
-    private ?string $user = null;
 
     public function __toString()
     {
@@ -142,30 +140,6 @@ class SubscriptionFilterQuery
         return $this;
     }
 
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
-
-    public function setCompany(?string $company): SubscriptionFilterQuery
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    public function getUser(): ?string
-    {
-        return $this->user;
-    }
-
-    public function setUser(?string $user): SubscriptionFilterQuery
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getQueryAsString(): string
     {
         $params = [];
@@ -183,12 +157,6 @@ class SubscriptionFilterQuery
         }
         if (false !== $this->onlyActive) {
             $params['onlyActive'] = true;
-        }
-        if (null !== $this->company) {
-            $params['company'] = $this->company;
-        }
-        if (null !== $this->user) {
-            $params['user'] = $this->user;
         }
 
         return http_build_query($params);

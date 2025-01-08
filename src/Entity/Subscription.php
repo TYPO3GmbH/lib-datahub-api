@@ -31,6 +31,11 @@ class Subscription implements \JsonSerializable
     private ?string $paymentStatus = null;
 
     /**
+     * @var array{isActive?: bool, isPaid?: bool}
+     */
+    private array $status = [];
+
+    /**
      * @return array<string, mixed>
      */
     public function jsonSerialize(): array
@@ -44,6 +49,7 @@ class Subscription implements \JsonSerializable
             'validUntil' => null !== $this->getValidUntil() ? $this->getValidUntil()->format(\DateTimeInterface::ATOM) : null,
             'payload' => $this->getPayload(),
             'paymentStatus' => $this->getPaymentStatus(),
+            'status' => $this->getStatus(),
         ];
     }
 
@@ -247,6 +253,24 @@ class Subscription implements \JsonSerializable
     public function setPaymentStatus(?string $paymentStatus): self
     {
         $this->paymentStatus = $paymentStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return array{isActive?: bool, isPaid?: bool}
+     */
+    public function getStatus(): array
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param array{isActive?: bool, isPaid?: bool} $status
+     */
+    public function setStatus(array $status): Subscription
+    {
+        $this->status = $status;
 
         return $this;
     }

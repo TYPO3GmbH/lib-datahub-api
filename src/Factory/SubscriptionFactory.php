@@ -28,7 +28,8 @@ class SubscriptionFactory extends AbstractFactory
             ->setValidUntil(new \DateTimeImmutable($data['validUntil']))
             ->setPayload($data['payload'] ?? null)
             ->setHistory($data['history'] ?? null)
-            ->setSubscriptionStatus($data['subscriptionStatus']);
+            ->setSubscriptionStatus($data['subscriptionStatus'])
+            ->setStatus($data['status'] ?? []);
 
         if (isset($data['user'])) {
             $subscription->setUser(UserFactory::fromArray($data['user']));

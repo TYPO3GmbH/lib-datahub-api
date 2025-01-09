@@ -24,8 +24,9 @@ class LinkFactoryTest extends TestCase
     {
         $entity = LinkFactory::fromArray($data);
         self::assertEquals($data['uuid'], $entity->getUuid());
-        self::assertEquals($data['icon'], $entity->getIcon());
-        self::assertEquals($data['url'], $entity->getUrl());
+        self::assertEquals($data['type'], $entity->getType());
+        self::assertEquals($data['value'], $entity->getValue());
+        self::assertEquals($data['highlight'], $entity->isHighlight());
     }
 
     public static function factoryDataProvider(): array
@@ -34,8 +35,9 @@ class LinkFactoryTest extends TestCase
             'allValuesSet' => [
                 'data' => [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
-                    'icon' => 'github',
-                    'url' => 'https://github.com/oelie-boelie',
+                    'type' => 'github',
+                    'value' => 'oelie-boelie',
+                    'highlight' => true,
                 ],
             ],
         ];

@@ -13,7 +13,9 @@ use GuzzleHttp\Psr7\Response;
 return new Response(200, ['content-type' => 'application/json'], '
 {
       "url": "https://github.com/oelie-boelie",
-      "icon": "github",
+      "highlight": true,
+      "value": "oelie-boelie",
+      "type": "github",
       "uuid": "00000000-0000-0000-0000-000000000000"
     }
 ');

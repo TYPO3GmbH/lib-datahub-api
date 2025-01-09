@@ -23,8 +23,9 @@ class LinkApiTest extends AbstractApiTestCase
         ]);
         $api = new LinkApi($this->getClient($handler));
         $response = $api->getLink('00000000-0000-0000-0000-000000000000');
-        self::assertEquals('github', $response->getIcon());
-        self::assertEquals('https://github.com/oelie-boelie', $response->getUrl());
+        self::assertEquals('github', $response->getType());
+        self::assertEquals('oelie-boelie', $response->getValue());
+        self::assertEquals('false', $response->isHighlight());
     }
 
     public function testCreateLink(): void
@@ -34,8 +35,9 @@ class LinkApiTest extends AbstractApiTestCase
         ]);
         $api = new LinkApi($this->getClient($handler));
         $response = $api->createLink('oelie-boelie', $this->getTestLink());
-        self::assertEquals('github', $response->getIcon());
-        self::assertEquals('https://github.com/oelie-boelie', $response->getUrl());
+        self::assertEquals('github', $response->getType());
+        self::assertEquals('oelie-boelie', $response->getValue());
+        self::assertTrue($response->isHighlight());
     }
 
     public function testUpdateLink(): void
@@ -45,8 +47,9 @@ class LinkApiTest extends AbstractApiTestCase
         ]);
         $api = new LinkApi($this->getClient($handler));
         $response = $api->updateLink('00000000-0000-0000-0000-000000000000', $this->getTestLink());
-        self::assertEquals('github', $response->getIcon());
-        self::assertEquals('https://github.com/oelie-boelie', $response->getUrl());
+        self::assertEquals('github', $response->getType());
+        self::assertEquals('oelie-boelie', $response->getValue());
+        self::assertTrue($response->isHighlight());
     }
 
     public function testDeleteLink(): void
@@ -67,7 +70,8 @@ class LinkApiTest extends AbstractApiTestCase
     private function getTestLink(): Link
     {
         return (new Link())
-            ->setUrl('https://github.com/oelie-boelie')
-            ->setIcon('github');
+            ->setValue('https://github.com/oelie-boelie')
+            ->setType('github')
+            ->setHighlight(true);
     }
 }

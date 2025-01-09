@@ -107,8 +107,9 @@ class UserFactoryTest extends TestCase
                     'links' => [
                         [
                             'uuid' => '00000000-0000-0000-0000-000000000000',
-                            'icon' => 'github',
-                            'url' => 'https://github.com/oelie-boelie',
+                            'type' => 'github',
+                            'value' => 'oelie-boelie',
+                            'highlight' => true,
                         ],
                     ],
                     'certifications' => [

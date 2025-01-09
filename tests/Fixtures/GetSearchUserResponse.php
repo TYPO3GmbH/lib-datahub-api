@@ -65,13 +65,17 @@ return new Response(200, ['content-type' => 'application/json'], '
       "links": [
         {
           "uuid": "00000000-0000-0000-0000-000000000000",
-          "url": "https:\/\/naegler.hamburg",
-          "icon": "website"
+          "value": "naegler.hamburg",
+          "type": "website",
+          "highlight": true,
+          "url": "https:\/\/naegler.hamburg"
         },
         {
           "uuid": "00000000-0000-0000-0000-000000000000",
-          "url": "https:\/\/typo3.com",
-          "icon": "website"
+          "value": "typo3.com",
+          "type": "website",
+          "highlight": false,
+          "url": "https:\/\/typo3.com"
         }
       ],
       "certifications": [
@@ -173,13 +177,17 @@ return new Response(200, ['content-type' => 'application/json'], '
       "links": [
         {
           "uuid": "00000000-0000-0000-0000-000000000000",
-          "url": "https:\/\/naegler.hamburg",
-          "icon": "website"
+          "value": "naegler.hamburg",
+          "type": "website",
+          "highlight": true,
+          "url": "https:\/\/naegler.hamburg"
         },
         {
           "uuid": "00000000-0000-0000-0000-000000000000",
-          "url": "https:\/\/typo3.com",
-          "icon": "website"
+          "value": "typo3.com",
+          "type": "website",
+          "highlight": false,
+          "url": "https:\/\/typo3.com"
         }
       ],
       "certifications": [

@@ -10,20 +10,24 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Entity;
 
+use T3G\DatahubApiLibrary\Enum\LinkTypes;
+
 class Link implements \JsonSerializable
 {
     private string $uuid;
-    private string $url;
-    private string $icon;
+    private string $value;
+    private string $type;
+    private bool $highlight;
 
     /**
-     * @return array<string, string>
+     * @return array<string, string|bool>
      */
     public function jsonSerialize(): array
     {
         return [
-            'url' => $this->getUrl(),
-            'icon' => $this->getIcon(),
+            'value' => $this->getValue(),
+            'type' => $this->getType(),
+            'highlight' => $this->isHighlight(),
         ];
     }
 
@@ -32,9 +36,6 @@ class Link implements \JsonSerializable
         return $this->uuid;
     }
 
-    /**
-     * @return $this
-     */
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
@@ -42,33 +43,44 @@ class Link implements \JsonSerializable
         return $this;
     }
 
-    public function getUrl(): string
+    public function getValue(): string
     {
-        return $this->url;
+        return $this->value;
     }
 
-    /**
-     * @return $this
-     */
-    public function setUrl(string $url): self
+    public function setValue(string $value): self
     {
-        $this->url = $url;
+        $this->value = $value;
 
         return $this;
     }
 
-    public function getIcon(): string
+    public function getType(): string
     {
-        return $this->icon;
+        return $this->type;
     }
 
-    /**
-     * @return $this
-     */
-    public function setIcon(string $icon): self
+    public function setType(string $type): self
     {
-        $this->icon = $icon;
+        $this->type = $type;
 
         return $this;
+    }
+
+    public function isHighlight(): bool
+    {
+        return $this->highlight;
+    }
+
+    public function setHighlight(bool $highlight): self
+    {
+        $this->highlight = $highlight;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return LinkTypes::getUrlPrefix($this->type ?? '') . $this->value;
     }
 }

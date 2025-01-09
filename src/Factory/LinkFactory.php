@@ -17,11 +17,15 @@ use T3G\DatahubApiLibrary\Entity\Link;
  */
 class LinkFactory extends AbstractFactory
 {
+    /**
+     * @param array{uuid: string, type: string, value: string, highlight: bool} $data
+     */
     public static function fromArray(array $data): Link
     {
         return (new Link())
             ->setUuid($data['uuid'])
-            ->setIcon($data['icon'])
-            ->setUrl($data['url']);
+            ->setType($data['type'])
+            ->setValue($data['value'])
+            ->setHighlight($data['highlight']);
     }
 }

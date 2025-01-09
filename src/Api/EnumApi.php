@@ -90,7 +90,7 @@ class EnumApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            self::uri('/enums/link/icons'),
+            self::uri('/enums/link/types'),
         );
 
         return JsonUtility::decode((string) $response->getBody())['data'] ?? [];

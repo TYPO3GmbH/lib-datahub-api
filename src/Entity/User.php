@@ -100,6 +100,9 @@ class User implements \JsonSerializable
      * @var array<string, mixed>
      */
     private array $status = [];
+    private ?string $title = null;
+    private ?string $bio = null;
+    private ?PrivacySettings $privacySettings = null;
 
     /**
      * @return array<string, mixed>
@@ -115,6 +118,11 @@ class User implements \JsonSerializable
             'phone' => $this->getPhone(),
             'slackId' => $this->getSlackId(),
             'discordId' => $this->getDiscordId(),
+            'gravatarString' => $this->getGravatarString(),
+            'title' => $this->getTitle(),
+            'bio' => $this->getBio(),
+            'privacySettings' => $this->getPrivacySettings()?->jsonSerialize() ?? [],
+            'links' => $this->getLinks(),
         ];
     }
 
@@ -816,6 +824,42 @@ class User implements \JsonSerializable
     public function setStatus(array $status): User
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): User
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?string $bio): User
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function getPrivacySettings(): ?PrivacySettings
+    {
+        return $this->privacySettings;
+    }
+
+    public function setPrivacySettings(?PrivacySettings $privacySettings): User
+    {
+        $this->privacySettings = $privacySettings;
 
         return $this;
     }

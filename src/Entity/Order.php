@@ -16,6 +16,8 @@ class Order implements \JsonSerializable
     private string $orderNumber;
     private array $payload;
     private \DateTimeInterface $createdAt;
+    private ?User $user = null;
+    private ?Company $company = null;
 
     /**
      * @var Invoice[]
@@ -30,6 +32,8 @@ class Order implements \JsonSerializable
         return [
             'orderNumber' => $this->getOrderNumber(),
             'payload' => $this->getPayload(),
+            'user' => $this->user?->jsonSerialize(),
+            'company' => $this->company?->jsonSerialize(),
         ];
     }
 
@@ -126,6 +130,30 @@ class Order implements \JsonSerializable
         $this->invoices = array_filter($this->invoices, static function (Invoice $i) use ($invoice) {
             return $i->getLink() !== $invoice->getLink();
         });
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): Order
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): Order
+    {
+        $this->company = $company;
 
         return $this;
     }

@@ -23,6 +23,8 @@ class Offer
     private string $offerNumber;
     private string $cartIdentifier;
     private float $total;
+    private ?User $user = null;
+    private ?Company $company = null;
 
     public function getUuid(): string
     {
@@ -127,6 +129,30 @@ class Offer
     public function setTotal(float $total): self
     {
         $this->total = $total;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): Offer
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): Offer
+    {
+        $this->company = $company;
 
         return $this;
     }

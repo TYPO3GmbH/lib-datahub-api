@@ -50,6 +50,14 @@ class OrderFactory extends AbstractFactory
             $order->addInvoice(InvoiceFactory::fromArray($invoice));
         }
 
+        if (!empty($data['user'])) {
+            $order->setUser(UserFactory::fromArray($data['user']));
+        }
+
+        if (!empty($data['company'])) {
+            $order->setCompany(CompanyFactory::fromArray($data['company']));
+        }
+
         return $order;
     }
 }

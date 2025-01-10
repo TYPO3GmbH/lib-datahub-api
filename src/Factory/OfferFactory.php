@@ -19,6 +19,9 @@ class OfferFactory extends AbstractFactory
 {
     public static function fromArray(array $data): Offer
     {
+        $company = isset($data['company']) ? CompanyFactory::fromArray($data['company']) : null;
+        $user = isset($data['user']) ? UserFactory::fromArray($data['user']) : null;
+
         return (new Offer())
             ->setUuid($data['uuid'])
             ->setCreatedAt(new \DateTimeImmutable($data['createdAt']))
@@ -26,6 +29,8 @@ class OfferFactory extends AbstractFactory
             ->setPayload($data['payload'])
             ->setOfferNumber($data['offerNumber'])
             ->setCartIdentifier($data['cartIdentifier'])
-            ->setTotal($data['total']);
+            ->setTotal($data['total'])
+            ->setUser($user)
+            ->setCompany($company);
     }
 }

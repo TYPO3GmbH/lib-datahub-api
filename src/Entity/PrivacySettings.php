@@ -52,9 +52,11 @@ class PrivacySettings implements \JsonSerializable
             throw new \InvalidArgumentException(sprintf('Identifier must be in the format {scope}.{property}. "%s" given.', $identifier));
         }
 
-        [$scope, $property] = explode('.', $identifier);
+        [$scopeIdentifier, $property] = explode('.', $identifier);
 
-        return $this->getScope($scope)?->getProperty($property);
+        $scope = $this->getScope($scopeIdentifier);
+
+        return null !== $scope ? $scope->getProperty($property) : null;
     }
 
     /**

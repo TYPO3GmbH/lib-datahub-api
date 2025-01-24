@@ -121,7 +121,7 @@ class User implements \JsonSerializable
             'gravatarString' => $this->getGravatarString(),
             'title' => $this->getTitle(),
             'bio' => $this->getBio(),
-            'privacySettings' => $this->getPrivacySettings()?->jsonSerialize() ?? [],
+            'privacySettings' => null !== $this->getPrivacySettings() ? $this->getPrivacySettings()->jsonSerialize() : [],
             'links' => $this->getLinks(),
         ];
     }

@@ -28,7 +28,7 @@ class EltsAccessToken implements \JsonSerializable
         return [
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'validUntil' => $this->getValidUntil()?->format(\DateTimeInterface::ATOM),
+            'validUntil' => null !== $this->getValidUntil() ? $this->getValidUntil()->format(\DateTimeInterface::ATOM) : null,
             'token' => $this->getToken() ?: null,
         ];
     }

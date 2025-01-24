@@ -32,8 +32,8 @@ class Order implements \JsonSerializable
         return [
             'orderNumber' => $this->getOrderNumber(),
             'payload' => $this->getPayload(),
-            'user' => $this->user?->jsonSerialize(),
-            'company' => $this->company?->jsonSerialize(),
+            'user' => null !== $this->user ? $this->user->jsonSerialize() : null,
+            'company' => null !== $this->company ? $this->company->jsonSerialize() : null,
         ];
     }
 

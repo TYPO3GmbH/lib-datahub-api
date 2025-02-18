@@ -25,7 +25,7 @@ class PublicProfile
     private ?string $slackId = null;
     private ?string $discordId = null;
     private ?string $bio = null;
-    private ?bool $avatar = null;
+    private ?string $avatar = null;
 
     /**
      * @var Link[]|null
@@ -35,6 +35,7 @@ class PublicProfile
     /** @var Certification[]|null */
     private ?array $certifications = null;
     private ?Subscription $membership = null;
+    private ?PrivacySettings $privacySettings = null;
 
     public function getUsername(): string
     {
@@ -150,12 +151,12 @@ class PublicProfile
         return $this;
     }
 
-    public function getAvatar(): ?bool
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    public function setAvatar(?bool $avatar): PublicProfile
+    public function setAvatar(?string $avatar): PublicProfile
     {
         $this->avatar = $avatar;
 
@@ -206,6 +207,18 @@ class PublicProfile
     public function setMembership(?Subscription $membership): PublicProfile
     {
         $this->membership = $membership;
+
+        return $this;
+    }
+
+    public function getPrivacySettings(): ?PrivacySettings
+    {
+        return $this->privacySettings;
+    }
+
+    public function setPrivacySettings(?PrivacySettings $privacySettings): PublicProfile
+    {
+        $this->privacySettings = $privacySettings;
 
         return $this;
     }

@@ -28,10 +28,11 @@ class PublicProfileFactory extends AbstractFactory
      *     slackId?: ?string,
      *     discordId?: ?string,
      *     bio?: ?string,
-     *     avatar?: ?bool,
+     *     avatar?: ?string,
      *     links?: ?array<string, array{uuid: string, type: string, value: string, highlight: bool}>,
      *     certifications?: ?array<string, array<string, mixed>>,
-     *     membership?: array<string, mixed>
+     *     membership?: ?array<string, mixed>,
+     *     privacySettings?: ?array<string, array<string, string>>
      *  } $data
      */
     public static function fromArray(array $data): PublicProfile
@@ -80,6 +81,9 @@ class PublicProfileFactory extends AbstractFactory
         }
         if (isset($data['membership'])) {
             $publicProfile->setMembership(SubscriptionFactory::fromArray($data['membership']));
+        }
+        if (isset($data['privacySettings'])) {
+            $publicProfile->setPrivacySettings(PrivacySettingsFactory::fromArray($data['privacySettings']));
         }
 
         return $publicProfile;

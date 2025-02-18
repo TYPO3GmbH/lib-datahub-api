@@ -77,6 +77,9 @@ class UserFactory extends AbstractFactory
         foreach ($data['eltsPublicKeys'] ?? [] as $eltsPublicKey) {
             $user->addEltsGitPublicKey(EltsGitPublicKeyFactory::fromArray($eltsPublicKey));
         }
+        foreach ($data['systemMessageViews'] ?? [] as $systemMessageView) {
+            $user->addSystemMessageView(SystemMessageViewFactory::fromArray($systemMessageView));
+        }
 
         return $user;
     }

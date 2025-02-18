@@ -97,6 +97,11 @@ class User implements \JsonSerializable
     private array $eltsGitPublicKeys = [];
 
     /**
+     * @var SystemMessageView[]
+     */
+    private array $systemMessageViews = [];
+
+    /**
      * @var array<string, mixed>
      */
     private array $status = [];
@@ -860,6 +865,21 @@ class User implements \JsonSerializable
     public function setPrivacySettings(?PrivacySettings $privacySettings): User
     {
         $this->privacySettings = $privacySettings;
+
+        return $this;
+    }
+
+    /**
+     * @return SystemMessageView[]
+     */
+    public function getSystemMessageViews(): array
+    {
+        return $this->systemMessageViews;
+    }
+
+    public function addSystemMessageView(SystemMessageView $systemMessageView): User
+    {
+        $this->systemMessageViews[] = $systemMessageView;
 
         return $this;
     }

@@ -21,6 +21,7 @@ final class LinkTypes extends AbstractEnum
     public const FACEBOOK = 'facebook';
     public const INSTAGRAM = 'instagram';
     public const MASTODON = 'mastodon';
+    public const BLUESKY = 'bluesky';
     public const THREADS = 'threads';
     public const YOUTUBE = 'youtube';
     // Business profiles
@@ -38,6 +39,7 @@ final class LinkTypes extends AbstractEnum
         self::FACEBOOK => 'Facebook',
         self::INSTAGRAM => 'Instagram',
         self::MASTODON => 'Mastodon',
+        self::BLUESKY => 'Bluesky',
         self::THREADS => 'Threads',
         self::YOUTUBE => 'YouTube',
         self::XING => 'XING',
@@ -57,12 +59,13 @@ final class LinkTypes extends AbstractEnum
         self::FACEBOOK => 'actions-brand-facebook',
         self::INSTAGRAM => 'actions-brand-instagram',
         self::MASTODON => 'actions-brand-mastodon',
+        self::BLUESKY => 'actions-brand-bluesky',
         self::THREADS => 'actions-brand-threads',
         self::YOUTUBE => 'actions-brand-youtube',
         self::XING => 'actions-brand-xing',
         self::LINKEDIN => 'actions-brand-linkedin',
-        self::GITHUB => 'actions-brand-git',
-        self::GITLAB => 'actions-brand-git',
+        self::GITHUB => 'actions-brand-github',
+        self::GITLAB => 'actions-brand-gitlab',
         self::STACKOVERFLOW => 'actions-link',
         self::OTHER => 'actions-link',
     ];
@@ -75,7 +78,8 @@ final class LinkTypes extends AbstractEnum
         self::X => 'https://x.com/',
         self::FACEBOOK => 'https://www.facebook.com/',
         self::INSTAGRAM => 'https://www.instagram.com/',
-        self::MASTODON => 'https://typo3.social/@',
+        self::MASTODON => 'https://',
+        self::BLUESKY => 'https://bsky.app/profile/',
         self::THREADS => 'https://www.threads.net/@',
         self::YOUTUBE => 'https://www.youtube.com/@',
         self::XING => 'https://www.xing.com/pages/',

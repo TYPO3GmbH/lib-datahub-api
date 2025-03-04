@@ -82,7 +82,7 @@ final class LinkTypes extends AbstractEnum
         self::BLUESKY => 'https://bsky.app/profile/',
         self::THREADS => 'https://www.threads.net/@',
         self::YOUTUBE => 'https://www.youtube.com/@',
-        self::XING => 'https://www.xing.com/pages/',
+        self::XING => 'https://www.xing.com/profile/',
         self::LINKEDIN => 'https://www.linkedin.com/in/',
         self::GITHUB => 'https://github.com/',
         self::GITLAB => 'https://gitlab.com/',

@@ -64,4 +64,13 @@ class MergeCompanyDto extends AbstractDto
      * @Assert\Uuid
      */
     public string $domain = '';
+
+    /**
+     * This property contains the emails to use for each EmailType.
+     *
+     * @var array<string, int>
+     *
+     * @Assert\NotBlank
+     */
+    public array $emails = [];
 }

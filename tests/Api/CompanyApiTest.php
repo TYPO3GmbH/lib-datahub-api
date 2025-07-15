@@ -119,8 +119,8 @@ class CompanyApiTest extends AbstractApiTestCase
         $handler = new MockHandler([
             require __DIR__ . '/../Fixtures/GetSearchCompanyResponse.php',
         ]);
-        $response = (new CompanyApi($this->getClient($handler)))
-            ->search(new OrganizationSearchDemand('Test Company'));
+        $searchDemand = (new OrganizationSearchDemand())->setTerm('Test Company');
+        $response = (new CompanyApi($this->getClient($handler)))->search($searchDemand);
         self::assertCount(2, $response);
     }
 

@@ -10,17 +10,13 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Entity;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Entity\Address;
 
 class AddressTest extends TestCase
 {
-    /**
-     * @dataProvider deutschePostDataProvider
-     *
-     * @param Address $address
-     * @param array   $expected
-     */
+    #[DataProvider('deutschePostDataProvider')]
     public function testDeutschePostAddressConversion(Address $address, array $expected): void
     {
         self::assertEquals($expected, $address->toDeutschePostArray());

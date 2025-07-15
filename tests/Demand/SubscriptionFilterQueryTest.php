@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Demand;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Demand\SubscriptionFilterQuery;
 
@@ -38,9 +39,7 @@ class SubscriptionFilterQueryTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider getQueryAsStringDataProvider
-     */
+    #[DataProvider('getQueryAsStringDataProvider')]
     public function testGetQueryAsString(array $inputValues, string $expectedOutput): void
     {
         $subscriptionFilterQuery = new SubscriptionFilterQuery();

@@ -47,22 +47,6 @@ class OrganizationSearchDemand implements \JsonSerializable
     private ?array $countries = null;
 
     /**
-     * @param string|null $term
-     *
-     * @deprecated Setting term via constructor is deprecated, use ->setTerm() instead
-     */
-    public function __construct(?string $term = null)
-    {
-        if (null !== $term) {
-            $this->setTerm($term);
-            trigger_error(
-                sprintf('Calling %s with $term is deprecated, call setTerm() instead.', __METHOD__),
-                E_USER_DEPRECATED
-            );
-        }
-    }
-
-    /**
      * @return array<string, mixed>
      */
     public function jsonSerialize(): array
@@ -108,42 +92,6 @@ class OrganizationSearchDemand implements \JsonSerializable
     public function isWithOrders(): bool
     {
         return $this->withOrders;
-    }
-
-    /**
-     * @param bool $withSubscriptions
-     *
-     * @return $this
-     *
-     * @deprecated use setSubscriptionTypes()
-     */
-    public function setWithSubscriptions(bool $withSubscriptions = true): self
-    {
-        trigger_error(
-            sprintf('Calling %s is deprecated, call setSubscriptionTypes() instead.', __METHOD__),
-            E_USER_DEPRECATED
-        );
-
-        if ($withSubscriptions) {
-            $this->setSubscriptionTypes([SubscriptionType::MEMBERSHIP, SubscriptionType::PSL]);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     *
-     * @deprecated use getSubscriptionTypes()
-     */
-    public function isWithSubscriptions(): bool
-    {
-        trigger_error(
-            sprintf('Calling %s is deprecated, call getSubscriptionTypes() instead.', __METHOD__),
-            E_USER_DEPRECATED
-        );
-
-        return null !== $this->getSubscriptionTypes();
     }
 
     /**

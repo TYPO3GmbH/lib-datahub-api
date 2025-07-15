@@ -10,17 +10,14 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Entity\Invoice;
 use T3G\DatahubApiLibrary\Factory\InvoiceFactory;
 
 class InvoiceFactoryTest extends TestCase
 {
-    /**
-     * @dataProvider invoiceFactoryDataProvider
-     *
-     * @param array $data
-     */
+    #[DataProvider('invoiceFactoryDataProvider')]
     public function testFactoryForInvoice(array $data): void
     {
         $entity = InvoiceFactory::fromArray($data);
@@ -28,11 +25,7 @@ class InvoiceFactoryTest extends TestCase
         self::assertEquals($data['documentType'], $entity->getDocumentType());
     }
 
-    /**
-     * @dataProvider creditNoteDataProvider
-     *
-     * @param array $data
-     */
+    #[DataProvider('creditNoteDataProvider')]
     public function testFactoryForCreditNote(array $data): void
     {
         $entity = InvoiceFactory::fromArray($data);
@@ -40,11 +33,7 @@ class InvoiceFactoryTest extends TestCase
         self::assertEquals($data['documentType'], $entity->getDocumentType());
     }
 
-    /**
-     * @dataProvider documentTypeMissingDataProvider
-     *
-     * @param array $data
-     */
+    #[DataProvider('documentTypeMissingDataProvider')]
     public function testDocumentTypeMissing(array $data): void
     {
         $entity = InvoiceFactory::fromArray($data);
@@ -52,11 +41,7 @@ class InvoiceFactoryTest extends TestCase
         self::assertEquals('invoice', $entity->getDocumentType());
     }
 
-    /**
-     * @dataProvider emptyDocumentTypeDataProvider
-     *
-     * @param array $data
-     */
+    #[DataProvider('emptyDocumentTypeDataProvider')]
     public function testEmptyDocumentType(array $data): void
     {
         $entity = InvoiceFactory::fromArray($data);

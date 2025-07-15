@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Entity;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Entity\User;
@@ -18,9 +19,7 @@ use T3G\DatahubApiLibrary\Factory\UserFactory;
 
 class UserTest extends TestCase
 {
-    /**
-     * @dataProvider emailDataProvider
-     */
+    #[DataProvider('emailDataProvider')]
     public function testEmails(User $user, int $type, bool $onlyOptIn, ?string $expected): void
     {
         self::assertEquals($expected, $user->getEmailByType($type, $onlyOptIn));

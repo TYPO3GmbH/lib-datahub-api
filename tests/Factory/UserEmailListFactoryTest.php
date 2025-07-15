@@ -10,17 +10,14 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Entity\UserEmail;
 use T3G\DatahubApiLibrary\Factory\UserEmailListFactory;
 
 class UserEmailListFactoryTest extends TestCase
 {
-    /**
-     * @dataProvider factoryDataProvider
-     *
-     * @param array $data
-     */
+    #[DataProvider('factoryDataProvider')]
     public function testFactory(array $data): void
     {
         $list = UserEmailListFactory::fromArray($data);

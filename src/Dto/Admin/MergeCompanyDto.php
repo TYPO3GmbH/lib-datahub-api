@@ -23,6 +23,8 @@ class MergeCompanyDto extends AbstractDto
      *
      * @Assert\Uuid
      */
+    #[Assert\NotBlank]
+    #[Assert\Uuid]
     public string $title = '';
 
     /**
@@ -33,6 +35,8 @@ class MergeCompanyDto extends AbstractDto
      *
      * @Assert\Uuid
      */
+    #[Assert\NotBlank]
+    #[Assert\Uuid]
     public string $slug = '';
 
     /**
@@ -43,6 +47,8 @@ class MergeCompanyDto extends AbstractDto
      *
      * @Assert\Uuid
      */
+    #[Assert\NotBlank]
+    #[Assert\Uuid]
     public string $companyType = '';
 
     /**
@@ -53,6 +59,8 @@ class MergeCompanyDto extends AbstractDto
      *
      * @Assert\Uuid
      */
+    #[Assert\NotBlank]
+    #[Assert\Uuid]
     public string $vatId = '';
 
     /**
@@ -63,6 +71,8 @@ class MergeCompanyDto extends AbstractDto
      *
      * @Assert\Uuid
      */
+    #[Assert\NotBlank]
+    #[Assert\Uuid]
     public string $domain = '';
 
     /**
@@ -72,5 +82,6 @@ class MergeCompanyDto extends AbstractDto
      *
      * @Assert\NotBlank
      */
+    #[Assert\NotBlank]
     public array $emails = [];
 }

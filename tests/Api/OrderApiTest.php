@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Tests\Api;
 
 use GuzzleHttp\Handler\MockHandler;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Client\ClientExceptionInterface;
 use T3G\DatahubApiLibrary\Api\OrderApi;
 use T3G\DatahubApiLibrary\Demand\OrderSearchDemand;
@@ -43,9 +44,8 @@ class OrderApiTest extends AbstractApiTestCase
      * @throws \JsonException
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
-     *
-     * @dataProvider searchOrdersDataProvider
      */
+    #[DataProvider('searchOrdersDataProvider')]
     public function testSearchOrders(string $fixtureFile, ?int $limit): void
     {
         $handler = new MockHandler([

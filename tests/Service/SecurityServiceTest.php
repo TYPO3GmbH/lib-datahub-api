@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Service;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Service\SecurityService;
 
@@ -109,12 +110,7 @@ class SecurityServiceTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider sensitiveDataDataProvider
-     *
-     * @param array $input
-     * @param array $expectedOutput
-     */
+    #[DataProvider('sensitiveDataDataProvider')]
     public function testAnonymizeSensitiveData(array $input, array $expectedOutput): void
     {
         self::assertSame($expectedOutput, SecurityService::anonymizeSensitiveData($input));

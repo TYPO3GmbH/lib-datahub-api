@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Factory\NotificationFactory;
 use T3G\DatahubApiLibrary\Notification\AbstractNotification;
@@ -18,12 +19,7 @@ use T3G\DatahubApiLibrary\Notification\UnknownNotification;
 
 class NotificationFactoryTest extends TestCase
 {
-    /**
-     * @dataProvider factoryDataProvider
-     *
-     * @param array $data
-     * @param array $expectations
-     */
+    #[DataProvider('factoryDataProvider')]
     public function testFactory(array $data, array $expectations): void
     {
         $entity = NotificationFactory::fromArray($data);

@@ -12,12 +12,14 @@ namespace T3G\DatahubApiLibrary\Dto\Admin;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use T3G\DatahubApiLibrary\Dto\AbstractDto;
+use T3G\DatahubApiLibrary\Enum\CompanyType;
 
 class CreateCompanyDto extends AbstractDto
 {
     /**
      * @Assert\NotBlank
      */
+    #[Assert\NotBlank]
     public string $title;
 
     /**
@@ -25,6 +27,8 @@ class CreateCompanyDto extends AbstractDto
      *
      * @Assert\Choice(callback={"T3G\DatahubApiLibrary\Enum\CompanyType", "getAvailableOptions"})
      */
+    #[Assert\NotBlank]
+    #[Assert\Choice(callback: [CompanyType::class, 'getAvailableOptions'])]
     public string $companyType;
     public ?string $owner = null;
 }

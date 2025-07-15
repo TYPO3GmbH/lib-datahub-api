@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Demand;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Demand\OrganizationSearchDemand;
 use T3G\DatahubApiLibrary\Enum\SubscriptionType;
@@ -53,15 +54,12 @@ class OrganizationSearchDemandTest extends TestCase
     public function testWithSubscriptionsSetsValueAsExpected(): void
     {
         $demand = new OrganizationSearchDemand();
-        $demand->setWithSubscriptions();
+        $demand->setSubscriptionTypes([SubscriptionType::MEMBERSHIP, SubscriptionType::PSL]);
 
-        self::assertTrue($demand->isWithSubscriptions());
         self::assertSame([SubscriptionType::MEMBERSHIP, SubscriptionType::PSL], $demand->getSubscriptionTypes());
     }
 
-    /**
-     * @dataProvider setMembersRangeAsExpectedDataProvider
-     */
+    #[DataProvider('setMembersRangeAsExpectedDataProvider')]
     public function testSetMembersRangeAsExpected(array $input, ?array $expectation): void
     {
         $demand = new OrganizationSearchDemand();
@@ -79,9 +77,7 @@ class OrganizationSearchDemandTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider setMembersRangeThrowsExceptionDataProvider
-     */
+    #[DataProvider('setMembersRangeThrowsExceptionDataProvider')]
     public function testSetMembersRangeThrowsException(array $input, string $expectedExceptionClass, int $expectedExceptionCode): void
     {
         $this->expectException($expectedExceptionClass);

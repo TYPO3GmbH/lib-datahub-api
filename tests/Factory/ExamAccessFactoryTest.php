@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\MembershipType;
@@ -18,11 +19,7 @@ use T3G\DatahubApiLibrary\Factory\ExamAccessFactory;
 
 class ExamAccessFactoryTest extends TestCase
 {
-    /**
-     * @dataProvider factoryDataProvider
-     *
-     * @param array $data
-     */
+    #[DataProvider('factoryDataProvider')]
     public function testFactory(array $data): void
     {
         $entity = ExamAccessFactory::fromArray($data);

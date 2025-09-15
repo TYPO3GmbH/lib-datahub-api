@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
-use T3G\DatahubApiLibrary\Notification\IncompletePaymentNotification;
 
 class UserFactoryTest extends TestCase
 {
@@ -37,9 +36,6 @@ class UserFactoryTest extends TestCase
             self::assertEquals($data['membership']['subscriptionSubType'], $entity->getMembership()->getSubscriptionSubType());
         }
         self::assertCount(count($data['subscriptions'] ?? []), $entity->getSubscriptions());
-        if (!empty($data['notifications'])) {
-            self::assertInstanceOf($data['notifications'][0]['type'], $entity->getNotifications()[0]);
-        }
         self::assertEquals($data['emailAddresses'][0]['email'], $entity->getPrimaryEmail());
         self::assertSame($data['status'], $entity->getStatus());
     }
@@ -167,16 +163,6 @@ class UserFactoryTest extends TestCase
                                     'certifications' => [CertificationType::TCCI],
                                 ],
                             ],
-                        ],
-                    ],
-                    'notifications' => [
-                        [
-                            'company' => 'd6abf140-c946-474f-8e3a-2a55ea7bdd71',
-                            'companyTitle' => 'Foo Company',
-                            'subscription' => 'stripe:sub_I7xrK6SffVrwic:si_I7xrOvfj9FPO82',
-                            'stripeLink' => 'https://foo.com/bar',
-                            'type' => IncompletePaymentNotification::class,
-                            'message' => 'Incomplete payment for company d6abf140-c946-474f-8e3a-2a55ea7bdd71',
                         ],
                     ],
                     'status' => [

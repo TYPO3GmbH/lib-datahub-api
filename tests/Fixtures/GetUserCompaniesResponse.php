@@ -26,7 +26,7 @@ return new Response(200, ['content-type' => 'application/json'], '
             "status": {
                 "isFoundingPartner": false,
                 "membership": "ACADEMIC_BRONZE",
-                "partnerType": "NONE"
+                "partnerTypes": []
             }
         }
     }

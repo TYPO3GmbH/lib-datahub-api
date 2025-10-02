@@ -66,7 +66,11 @@ class Company implements \JsonSerializable
      */
     private array $subscriptions = [];
     private ?Address $headquarter = null;
-    private ?Subscription $partnerProgram = null;
+
+    /**
+     * @var Subscription[]
+     */
+    private array $partnerPrograms = [];
     private ?Subscription $membership = null;
     private ?string $domain = null;
     private ?string $backlink = null;
@@ -427,17 +431,32 @@ class Company implements \JsonSerializable
         return $this;
     }
 
-    public function getPartnerProgram(): ?Subscription
+    /**
+     * @return Subscription[]
+     */
+    public function getPartnerPrograms(): array
     {
-        return $this->partnerProgram;
+        return $this->partnerPrograms;
+    }
+
+    /**
+     * @param Subscription[] $partnerPrograms
+     *
+     * @return $this
+     */
+    public function setPartnerPrograms(array $partnerPrograms): self
+    {
+        $this->partnerPrograms = $partnerPrograms;
+
+        return $this;
     }
 
     /**
      * @return $this
      */
-    public function setPartnerProgram(?Subscription $partnerProgram): self
+    public function addPartnerProgram(Subscription $partnerProgram): self
     {
-        $this->partnerProgram = $partnerProgram;
+        $this->partnerPrograms[] = $partnerProgram;
 
         return $this;
     }

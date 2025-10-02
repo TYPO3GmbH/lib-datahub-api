@@ -161,7 +161,7 @@ return new Response(200, ['content-type' => 'application/json'], '
   "status": {
     "isFoundingPartner": true,
     "membership": "GOLD",
-    "partnerType": "NONE"
+    "partnerTypes": []
   }
 }
 ');

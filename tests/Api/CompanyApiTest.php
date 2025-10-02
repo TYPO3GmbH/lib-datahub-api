@@ -47,7 +47,7 @@ class CompanyApiTest extends AbstractApiTestCase
         self::assertEquals([
             'isFoundingPartner' => true,
             'membership' => 'GOLD',
-            'partnerType' => 'NONE',
+            'partnerTypes' => [],
         ], $response->getStatus());
     }
 

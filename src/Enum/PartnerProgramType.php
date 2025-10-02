@@ -25,4 +25,19 @@ final class PartnerProgramType extends AbstractEnum
         self::TECHNOLOGY => 'Technology',
         self::CONSULTANT => 'Consultant',
     ];
+
+    /**
+     * @var array<string, float>
+     */
+    protected static array $optionWeights = [
+        self::NONE => 0.0,
+        self::CONSULTANT => 0.1,
+        self::SOLUTION => 0.2,
+        self::TECHNOLOGY => 0.45,
+    ];
+
+    public static function getWeight(?string $option): float
+    {
+        return self::$optionWeights[$option] ?? 0.0;
+    }
 }

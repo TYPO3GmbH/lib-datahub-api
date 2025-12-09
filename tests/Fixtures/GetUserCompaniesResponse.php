@@ -19,13 +19,13 @@ return new Response(200, ['content-type' => 'application/json'], '
         "uuid": "00000000-0000-0000-0000-000000000000",
         "company": {
             "uuid": "00000000-0000-0000-0000-000000000000",
-            "companyType": "UNIVERSITY",
+            "companyType": "ACADEMIC",
             "title": "Dien Mam International",
             "email": "rotop@dienmam.nl",
             "vatId": "NL123456789B01",
             "status": {
                 "isFoundingPartner": false,
-                "membership": "ACADEMIC_BRONZE",
+                "membership": "REDUCED_BRONZE",
                 "partnerTypes": []
             }
         }

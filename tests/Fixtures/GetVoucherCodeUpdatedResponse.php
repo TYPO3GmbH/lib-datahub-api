@@ -18,7 +18,7 @@ return new Response(200, ['content-type' => 'application/json'], '
         "firstName": "Max",
         "lastName": "Muster",
         "status": {
-            "membership": "ACADEMIC_BRONZE"
+            "membership": "REDUCED_BRONZE"
         }
     },
     "company": null,

@@ -31,7 +31,7 @@ class Subscription implements \JsonSerializable
     private ?string $paymentStatus = null;
 
     /**
-     * @var array{isActive?: bool, isPaid?: bool}
+     * @var array{category: string, isActive?: bool, isPaid?: bool}
      */
     private array $status = [];
 
@@ -140,7 +140,7 @@ class Subscription implements \JsonSerializable
     {
         $allowedSubTypes = SubscriptionType::getAllowedSubTypes($this->getSubscriptionType());
         if (null === $allowedSubTypes || !in_array($subscriptionSubType, $allowedSubTypes, true)) {
-            throw new \InvalidArgumentException('Invalid subscription sub type');
+            throw new \InvalidArgumentException('Invalid subscription sub type "' . $subscriptionSubType . '"');
         }
         $this->subscriptionSubType = $subscriptionSubType;
 
@@ -258,7 +258,7 @@ class Subscription implements \JsonSerializable
     }
 
     /**
-     * @return array{isActive?: bool, isPaid?: bool}
+     * @return array{category: string, isActive?: bool, isPaid?: bool}
      */
     public function getStatus(): array
     {
@@ -266,7 +266,7 @@ class Subscription implements \JsonSerializable
     }
 
     /**
-     * @param array{isActive?: bool, isPaid?: bool} $status
+     * @param array{category: string, isActive?: bool, isPaid?: bool} $status
      */
     public function setStatus(array $status): Subscription
     {

@@ -121,7 +121,7 @@ class UserApiTest extends AbstractApiTestCase
         $api = new UserApi($this->getClient($handler));
         $response = $api->getCompanyHistory('oelie-boelie');
         self::assertCount(1, $response);
-        self::assertEquals(CompanyType::UNIVERSITY, $response[0]->getCompany()->getCompanyType());
+        self::assertEquals(CompanyType::ACADEMIC, $response[0]->getCompany()->getCompanyType());
         self::assertEquals('Dien Mam International', $response[0]->getCompany()->getTitle());
     }
 

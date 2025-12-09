@@ -15,16 +15,24 @@ namespace T3G\DatahubApiLibrary\Enum;
  */
 final class CompanyType extends AbstractEnum
 {
+    public const ACADEMIC = 'ACADEMIC';
     public const AGENCY = 'AGENCY';
+    public const ECOMMERCE = 'ECOMMERCE';
     public const FREELANCER = 'FREELANCER';
     public const HOSTER = 'HOSTER';
+    public const INDUSTRY = 'INDUSTRY';
+    public const NGO = 'NGO';
     public const OTHER = 'OTHER';
-    public const UNIVERSITY = 'UNIVERSITY';
+    public const PUBLIC_SECTOR = 'PUBLIC_SECTOR';
     protected static array $optionNames = [
+        self::ACADEMIC => 'Academic',
         self::AGENCY => 'Agency',
+        self::ECOMMERCE => 'E-Commerce',
         self::FREELANCER => 'Freelancer',
-        self::HOSTER => 'Hoster',
+        self::HOSTER => 'Hosting Provider',
+        self::INDUSTRY => 'Industry',
+        self::NGO => 'NGO',
         self::OTHER => 'Other',
-        self::UNIVERSITY => 'University',
+        self::PUBLIC_SECTOR => 'Public Sector',
     ];
 }

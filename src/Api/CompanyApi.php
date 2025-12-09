@@ -19,7 +19,6 @@ use T3G\DatahubApiLibrary\Entity\EmailAddress;
 use T3G\DatahubApiLibrary\Entity\Employee;
 use T3G\DatahubApiLibrary\Entity\PreCheckResult;
 use T3G\DatahubApiLibrary\Entity\VoucherCode;
-use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\CompanyFactory;
@@ -29,6 +28,7 @@ use T3G\DatahubApiLibrary\Factory\CompanyListFactory;
 use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\PreCheckResultListFactory;
+use T3G\DatahubApiLibrary\Factory\SubscriptionFactory;
 use T3G\DatahubApiLibrary\Factory\VoucherCodeFactory;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
@@ -314,24 +314,21 @@ class CompanyApi extends AbstractApi
         );
     }
 
-    /**
-     * @param string $uuid
-     *
-     * @return array<int, MembershipType::*>
-     *
-     * @throws ClientExceptionInterface
-     * @throws DatahubResponseException
-     * @throws \JsonException
-     */
-    public function getAllowedMemberships(string $uuid): array
+    public function getSubscriptions(string $uuid): array
     {
         $this->isValidUuidOrThrow($uuid);
 
         $response = $this->client->request(
             'GET',
-            self::uri('/companies/' . $uuid . '/allowed-memberships'),
+            self::uri('/companies/' . $uuid . '/subscriptions')
         );
+        $data = JsonUtility::decode((string) $response->getBody());
+        array_walk($data, static function (array &$subscriptionCategory) {
+            array_walk($subscriptionCategory, static function (array &$subscriptionData) {
+                $subscriptionData['subscription'] = SubscriptionFactory::fromArray($subscriptionData['subscription']);
+            });
+        });
 
-        return JsonUtility::decode((string) $response->getBody());
+        return $data;
     }
 }

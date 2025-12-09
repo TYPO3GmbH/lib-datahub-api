@@ -17,13 +17,13 @@ use T3G\DatahubApiLibrary\Entity\Employee;
 use T3G\DatahubApiLibrary\Entity\PreCheckResult;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Entity\VoucherCode;
-use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
 use T3G\DatahubApiLibrary\Factory\EmailAddressFactory;
 use T3G\DatahubApiLibrary\Factory\EmployeeFactory;
 use T3G\DatahubApiLibrary\Factory\PreCheckResultListFactory;
+use T3G\DatahubApiLibrary\Factory\SubscriptionFactory;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 use T3G\DatahubApiLibrary\Factory\UserListFactory;
 use T3G\DatahubApiLibrary\Factory\VoucherCodeFactory;
@@ -239,23 +239,20 @@ class UserApi extends AbstractApi
         );
     }
 
-    /**
-     * @param string $username
-     *
-     * @return array<int, MembershipType::*>
-     *
-     * @throws ClientExceptionInterface
-     * @throws DatahubResponseException
-     * @throws \JsonException
-     */
-    public function getAllowedMemberships(string $username): array
+    public function getSubscriptions(string $username): array
     {
         $response = $this->client->request(
             'GET',
-            self::uri('/users/' . mb_strtolower($username) . '/allowed-memberships'),
+            self::uri('/users/' . mb_strtolower($username) . '/subscriptions')
         );
+        $data = JsonUtility::decode((string) $response->getBody());
+        array_walk($data, static function (array &$subscriptionCategory) {
+            array_walk($subscriptionCategory, static function (array &$subscriptionData) {
+                $subscriptionData['subscription'] = SubscriptionFactory::fromArray($subscriptionData['subscription']);
+            });
+        });
 
-        return JsonUtility::decode((string) $response->getBody());
+        return $data;
     }
 
     /**

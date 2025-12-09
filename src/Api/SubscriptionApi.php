@@ -16,7 +16,6 @@ use T3G\DatahubApiLibrary\Entity\Subscription;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\SubscriptionFactory;
 use T3G\DatahubApiLibrary\Factory\SubscriptionListFactory;
-use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
 class SubscriptionApi extends AbstractApi
@@ -33,23 +32,6 @@ class SubscriptionApi extends AbstractApi
                 self::uri('/subscription/' . $uuid)
             )
         );
-    }
-
-    /**
-     * @return array<int,mixed>
-     *
-     * @throws \JsonException
-     * @throws ClientExceptionInterface
-     * @throws DatahubResponseException
-     */
-    public function getSubscriptionProducts(): array
-    {
-        $response = $this->client->request(
-            'GET',
-            self::uri('/subscription/products')
-        );
-
-        return JsonUtility::decode((string) $response->getBody());
     }
 
     public function getSubscriptionBySubscriptionIdentifier(string $subscriptionIdentifier): Subscription
@@ -122,6 +104,16 @@ class SubscriptionApi extends AbstractApi
         $this->client->request(
             'DELETE',
             self::uri('/subscription/' . $uuid)
+        );
+    }
+
+    public function cancelSubscription(string $uuid): void
+    {
+        $this->isValidUuidOrThrow($uuid);
+
+        $this->client->request(
+            'POST',
+            self::uri('/subscription/' . $uuid . '/cancel')
         );
     }
 

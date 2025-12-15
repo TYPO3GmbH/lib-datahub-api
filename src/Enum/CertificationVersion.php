@@ -15,6 +15,7 @@ namespace T3G\DatahubApiLibrary\Enum;
  */
 final class CertificationVersion extends AbstractEnum
 {
+    public const FOURTEEN = '14.3';
     public const THIRTEEN = '13.4';
     public const TWELVE = '12.4';
     public const ELEVEN = '11.5';
@@ -25,6 +26,7 @@ final class CertificationVersion extends AbstractEnum
     public const SIX = '6.2';
     public const FOUR = '4.5';
     protected static array $optionNames = [
+        self::FOURTEEN => 'v14.3 LTS',
         self::THIRTEEN => 'v13.4 LTS',
         self::TWELVE => 'v12.4 LTS',
         self::ELEVEN => 'v11.5 LTS',

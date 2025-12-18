@@ -16,9 +16,69 @@ use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Factory\CertificationFactory;
 use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
+use T3G\DatahubApiLibrary\Request\RequestContext;
+use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class CertificationApi extends AbstractApi
 {
+    /**
+     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     */
+    public function createCheckoutSession(RequestContext $requestContext, array $items): array
+    {
+        $response = $this->client->request(
+            'POST',
+            self::uri('/certifications/checkout-session')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode([
+                'items' => $items,
+            ], JSON_THROW_ON_ERROR)
+        );
+
+        return JsonUtility::decode((string) $response->getBody());
+    }
+
+    /**
+     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     */
+    public function getPricingInformation(RequestContext $requestContext, string $addressUuid, array $items): array
+    {
+        $payload = [
+            'items' => $items,
+            'addressUuid' => $addressUuid,
+        ];
+        $response = $this->client->request(
+            'POST',
+            self::uri('/certifications/pricing-information')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode($payload, JSON_THROW_ON_ERROR)
+        );
+
+        return JsonUtility::decode((string) $response->getBody());
+    }
+
+    /**
+     * @param array{items: array{price_id: string, quantity: int, metadata?: array<string, mixed>}[], address_uuid: string} $payload
+     */
+    public function finalizeOrder(RequestContext $requestContext, array $payload): array
+    {
+        $response = $this->client->request(
+            'POST',
+            self::uri('/certifications/finalize-order')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode($payload, JSON_THROW_ON_ERROR)
+        );
+
+        return JsonUtility::decode((string) $response->getBody());
+    }
+
+    public function getProducts(RequestContext $requestContext): array
+    {
+        $response = $this->client->request(
+            'GET',
+            self::uri('/certifications/products')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+        );
+
+        return JsonUtility::decode((string) $response->getBody());
+    }
+
     /**
      * @param array<string, string> $filterAttributes
      *

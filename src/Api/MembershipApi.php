@@ -16,21 +16,30 @@ use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
 class MembershipApi extends AbstractApi
 {
-    public function setupPaymentIntent(RequestContext $requestContext, string $priceId): array
+    /**
+     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     */
+    public function setupPaymentIntent(RequestContext $requestContext, array $items): array
     {
         $response = $this->client->request(
             'POST',
-            self::uri(sprintf('/membership/setup-payment-intent'))->withQuery(http_build_query(array_merge($requestContext->toArray(), ['priceId' => $priceId]), encoding_type: PHP_QUERY_RFC3986)),
+            self::uri('/membership/setup-payment-intent')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode([
+                'items' => $items,
+            ], JSON_THROW_ON_ERROR)
         );
 
         return JsonUtility::decode((string) $response->getBody());
     }
 
+    /**
+     * @param array{items: array{price_id: string, quantity: int, metadata?: array<string, mixed>}[], address_uuid: string} $payload
+     */
     public function createMembership(RequestContext $requestContext, array $payload): array
     {
         $response = $this->client->request(
             'POST',
-            self::uri(sprintf('/membership/create-membership'))->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            self::uri('/membership/create-membership')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
             json_encode($payload, JSON_THROW_ON_ERROR)
         );
 
@@ -41,21 +50,25 @@ class MembershipApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            self::uri(sprintf('/membership/all'))->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986))
+            self::uri('/membership/all')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986))
         );
 
         return JsonUtility::decode((string) $response->getBody());
     }
 
-    public function getPricingInformation(RequestContext $requestContext, string $priceId, string $addressUuid): array
+    /**
+     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     */
+    public function getPricingInformation(RequestContext $requestContext, string $addressUuid, array $items): array
     {
-        $queryParams = array_merge($requestContext->toArray(), [
-            'priceId' => $priceId,
+        $payload = [
+            'items' => $items,
             'addressUuid' => $addressUuid,
-        ]);
+        ];
         $response = $this->client->request(
-            'GET',
-            self::uri(sprintf('/membership/pricing-information'))->withQuery(http_build_query($queryParams, encoding_type: PHP_QUERY_RFC3986))
+            'POST',
+            self::uri('/membership/pricing-information')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode($payload, JSON_THROW_ON_ERROR)
         );
 
         return JsonUtility::decode((string) $response->getBody());
@@ -67,7 +80,7 @@ class MembershipApi extends AbstractApi
         $signature = $this->createSignature(array_merge($requestContext->toArray(), $dtoPayload));
         $response = $this->client->request(
             'POST',
-            self::uri(sprintf('/membership/get-switch-information'))->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            self::uri('/membership/get-switch-information')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
             json_encode(array_merge($dtoPayload, [
                 'signature' => $signature,
             ]), JSON_THROW_ON_ERROR)
@@ -82,7 +95,7 @@ class MembershipApi extends AbstractApi
         $signature = $this->createSignature(array_merge($requestContext->toArray(), $dtoPayload));
         $response = $this->client->request(
             'POST',
-            self::uri(sprintf('/membership/switch'))->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            self::uri('/membership/switch')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
             json_encode(array_merge($dtoPayload, [
                 'signature' => $signature,
             ]), JSON_THROW_ON_ERROR)
@@ -95,7 +108,7 @@ class MembershipApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            self::uri(sprintf('/membership/upgrades'))->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986))
+            self::uri('/membership/upgrades')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986))
         );
 
         return JsonUtility::decode((string) $response->getBody());
@@ -105,7 +118,7 @@ class MembershipApi extends AbstractApi
     {
         $response = $this->client->request(
             'GET',
-            self::uri(sprintf('/membership/downgrades'))->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986))
+            self::uri('/membership/downgrades')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986))
         );
 
         return JsonUtility::decode((string) $response->getBody());
@@ -115,7 +128,7 @@ class MembershipApi extends AbstractApi
     {
         $response = $this->client->request(
             'POST',
-            self::uri(sprintf('/membership/billing-portal-session'))->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            self::uri('/membership/billing-portal-session')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
             json_encode([
                 'return_url' => $returnUrl,
             ], JSON_THROW_ON_ERROR)
@@ -131,7 +144,7 @@ class MembershipApi extends AbstractApi
         ]);
         $response = $this->client->request(
             'GET',
-            self::uri(sprintf('/membership/membership-product'))->withQuery(http_build_query($queryParams, encoding_type: PHP_QUERY_RFC3986))
+            self::uri('/membership/membership-product')->withQuery(http_build_query($queryParams, encoding_type: PHP_QUERY_RFC3986))
         );
 
         return JsonUtility::decode((string) $response->getBody());

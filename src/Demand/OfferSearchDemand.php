@@ -18,9 +18,6 @@ class OfferSearchDemand implements \JsonSerializable
     private ?\DateTime $dateUntil = null;
     private ?string $searchTerm = null;
 
-    /**
-     * @return $this
-     */
     public function withCompanyUuid(string $companyUuid): self
     {
         $clone = clone $this;
@@ -29,9 +26,6 @@ class OfferSearchDemand implements \JsonSerializable
         return $clone;
     }
 
-    /**
-     * @return $this
-     */
     public function withUsername(string $username): self
     {
         $clone = clone $this;
@@ -40,9 +34,6 @@ class OfferSearchDemand implements \JsonSerializable
         return $clone;
     }
 
-    /**
-     * @return $this
-     */
     public function withDateFrom(\DateTime $dateFrom): self
     {
         $clone = clone $this;
@@ -51,9 +42,6 @@ class OfferSearchDemand implements \JsonSerializable
         return $clone;
     }
 
-    /**
-     * @return $this
-     */
     public function withDateUntil(\DateTime $dateUntil): self
     {
         $clone = clone $this;
@@ -62,9 +50,6 @@ class OfferSearchDemand implements \JsonSerializable
         return $clone;
     }
 
-    /**
-     * @return $this
-     */
     public function withSearchTerm(string $searchTerm): self
     {
         $clone = clone $this;

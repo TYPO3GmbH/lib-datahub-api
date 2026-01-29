@@ -102,7 +102,8 @@ return new Response(200, ['content-type' => 'application/json'], '
         {"foo": "bar"}
       ]
     },
-    "validUntil": "2021-09-03T10:00:00+00:00"
+    "validUntil": "2021-09-03T10:00:00+00:00",
+    "nextCancellationPossibleAt": "2022-09-03T10:00:00+00:00"
   },
   "subscriptions": [
     {
@@ -116,7 +117,8 @@ return new Response(200, ['content-type' => 'application/json'], '
           {"foo": "bar"}
         ]
       },
-      "validUntil": "2021-09-03T10:00:00+00:00"
+      "validUntil": "2021-09-03T10:00:00+00:00",
+      "nextCancellationPossibleAt": "2022-09-03T10:00:00+00:00"
     }
   ],
   "status": {

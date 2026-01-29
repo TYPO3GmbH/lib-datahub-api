@@ -29,7 +29,8 @@ return new Response(200, ['content-type' => 'application/json'], '
         {"foo": "bar"}
       ]
     },
-    "validUntil": "2020-10-03T10:00:00+00:00"
+    "validUntil": "2020-10-03T10:00:00+00:00",
+    "nextCancellationPossibleAt": "2021-10-03T10:00:00+00:00"
   },
   "addresses": [
     {

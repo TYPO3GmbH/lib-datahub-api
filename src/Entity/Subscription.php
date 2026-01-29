@@ -24,6 +24,7 @@ class Subscription implements \JsonSerializable
     private string $subscriptionSubType = '';
     private string $stripeLink = '';
     private ?\DateTimeInterface $validUntil = null;
+    private \DateTimeInterface $nextCancellationPossibleAt;
     private ?array $payload = null;
     private ?string $history = null;
     private ?User $user = null;
@@ -158,6 +159,21 @@ class Subscription implements \JsonSerializable
     public function setValidUntil(?\DateTimeInterface $validUntil): self
     {
         $this->validUntil = $validUntil;
+
+        return $this;
+    }
+
+    public function getNextCancellationPossibleAt(): \DateTimeInterface
+    {
+        return $this->nextCancellationPossibleAt;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setNextCancellationPossibleAt(\DateTimeInterface $nextCancellationPossibleAt): self
+    {
+        $this->nextCancellationPossibleAt = $nextCancellationPossibleAt;
 
         return $this;
     }

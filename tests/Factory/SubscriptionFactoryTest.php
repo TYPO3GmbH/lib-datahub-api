@@ -31,6 +31,7 @@ class SubscriptionFactoryTest extends TestCase
         self::assertEquals($data['subscriptionSubType'], $entity->getSubscriptionSubType());
         self::assertEquals($data['subscriptionStatus'], $entity->getSubscriptionStatus());
         self::assertEquals($data['validUntil'], $entity->getValidUntil()->format(\DateTimeInterface::ATOM));
+        self::assertEquals($data['nextCancellationPossibleAt'], $entity->getNextCancellationPossibleAt()->format(\DateTimeInterface::ATOM));
         self::assertEquals($data['payload'] ?? null, $entity->getPayload());
         self::assertEquals($data['history'] ?? null, $entity->getHistory());
 
@@ -60,6 +61,7 @@ class SubscriptionFactoryTest extends TestCase
                     'subscriptionSubType' => MembershipType::BRONZE,
                     'subscriptionStatus' => SubscriptionStatus::ACTIVE,
                     'validUntil' => '2020-02-26T00:00:00+00:00',
+                    'nextCancellationPossibleAt' => '2021-02-26T00:00:00+00:00',
                     'history' => 'husel pusel',
                     'payload' => ['baz' => 'benzer'],
                     'user' => [
@@ -81,6 +83,7 @@ class SubscriptionFactoryTest extends TestCase
                     'subscriptionSubType' => MembershipType::BRONZE,
                     'subscriptionStatus' => SubscriptionStatus::ACTIVE,
                     'validUntil' => '2020-02-26T00:00:00+00:00',
+                    'nextCancellationPossibleAt' => '2021-02-26T00:00:00+00:00',
                     'history' => 'husel pusel',
                     'payload' => ['baz' => 'benzer'],
                     'company' => [

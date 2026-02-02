@@ -18,7 +18,7 @@ return new Response(200, ['content-type' => 'application/json'], '
     "subscriptionType": "membership",
     "subscriptionSubType": "BRONZE",
     "validUntil": "2020-02-26T00:00:00+00:00",
-    "nextCancellationPossibleAt": "2021-02-26T00:00:00+00:00",
+    "cancellationDeadline": "2021-02-26T00:00:00+00:00",
     "payload": {
         "bar": "baz"
     }

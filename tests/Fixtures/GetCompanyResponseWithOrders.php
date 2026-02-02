@@ -30,7 +30,7 @@ return new Response(200, ['content-type' => 'application/json'], '
       ]
     },
     "validUntil": "2020-10-03T10:00:00+00:00",
-    "nextCancellationPossibleAt": "2021-10-03T10:00:00+00:00"
+    "cancellationDeadline": "2021-10-03T10:00:00+00:00"
   },
   "addresses": [
     {

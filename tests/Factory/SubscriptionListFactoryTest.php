@@ -44,7 +44,7 @@ class SubscriptionListFactoryTest extends TestCase
                             'subscriptionSubType' => MembershipType::BRONZE,
                             'subscriptionStatus' => SubscriptionStatus::ACTIVE,
                             'validUntil' => '2020-02-26T00:00:00+00:00',
-                            'nextCancellationPossibleAt' => '2021-02-26T00:00:00+00:00',
+                            'cancellationDeadline' => '2021-02-26T00:00:00+00:00',
                             'history' => 'husel pusel',
                             'payload' => ['baz' => 'benzer'],
                             'user' => [
@@ -64,7 +64,7 @@ class SubscriptionListFactoryTest extends TestCase
                             'subscriptionSubType' => MembershipType::BRONZE,
                             'subscriptionStatus' => SubscriptionStatus::ACTIVE,
                             'validUntil' => '2020-02-26T00:00:00+00:00',
-                            'nextCancellationPossibleAt' => '2021-02-26T00:00:00+00:00',
+                            'cancellationDeadline' => '2021-02-26T00:00:00+00:00',
                             'history' => 'husel pusel',
                             'payload' => ['baz' => 'benzer'],
                             'company' => [

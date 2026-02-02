@@ -136,7 +136,7 @@ class UserFactoryTest extends TestCase
                         'subscriptionSubType' => 'SILVER',
                         'subscriptionStatus' => 'active',
                         'validUntil' => '2021-09-03T10:00:00+00:00',
-                        'nextCancellationPossibleAt' => '2022-09-03T10:00:00+00:00',
+                        'cancellationDeadline' => '2022-09-03T10:00:00+00:00',
                     ],
                     'subscriptions' => [
                         [
@@ -146,7 +146,7 @@ class UserFactoryTest extends TestCase
                             'subscriptionSubType' => 'SILVER',
                             'subscriptionStatus' => 'active',
                             'validUntil' => '2021-09-03T10:00:00+00:00',
-                            'nextCancellationPossibleAt' => '2022-09-03T10:00:00+00:00',
+                            'cancellationDeadline' => '2022-09-03T10:00:00+00:00',
                         ],
                     ],
                     'approvedDocuments' => [

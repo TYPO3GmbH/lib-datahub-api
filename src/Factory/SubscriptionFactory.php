@@ -26,7 +26,7 @@ class SubscriptionFactory extends AbstractFactory
             ->setSubscriptionSubType($data['subscriptionSubType'])
             ->setStripeLink($data['stripeLink'] ?? '')
             ->setValidUntil(new \DateTimeImmutable($data['validUntil']))
-            ->setNextCancellationPossibleAt(new \DateTimeImmutable($data['nextCancellationPossibleAt']))
+            ->setCancellationDeadline(new \DateTimeImmutable($data['cancellationDeadline']))
             ->setPayload($data['payload'] ?? null)
             ->setHistory($data['history'] ?? null)
             ->setSubscriptionStatus($data['subscriptionStatus'])

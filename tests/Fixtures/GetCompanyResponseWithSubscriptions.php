@@ -30,7 +30,7 @@ return new Response(200, ['content-type' => 'application/json'], '
       ]
     },
     "validUntil": "2020-10-03T10:00:00+00:00",
-    "nextCancellationPossibleAt": "2021-10-03T10:00:00+00:00"
+    "cancellationDeadline": "2021-10-03T10:00:00+00:00"
   },
   "addresses": [
     {
@@ -149,7 +149,7 @@ return new Response(200, ['content-type' => 'application/json'], '
         ]
       },
       "validUntil": "2020-10-03T10:00:00+00:00",
-      "nextCancellationPossibleAt": "2020-10-03T10:00:00+00:00"
+      "cancellationDeadline": "2020-10-03T10:00:00+00:00"
     },
     {
       "uuid": "11111111-1111-1111-1111-111111111111",
@@ -163,7 +163,7 @@ return new Response(200, ['content-type' => 'application/json'], '
         ]
       },
       "validUntil": "2020-10-03T10:00:00+00:00",
-      "nextCancellationPossibleAt": "2020-10-03T10:00:00+00:00"
+      "cancellationDeadline": "2020-10-03T10:00:00+00:00"
     },
     {
       "uuid": "22222222-2222-2222-2222-222222222222",
@@ -177,7 +177,7 @@ return new Response(200, ['content-type' => 'application/json'], '
         ]
       },
       "validUntil": "2020-10-03T10:00:00+00:00",
-      "nextCancellationPossibleAt": "2021-10-03T10:00:00+00:00"
+      "cancellationDeadline": "2021-10-03T10:00:00+00:00"
     }
   ],
   "examAccesses": [

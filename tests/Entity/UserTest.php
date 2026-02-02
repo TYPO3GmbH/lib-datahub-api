@@ -12,7 +12,9 @@ namespace T3G\DatahubApiLibrary\Tests\Entity;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use T3G\DatahubApiLibrary\BitMask\AddressType;
 use T3G\DatahubApiLibrary\BitMask\EmailType;
+use T3G\DatahubApiLibrary\Entity\Address;
 use T3G\DatahubApiLibrary\Entity\User;
 use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
@@ -263,5 +265,20 @@ class UserTest extends TestCase
                 'foo@bar.com',
             ],
         ];
+    }
+
+    public function testGetAddressesByType(): void
+    {
+        $address1 = (new Address())->setType(AddressType::TYPE_DELIVERY);
+        $address2 = (new Address())->setType(AddressType::TYPE_DELIVERY | AddressType::TYPE_INVOICE);
+        $address3 = (new Address())->setType(AddressType::TYPE_INVOICE | AddressType::TYPE_LOCATION);
+        $input = [$address1, $address2, $address3];
+        $user = (new User())->setAddresses($input);
+
+        $expectation = [$address2, $address3];
+        $result = $user->getAddressesByType(AddressType::TYPE_INVOICE);
+
+        self::assertEquals($expectation, $result);
+        self::assertTrue(array_is_list($result));
     }
 }

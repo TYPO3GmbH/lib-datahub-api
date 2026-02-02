@@ -296,9 +296,9 @@ class User implements \JsonSerializable
      */
     public function getAddressesByType(int $type): array
     {
-        return array_filter($this->getAddresses(), static function (Address $address) use ($type) {
+        return array_values(array_filter($this->getAddresses(), static function (Address $address) use ($type) {
             return $type === ($address->getType() & $type);
-        });
+        }));
     }
 
     /**

@@ -102,6 +102,7 @@ class User implements \JsonSerializable
     private ?string $title = null;
     private ?string $bio = null;
     private ?PrivacySettings $privacySettings = null;
+    private ?bool $publicProfileDisabled = null;
 
     /**
      * @return array<string, mixed>
@@ -122,6 +123,7 @@ class User implements \JsonSerializable
             'bio' => $this->getBio(),
             'privacySettings' => null !== $this->getPrivacySettings() ? $this->getPrivacySettings()->jsonSerialize() : [],
             'links' => $this->getLinks(),
+            'publicProfileDisabled' => $this->isPublicProfileDisabled(),
         ];
     }
 
@@ -855,6 +857,18 @@ class User implements \JsonSerializable
     public function addSystemMessageView(SystemMessageView $systemMessageView): User
     {
         $this->systemMessageViews[] = $systemMessageView;
+
+        return $this;
+    }
+
+    public function isPublicProfileDisabled(): ?bool
+    {
+        return $this->publicProfileDisabled;
+    }
+
+    public function setPublicProfileDisabled(?bool $publicProfileDisabled): User
+    {
+        $this->publicProfileDisabled = $publicProfileDisabled;
 
         return $this;
     }

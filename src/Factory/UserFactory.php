@@ -30,7 +30,8 @@ class UserFactory extends AbstractFactory
             ->setStatus($data['status'])
             ->setTitle($data['title'] ?? null)
             ->setBio($data['bio'] ?? null)
-            ->setPrivacySettings(PrivacySettingsFactory::fromArray($data['privacySettings'] ?? []));
+            ->setPrivacySettings(PrivacySettingsFactory::fromArray($data['privacySettings'] ?? []))
+            ->setPublicProfileDisabled($data['publicProfileDisabled'] ?? null);
 
         foreach ($data['addresses'] ?? [] as $address) {
             $user->addAddress(AddressFactory::fromArray($address));

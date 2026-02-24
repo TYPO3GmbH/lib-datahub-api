@@ -23,6 +23,7 @@ use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
 use T3G\DatahubApiLibrary\Factory\EltsMaintainedVersionFactory;
 use T3G\DatahubApiLibrary\Factory\EltsPlanFactory;
 use T3G\DatahubApiLibrary\Factory\EltsProductListFactory;
+use T3G\DatahubApiLibrary\Request\RequestContext;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 
@@ -159,7 +160,7 @@ class EltsPlanApi extends AbstractApi
     }
 
     /**
-     * @return array<string, array{maxRuntimeInYears: int, variants: array<int, array{externalProductId: string, price: float, startYear: int, endYear: int, runtimeIdentifier: string, runtimeInYears: int, runtime: string, validFrom: string, validTo: string}>, version: string, ltsSupport: array{from: string, to: string}}>
+     * @return array<string, array{maxRuntimeInYears: int, variants: array<int, array{price: float, startYear: int, endYear: int, runtimeIdentifier: string, runtimeInYears: int, runtime: string, validFrom: string, validTo: string}>, version: string, ltsSupport: array{from: string, to: string}}>
      *
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
@@ -217,5 +218,59 @@ class EltsPlanApi extends AbstractApi
         return EltsMaintainedVersionFactory::fromResponseDataCollection(
             $this->client->request('GET', self::uri('/elts/maintained-versions'))
         );
+    }
+
+    /**
+     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     *
+     * @return array{customerSessionClientSecret: string, currency: string, amount: int}[]
+     */
+    public function createCheckoutSession(RequestContext $requestContext, array $items): array
+    {
+        $response = $this->client->request(
+            'POST',
+            self::uri('/elts/checkout-session')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode([
+                'items' => $items,
+            ], JSON_THROW_ON_ERROR)
+        );
+
+        return JsonUtility::decode((string) $response->getBody());
+    }
+
+    /**
+     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     *
+     * @return array{currency: string, items: array{display_name: string, recurring: array{interval_count: int, interval: string}, amount: int, net: int, gross: int, applied_tax_rates: int[], metadata: string}, taxes: array{display_name: string, rate: float, amount: int}[], total: array{net: int, gross: int}}
+     */
+    public function getPricingInformation(RequestContext $requestContext, string $addressUuid, array $items): array
+    {
+        $payload = [
+            'items' => $items,
+            'addressUuid' => $addressUuid,
+        ];
+        $response = $this->client->request(
+            'POST',
+            self::uri('/elts/pricing-information')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode($payload, JSON_THROW_ON_ERROR)
+        );
+
+        return JsonUtility::decode((string) $response->getBody());
+    }
+
+    /**
+     * @param array{items: array{price_id: string, quantity: int, metadata?: array<string, mixed>}[], address_uuid: string} $payload
+     *
+     * @return array{payment_intent_client_secret: string}
+     */
+    public function finalizeOrder(RequestContext $requestContext, array $payload): array
+    {
+        $response = $this->client->request(
+            'POST',
+            self::uri('/elts/finalize-order')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode($payload, JSON_THROW_ON_ERROR)
+        );
+
+        return JsonUtility::decode((string) $response->getBody());
     }
 }

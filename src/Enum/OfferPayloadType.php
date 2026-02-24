@@ -16,9 +16,11 @@ namespace T3G\DatahubApiLibrary\Enum;
 final class OfferPayloadType extends AbstractEnum
 {
     public const SHOPWARE = 'shopware';
+    public const STRIPE = 'stripe';
     public const YATTA = 'yatta';
     protected static array $optionNames = [
         self::SHOPWARE => 'Shopware',
+        self::STRIPE => 'Stripe',
         self::YATTA => 'Yatta',
     ];
 }

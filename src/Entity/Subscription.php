@@ -32,6 +32,11 @@ class Subscription implements \JsonSerializable
     private ?string $paymentStatus = null;
 
     /**
+     * @var array<string, mixed>|null
+     */
+    private ?array $metadata = [];
+
+    /**
      * @var array{category: string, isActive?: bool, isPaid?: bool}
      */
     private array $status = [];
@@ -51,6 +56,7 @@ class Subscription implements \JsonSerializable
             'payload' => $this->getPayload(),
             'paymentStatus' => $this->getPaymentStatus(),
             'status' => $this->getStatus(),
+            'metadata' => $this->getMetadata(),
         ];
     }
 
@@ -287,6 +293,24 @@ class Subscription implements \JsonSerializable
     public function setStatus(array $status): Subscription
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    public function getMetadata(): ?array
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * @param array<string, mixed>|null $metadata
+     */
+    public function setMetadata(?array $metadata): self
+    {
+        $this->metadata = $metadata;
 
         return $this;
     }

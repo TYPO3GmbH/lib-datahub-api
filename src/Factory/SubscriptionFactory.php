@@ -30,7 +30,8 @@ class SubscriptionFactory extends AbstractFactory
             ->setPayload($data['payload'] ?? null)
             ->setHistory($data['history'] ?? null)
             ->setSubscriptionStatus($data['subscriptionStatus'])
-            ->setStatus($data['status'] ?? []);
+            ->setStatus($data['status'] ?? [])
+            ->setMetadata($data['metadata'] ?? null);
 
         if (isset($data['user'])) {
             $subscription->setUser(UserFactory::fromArray($data['user']));

@@ -74,6 +74,7 @@ class User implements \JsonSerializable
      */
     private array $voucherCodes = [];
     private ?Subscription $membership = null;
+    private ?Subscription $certificationSubscription = null;
 
     /**
      * @var EltsPlan[]
@@ -512,6 +513,30 @@ class User implements \JsonSerializable
     }
 
     /**
+     * @return Certification[]
+     */
+    public function getScheduledCertifications(): array
+    {
+        $scheduled = [];
+        foreach ($this->getCertificationsNotListed() as $certification) {
+            if (in_array($certification->getStatus(), [CertificationStatus::UNKNOWN, CertificationStatus::FAILED], true)) {
+                continue;
+            }
+            if (null === $certification->getUserExamUuid()) {
+                continue;
+            }
+            if (null !== $certification->getExamDate() && new \DateTimeImmutable() > $certification->getExamDate()) {
+                continue;
+            }
+
+            $scheduled[$certification->getType()] = $certification;
+        }
+        ksort($scheduled);
+
+        return $scheduled;
+    }
+
+    /**
      * @param Certification[] $certifications
      *
      * @return $this
@@ -589,6 +614,26 @@ class User implements \JsonSerializable
     public function setMembership(?Subscription $membership): self
     {
         $this->membership = $membership;
+
+        return $this;
+    }
+
+    /**
+     * @return Subscription|null
+     */
+    public function getCertificationSubscription(): ?Subscription
+    {
+        return $this->certificationSubscription;
+    }
+
+    /**
+     * @param Subscription|null $certificationSubscription
+     *
+     * @return $this
+     */
+    public function setCertificationSubscription(?Subscription $certificationSubscription): self
+    {
+        $this->certificationSubscription = $certificationSubscription;
 
         return $this;
     }

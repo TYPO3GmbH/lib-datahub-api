@@ -15,6 +15,7 @@ namespace T3G\DatahubApiLibrary\Enum;
  */
 final class SubscriptionType extends AbstractEnum
 {
+    public const CERTIFICATION = 'certification';
     public const MEMBERSHIP = 'membership';
     public const PARTNER_PROGRAM = 'partner_program';
     public const PSL = 'psl';
@@ -23,11 +24,13 @@ final class SubscriptionType extends AbstractEnum
      * @var array<string, class-string>
      */
     private static array $subTypeMap = [
+        self::CERTIFICATION => CertificationSubscriptionType::class,
         self::MEMBERSHIP => MembershipType::class,
         self::PARTNER_PROGRAM => PartnerProgramType::class,
         self::PSL => PSLType::class,
     ];
     protected static array $optionNames = [
+        self::CERTIFICATION => 'Certification Subscription',
         self::MEMBERSHIP => 'Membership',
         self::PARTNER_PROGRAM => 'Partner Program',
         self::PSL => 'Professional Service Listing',

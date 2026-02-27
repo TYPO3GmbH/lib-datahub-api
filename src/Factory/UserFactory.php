@@ -60,6 +60,9 @@ class UserFactory extends AbstractFactory
         if (isset($data['membership'])) {
             $user->setMembership(SubscriptionFactory::fromArray($data['membership']));
         }
+        if (isset($data['certificationSubscription'])) {
+            $user->setCertificationSubscription(SubscriptionFactory::fromArray($data['certificationSubscription']));
+        }
         foreach ($data['approvedDocuments'] ?? [] as $approvedDocument) {
             $user->addApprovedDocument(ApprovedDocumentFactory::fromArray($approvedDocument));
         }

@@ -13,16 +13,10 @@ namespace T3G\DatahubApiLibrary\Enum;
 /**
  * @codeCoverageIgnore No need to test this ...
  */
-final class CertificationAuditType extends AbstractEnum
+final class CertificationSubscriptionType extends AbstractEnum
 {
-    public const PROCTORU = 'PROCTORU';
-    public const PRESENCE = 'PRESENCE';
-    public const DRY_RUN = 'DRY_RUN';
-    public const UNKNOWN = 'UNKNOWN';
+    public const REGULAR = 'REGULAR';
     protected static array $optionNames = [
-        self::PROCTORU => 'ProctorU',
-        self::PRESENCE => 'Presence',
-        self::DRY_RUN => 'Test',
-        self::UNKNOWN => 'Unknown',
+        self::REGULAR => 'Regular',
     ];
 }

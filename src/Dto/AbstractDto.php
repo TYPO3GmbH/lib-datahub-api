@@ -13,7 +13,7 @@ namespace T3G\DatahubApiLibrary\Dto;
 abstract class AbstractDto implements \JsonSerializable
 {
     /**
-     * @return array<string, mixed>
+     * @return array<mixed>
      */
     public function toArray(): array
     {
@@ -21,7 +21,7 @@ abstract class AbstractDto implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<mixed>
      */
     public function jsonSerialize(): array
     {

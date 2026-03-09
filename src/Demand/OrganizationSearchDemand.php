@@ -47,7 +47,7 @@ class OrganizationSearchDemand implements \JsonSerializable
     private ?array $countries = null;
 
     /**
-     * @return array<string, mixed>
+     * @return array<mixed>
      */
     public function jsonSerialize(): array
     {
@@ -57,7 +57,7 @@ class OrganizationSearchDemand implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<mixed>
      */
     public function toArray(): array
     {

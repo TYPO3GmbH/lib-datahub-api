@@ -95,7 +95,7 @@ class CertificationSearchDemand implements \JsonSerializable
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<mixed>
      */
     public function jsonSerialize(): array
     {

@@ -204,9 +204,9 @@ class ExamAccess implements \JsonSerializable
         return $this;
     }
 
-    public function getName(): string
+    public function getName(bool $withVersion = false): string
     {
-        return $this->getCertificationType() . ' v' . $this->getCertificationVersion();
+        return $this->getCertificationType() . ($withVersion ? ' v' . $this->getCertificationVersion() : '');
     }
 
     public function __toString(): string

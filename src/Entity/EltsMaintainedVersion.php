@@ -15,6 +15,15 @@ class EltsMaintainedVersion
     private string $version;
     private \DateTimeImmutable $from;
     private \DateTimeImmutable $to;
+    private bool $isPartnerExclusive;
+
+    /**
+     * @var array{from: \DateTimeInterface|null, to: \DateTimeInterface|null}
+     */
+    private array $ltsSupport;
+
+    /** @var array{to: \DateTimeInterface|null} */
+    private array $eltsSupport;
 
     public function getVersion(): string
     {
@@ -48,6 +57,54 @@ class EltsMaintainedVersion
     public function setTo(\DateTimeImmutable $to): EltsMaintainedVersion
     {
         $this->to = $to;
+
+        return $this;
+    }
+
+    public function isPartnerExclusive(): bool
+    {
+        return $this->isPartnerExclusive;
+    }
+
+    public function setIsPartnerExclusive(bool $isPartnerExclusive): EltsMaintainedVersion
+    {
+        $this->isPartnerExclusive = $isPartnerExclusive;
+
+        return $this;
+    }
+
+    /**
+     * @return array{from: \DateTimeInterface|null, to: \DateTimeInterface|null}
+     */
+    public function getLtsSupport(): array
+    {
+        return $this->ltsSupport;
+    }
+
+    /**
+     * @param array{from: \DateTimeInterface|null, to: \DateTimeInterface|null} $ltsSupport
+     */
+    public function setLtsSupport(array $ltsSupport): EltsMaintainedVersion
+    {
+        $this->ltsSupport = $ltsSupport;
+
+        return $this;
+    }
+
+    /**
+     * @return array{to: \DateTimeInterface|null}
+     */
+    public function getEltsSupport(): array
+    {
+        return $this->eltsSupport;
+    }
+
+    /**
+     * @param array{to: \DateTimeInterface|null} $eltsSupport
+     */
+    public function setEltsSupport(array $eltsSupport): EltsMaintainedVersion
+    {
+        $this->eltsSupport = $eltsSupport;
 
         return $this;
     }

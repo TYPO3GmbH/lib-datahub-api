@@ -26,7 +26,7 @@ class EltsMaintainedVersionFactory extends AbstractFactory
      */
     public static function fromResponseDataCollection(ResponseInterface $response): EltsMaintainedVersionList
     {
-        /** @var array<int, array{version: string, from: string, to: string}> $arrayResponse */
+        /** @var array<int, array{version: string, from: string, to: string, isPartnerExclusive: bool, ltsSupport: array{from: string|null, to: string|null}, eltsSupport: array{to: string|null}}> $arrayResponse */
         $arrayResponse = self::responseToArray($response);
         $data = array_map(
             static fn (array $eltsInstanceData) => self::fromArray($eltsInstanceData),
@@ -37,7 +37,7 @@ class EltsMaintainedVersionFactory extends AbstractFactory
     }
 
     /**
-     * @param array{version: string, from: string, to: string} $data
+     * @param array{version: string, from: string, to: string, isPartnerExclusive: bool, ltsSupport: array{from: string|null, to: string|null}, eltsSupport: array{to: string|null}} $data
      *
      * @return EltsMaintainedVersion
      */
@@ -46,6 +46,14 @@ class EltsMaintainedVersionFactory extends AbstractFactory
         return (new EltsMaintainedVersion())
             ->setVersion($data['version'])
             ->setFrom(new \DateTimeImmutable($data['from']))
-            ->setTo(new \DateTimeImmutable($data['to']));
+            ->setTo(new \DateTimeImmutable($data['to']))
+            ->setIsPartnerExclusive((bool) $data['isPartnerExclusive'])
+            ->setLtsSupport([
+                'from' => isset($data['ltsSupport']['from']) ? new \DateTimeImmutable($data['ltsSupport']['from']) : null,
+                'to' => isset($data['ltsSupport']['to']) ? new \DateTimeImmutable($data['ltsSupport']['to']) : null,
+            ])
+            ->setELtsSupport([
+                'to' => isset($data['eltsSupport']['to']) ? new \DateTimeImmutable($data['eltsSupport']['to']) : null,
+            ]);
     }
 }

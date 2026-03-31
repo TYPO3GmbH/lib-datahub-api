@@ -12,8 +12,11 @@ namespace T3G\DatahubApiLibrary\Entity;
 
 /**
  * @template T
+ *
+ * @implements \ArrayAccess<int, mixed>
+ * @implements \IteratorAggregate<int, mixed>
  */
-abstract class AbstractList implements \JsonSerializable
+abstract class AbstractList implements \JsonSerializable, \Countable, \ArrayAccess, \IteratorAggregate
 {
     /** @var array<int, T> */
     protected array $data;
@@ -36,6 +39,36 @@ abstract class AbstractList implements \JsonSerializable
         return [
             'data' => $this->getData(),
         ];
+    }
+
+    public function count(): int
+    {
+        return count($this->getData());
+    }
+
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->getData());
+    }
+
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->getData()[$offset]);
+    }
+
+    public function offsetGet(mixed $offset): mixed
+    {
+        return $this->getData()[$offset];
+    }
+
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        $this->getData()[$offset] = $value;
+    }
+
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->getData()[$offset]);
     }
 
     /**

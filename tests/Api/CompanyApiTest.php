@@ -39,7 +39,6 @@ class CompanyApiTest extends AbstractApiTestCase
         self::assertCount(2, $response->getPostalAddresses());
         self::assertEquals('GOLD', $response->getMembership()->getSubscriptionSubType());
         self::assertTrue($response->isFoundingPartner());
-        self::assertTrue($response->isPsl());
         self::assertSame([
             CompanyService::DESIGN,
             CompanyService::DEVELOPMENT,

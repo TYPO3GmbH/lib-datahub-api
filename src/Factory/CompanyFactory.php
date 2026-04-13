@@ -38,7 +38,6 @@ class CompanyFactory extends AbstractFactory
             ->setHeadquarter(isset($data['headquarter']) ? AddressFactory::fromArray($data['headquarter']) : null)
             ->setFoundingPartner($data['foundingPartner'] ?? false)
             ->setInvoiceAllowed($data['invoiceAllowed'] ?? false)
-            ->setPsl($data['psl'] ?? false)
             ->setStatus($data['status']);
 
         if (isset($data['offeredServices'])) {

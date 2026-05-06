@@ -25,4 +25,18 @@ final class CertificationType extends AbstractEnum
         self::TCCI => 'TYPO3 CMS Certified Integrator',
         self::TCCE => 'TYPO3 CMS Certified Editor',
     ];
+
+    /**
+     * @var array<string, string>
+     */
+    protected static array $shortNames = [
+        self::TCCC => 'Consultant (TCCC)',
+        self::TCCD => 'Developer (TCCD)',
+        self::TCCI => 'Integrator (TCCI)',
+        self::TCCE => 'Editor (TCCE)',
+    ];
+    public static function getShortName(string $type): string
+    {
+        return self::$shortNames[$type] ?? $type;
+    }
 }

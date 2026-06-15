@@ -126,6 +126,7 @@ class EltsPlanApi extends AbstractApi
 
     /**
      * @param string $username
+     * @param bool   $withFuturePlans
      *
      * @return array<int, string>
      *
@@ -133,11 +134,13 @@ class EltsPlanApi extends AbstractApi
      * @throws DatahubResponseException
      * @throws \JsonException
      */
-    public function getEltsVersionAccess(string $username): array
+    public function getEltsVersionAccess(string $username, bool $withFuturePlans = false): array
     {
         $content = $this->client->request(
             'GET',
-            self::uri('/elts/version-access/' . mb_strtolower($username))
+            self::uri('/elts/version-access/' . mb_strtolower($username))->withQuery(http_build_query([
+                'withFuturePlans' => (int) $withFuturePlans,
+            ]))
         )->getBody()->getContents();
 
         return JsonUtility::decode($content);

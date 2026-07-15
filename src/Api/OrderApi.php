@@ -33,6 +33,16 @@ class OrderApi extends AbstractApi
         );
     }
 
+    public function getOrderByOrderNumber(string $orderNumber): Order
+    {
+        return OrderFactory::fromResponse(
+            $this->client->request(
+                'GET',
+                self::uri('/order/' . $orderNumber)
+            )
+        );
+    }
+
     /**
      * @param OrderSearchDemand $orderSearchDemand
      * @param int|null          $limit

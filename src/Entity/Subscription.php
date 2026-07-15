@@ -30,6 +30,7 @@ class Subscription implements \JsonSerializable
     private ?User $user = null;
     private ?Company $company = null;
     private ?string $paymentStatus = null;
+    private ?string $orderNumber = null;
 
     /**
      * @var array<string, mixed>|null
@@ -311,6 +312,18 @@ class Subscription implements \JsonSerializable
     public function setMetadata(?array $metadata): self
     {
         $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    public function getOrderNumber(): ?string
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(?string $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
 
         return $this;
     }

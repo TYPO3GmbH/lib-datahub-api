@@ -37,6 +37,22 @@ class OrderApiTest extends AbstractApiTestCase
         self::assertSame((new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))->getTimestamp(), $firstInvoice->getDate()->getTimestamp());
     }
 
+    public function getOrderByOrderNumber(): void
+    {
+        $handler = new MockHandler([
+            require __DIR__ . '/../Fixtures/GetOrderByOrderNumberResponse.php',
+        ]);
+        $response = (new OrderApi($this->getClient($handler)))
+            ->getOrderByOrderNumber('A12345');
+        self::assertEquals('A12345', $response->getOrderNumber());
+        self::assertIsArray($response->getPayload());
+        self::assertSame(['items' => [['foo' => 'bar']]], $response->getPayload());
+        self::assertCount(1, $response->getInvoices());
+        $firstInvoice = $response->getInvoices()[0];
+        self::assertSame('https://dienmam.com/invoice', $firstInvoice->getLink());
+        self::assertSame((new \DateTimeImmutable('2020-01-10T00:00:00+00:00'))->getTimestamp(), $firstInvoice->getDate()->getTimestamp());
+    }
+
     /**
      * @param string   $fixtureFile
      * @param int|null $limit

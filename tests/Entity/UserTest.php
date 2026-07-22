@@ -15,7 +15,10 @@ use PHPUnit\Framework\TestCase;
 use T3G\DatahubApiLibrary\BitMask\AddressType;
 use T3G\DatahubApiLibrary\BitMask\EmailType;
 use T3G\DatahubApiLibrary\Entity\Address;
+use T3G\DatahubApiLibrary\Entity\Certification;
 use T3G\DatahubApiLibrary\Entity\User;
+use T3G\DatahubApiLibrary\Enum\CertificationStatus;
+use T3G\DatahubApiLibrary\Enum\CertificationType;
 use T3G\DatahubApiLibrary\Enum\MembershipType;
 use T3G\DatahubApiLibrary\Factory\UserFactory;
 
@@ -263,6 +266,42 @@ class UserTest extends TestCase
                 EmailType::VOTING,
                 false,
                 'foo@bar.com',
+            ],
+        ];
+    }
+
+    #[DataProvider('scheduledCertificationsDataProvider')]
+    public function testGetScheduledCertifications(Certification $certification, bool $expectedToBeScheduled): void
+    {
+        $user = (new User())->addCertification($certification);
+        $result = $user->getScheduledCertifications();
+
+        if ($expectedToBeScheduled) {
+            self::assertArrayHasKey($certification->getType(), $result);
+            self::assertSame($certification, $result[$certification->getType()]);
+        } else {
+            self::assertEmpty($result);
+        }
+    }
+
+    public static function scheduledCertificationsDataProvider(): array
+    {
+        return [
+            'exam end date in future is included' => [
+                (new Certification())
+                    ->setType(CertificationType::TCCD)
+                    ->setStatus(CertificationStatus::SCHEDULED)
+                    ->setUserExamUuid('12345678-1234-1234-1234-123456789012')
+                    ->setExamEndDate(new \DateTimeImmutable('tomorrow')),
+                true,
+            ],
+            'exam end date in past is excluded' => [
+                (new Certification())
+                    ->setType(CertificationType::TCCD)
+                    ->setStatus(CertificationStatus::SCHEDULED)
+                    ->setUserExamUuid('12345678-1234-1234-1234-123456789012')
+                    ->setExamEndDate(new \DateTimeImmutable('yesterday')),
+                false,
             ],
         ];
     }

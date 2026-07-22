@@ -528,6 +528,9 @@ class User implements \JsonSerializable
             if (null !== $certification->getExamDate() && new \DateTimeImmutable() > $certification->getExamDate()) {
                 continue;
             }
+            if (new \DateTimeImmutable() > $certification->getExamEndDate()) {
+                continue;
+            }
 
             $scheduled[$certification->getType()] = $certification;
         }

@@ -21,6 +21,8 @@ final class MembershipType extends AbstractEnum
     public const SILVER = 'SILVER';
     public const GOLD = 'GOLD';
     public const PLATINUM = 'PLATINUM';
+    public const HONORARY_MEMBER = 'HONORARY_MEMBER';
+    public const HONORARY_PRESIDENT = 'HONORARY_PRESIDENT';
     public const REDUCED_BRONZE = 'REDUCED_BRONZE';
     public const REDUCED_SILVER = 'REDUCED_SILVER';
     public const REDUCED_GOLD = 'REDUCED_GOLD';
@@ -31,8 +33,32 @@ final class MembershipType extends AbstractEnum
         self::SILVER => 'Silver',
         self::GOLD => 'Gold',
         self::PLATINUM => 'Platinum',
+        self::HONORARY_MEMBER => 'Honorary Member',
+        self::HONORARY_PRESIDENT => 'Honorary President',
         self::REDUCED_BRONZE => 'Bronze',
         self::REDUCED_SILVER => 'Silver',
         self::REDUCED_GOLD => 'Gold',
     ];
+
+    /**
+     * @var array<string, bool>
+     */
+    protected static array $isManageable = [
+        self::NONE => true,
+        self::COMMUNITY => true,
+        self::BRONZE => true,
+        self::SILVER => true,
+        self::GOLD => true,
+        self::PLATINUM => true,
+        self::HONORARY_MEMBER => false,
+        self::HONORARY_PRESIDENT => false,
+        self::REDUCED_BRONZE => true,
+        self::REDUCED_SILVER => true,
+        self::REDUCED_GOLD => true,
+    ];
+
+    public static function isManageable(string $optionName): bool
+    {
+        return self::$isManageable[$optionName] ?? false;
+    }
 }

@@ -17,7 +17,7 @@ use T3G\DatahubApiLibrary\Utility\JsonUtility;
 class MembershipApi extends AbstractApi
 {
     /**
-     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
      */
     public function setupPaymentIntent(RequestContext $requestContext, array $items): array
     {
@@ -33,7 +33,7 @@ class MembershipApi extends AbstractApi
     }
 
     /**
-     * @param array{items: array{price_id: string, quantity: int, metadata?: array<string, mixed>}[], address_uuid: string} $payload
+     * @param array{priceId: string, addressUuid: string, payByInvoice: bool} $payload
      */
     public function createMembership(RequestContext $requestContext, array $payload): array
     {
@@ -57,7 +57,7 @@ class MembershipApi extends AbstractApi
     }
 
     /**
-     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
      */
     public function getPricingInformation(RequestContext $requestContext, string $addressUuid, array $items): array
     {

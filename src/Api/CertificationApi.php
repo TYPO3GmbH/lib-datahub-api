@@ -22,7 +22,7 @@ use T3G\DatahubApiLibrary\Utility\JsonUtility;
 class CertificationApi extends AbstractApi
 {
     /**
-     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
      */
     public function createCheckoutSession(RequestContext $requestContext, array $items): array
     {
@@ -38,7 +38,7 @@ class CertificationApi extends AbstractApi
     }
 
     /**
-     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
      */
     public function getPricingInformation(RequestContext $requestContext, string $addressUuid, array $items): array
     {
@@ -56,7 +56,9 @@ class CertificationApi extends AbstractApi
     }
 
     /**
-     * @param array{items: array{price_id: string, quantity: int, metadata?: array<string, mixed>}[], address_uuid: string} $payload
+     * @param array{items: array{priceId: string, quantity: int, metadata?: array<string, mixed>}[], addressUuid: string, referenceNumber?: string} $payload
+     *
+     * @return array{payment_intent_client_secret: string}
      */
     public function finalizeOrder(RequestContext $requestContext, array $payload): array
     {

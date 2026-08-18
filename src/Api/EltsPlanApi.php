@@ -224,7 +224,7 @@ class EltsPlanApi extends AbstractApi
     }
 
     /**
-     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
      *
      * @return array{customerSessionClientSecret: string, currency: string, amount: int}[]
      */
@@ -242,7 +242,7 @@ class EltsPlanApi extends AbstractApi
     }
 
     /**
-     * @param array{price_id: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
      *
      * @return array{currency: string, items: array{display_name: string, recurring: array{interval_count: int, interval: string}, amount: int, net: int, gross: int, applied_tax_rates: int[], metadata: string}, taxes: array{display_name: string, rate: float, amount: int}[], total: array{net: int, gross: int}}
      */
@@ -262,7 +262,7 @@ class EltsPlanApi extends AbstractApi
     }
 
     /**
-     * @param array{items: array{price_id: string, quantity: int, metadata?: array<string, mixed>}[], address_uuid: string} $payload
+     * @param array{items: array{priceId: string, quantity: int, metadata?: array<string, mixed>}[], addressUuid: string, referenceNumber?: string} $payload
      *
      * @return array{payment_intent_client_secret: string}
      */

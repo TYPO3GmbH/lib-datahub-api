@@ -23,6 +23,7 @@ class SubscriptionFilterQuery
     /** @var array<int, string> */
     private array $subscriptionSubType = [];
     private bool $onlyActive = false;
+    private ?\DateTimeInterface $cancellationDeadline = null;
     private ?string $company = null;
     private ?string $user = null;
 
@@ -142,6 +143,18 @@ class SubscriptionFilterQuery
         return $this;
     }
 
+    public function getCancellationDeadline(): ?\DateTimeInterface
+    {
+        return $this->cancellationDeadline;
+    }
+
+    public function setCancellationDeadline(\DateTimeInterface $cancellationDeadline): SubscriptionFilterQuery
+    {
+        $this->cancellationDeadline = $cancellationDeadline;
+
+        return $this;
+    }
+
     public function getCompany(): ?string
     {
         return $this->company;
@@ -183,6 +196,9 @@ class SubscriptionFilterQuery
         }
         if (false !== $this->onlyActive) {
             $params['onlyActive'] = true;
+        }
+        if (null !== $this->cancellationDeadline) {
+            $params['cancellationDeadline'] = $this->cancellationDeadline->format(\DateTimeInterface::ATOM);
         }
         if (null !== $this->company) {
             $params['company'] = $this->company;

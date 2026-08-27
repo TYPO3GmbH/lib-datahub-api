@@ -18,6 +18,8 @@ class SubscriptionFilterQueryTest extends TestCase
 {
     public static function getQueryAsStringDataProvider(): array
     {
+        $now = new \DateTime();
+
         return [
             'subscriptionIdentifier' => [['subscriptionIdentifier' => 'foo'], 'subscriptionIdentifier=foo'],
             'subscriptionStatus' => [['subscriptionStatus' => ['foo']], 'subscriptionStatus%5B0%5D=foo'],
@@ -26,6 +28,7 @@ class SubscriptionFilterQueryTest extends TestCase
             'subscriptionStatus 2' => [['subscriptionStatus' => ['foo', 'bar']], 'subscriptionStatus%5B0%5D=foo&subscriptionStatus%5B1%5D=bar'],
             'subscriptionType 2' => [['subscriptionType' => ['foo', 'bar']], 'subscriptionType%5B0%5D=foo&subscriptionType%5B1%5D=bar'],
             'subscriptionSubType 2' => [['subscriptionSubType' => ['foo', 'bar']], 'subscriptionSubType%5B0%5D=foo&subscriptionSubType%5B1%5D=bar'],
+            'cancellationDeadline' => [['cancellationDeadline' => $now], sprintf('cancellationDeadline=%s', urlencode($now->format(\DateTimeInterface::ATOM)))],
             'company' => [['company' => '00000000-0000-0000-0000-000000000000'], 'company=00000000-0000-0000-0000-000000000000'],
             'user' => [['user' => 'oelie-boelie'], 'user=oelie-boelie'],
             'all' => [[
@@ -33,9 +36,22 @@ class SubscriptionFilterQueryTest extends TestCase
                 'subscriptionStatus' => ['foo2'],
                 'subscriptionType' => ['foo3'],
                 'subscriptionSubType' => ['foo4', 'foo5'],
+                'cancellationDeadline' => $now,
                 'company' => '00000000-0000-0000-0000-000000000000',
                 'user' => 'oelie-boelie',
-            ], 'subscriptionIdentifier=foo1&subscriptionStatus%5B0%5D=foo2&subscriptionType%5B0%5D=foo3&subscriptionSubType%5B0%5D=foo4&subscriptionSubType%5B1%5D=foo5&company=00000000-0000-0000-0000-000000000000&user=oelie-boelie'],
+            ],
+                sprintf(
+                    'subscriptionIdentifier=%s&subscriptionStatus%%5B0%%5D=%s&subscriptionType%%5B0%%5D=%s&subscriptionSubType%%5B0%%5D=%s&subscriptionSubType%%5B1%%5D=%s&cancellationDeadline=%s&company=%s&user=%s',
+                    'foo1',
+                    'foo2',
+                    'foo3',
+                    'foo4',
+                    'foo5',
+                    urlencode($now->format(\DateTimeInterface::ATOM)),
+                    '00000000-0000-0000-0000-000000000000',
+                    'oelie-boelie'
+                ),
+            ],
         ];
     }
 

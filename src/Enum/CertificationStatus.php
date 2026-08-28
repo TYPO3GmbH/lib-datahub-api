@@ -16,6 +16,8 @@ namespace T3G\DatahubApiLibrary\Enum;
 final class CertificationStatus extends AbstractEnum
 {
     public const UNKNOWN = 'UNKNOWN';
+    public const START_DATE_NOT_REACHED = 'START_DATE_NOT_REACHED';
+    public const END_DATE_EXPIRED = 'END_DATE_EXPIRED';
     public const PREPARATION_REQUIRED = 'PREPARATION_REQUIRED';
     public const READY = 'READY';
     public const SCHEDULED = 'SCHEDULED';
@@ -27,6 +29,8 @@ final class CertificationStatus extends AbstractEnum
     public const IN_PRINT = 'IN_PRINT';
     protected static array $optionNames = [
         self::UNKNOWN => 'Unknown',
+        self::START_DATE_NOT_REACHED => 'The exam cannot be started, yet',
+        self::END_DATE_EXPIRED => 'The exam is too old and thus is expired',
         self::PREPARATION_REQUIRED => 'Preparation required',
         self::READY => 'Ready for the student',
         self::SCHEDULED => 'The exam is scheduled',

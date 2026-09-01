@@ -77,6 +77,12 @@ class CertificationFactory extends AbstractFactory
         if (isset($data['finished'])) {
             $certification->setFinished($data['finished']);
         }
+        if (isset($data['examStartDate'])) {
+            $certification->setExamStartDate(new \DateTimeImmutable($data['examStartDate']));
+        }
+        if (isset($data['examEndDate'])) {
+            $certification->setExamEndDate(new \DateTimeImmutable($data['examEndDate']));
+        }
 
         return $certification;
     }

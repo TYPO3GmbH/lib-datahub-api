@@ -18,18 +18,14 @@ class MembershipApi extends AbstractApi
 {
     /**
      * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     *
+     * @return array{customerSessionClientSecret: string, currency: string, amount: int, products: array<mixed>}[]
+     *
+     * @deprecated Use CheckoutApi->createCheckoutSession() instead
      */
     public function setupPaymentIntent(RequestContext $requestContext, array $items): array
     {
-        $response = $this->client->request(
-            'POST',
-            self::uri('/membership/setup-payment-intent')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode([
-                'items' => $items,
-            ], JSON_THROW_ON_ERROR)
-        );
-
-        return JsonUtility::decode((string) $response->getBody());
+        return (new CheckoutApi($this->client))->createCheckoutSession($requestContext, 'membership', $items);
     }
 
     /**
@@ -58,20 +54,14 @@ class MembershipApi extends AbstractApi
 
     /**
      * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     *
+     * @return array{currency: string, items: array{display_name: string, recurring: array{interval_count: int, interval: string}, amount: int, net: int, gross: int, applied_tax_rates: int[], metadata: string}, taxes: array{display_name: string, rate: float, amount: int}[], total: array{net: int, gross: int}}
+     *
+     * @deprecated Use CheckoutApi->getPricingInformation() instead
      */
     public function getPricingInformation(RequestContext $requestContext, string $addressUuid, array $items): array
     {
-        $payload = [
-            'items' => $items,
-            'addressUuid' => $addressUuid,
-        ];
-        $response = $this->client->request(
-            'POST',
-            self::uri('/membership/pricing-information')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode($payload, JSON_THROW_ON_ERROR)
-        );
-
-        return JsonUtility::decode((string) $response->getBody());
+        return (new CheckoutApi($this->client))->getPricingInformation($requestContext, 'membership', $addressUuid, $items);
     }
 
     public function getSwitchInformation(RequestContext $requestContext, SwitchMembershipDto $upgradeMembershipDto): array
@@ -124,17 +114,12 @@ class MembershipApi extends AbstractApi
         return JsonUtility::decode((string) $response->getBody());
     }
 
+    /**
+     * @deprecated Use CheckoutApi->getBillingPortalSession() instead
+     */
     public function getBillingPortalSession(RequestContext $requestContext, string $returnUrl): array
     {
-        $response = $this->client->request(
-            'POST',
-            self::uri('/membership/billing-portal-session')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode([
-                'return_url' => $returnUrl,
-            ], JSON_THROW_ON_ERROR)
-        );
-
-        return JsonUtility::decode((string) $response->getBody());
+        return (new CheckoutApi($this->client))->getBillingPortalSession($requestContext, 'membership', $returnUrl);
     }
 
     public function getProductForMembership(RequestContext $requestContext, string $subscriptionUuid): array

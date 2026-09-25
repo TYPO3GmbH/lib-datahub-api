@@ -227,53 +227,35 @@ class EltsPlanApi extends AbstractApi
      * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
      *
      * @return array{customerSessionClientSecret: string, currency: string, amount: int}[]
+     *
+     * @deprecated Use CheckoutApi->createCheckoutSession() instead
      */
     public function createCheckoutSession(RequestContext $requestContext, array $items): array
     {
-        $response = $this->client->request(
-            'POST',
-            self::uri('/elts/checkout-session')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode([
-                'items' => $items,
-            ], JSON_THROW_ON_ERROR)
-        );
-
-        return JsonUtility::decode((string) $response->getBody());
+        return (new CheckoutApi($this->client))->createCheckoutSession($requestContext, 'elts', $items);
     }
 
     /**
      * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
      *
      * @return array{currency: string, items: array{display_name: string, recurring: array{interval_count: int, interval: string}, amount: int, net: int, gross: int, applied_tax_rates: int[], metadata: string}, taxes: array{display_name: string, rate: float, amount: int}[], total: array{net: int, gross: int}}
+     *
+     * @deprecated Use CheckoutApi->getPricingInformation() instead
      */
     public function getPricingInformation(RequestContext $requestContext, string $addressUuid, array $items): array
     {
-        $payload = [
-            'items' => $items,
-            'addressUuid' => $addressUuid,
-        ];
-        $response = $this->client->request(
-            'POST',
-            self::uri('/elts/pricing-information')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode($payload, JSON_THROW_ON_ERROR)
-        );
-
-        return JsonUtility::decode((string) $response->getBody());
+        return (new CheckoutApi($this->client))->getPricingInformation($requestContext, 'elts', $addressUuid, $items);
     }
 
     /**
      * @param array{items: array{priceId: string, quantity: int, metadata?: array<string, mixed>}[], addressUuid: string, referenceNumber?: string} $payload
      *
      * @return array{payment_intent_client_secret: string}
+     *
+     * @deprecated Use CheckoutApi->finalizeOrder() instead
      */
     public function finalizeOrder(RequestContext $requestContext, array $payload): array
     {
-        $response = $this->client->request(
-            'POST',
-            self::uri('/elts/finalize-order')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode($payload, JSON_THROW_ON_ERROR)
-        );
-
-        return JsonUtility::decode((string) $response->getBody());
+        return (new CheckoutApi($this->client))->finalizeOrder($requestContext, 'elts', $payload);
     }
 }

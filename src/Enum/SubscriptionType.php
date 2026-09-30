@@ -19,6 +19,7 @@ final class SubscriptionType extends AbstractEnum
     public const MEMBERSHIP = 'membership';
     public const PARTNER_PROGRAM = 'partner_program';
     public const PSL = 'psl';
+    public const SUITE = 'suite';
 
     /**
      * @var array<string, class-string>
@@ -28,12 +29,14 @@ final class SubscriptionType extends AbstractEnum
         self::MEMBERSHIP => MembershipType::class,
         self::PARTNER_PROGRAM => PartnerProgramType::class,
         self::PSL => PSLType::class,
+        self::SUITE => SuiteType::class,
     ];
     protected static array $optionNames = [
         self::CERTIFICATION => 'Certification Subscription',
         self::MEMBERSHIP => 'Membership',
         self::PARTNER_PROGRAM => 'Partner Program',
         self::PSL => 'Professional Service Listing',
+        self::SUITE => 'TYPO3 Suite',
     ];
 
     /**

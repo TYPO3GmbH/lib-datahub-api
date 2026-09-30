@@ -21,8 +21,9 @@ class EltsProductFactory extends AbstractFactory
     {
         $eltsProduct = (new EltsProduct())
             ->setVersion($data['version'])
-            ->setVendor($data['vendor'])
-            ->setRepository($data['repository'])
+            // Both are null if the version has no GitHub repository
+            ->setVendor(is_string($data['vendor'] ?? null) ? $data['vendor'] : null)
+            ->setRepository(is_string($data['repository'] ?? null) ? $data['repository'] : null)
             ->setServiceDesk($data['serviceDesk'])
         ;
 

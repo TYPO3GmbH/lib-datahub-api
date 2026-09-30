@@ -13,8 +13,8 @@ namespace T3G\DatahubApiLibrary\Entity;
 class EltsProduct
 {
     private string $version;
-    private string $vendor;
-    private string $repository;
+    private ?string $vendor = null;
+    private ?string $repository = null;
     private string $serviceDesk;
 
     /**
@@ -37,7 +37,7 @@ class EltsProduct
         return $this;
     }
 
-    public function getVendor(): string
+    public function getVendor(): ?string
     {
         return $this->vendor;
     }
@@ -45,14 +45,14 @@ class EltsProduct
     /**
      * @return $this
      */
-    public function setVendor(string $vendor): self
+    public function setVendor(?string $vendor): self
     {
         $this->vendor = $vendor;
 
         return $this;
     }
 
-    public function getRepository(): string
+    public function getRepository(): ?string
     {
         return $this->repository;
     }
@@ -60,7 +60,7 @@ class EltsProduct
     /**
      * @return $this
      */
-    public function setRepository(string $repository): self
+    public function setRepository(?string $repository): self
     {
         $this->repository = $repository;
 

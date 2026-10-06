@@ -11,9 +11,11 @@ declare(strict_types=1);
 namespace T3G\DatahubApiLibrary\Api;
 
 use Psr\Http\Client\ClientExceptionInterface;
+use T3G\DatahubApiLibrary\Entity\License;
 use T3G\DatahubApiLibrary\Entity\LicenseToken;
 use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Exception\InvalidUuidException;
+use T3G\DatahubApiLibrary\Factory\LicenseListFactory;
 use T3G\DatahubApiLibrary\Factory\LicenseTokenFactory;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 use T3G\DatahubApiLibrary\Validation\HandlesUuids;
@@ -21,6 +23,27 @@ use T3G\DatahubApiLibrary\Validation\HandlesUuids;
 class LicenseApi extends AbstractApi
 {
     use HandlesUuids;
+
+    /**
+     * Returns all licenses of the organization, including invalid and expired ones, newest first.
+     *
+     * @return License[]
+     *
+     * @throws ClientExceptionInterface
+     * @throws DatahubResponseException
+     * @throws InvalidUuidException
+     */
+    public function getLicensesForOrganization(string $organizationUuid): array
+    {
+        $this->isValidUuidOrThrow($organizationUuid);
+
+        return LicenseListFactory::fromResponseDataCollection(
+            $this->client->request(
+                'GET',
+                self::uri('/license/organization/' . $organizationUuid),
+            )
+        )->getData();
+    }
 
     /**
      * Issues a short-lived, signed license token for the current user, to be used for downloads.

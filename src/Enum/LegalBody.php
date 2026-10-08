@@ -13,16 +13,12 @@ namespace T3G\DatahubApiLibrary\Enum;
 /**
  * @codeCoverageIgnore No need to test this ...
  */
-final class CheckoutScope extends AbstractEnum
+final class LegalBody extends AbstractEnum
 {
-    public const ELTS = 'elts';
-    public const CERTIFICATION = 'certification';
-    public const MEMBERSHIP = 'membership';
-    public const SUITE = 'suite';
+    public const TYPO3_ASSOCIATION = 't3assoc';
+    public const TYPO3_COMPANY = 't3company';
     protected static array $optionNames = [
-        self::ELTS => 'ELTS',
-        self::CERTIFICATION => 'Certification',
-        self::MEMBERSHIP => 'Memberships',
-        self::SUITE => 'TYPO3 Suite',
+        self::TYPO3_ASSOCIATION => 'TYPO3 Association',
+        self::TYPO3_COMPANY => 'TYPO3 Company',
     ];
 }

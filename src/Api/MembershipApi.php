@@ -14,12 +14,18 @@ use T3G\DatahubApiLibrary\Dto\SwitchMembershipDto;
 use T3G\DatahubApiLibrary\Request\RequestContext;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
+/**
+ * @phpstan-import-type CheckoutItem from CheckoutApi
+ * @phpstan-import-type CheckoutSession from CheckoutApi
+ * @phpstan-import-type PricingInformation from CheckoutApi
+ * @phpstan-import-type FinalizedOrder from CheckoutApi
+ */
 class MembershipApi extends AbstractApi
 {
     /**
-     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param list<CheckoutItem> $items
      *
-     * @return array{customerSessionClientSecret: string, currency: string, amount: int, products: array<mixed>}[]
+     * @return CheckoutSession
      *
      * @deprecated Use CheckoutApi->createCheckoutSession() instead
      */
@@ -30,6 +36,8 @@ class MembershipApi extends AbstractApi
 
     /**
      * @param array{priceId: string, addressUuid: string, payByInvoice: bool} $payload
+     *
+     * @deprecated Use CheckoutApi->finalizeOrder() with scope "membership" instead
      */
     public function createMembership(RequestContext $requestContext, array $payload): array
     {
@@ -53,9 +61,9 @@ class MembershipApi extends AbstractApi
     }
 
     /**
-     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param list<CheckoutItem> $items
      *
-     * @return array{currency: string, items: array{display_name: string, recurring: array{interval_count: int, interval: string}, amount: int, net: int, gross: int, applied_tax_rates: int[], metadata: string}, taxes: array{display_name: string, rate: float, amount: int}[], total: array{net: int, gross: int}}
+     * @return PricingInformation
      *
      * @deprecated Use CheckoutApi->getPricingInformation() instead
      */

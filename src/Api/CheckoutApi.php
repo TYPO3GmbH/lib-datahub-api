@@ -10,73 +10,88 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Api;
 
+use T3G\DatahubApiLibrary\Dto\CheckoutPayloadDto;
 use T3G\DatahubApiLibrary\Request\RequestContext;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
+/**
+ * The generic checkout for every kind of goods sold via Stripe. The scope (see CheckoutScope) determines the seller and
+ * which prices may be purchased, the prices determine whether goods are billed once or as a subscription.
+ *
+ * @phpstan-type CheckoutItem array{priceId: string, quantity: int, metadata?: array<string, mixed>}
+ * @phpstan-type CheckoutSession array{customerSessionClientSecret: string, legalBody: string, mode: 'payment'|'subscription', currency: string, amount: int, products: array<mixed>}
+ * @phpstan-type PricingInformation array{currency: string, items: list<array{display_name: string, recurring: array<string, mixed>, amount: int, net: int, gross: int, applied_tax_rates: array<int|float>, metadata?: array<string, mixed>}>, taxes: list<array{display_name: string, rate: float|int|string, amount: float|int}>, total: array{net: int, gross: int}}
+ * @phpstan-type FinalizedOrder array{orderNumber: string|null, intent: array{type: 'payment'|'setup', clientSecret: string}|null, hostedInvoiceUrl: string|null, payment_intent_client_secret: string|null, hosted_invoice_url: string|null}
+ */
 class CheckoutApi extends AbstractApi
 {
     /**
-     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param CheckoutPayloadDto|list<CheckoutItem> $payload passing the items only is deprecated
      *
-     * @return array{customerSessionClientSecret: string, currency: string, amount: int, products: array<mixed>}[]
+     * @return CheckoutSession
      */
-    public function createCheckoutSession(RequestContext $requestContext, string $scope, array $items): array
+    public function createCheckoutSession(RequestContext $requestContext, string $scope, CheckoutPayloadDto|array $payload): array
     {
-        $response = $this->client->request(
-            'POST',
-            self::uri('/checkout/' . $scope . '/checkout-session')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode([
-                'items' => $items,
-            ], JSON_THROW_ON_ERROR)
-        );
+        /** @var CheckoutSession $response */
+        $response = $this->post($requestContext, $scope, 'checkout-session', $payload instanceof CheckoutPayloadDto ? $payload : ['items' => $payload]);
 
-        return JsonUtility::decode((string) $response->getBody());
+        return $response;
     }
 
     /**
-     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param CheckoutPayloadDto|string|null $payload passing the address uuid and the items separately is deprecated
+     * @param list<CheckoutItem>             $items
      *
-     * @return array{currency: string, items: array{display_name: string, recurring: array{interval_count: int, interval: string}, amount: int, net: int, gross: int, applied_tax_rates: int[], metadata: string}, taxes: array{display_name: string, rate: float, amount: int}[], total: array{net: int, gross: int}}
+     * @return PricingInformation
      */
-    public function getPricingInformation(RequestContext $requestContext, string $scope, string $addressUuid, array $items): array
+    public function getPricingInformation(RequestContext $requestContext, string $scope, CheckoutPayloadDto|string|null $payload, array $items = []): array
     {
-        $payload = [
+        /** @var PricingInformation $response */
+        $response = $this->post($requestContext, $scope, 'pricing-information', $payload instanceof CheckoutPayloadDto ? $payload : [
             'items' => $items,
-            'addressUuid' => $addressUuid,
-        ];
-        $response = $this->client->request(
-            'POST',
-            self::uri('/checkout/' . $scope . '/pricing-information')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode($payload, JSON_THROW_ON_ERROR)
-        );
+            'addressUuid' => $payload,
+        ]);
 
-        return JsonUtility::decode((string) $response->getBody());
+        return $response;
     }
 
     /**
-     * @param array{items: array{priceId: string, quantity: int, metadata?: array<string, mixed>}[], addressUuid: string, referenceNumber?: string} $payload
+     * Places the order. Unless paying by invoice, the returned intent has to be confirmed with the payment element:
+     * a "payment" intent with stripe.confirmPayment(), a "setup" intent with stripe.confirmSetup().
      *
-     * @return array{payment_intent_client_secret: string}
+     * @param CheckoutPayloadDto|array{items: list<CheckoutItem>, addressUuid: string, referenceNumber?: string|null, payByInvoice?: bool} $payload
+     *
+     * @return FinalizedOrder
      */
-    public function finalizeOrder(RequestContext $requestContext, string $scope, array $payload): array
+    public function finalizeOrder(RequestContext $requestContext, string $scope, CheckoutPayloadDto|array $payload): array
     {
-        $response = $this->client->request(
-            'POST',
-            self::uri('/checkout/' . $scope . '/finalize-order')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode($payload, JSON_THROW_ON_ERROR)
-        );
+        /** @var FinalizedOrder $response */
+        $response = $this->post($requestContext, $scope, 'finalize-order', $payload);
 
-        return JsonUtility::decode((string) $response->getBody());
+        return $response;
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getBillingPortalSession(RequestContext $requestContext, string $scope, string $returnUrl): array
     {
+        return $this->post($requestContext, $scope, 'billing-portal-session', [
+            'return_url' => $returnUrl,
+        ]);
+    }
+
+    /**
+     * @param CheckoutPayloadDto|array<string, mixed> $payload
+     *
+     * @return array<mixed>
+     */
+    private function post(RequestContext $requestContext, string $scope, string $action, CheckoutPayloadDto|array $payload): array
+    {
         $response = $this->client->request(
             'POST',
-            self::uri('/checkout/' . $scope . '/billing-portal-session')->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
-            json_encode([
-                'return_url' => $returnUrl,
-            ], JSON_THROW_ON_ERROR)
+            self::uri('/checkout/' . $scope . '/' . $action)->withQuery(http_build_query($requestContext->toArray(), encoding_type: PHP_QUERY_RFC3986)),
+            json_encode($payload, JSON_THROW_ON_ERROR)
         );
 
         return JsonUtility::decode((string) $response->getBody());

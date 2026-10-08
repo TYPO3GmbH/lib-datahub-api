@@ -19,12 +19,18 @@ use T3G\DatahubApiLibrary\Factory\CertificationListFactory;
 use T3G\DatahubApiLibrary\Request\RequestContext;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
+/**
+ * @phpstan-import-type CheckoutItem from CheckoutApi
+ * @phpstan-import-type CheckoutSession from CheckoutApi
+ * @phpstan-import-type PricingInformation from CheckoutApi
+ * @phpstan-import-type FinalizedOrder from CheckoutApi
+ */
 class CertificationApi extends AbstractApi
 {
     /**
-     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param list<CheckoutItem> $items
      *
-     * @return array{customerSessionClientSecret: string, currency: string, amount: int, products: array<mixed>}[]
+     * @return CheckoutSession
      *
      * @deprecated Use CheckoutApi->createCheckoutSession() instead
      */
@@ -34,9 +40,9 @@ class CertificationApi extends AbstractApi
     }
 
     /**
-     * @param array{priceId: string, quantity: int, metadata?: array<string, mixed>}[] $items
+     * @param list<CheckoutItem> $items
      *
-     * @return array{currency: string, items: array{display_name: string, recurring: array{interval_count: int, interval: string}, amount: int, net: int, gross: int, applied_tax_rates: int[], metadata: string}, taxes: array{display_name: string, rate: float, amount: int}[], total: array{net: int, gross: int}}
+     * @return PricingInformation
      *
      * @deprecated Use CheckoutApi->getPricingInformation() instead
      */
@@ -46,9 +52,9 @@ class CertificationApi extends AbstractApi
     }
 
     /**
-     * @param array{items: array{priceId: string, quantity: int, metadata?: array<string, mixed>}[], addressUuid: string, referenceNumber?: string} $payload
+     * @param array{items: list<CheckoutItem>, addressUuid: string, referenceNumber?: string|null} $payload
      *
-     * @return array{payment_intent_client_secret: string}
+     * @return FinalizedOrder
      *
      * @deprecated Use CheckoutApi->finalizeOrder() instead
      */

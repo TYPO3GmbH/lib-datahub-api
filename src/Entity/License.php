@@ -19,6 +19,10 @@ class License implements \JsonSerializable
     private \DateTimeInterface $validUntil;
     private ?string $history = null;
     private ?string $currentJti = null;
+    private ?string $subscriptionUuid = null;
+    private ?string $eltsPlanUuid = null;
+    private ?string $eltsRuntimeUuid = null;
+    private ?string $eltsVersion = null;
 
     /**
      * @return array<string, mixed>
@@ -113,6 +117,54 @@ class License implements \JsonSerializable
     public function setCurrentJti(?string $currentJti): self
     {
         $this->currentJti = $currentJti;
+
+        return $this;
+    }
+
+    public function getSubscriptionUuid(): ?string
+    {
+        return $this->subscriptionUuid;
+    }
+
+    public function setSubscriptionUuid(?string $subscriptionUuid): self
+    {
+        $this->subscriptionUuid = $subscriptionUuid;
+
+        return $this;
+    }
+
+    public function getEltsPlanUuid(): ?string
+    {
+        return $this->eltsPlanUuid;
+    }
+
+    public function setEltsPlanUuid(?string $eltsPlanUuid): self
+    {
+        $this->eltsPlanUuid = $eltsPlanUuid;
+
+        return $this;
+    }
+
+    public function getEltsRuntimeUuid(): ?string
+    {
+        return $this->eltsRuntimeUuid;
+    }
+
+    public function setEltsRuntimeUuid(?string $eltsRuntimeUuid): self
+    {
+        $this->eltsRuntimeUuid = $eltsRuntimeUuid;
+
+        return $this;
+    }
+
+    public function getEltsVersion(): ?string
+    {
+        return $this->eltsVersion;
+    }
+
+    public function setEltsVersion(?string $eltsVersion): self
+    {
+        $this->eltsVersion = $eltsVersion;
 
         return $this;
     }

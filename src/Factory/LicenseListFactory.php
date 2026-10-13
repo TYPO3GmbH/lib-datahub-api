@@ -21,14 +21,14 @@ class LicenseListFactory extends AbstractFactory
 {
     public static function fromResponseDataCollection(ResponseInterface $response): LicenseList
     {
-        /** @var list<array{uuid: string, type: string, status: string, createdAt: string, validUntil: string, history: string|null, currentJti: string|null}> $entities */
+        /** @var list<array{uuid: string, type: string, status: string, createdAt: string, validUntil: string, history: string|null, currentJti: string|null, subscriptionUuid: string|null, eltsPlanUuid: string|null, eltsRuntimeUuid: string|null, eltsVersion: string|null}> $entities */
         $entities = self::responseToArray($response)['entities'];
 
         return new LicenseList(array_map(self::fromArray(...), $entities));
     }
 
     /**
-     * @param array{uuid: string, type: string, status: string, createdAt: string, validUntil: string, history: string|null, currentJti: string|null} $data
+     * @param array{uuid: string, type: string, status: string, createdAt: string, validUntil: string, history: string|null, currentJti: string|null, subscriptionUuid: string|null, eltsPlanUuid: string|null, eltsRuntimeUuid: string|null, eltsVersion: string|null} $data
      */
     public static function fromArray(array $data): License
     {

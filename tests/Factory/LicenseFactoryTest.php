@@ -23,13 +23,17 @@ class LicenseFactoryTest extends TestCase
     {
         $entity = LicenseFactory::fromArray($data);
 
-        self::assertEquals($data['uuid'], $entity->getUuid());
-        self::assertEquals($data['type'], $entity->getType());
-        self::assertEquals($data['history'] ?? null, $entity->getHistory());
-        self::assertEquals($data['status'], $entity->getStatus());
-        self::assertEquals($data['createdAt'], $entity->getCreatedAt()->format(\DateTimeInterface::ATOM));
-        self::assertEquals($data['validUntil'], $entity->getValidUntil()->format(\DateTimeInterface::ATOM));
-        self::assertEquals($data['currentJti'], $entity->getCurrentJti());
+        self::assertSame($data['uuid'], $entity->getUuid());
+        self::assertSame($data['type'], $entity->getType());
+        self::assertSame($data['history'], $entity->getHistory());
+        self::assertSame($data['status'], $entity->getStatus());
+        self::assertSame($data['createdAt'], $entity->getCreatedAt()->format(\DateTimeInterface::ATOM));
+        self::assertSame($data['validUntil'], $entity->getValidUntil()->format(\DateTimeInterface::ATOM));
+        self::assertSame($data['currentJti'], $entity->getCurrentJti());
+        self::assertSame($data['subscriptionUuid'], $entity->getSubscriptionUuid());
+        self::assertSame($data['eltsPlanUuid'], $entity->getEltsPlanUuid());
+        self::assertSame($data['eltsRuntimeUuid'], $entity->getEltsRuntimeUuid());
+        self::assertSame($data['eltsVersion'], $entity->getEltsVersion());
     }
 
     public static function factoryDataProvider(): array
@@ -44,6 +48,40 @@ class LicenseFactoryTest extends TestCase
                     'createdAt' => '2026-09-21T12:53:29+00:00',
                     'validUntil' => '2029-09-21T23:59:59+00:00',
                     'currentJti' => 'e67609e7-f9a5-4645-96bf-d32c6c30089d',
+                    'subscriptionUuid' => null,
+                    'eltsPlanUuid' => null,
+                    'eltsRuntimeUuid' => null,
+                    'eltsVersion' => null,
+                ],
+            ],
+            'granted for a subscription' => [
+                'data' => [
+                    'uuid' => '0d5f5d8e-4f8c-4c0f-9d8e-2a7b6a3c1e01',
+                    'type' => LicenseProduct::SUITE,
+                    'history' => null,
+                    'status' => LicenseStatus::VALID,
+                    'createdAt' => '2026-09-21T12:53:29+00:00',
+                    'validUntil' => '2027-09-21T12:53:29+00:00',
+                    'currentJti' => null,
+                    'subscriptionUuid' => '5a1d3c8e-6b2f-4e7a-9c0d-1f2e3a4b5c6d',
+                    'eltsPlanUuid' => null,
+                    'eltsRuntimeUuid' => null,
+                    'eltsVersion' => null,
+                ],
+            ],
+            'granted for an ELTS runtime' => [
+                'data' => [
+                    'uuid' => '9e8d7c6b-5a4f-4e3d-8c2b-1a0f9e8d7c6b',
+                    'type' => LicenseProduct::ELTS,
+                    'history' => null,
+                    'status' => LicenseStatus::VALID,
+                    'createdAt' => '2026-09-21T12:53:29+00:00',
+                    'validUntil' => '2029-09-21T23:59:59+00:00',
+                    'currentJti' => null,
+                    'subscriptionUuid' => null,
+                    'eltsPlanUuid' => '3b2a1f0e-9d8c-4b7a-8f6e-5d4c3b2a1f0e',
+                    'eltsRuntimeUuid' => '7c6b5a4f-3e2d-4c1b-9a0f-8e7d6c5b4a3f',
+                    'eltsVersion' => '13.4',
                 ],
             ],
             'history is null' => [
@@ -55,6 +93,10 @@ class LicenseFactoryTest extends TestCase
                     'createdAt' => '2026-09-21T12:53:29+00:00',
                     'validUntil' => '2029-09-21T23:59:59+00:00',
                     'currentJti' => 'b79ed6f2-3f6f-4032-9c01-1bd7855b3709',
+                    'subscriptionUuid' => null,
+                    'eltsPlanUuid' => null,
+                    'eltsRuntimeUuid' => null,
+                    'eltsVersion' => null,
                 ],
             ],
             'currentJti is null' => [
@@ -66,6 +108,10 @@ class LicenseFactoryTest extends TestCase
                     'createdAt' => '2026-09-21T12:53:29+00:00',
                     'validUntil' => '2029-09-21T23:59:59+00:00',
                     'currentJti' => null,
+                    'subscriptionUuid' => null,
+                    'eltsPlanUuid' => null,
+                    'eltsRuntimeUuid' => null,
+                    'eltsVersion' => null,
                 ],
             ],
         ];

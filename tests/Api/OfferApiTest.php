@@ -87,7 +87,7 @@ class OfferApiTest extends AbstractApiTestCase
         $response = (new OfferApi($this->getClient($handler)))->getOffer('dd1183cd-b4d1-402e-a50b-17cc0c72acd9');
         self::assertSame('dd1183cd-b4d1-402e-a50b-17cc0c72acd9', $response->getUuid());
         self::assertSame('2021-04-12T11:16:12+00:00', $response->getCreatedAt()->format(\DateTimeInterface::ATOM));
-        self::assertSame('2021-05-11T23:59:59+00:00', $response->getValidUntil()->format(\DateTimeInterface::ATOM));
+        self::assertSame('2021-05-11T00:00:00+00:00', $response->getValidUntil()->format(\DateTimeInterface::ATOM));
         self::assertSame([], $response->getPayload());
         self::assertSame('TO-1234', $response->getOfferNumber());
         self::assertSame('any-identifier', $response->getCartIdentifier());

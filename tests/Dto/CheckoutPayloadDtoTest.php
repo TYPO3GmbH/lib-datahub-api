@@ -23,6 +23,7 @@ class CheckoutPayloadDtoTest extends TestCase
             'addressUuid' => 'address-uuid',
             'referenceNumber' => 'PO-42',
             'payByInvoice' => true,
+            'offerUuid' => 'offer-uuid',
         ];
 
         self::assertSame($data, CheckoutPayloadDto::fromArray($data)->toArray());
@@ -30,13 +31,13 @@ class CheckoutPayloadDtoTest extends TestCase
 
     public function testDefaults(): void
     {
-        $payload = CheckoutPayloadDto::fromArray(['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'addressUuid' => '']);
+        $payload = CheckoutPayloadDto::fromArray(['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'addressUuid' => '', 'offerUuid' => '']);
 
         self::assertSame([], $payload->items[0]->metadata);
         self::assertNull($payload->addressUuid);
         self::assertNull($payload->referenceNumber);
         self::assertFalse($payload->payByInvoice);
-        self::assertSame('address-uuid', $payload->withAddressUuid('address-uuid')->addressUuid);
+        self::assertNull($payload->offerUuid);
     }
 
     public static function invalidPayloadDataProvider(): \Iterator
@@ -50,6 +51,7 @@ class CheckoutPayloadDtoTest extends TestCase
         yield 'metadata is no array' => [['items' => [['priceId' => 'price_1', 'quantity' => 1, 'metadata' => 'foo']]]];
         yield 'address is no string' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'addressUuid' => 1]];
         yield 'pay by invoice is no boolean' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'payByInvoice' => 'yes']];
+        yield 'offer is no string' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'offerUuid' => 42]];
     }
 
     /**

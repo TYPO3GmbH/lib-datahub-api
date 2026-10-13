@@ -23,6 +23,7 @@ class Offer
     private string $offerNumber;
     private string $cartIdentifier;
     private float $total;
+    private ?string $scope = null;
     private ?User $user = null;
     private ?Company $company = null;
 
@@ -129,6 +130,22 @@ class Offer
     public function setTotal(float $total): self
     {
         $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * The checkout scope the offered goods are purchased in, see CheckoutScope. Only set for offers of type
+     * OfferPayloadType::STRIPE.
+     */
+    public function getScope(): ?string
+    {
+        return $this->scope;
+    }
+
+    public function setScope(?string $scope): self
+    {
+        $this->scope = $scope;
 
         return $this;
     }

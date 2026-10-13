@@ -30,6 +30,7 @@ class OfferFactory extends AbstractFactory
             ->setOfferNumber($data['offerNumber'])
             ->setCartIdentifier($data['cartIdentifier'])
             ->setTotal($data['total'])
+            ->setScope(is_string($data['scope'] ?? null) ? $data['scope'] : null)
             ->setUser($user)
             ->setCompany($company);
     }

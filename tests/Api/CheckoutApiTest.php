@@ -38,7 +38,7 @@ class CheckoutApiTest extends AbstractApiTestCase
         self::assertSame('/api/checkout/elts/checkout-session', $request->getUri()->getPath());
         self::assertStringContainsString('context%5Btype%5D=organization', $request->getUri()->getQuery());
         self::assertSame(
-            ['items' => [['priceId' => 'price_1', 'quantity' => 2, 'metadata' => ['version' => '9.5']]], 'addressUuid' => null, 'referenceNumber' => null, 'payByInvoice' => false],
+            ['items' => [['priceId' => 'price_1', 'quantity' => 2, 'metadata' => ['version' => '9.5']]], 'addressUuid' => null, 'referenceNumber' => null, 'payByInvoice' => false, 'offerUuid' => null],
             json_decode((string) $request->getBody(), true, 512, JSON_THROW_ON_ERROR)
         );
     }

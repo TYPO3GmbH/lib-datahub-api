@@ -18,4 +18,9 @@ class CreateOfferDto extends AbstractDto
     public array $payload = [];
     public string $offerNumber = '';
     public string $cartIdentifier = '';
+
+    /**
+     * The checkout scope of the offered goods, required for offers of type OfferPayloadType::STRIPE, see CheckoutScope.
+     */
+    public ?string $scope = null;
 }

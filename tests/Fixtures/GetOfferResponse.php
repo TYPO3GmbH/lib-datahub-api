@@ -17,7 +17,7 @@ return new Response(200, ['content-type' => 'application/json'], '
     "payload": [],
     "offerNumber": "TO-1234",
     "cartIdentifier": "any-identifier",
-    "validUntil": "2021-05-11T23:59:59+00:00",
+    "validUntil": "2021-05-11T00:00:00+00:00",
     "total": 4284.0
 }
 

@@ -23,6 +23,7 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
         public ?string $addressUuid = null,
         public ?string $referenceNumber = null,
         public bool $payByInvoice = false,
+        public ?string $offerUuid = null,
     ) {
     }
 
@@ -43,6 +44,9 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
         if (isset($data['payByInvoice']) && !is_bool($data['payByInvoice'])) {
             throw new \InvalidArgumentException('Attribute "payByInvoice" must be a boolean.', 1791266014);
         }
+        if (isset($data['offerUuid']) && !is_string($data['offerUuid'])) {
+            throw new \InvalidArgumentException('Attribute "offerUuid" must be a string.', 1791266016);
+        }
 
         $items = [];
         foreach ($data['items'] as $item) {
@@ -53,22 +57,19 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
         }
 
         $addressUuid = $data['addressUuid'] ?? null;
+        $offerUuid = $data['offerUuid'] ?? null;
 
         return new self(
             $items,
             is_string($addressUuid) && '' !== $addressUuid ? $addressUuid : null,
             $data['referenceNumber'] ?? null,
             $data['payByInvoice'] ?? false,
+            is_string($offerUuid) && '' !== $offerUuid ? $offerUuid : null,
         );
     }
 
-    public function withAddressUuid(?string $addressUuid): self
-    {
-        return new self($this->items, $addressUuid, $this->referenceNumber, $this->payByInvoice);
-    }
-
     /**
-     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool}
+     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null}
      */
     public function toArray(): array
     {
@@ -77,11 +78,12 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
             'addressUuid' => $this->addressUuid,
             'referenceNumber' => $this->referenceNumber,
             'payByInvoice' => $this->payByInvoice,
+            'offerUuid' => $this->offerUuid,
         ];
     }
 
     /**
-     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool}
+     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null}
      */
     public function jsonSerialize(): array
     {

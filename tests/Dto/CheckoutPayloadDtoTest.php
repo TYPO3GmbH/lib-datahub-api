@@ -24,6 +24,7 @@ class CheckoutPayloadDtoTest extends TestCase
             'referenceNumber' => 'PO-42',
             'payByInvoice' => true,
             'offerUuid' => 'offer-uuid',
+            'legalBody' => 't3assoc',
         ];
 
         self::assertSame($data, CheckoutPayloadDto::fromArray($data)->toArray());
@@ -38,6 +39,7 @@ class CheckoutPayloadDtoTest extends TestCase
         self::assertNull($payload->referenceNumber);
         self::assertFalse($payload->payByInvoice);
         self::assertNull($payload->offerUuid);
+        self::assertNull($payload->legalBody);
     }
 
     public static function invalidPayloadDataProvider(): \Iterator
@@ -52,6 +54,8 @@ class CheckoutPayloadDtoTest extends TestCase
         yield 'address is no string' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'addressUuid' => 1]];
         yield 'pay by invoice is no boolean' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'payByInvoice' => 'yes']];
         yield 'offer is no string' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'offerUuid' => 42]];
+        yield 'unknown legal body' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'legalBody' => 'acme']];
+        yield 'legal body is no string' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'legalBody' => 1]];
     }
 
     /**

@@ -18,6 +18,8 @@ use Psr\Http\Message\RequestInterface;
 use T3G\DatahubApiLibrary\Api\CheckoutApi;
 use T3G\DatahubApiLibrary\Dto\CheckoutItemDto;
 use T3G\DatahubApiLibrary\Dto\CheckoutPayloadDto;
+use T3G\DatahubApiLibrary\Enum\CheckoutScope;
+use T3G\DatahubApiLibrary\Enum\LegalBody;
 use T3G\DatahubApiLibrary\Request\RequestContext;
 
 class CheckoutApiTest extends AbstractApiTestCase
@@ -38,7 +40,7 @@ class CheckoutApiTest extends AbstractApiTestCase
         self::assertSame('/api/checkout/elts/checkout-session', $request->getUri()->getPath());
         self::assertStringContainsString('context%5Btype%5D=organization', $request->getUri()->getQuery());
         self::assertSame(
-            ['items' => [['priceId' => 'price_1', 'quantity' => 2, 'metadata' => ['version' => '9.5']]], 'addressUuid' => null, 'referenceNumber' => null, 'payByInvoice' => false, 'offerUuid' => null],
+            ['items' => [['priceId' => 'price_1', 'quantity' => 2, 'metadata' => ['version' => '9.5']]], 'addressUuid' => null, 'referenceNumber' => null, 'payByInvoice' => false, 'offerUuid' => null, 'legalBody' => null],
             json_decode((string) $request->getBody(), true, 512, JSON_THROW_ON_ERROR)
         );
     }
@@ -48,6 +50,15 @@ class CheckoutApiTest extends AbstractApiTestCase
         $this->createApi([])->createCheckoutSession(RequestContext::fromCombinedIdentifier('user:max.muster'), 'certification', [['priceId' => 'price_1', 'quantity' => 1]]);
 
         self::assertSame(['items' => [['priceId' => 'price_1', 'quantity' => 1]]], json_decode((string) $this->history[0]['request']->getBody(), true, 512, JSON_THROW_ON_ERROR));
+    }
+
+    public function testCreateCheckoutSessionSendsLegalBody(): void
+    {
+        $this->createApi([])->createCheckoutSession(RequestContext::fromCombinedIdentifier('user:max.muster'), CheckoutScope::SIMPLE_PRODUCT, new CheckoutPayloadDto([new CheckoutItemDto('price_1')], legalBody: LegalBody::TYPO3_ASSOCIATION));
+
+        $request = $this->history[0]['request'];
+        self::assertSame('/api/checkout/simple_product/checkout-session', $request->getUri()->getPath());
+        self::assertSame(LegalBody::TYPO3_ASSOCIATION, json_decode((string) $request->getBody(), true, 512, JSON_THROW_ON_ERROR)['legalBody']);
     }
 
     public function testGetPricingInformationSendsPayload(): void

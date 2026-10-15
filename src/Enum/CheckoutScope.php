@@ -19,10 +19,12 @@ final class CheckoutScope extends AbstractEnum
     public const CERTIFICATION = 'certification';
     public const MEMBERSHIP = 'membership';
     public const SUITE = 'suite';
+    public const SIMPLE_PRODUCT = 'simple_product';
     protected static array $optionNames = [
         self::ELTS => 'ELTS',
         self::CERTIFICATION => 'Certification',
         self::MEMBERSHIP => 'Memberships',
         self::SUITE => 'TYPO3 Suite',
+        self::SIMPLE_PRODUCT => 'Simple Product',
     ];
 }

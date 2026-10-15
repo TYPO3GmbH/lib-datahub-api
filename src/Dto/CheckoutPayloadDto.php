@@ -10,8 +10,11 @@ declare(strict_types=1);
 
 namespace T3G\DatahubApiLibrary\Dto;
 
+use T3G\DatahubApiLibrary\Enum\LegalBody;
+
 /**
- * The cart of a checkout. All items belong to the same checkout scope, see CheckoutScope.
+ * The cart of a checkout. All items belong to the same checkout scope, see CheckoutScope, and are sold by the same
+ * legal body. The legal body is only required for scopes sold by more than one legal body, see LegalBody.
  */
 final readonly class CheckoutPayloadDto implements \JsonSerializable
 {
@@ -24,6 +27,7 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
         public ?string $referenceNumber = null,
         public bool $payByInvoice = false,
         public ?string $offerUuid = null,
+        public ?string $legalBody = null,
     ) {
     }
 
@@ -47,6 +51,9 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
         if (isset($data['offerUuid']) && !is_string($data['offerUuid'])) {
             throw new \InvalidArgumentException('Attribute "offerUuid" must be a string.', 1791266016);
         }
+        if (isset($data['legalBody']) && (!is_string($data['legalBody']) || !LegalBody::isOption($data['legalBody']))) {
+            throw new \InvalidArgumentException('Attribute "legalBody" must be one of ' . implode(', ', LegalBody::getAvailableOptions()) . '.', 1791266017);
+        }
 
         $items = [];
         foreach ($data['items'] as $item) {
@@ -65,11 +72,12 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
             $data['referenceNumber'] ?? null,
             $data['payByInvoice'] ?? false,
             is_string($offerUuid) && '' !== $offerUuid ? $offerUuid : null,
+            $data['legalBody'] ?? null,
         );
     }
 
     /**
-     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null}
+     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null, legalBody: string|null}
      */
     public function toArray(): array
     {
@@ -79,11 +87,12 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
             'referenceNumber' => $this->referenceNumber,
             'payByInvoice' => $this->payByInvoice,
             'offerUuid' => $this->offerUuid,
+            'legalBody' => $this->legalBody,
         ];
     }
 
     /**
-     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null}
+     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null, legalBody: string|null}
      */
     public function jsonSerialize(): array
     {

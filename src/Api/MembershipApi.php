@@ -50,6 +50,9 @@ class MembershipApi extends AbstractApi
         return JsonUtility::decode((string) $response->getBody());
     }
 
+    /**
+     * @deprecated Use ProductCatalogApi->getProducts() with scope "membership" instead, eligibility is applied and the comparison is passed in the `comparison` attribute
+     */
     public function getEligibleMemberships(RequestContext $requestContext): array
     {
         $response = $this->client->request(
@@ -102,6 +105,9 @@ class MembershipApi extends AbstractApi
         return JsonUtility::decode((string) $response->getBody());
     }
 
+    /**
+     * @deprecated Use ProductCatalogApi->getProducts() with scope "membership" instead, upgrades have the `comparison` attribute "upgrade"
+     */
     public function getUpgrades(RequestContext $requestContext): array
     {
         $response = $this->client->request(
@@ -112,6 +118,9 @@ class MembershipApi extends AbstractApi
         return JsonUtility::decode((string) $response->getBody());
     }
 
+    /**
+     * @deprecated Use ProductCatalogApi->getProducts() with scope "membership" instead, downgrades have the `comparison` attribute "downgrade"
+     */
     public function getDowngrades(RequestContext $requestContext): array
     {
         $response = $this->client->request(

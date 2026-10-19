@@ -63,6 +63,9 @@ class CertificationApi extends AbstractApi
         return (new CheckoutApi($this->client))->finalizeOrder($requestContext, 'certification', $payload);
     }
 
+    /**
+     * @deprecated Use ProductCatalogApi->getProducts() with scope "certification" instead
+     */
     public function getProducts(RequestContext $requestContext): array
     {
         $response = $this->client->request(

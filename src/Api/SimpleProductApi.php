@@ -15,6 +15,9 @@ use T3G\DatahubApiLibrary\Exception\DatahubResponseException;
 use T3G\DatahubApiLibrary\Request\RequestContext;
 use T3G\DatahubApiLibrary\Utility\JsonUtility;
 
+/**
+ * @deprecated Use ProductCatalogApi with scope "\T3G\DatahubApiLibrary\Enum\CheckoutScope::SIMPLE_PRODUCT" instead
+ */
 class SimpleProductApi extends AbstractApi
 {
     /**
@@ -23,6 +26,8 @@ class SimpleProductApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
+     *
+     * @deprecated Use ProductCatalogApi->getProducts() with scope "\T3G\DatahubApiLibrary\Enum\CheckoutScope::SIMPLE_PRODUCT" instead
      */
     public function getProductsForCheckout(RequestContext $requestContext): array
     {
@@ -42,6 +47,8 @@ class SimpleProductApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
+     *
+     * @deprecated Use ProductCatalogApi->getProduct() with scope "\T3G\DatahubApiLibrary\Enum\CheckoutScope::SIMPLE_PRODUCT" instead
      */
     public function getProductForCheckout(RequestContext $requestContext, string $legalBody, string $identifier): array
     {

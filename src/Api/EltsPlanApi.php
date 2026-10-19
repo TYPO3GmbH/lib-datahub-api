@@ -174,6 +174,8 @@ class EltsPlanApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @throws DatahubResponseException
      * @throws \JsonException
+     *
+     * @deprecated Use ProductCatalogApi->getProducts() with scope "elts" and the request context of the purchaser instead, the data is passed in the attributes
      */
     public function getBuyableProducts(string $username, ?string $uuid = null): array
     {

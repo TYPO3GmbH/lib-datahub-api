@@ -40,6 +40,9 @@ class CompanyFactory extends AbstractFactory
             ->setInvoiceAllowed($data['invoiceAllowed'] ?? false)
             ->setStatus($data['status']);
 
+        if (is_array($data['status']) && true === ($data['status']['blockedFromPurchase'] ?? false)) {
+            $company->setBlockedFromPurchase(true);
+        }
         if (isset($data['offeredServices'])) {
             $company->setOfferedServices($data['offeredServices']);
         }

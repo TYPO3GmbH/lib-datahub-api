@@ -33,4 +33,5 @@ class UpdateCompanyDto extends AbstractDto
     public ?string $vatId = null;
     public ?string $domain = null;
     public bool $invoiceAllowed = false;
+    public bool $blockedFromPurchase = false;
 }

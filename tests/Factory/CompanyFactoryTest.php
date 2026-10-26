@@ -80,6 +80,7 @@ class CompanyFactoryTest extends TestCase
             }
         }
         self::assertSame($data['status'], $entity->getStatus());
+        self::assertSame($data['status']['blockedFromPurchase'] ?? false, $entity->isBlockedFromPurchase());
     }
 
     public static function factoryDataProvider(): array
@@ -182,6 +183,7 @@ class CompanyFactoryTest extends TestCase
                         'isFoundingPartner' => false,
                         'membership' => MembershipType::PLATINUM,
                         'partnerType' => PartnerProgramType::NONE,
+                        'blockedFromPurchase' => true,
                     ],
                 ],
             ],

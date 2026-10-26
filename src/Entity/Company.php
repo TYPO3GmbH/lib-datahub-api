@@ -29,6 +29,7 @@ class Company implements \JsonSerializable
     private ?string $country = null;
     private bool $foundingPartner = false;
     private bool $invoiceAllowed = false;
+    private bool $blockedFromPurchase = false;
 
     /**
      * @var list<CompanyService::*>
@@ -758,6 +759,21 @@ class Company implements \JsonSerializable
     public function setInvoiceAllowed(bool $invoiceAllowed): Company
     {
         $this->invoiceAllowed = $invoiceAllowed;
+
+        return $this;
+    }
+
+    /**
+     * Not part of jsonSerialize(), as only admins may change it, see UpdateCompanyDto::$blockedFromPurchase.
+     */
+    public function isBlockedFromPurchase(): bool
+    {
+        return $this->blockedFromPurchase;
+    }
+
+    public function setBlockedFromPurchase(bool $blockedFromPurchase): Company
+    {
+        $this->blockedFromPurchase = $blockedFromPurchase;
 
         return $this;
     }

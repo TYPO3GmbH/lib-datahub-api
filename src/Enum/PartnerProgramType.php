@@ -40,4 +40,9 @@ final class PartnerProgramType extends AbstractEnum
     {
         return self::$optionWeights[$option] ?? 0.0;
     }
+
+    public static function hasAccessToPartnerExclusiveOffers(string $option): bool
+    {
+        return in_array($option, [self::SOLUTION, self::TECHNOLOGY], true);
+    }
 }

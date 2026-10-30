@@ -19,7 +19,7 @@ use T3G\DatahubApiLibrary\Utility\JsonUtility;
  * which prices may be purchased, the prices determine whether goods are billed once or as a subscription.
  *
  * @phpstan-type CheckoutItem array{priceId: string, quantity: int, metadata?: array<string, mixed>}
- * @phpstan-type CheckoutSession array{customerSessionClientSecret: string, legalBody: string, mode: 'payment'|'subscription', currency: string, amount: int, products: array<mixed>}
+ * @phpstan-type CheckoutSession array{customerSessionClientSecret: string, legalBody: string, mode: 'payment'|'subscription', currency: string, amount: int, products: array<mixed>, licenses: list<int>}
  * @phpstan-type PricingInformation array{currency: string, items: list<array{display_name: string, recurring: array<string, mixed>, amount: int, net: int, gross: int, applied_tax_rates: array<int|float>, metadata?: array<string, mixed>}>, taxes: list<array{display_name: string, rate: float|int|string, amount: float|int}>, total: array{net: int, gross: int}}
  * @phpstan-type FinalizedOrder array{orderNumber: string|null, intent: array{type: 'payment'|'setup', clientSecret: string}|null, hostedInvoiceUrl: string|null, payment_intent_client_secret: string|null, hosted_invoice_url: string|null}
  */

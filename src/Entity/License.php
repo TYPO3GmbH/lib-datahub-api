@@ -23,6 +23,7 @@ class License implements \JsonSerializable
     private ?string $eltsPlanUuid = null;
     private ?string $eltsRuntimeUuid = null;
     private ?string $eltsVersion = null;
+    private ?string $usedFor = null;
 
     /**
      * @return array<string, mixed>
@@ -165,6 +166,21 @@ class License implements \JsonSerializable
     public function setEltsVersion(?string $eltsVersion): self
     {
         $this->eltsVersion = $eltsVersion;
+
+        return $this;
+    }
+
+    /**
+     * Where the license is used, e.g. the domains of the instance, as entered at checkout.
+     */
+    public function getUsedFor(): ?string
+    {
+        return $this->usedFor;
+    }
+
+    public function setUsedFor(?string $usedFor): self
+    {
+        $this->usedFor = $usedFor;
 
         return $this;
     }

@@ -31,7 +31,7 @@ class CheckoutApiTest extends AbstractApiTestCase
 
     public function testCreateCheckoutSessionSendsPayload(): void
     {
-        $response = $this->createApi(['customerSessionClientSecret' => 'cuss_secret', 'legalBody' => 't3company', 'mode' => 'payment', 'currency' => 'eur', 'amount' => 100, 'products' => []])
+        $response = $this->createApi(['customerSessionClientSecret' => 'cuss_secret', 'legalBody' => 't3company', 'mode' => 'payment', 'currency' => 'eur', 'amount' => 100, 'products' => [], 'licenses' => [0]])
             ->createCheckoutSession(RequestContext::fromCombinedIdentifier('organization:4c3b2a10-0000-0000-0000-000000000000'), 'elts', new CheckoutPayloadDto([new CheckoutItemDto('price_1', 2, ['version' => '9.5'])]));
 
         self::assertSame('t3company', $response['legalBody']);
@@ -40,7 +40,7 @@ class CheckoutApiTest extends AbstractApiTestCase
         self::assertSame('/api/checkout/elts/checkout-session', $request->getUri()->getPath());
         self::assertStringContainsString('context%5Btype%5D=organization', $request->getUri()->getQuery());
         self::assertSame(
-            ['items' => [['priceId' => 'price_1', 'quantity' => 2, 'metadata' => ['version' => '9.5']]], 'addressUuid' => null, 'referenceNumber' => null, 'payByInvoice' => false, 'offerUuid' => null, 'legalBody' => null],
+            ['items' => [['priceId' => 'price_1', 'quantity' => 2, 'metadata' => ['version' => '9.5']]], 'addressUuid' => null, 'referenceNumber' => null, 'payByInvoice' => false, 'offerUuid' => null, 'legalBody' => null, 'licensesUsedFor' => []],
             json_decode((string) $request->getBody(), true, 512, JSON_THROW_ON_ERROR)
         );
     }

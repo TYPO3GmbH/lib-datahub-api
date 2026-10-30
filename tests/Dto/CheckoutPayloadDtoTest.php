@@ -25,6 +25,7 @@ class CheckoutPayloadDtoTest extends TestCase
             'payByInvoice' => true,
             'offerUuid' => 'offer-uuid',
             'legalBody' => 't3assoc',
+            'licensesUsedFor' => [['example.com, www.example.com', 'shop.example.com']],
         ];
 
         self::assertSame($data, CheckoutPayloadDto::fromArray($data)->toArray());
@@ -40,6 +41,7 @@ class CheckoutPayloadDtoTest extends TestCase
         self::assertFalse($payload->payByInvoice);
         self::assertNull($payload->offerUuid);
         self::assertNull($payload->legalBody);
+        self::assertSame([], $payload->licensesUsedFor);
     }
 
     public static function invalidPayloadDataProvider(): \Iterator
@@ -56,6 +58,11 @@ class CheckoutPayloadDtoTest extends TestCase
         yield 'offer is no string' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'offerUuid' => 42]];
         yield 'unknown legal body' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'legalBody' => 'acme']];
         yield 'legal body is no string' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'legalBody' => 1]];
+        yield 'licenses used for is no list' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'licensesUsedFor' => 'example.com']];
+        yield 'licenses used for is a map' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'licensesUsedFor' => ['price_1' => ['example.com']]]];
+        yield 'licenses used for of an item is no list' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'licensesUsedFor' => ['example.com']]];
+        yield 'licenses used for of an item is a map' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'licensesUsedFor' => [['a' => 'example.com']]]];
+        yield 'license used for is no string' => [['items' => [['priceId' => 'price_1', 'quantity' => 1]], 'licensesUsedFor' => [[42]]]];
     }
 
     /**

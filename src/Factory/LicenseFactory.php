@@ -18,7 +18,7 @@ use T3G\DatahubApiLibrary\Entity\License;
 class LicenseFactory extends AbstractFactory
 {
     /**
-     * @param array{uuid: string, type: string, status: string, createdAt: string, validUntil: string, history: string|null, currentJti: string|null, subscriptionUuid: string|null, eltsPlanUuid: string|null, eltsRuntimeUuid: string|null, eltsVersion: string|null} $data
+     * @param array{uuid: string, type: string, status: string, createdAt: string, validUntil: string, history: string|null, currentJti: string|null, subscriptionUuid: string|null, eltsPlanUuid: string|null, eltsRuntimeUuid: string|null, eltsVersion: string|null, usedFor?: string|null} $data
      */
     public static function fromArray(array $data): License
     {
@@ -33,6 +33,7 @@ class LicenseFactory extends AbstractFactory
             ->setSubscriptionUuid($data['subscriptionUuid'])
             ->setEltsPlanUuid($data['eltsPlanUuid'])
             ->setEltsRuntimeUuid($data['eltsRuntimeUuid'])
-            ->setEltsVersion($data['eltsVersion']);
+            ->setEltsVersion($data['eltsVersion'])
+            ->setUsedFor($data['usedFor'] ?? null);
     }
 }

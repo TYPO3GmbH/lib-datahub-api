@@ -15,11 +15,15 @@ use T3G\DatahubApiLibrary\Enum\LegalBody;
 /**
  * The cart of a checkout. All items belong to the same checkout scope, see CheckoutScope, and are sold by the same
  * legal body. The legal body is only required for scopes sold by more than one legal body, see LegalBody.
+ *
+ * Placing the order requires where the licenses granted by the items are used (`licensesUsedFor`): per item, one entry
+ * per license it grants. The checkout session tells how many licenses each item grants (`licenses`).
  */
 final readonly class CheckoutPayloadDto implements \JsonSerializable
 {
     /**
      * @param list<CheckoutItemDto> $items
+     * @param list<list<string>>    $licensesUsedFor
      */
     public function __construct(
         public array $items,
@@ -28,6 +32,7 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
         public bool $payByInvoice = false,
         public ?string $offerUuid = null,
         public ?string $legalBody = null,
+        public array $licensesUsedFor = [],
     ) {
     }
 
@@ -55,6 +60,11 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
             throw new \InvalidArgumentException('Attribute "legalBody" must be one of ' . implode(', ', LegalBody::getAvailableOptions()) . '.', 1791266017);
         }
 
+        $licensesUsedFor = $data['licensesUsedFor'] ?? [];
+        if (!self::isListOfStringLists($licensesUsedFor)) {
+            throw new \InvalidArgumentException('Attribute "licensesUsedFor" must be a list of lists of strings.', 1791266018);
+        }
+
         $items = [];
         foreach ($data['items'] as $item) {
             if (!is_array($item)) {
@@ -73,11 +83,12 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
             $data['payByInvoice'] ?? false,
             is_string($offerUuid) && '' !== $offerUuid ? $offerUuid : null,
             $data['legalBody'] ?? null,
+            $licensesUsedFor,
         );
     }
 
     /**
-     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null, legalBody: string|null}
+     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null, legalBody: string|null, licensesUsedFor: list<list<string>>}
      */
     public function toArray(): array
     {
@@ -88,14 +99,39 @@ final readonly class CheckoutPayloadDto implements \JsonSerializable
             'payByInvoice' => $this->payByInvoice,
             'offerUuid' => $this->offerUuid,
             'legalBody' => $this->legalBody,
+            'licensesUsedFor' => $this->licensesUsedFor,
         ];
     }
 
     /**
-     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null, legalBody: string|null}
+     * @return array{items: list<array{priceId: string, quantity: int, metadata: array<string, mixed>}>, addressUuid: string|null, referenceNumber: string|null, payByInvoice: bool, offerUuid: string|null, legalBody: string|null, licensesUsedFor: list<list<string>>}
      */
     public function jsonSerialize(): array
     {
         return $this->toArray();
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @phpstan-assert-if-true list<list<string>> $value
+     */
+    private static function isListOfStringLists($value): bool
+    {
+        if (!is_array($value) || array_values($value) !== $value) {
+            return false;
+        }
+        foreach ($value as $list) {
+            if (!is_array($list) || array_values($list) !== $list) {
+                return false;
+            }
+            foreach ($list as $item) {
+                if (!is_string($item)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }

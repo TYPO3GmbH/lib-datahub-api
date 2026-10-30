@@ -34,6 +34,7 @@ class LicenseFactoryTest extends TestCase
         self::assertSame($data['eltsPlanUuid'], $entity->getEltsPlanUuid());
         self::assertSame($data['eltsRuntimeUuid'], $entity->getEltsRuntimeUuid());
         self::assertSame($data['eltsVersion'], $entity->getEltsVersion());
+        self::assertSame($data['usedFor'] ?? null, $entity->getUsedFor());
     }
 
     public static function factoryDataProvider(): array
@@ -52,6 +53,7 @@ class LicenseFactoryTest extends TestCase
                     'eltsPlanUuid' => null,
                     'eltsRuntimeUuid' => null,
                     'eltsVersion' => null,
+                    'usedFor' => 'example.com, www.example.com',
                 ],
             ],
             'granted for a subscription' => [

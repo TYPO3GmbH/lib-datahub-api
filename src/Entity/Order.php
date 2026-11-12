@@ -14,6 +14,7 @@ class Order implements \JsonSerializable
 {
     private string $uuid;
     private string $orderNumber;
+    private ?string $orderType = null;
     private array $payload;
     private \DateTimeInterface $createdAt;
     private ?User $user = null;
@@ -31,6 +32,7 @@ class Order implements \JsonSerializable
     {
         return [
             'orderNumber' => $this->getOrderNumber(),
+            'orderType' => $this->getOrderType(),
             'payload' => $this->getPayload(),
             'user' => null !== $this->user ? $this->user->jsonSerialize() : null,
             'company' => null !== $this->company ? $this->company->jsonSerialize() : null,
@@ -63,6 +65,21 @@ class Order implements \JsonSerializable
     public function setOrderNumber(string $orderNumber): self
     {
         $this->orderNumber = $orderNumber;
+
+        return $this;
+    }
+
+    public function getOrderType(): ?string
+    {
+        return $this->orderType;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setOrderType(?string $orderType): self
+    {
+        $this->orderType = $orderType;
 
         return $this;
     }

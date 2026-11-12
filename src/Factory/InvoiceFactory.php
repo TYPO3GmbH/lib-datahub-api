@@ -39,6 +39,10 @@ class InvoiceFactory extends AbstractFactory
             $invoice->setNumber($data['number']);
         }
 
+        if (isset($data['paymentStatus']) && is_string($data['paymentStatus'])) {
+            $invoice->setPaymentStatus($data['paymentStatus']);
+        }
+
         return $invoice;
     }
 }

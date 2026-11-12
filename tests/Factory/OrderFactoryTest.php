@@ -22,6 +22,7 @@ class OrderFactoryTest extends TestCase
         $entity = OrderFactory::fromArray($data);
         self::assertEquals($data['uuid'], $entity->getUuid());
         self::assertEquals($data['orderNumber'], $entity->getOrderNumber());
+        self::assertSame($data['orderType'] ?? null, $entity->getOrderType());
         self::assertEquals($data['payload'], $entity->getPayload());
         self::assertEquals((new \DateTime('2020-01-10T00:00:00+00:00'))->getTimestamp(), $entity->getCreatedAt()->getTimestamp());
         if (!empty($data['invoices'])) {
@@ -66,6 +67,7 @@ class OrderFactoryTest extends TestCase
                 'data' => [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'orderNumber' => 'D12345',
+                    'orderType' => 'elts',
                     'createdAt' => '2020-01-10T00:00:00+00:00',
                     'payload' => [
                         'items' => [
@@ -78,6 +80,7 @@ class OrderFactoryTest extends TestCase
                 'data' => [
                     'uuid' => '00000000-0000-0000-0000-000000000000',
                     'orderNumber' => 'D12345',
+                    'orderType' => 'membership',
                     'createdAt' => '2020-01-10T00:00:00+00:00',
                     'payload' => [
                         'items' => [

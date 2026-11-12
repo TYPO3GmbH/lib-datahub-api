@@ -19,6 +19,7 @@ class Invoice implements \JsonSerializable
     private string $number = '';
     private string $identifier = '';
     private string $documentType = '';
+    private ?string $paymentStatus = null;
 
     /**
      * @return array<string, mixed>
@@ -32,6 +33,7 @@ class Invoice implements \JsonSerializable
             'number' => $this->getNumber(),
             'identifier' => $this->getIdentifier(),
             'documentType' => $this->getDocumentType(),
+            'paymentStatus' => $this->getPaymentStatus(),
         ];
     }
 
@@ -136,6 +138,21 @@ class Invoice implements \JsonSerializable
     public function setDocumentType(string $documentType): self
     {
         $this->documentType = $documentType;
+
+        return $this;
+    }
+
+    public function getPaymentStatus(): ?string
+    {
+        return $this->paymentStatus;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setPaymentStatus(?string $paymentStatus): self
+    {
+        $this->paymentStatus = $paymentStatus;
 
         return $this;
     }

@@ -42,6 +42,10 @@ class OrderFactory extends AbstractFactory
             ->setOrderNumber($data['orderNumber'])
             ->setCreatedAt(isset($data['createdAt']) ? new \DateTime($data['createdAt']) : new \DateTime());
 
+        if (isset($data['orderType']) && is_string($data['orderType'])) {
+            $order->setOrderType($data['orderType']);
+        }
+
         if (!empty($data['payload'])) {
             $order->setPayload($data['payload']);
         }
